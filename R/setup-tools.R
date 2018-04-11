@@ -59,3 +59,16 @@ generate_dataframe <- function(records) {
                    raw_record = I(raw_records))
   df
 }
+
+#' @name add_to_database
+#' @title Add to database
+#' @description Add records data.frame to SQLite database.
+#' @return NULL
+#' @export
+add_to_database <- function(df, database, filepath) {
+  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
+                               dbname = filepath)
+  DBI::dbWriteTable(conn = connection, name = database,
+                    value = df, append=TRUE)
+  DBI::dbDisconnect(conn = connection)
+}

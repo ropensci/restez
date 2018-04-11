@@ -3,7 +3,8 @@ library(restez)
 library(testthat)
 
 # VARS
-test_file <- 'test_records.txt'
+test_records_file <- 'test_records.txt'
+test_database_file <- 'test_database'
 nrcrds <- 3  # how many fake records to test on?
 
 # DATA
@@ -32,12 +33,15 @@ write_fake_records <- function(n=nrcrds) {
     records_text <- paste0(records_text,
                            make_fake_record(i), '\n')
   }
-  cat(records_text, file = test_file)
+  cat(records_text, file = test_records_file)
   NULL
 }
 clean <- function() {
-  if (file.exists(test_file)) {
-    file.remove(test_file)
+  if (file.exists(test_records_file)) {
+    file.remove(test_records_file)
+  }
+  if (file.exists(test_database_file)) {
+    unlink(test_database_file)
   }
 }
 
@@ -49,7 +53,7 @@ test_that('setup_database() works', {
 })
 test_that('read_records() works', {
   write_fake_records(n = nrcrds)
-  records <- restez:::read_records(filepath = test_file)
+  records <- restez:::read_records(filepath = test_records_file)
   expect_true(length(records) == nrcrds)
   clean()
 })
@@ -59,6 +63,13 @@ test_that('generate_dataframe() works', {
   expctd_clnms <- c("accession", "organism", "raw_definition",
                     "raw_sequence", "raw_record")
   expect_true(all(colnames(df) %in% expctd_clnms))
+})
+test_that('add_to_database() works', {
+  df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
+  restez:::add_to_database(df = df, database = 'nucleotide',
+                           filepath = test_database_file)
+  expect_true(file.exists(test_database_file))
+  clean()
 })
 clean()
 
