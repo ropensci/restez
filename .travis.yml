@@ -5,6 +5,9 @@ sudo: required
 
 r_binary_packages:
  - testthat
+ - DBI
+ - rentrez
+ - RSQLite
 r_github_packages:
   - jimhester/covr
 
