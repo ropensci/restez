@@ -6,6 +6,11 @@
 \usage{
 get_sequence_from_id(id, filepath)
 }
+\arguments{
+\item{id}{sequence accession ID}
+
+\item{filepath}{Database filepath}
+}
 \value{
 character
 }

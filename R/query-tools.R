@@ -2,6 +2,8 @@
 #' @title Get sequence from ID
 #' @description Return the sequence for a record
 #' from the accession ID.
+#' @param id sequence accession ID
+#' @param filepath Database filepath
 #' @return character
 #' @export
 get_sequence_from_id <- function(id, filepath) {

@@ -63,6 +63,9 @@ generate_dataframe <- function(records) {
 #' @name add_to_database
 #' @title Add to database
 #' @description Add records data.frame to SQLite database.
+#' @param df Records data.frame
+#' @param database SQL database name
+#' @param filepath Database filepath
 #' @return NULL
 #' @export
 add_to_database <- function(df, database, filepath) {

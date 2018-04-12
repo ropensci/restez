@@ -14,11 +14,11 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 3.3.0),
-    methods
+    R (>= 3.3.0)
 Imports:
     rentrez,
-    RSQLite
+    RSQLite,
+    DBI
 Suggests:
     testthat
 RoxygenNote: 6.0.1

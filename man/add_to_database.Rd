@@ -6,6 +6,13 @@
 \usage{
 add_to_database(df, database, filepath)
 }
+\arguments{
+\item{df}{Records data.frame}
+
+\item{database}{SQL database name}
+
+\item{filepath}{Database filepath}
+}
 \description{
 Add records data.frame to SQLite database.
 }
