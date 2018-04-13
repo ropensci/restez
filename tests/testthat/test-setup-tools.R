@@ -45,6 +45,9 @@ clean <- function() {
   }
 }
 
+# SETUP
+options(options(restez_database_filepath = test_database_file))
+
 # RUNNING
 context('Testing \'setup-tools\'')
 clean()
@@ -66,8 +69,7 @@ test_that('generate_dataframe() works', {
 })
 test_that('add_to_database() works', {
   df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
-  restez:::add_to_database(df = df, database = 'nucleotide',
-                           filepath = test_database_file)
+  restez:::add_to_database(df = df, database = 'nucleotide')
   expect_true(file.exists(test_database_file))
   clean()
 })

@@ -4,12 +4,10 @@
 \alias{get_sequence_from_id}
 \title{Get sequence from ID}
 \usage{
-get_sequence_from_id(id, filepath)
+get_sequence_from_id(id)
 }
 \arguments{
 \item{id}{sequence accession ID}
-
-\item{filepath}{Database filepath}
 }
 \value{
 character

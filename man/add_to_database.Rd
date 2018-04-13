@@ -4,14 +4,12 @@
 \alias{add_to_database}
 \title{Add to database}
 \usage{
-add_to_database(df, database, filepath)
+add_to_database(df, database)
 }
 \arguments{
 \item{df}{Records data.frame}
 
-\item{database}{SQL database name}
-
-\item{filepath}{Database filepath}
+\item{database}{Database name}
 }
 \description{
 Add records data.frame to SQLite database.
