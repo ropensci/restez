@@ -7,12 +7,12 @@
 get_sequence(id)
 }
 \arguments{
-\item{id}{sequence accession ID}
+\item{id}{sequence accession ID(s)}
 }
 \value{
-character
+list of sequences
 }
 \description{
-Return the sequence for a record
-from the accession ID.
+Return the sequence(s) for a record(s)
+from the accession ID(s).
 }

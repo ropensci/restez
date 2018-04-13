@@ -3,5 +3,6 @@
 export(add_to_database)
 export(entrez_fetch)
 export(get_sequence)
+export(list_db_ids)
 export(set_database_filepath)
 export(setup_database)

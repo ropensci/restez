@@ -1,3 +1,4 @@
+restez_database
 other/
 .travis.yml
 ^.*\.Rproj$

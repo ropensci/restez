@@ -1,6 +1,6 @@
 # data
 *.seq
-restez_database/
+restez_database
 .Rprofile
 
 # History files

@@ -30,4 +30,8 @@ test_that('get_sequence() works', {
   sequence <- restez:::get_sequence(id = id)
   expect_true(grepl('[atcgn]*', sequence))
 })
+test_that('list_db_ids() works', {
+  res <- restez:::list_db_ids(db='nucleotide')
+  expect_true(all(ids %in% res))
+})
 clean()
