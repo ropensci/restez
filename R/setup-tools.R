@@ -41,13 +41,13 @@ read_records <- function(filepath) {
 #' @return data.frame
 generate_dataframe <- function(records) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
-                       FUN = get_version)
+                       FUN = extract_version)
   definitions <- vapply(X = records, FUN.VALUE = character(1),
-                        FUN = get_definition)
+                        FUN = extract_definition)
   organisms <- vapply(X = records, FUN.VALUE = character(1),
-                      FUN = get_organism)
+                      FUN = extract_organism)
   sequences <- vapply(X = records, FUN.VALUE = character(1),
-                      FUN = get_sequence)
+                      FUN = extract_sequence)
   # make raw
   raw_definitions <- lapply(definitions, charToRaw)
   raw_sequences <- lapply(sequences, charToRaw)

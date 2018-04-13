@@ -2,36 +2,32 @@
 library(restez)
 library(testthat)
 
+# VARS
+test_filepath <- 'test_database'
+nrcrds <- 10  # how many fake records to test on?
+
 # DATA
 data("records")
 
+# FUNCTIONS
+clean <- function() {
+  if (file.exists(test_filepath)) {
+    unlink(test_filepath, recursive = TRUE)
+  }
+}
+
+# SETUP
+dir.create(test_filepath)
+set_database_filepath(test_filepath)
+df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
+ids <- as.character(df[['accession']])
+restez:::add_to_database(df = df, database = 'nucleotide')
+
 # RUNNING
 context('Testing \'get-tools\'')
-test_that('extract_by_keyword() works', {
-  res <- restez:::extract_by_keyword(sample(records, 1),
-                                     keyword = 'FEATURES',
-                                     end_pattern = 'ORIGIN')
-  expect_true(grepl('Location/Qualifiers', res))
-})
-test_that('get_version() works', {
-  accession_version <- restez:::get_version(sample(records, 1))
-  expect_true(grepl('^[a-z0-9]+\\.[0-9]+$', accession_version,
-                    ignore.case = TRUE))
-})
-test_that('get_organism() works', {
-  organism <- restez:::get_organism(sample(records, 1))
-  expect_false(grepl('\\s{2,}', organism,
-                    ignore.case = TRUE))
-  expect_false(grepl('\n', organism, ignore.case = TRUE))
-})
-test_that('get_definition() works', {
-  definition <- restez:::get_definition(sample(records, 1))
-  expect_false(grepl('\\s{2,}', definition,
-                     ignore.case = TRUE))
-  expect_false(grepl('\n', definition, ignore.case = TRUE))
-})
 test_that('get_sequence() works', {
-  sequence <- restez:::get_sequence(sample(records, 1))
-  expect_false(grepl('[0-9]', sequence,
-                     ignore.case = TRUE))
+  id <- sample(ids, 1)
+  sequence <- restez:::get_sequence(id = id)
+  expect_true(grepl('[atcgn]*', sequence))
 })
+clean()

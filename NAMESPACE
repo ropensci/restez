@@ -2,6 +2,6 @@
 
 export(add_to_database)
 export(entrez_fetch)
-export(get_sequence_from_id)
+export(get_sequence)
 export(set_database_filepath)
 export(setup_database)

@@ -4,14 +4,15 @@
 \alias{get_sequence}
 \title{Get sequence}
 \usage{
-get_sequence(record)
+get_sequence(id)
 }
 \arguments{
-\item{record}{GenBank record in text format, character}
+\item{id}{sequence accession ID}
 }
 \value{
 character
 }
 \description{
-Return sequecne from GenBank record
+Return the sequence for a record
+from the accession ID.
 }
