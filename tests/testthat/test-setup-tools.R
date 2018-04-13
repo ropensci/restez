@@ -46,7 +46,7 @@ clean <- function() {
 }
 
 # SETUP
-options(options(restez_database_filepath = test_database_file))
+options(restez_database_filepath = test_database_file)
 
 # RUNNING
 context('Testing \'setup-tools\'')

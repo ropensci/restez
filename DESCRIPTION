@@ -16,6 +16,7 @@ LazyData: true
 Depends:
     R (>= 3.3.0)
 Imports:
+    utils,
     rentrez,
     RSQLite,
     DBI

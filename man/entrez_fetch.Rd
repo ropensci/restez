@@ -29,5 +29,5 @@ parameters, if the record is missing in the database, the function then
 calls rentrez::entrez_fetch to search GenBank remotely.
 }
 \seealso{
-\link{rentrez::entrez_fetch}
+\code{\link[rentrez]{entrez_fetch}}
 }

@@ -7,11 +7,13 @@
 set_database_filepath(filepath)
 }
 \arguments{
-\item{filepath}{character, valid filepath}
+\item{filepath}{character, valid filepath to the folder where the
+database should be stored.}
 }
 \description{
 Specify the filepath for the local GenBank database.
 }
 \details{
-Adds 'restez_database_filepath' to options().
+Adds 'restez_database_filepath' to options(). In this path
+the database will be created and called 'restez_database'
 }

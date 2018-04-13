@@ -9,7 +9,7 @@
 #' @param rettype character, data format
 #' @param retmode character, data mode
 #' @param ... Arguments to be passed on to rentrez
-#' @seealso \link{rentrez::entrez_fetch}
+#' @seealso \code{\link[rentrez]{entrez_fetch}}
 #' @return character string containing the file created
 #' @export
 entrez_fetch <- function(db, id=NULL, rettype, retmode="", ...) {

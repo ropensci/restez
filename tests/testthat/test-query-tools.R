@@ -3,7 +3,7 @@ library(restez)
 library(testthat)
 
 # VARS
-test_database_file <- 'test_database'
+test_filepath <- 'test_database'
 nrcrds <- 10  # how many fake records to test on?
 
 # DATA
@@ -11,13 +11,14 @@ data("records")
 
 # FUNCTIONS
 clean <- function() {
-  if (file.exists(test_database_file)) {
-    unlink(test_database_file)
+  if (file.exists(test_filepath)) {
+    unlink(test_filepath, recursive = TRUE)
   }
 }
 
 # SETUP
-options(restez_database_filepath = test_database_file)
+dir.create(test_filepath)
+set_database_filepath(test_filepath)
 df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
 restez:::add_to_database(df = df, database = 'nucleotide')
