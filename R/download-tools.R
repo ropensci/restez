@@ -3,6 +3,7 @@
 #' @description Searches through all release notes
 #' to find the latest. Returns the entire release notes.
 #' @return character
+#' @noRd
 identify_latest_genbank_release_notes <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/'
   all_release_notes <- RCurl::getURL(url = url, dirlistonly = TRUE)
@@ -23,6 +24,7 @@ identify_latest_genbank_release_notes <- function() {
 #' description.
 #' @param release_notes character, GenBank release notes
 #' @return data.frame
+#' @noRd
 identify_downloadable_files <- function(release_notes) {
   lines <- strsplit(x = release_notes, split = '\n')[[1]]
   descript_section <- FALSE

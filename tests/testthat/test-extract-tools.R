@@ -2,8 +2,18 @@
 library(restez)
 library(testthat)
 
+# VARS
+wd <- getwd()
+if (grepl('testthat', wd)) {
+  data_d <- file.path('data')
+} else {
+  # for running test at package level
+  data_d <- file.path('tests', 'testthat',
+                      'data')
+}
+
 # DATA
-data("records")
+records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # RUNNING
 context('Testing \'extract-tools\'')

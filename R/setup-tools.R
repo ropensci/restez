@@ -13,6 +13,7 @@ setup_database <- function() {
 #' @description Read records from a .seq file.
 #' @param filepath Path to .seq file
 #' @return list of GenBank records in text format
+#' @noRd
 read_records <- function(filepath) {
   generate_records <- function(i) {
     indexes <- record_starts[i]:record_ends[i]
@@ -40,6 +41,7 @@ read_records <- function(filepath) {
 #' The raw_record contains the entire GenBank record in text format.
 #' @param records list of GenBank records in text format
 #' @return data.frame
+#' @noRd
 generate_dataframe <- function(records) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
                        FUN = extract_version)
@@ -67,7 +69,7 @@ generate_dataframe <- function(records) {
 #' @param df Records data.frame
 #' @param database Database name
 #' @return NULL
-#' @export
+#' @noRd
 add_to_database <- function(df, database) {
   filepath <- getOption('restez_database_filepath')
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),

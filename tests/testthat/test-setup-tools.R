@@ -6,9 +6,17 @@ library(testthat)
 test_records_file <- 'test_records.txt'
 test_database_file <- 'test_database'
 nrcrds <- 3  # how many fake records to test on?
+wd <- getwd()
+if (grepl('testthat', wd)) {
+  data_d <- file.path('data')
+} else {
+  # for running test at package level
+  data_d <- file.path('tests', 'testthat',
+                      'data')
+}
 
 # DATA
-data("records")
+records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # FUNCTIONS
 make_fake_record <- function(i) {

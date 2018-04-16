@@ -12,6 +12,7 @@
 #' a user wants returned. By default, the extraction will stop
 #' at the next newline.
 #' @return character
+#' @noRd
 extract_by_keyword <- function(record, keyword, end_pattern='\n') {
   # cut record from keyword to end_pattern
   start_index <- regexpr(pattern = keyword, text = record)
@@ -30,6 +31,7 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
 #' @description Return version ID from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character
+#' @noRd
 extract_version <- function(record) {
   extract_by_keyword(record = record, keyword = 'VERSION')
 }
@@ -39,6 +41,7 @@ extract_version <- function(record) {
 #' @description Return organism name from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character
+#' @noRd
 extract_organism <- function(record) {
   extract_by_keyword(record = record, keyword = 'ORGANISM')
 }
@@ -48,6 +51,7 @@ extract_organism <- function(record) {
 #' @description Return definition from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character
+#' @noRd
 extract_definition <- function(record) {
   # assumes ACCESSION always follows DEFINTION
   definition <- extract_by_keyword(record = record, keyword = 'DEFINITION',
@@ -63,6 +67,7 @@ extract_definition <- function(record) {
 #' @description Return sequecne from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character
+#' @noRd
 extract_sequence <- function(record) {
   sequence <- extract_by_keyword(record = record, keyword = 'ORIGIN',
                                  end_pattern = '//')
