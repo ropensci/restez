@@ -4,7 +4,8 @@
 #' @return NULL
 #' @export
 setup_database <- function() {
-
+  # run download_genbank
+  # for each in downloads, decompress and add to database.
 }
 
 #' @name read_records
