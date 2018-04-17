@@ -14,12 +14,12 @@ clean_up <- function() {
 
 # RUNNING
 clean_up()
-context('Testing \'startup\'')
-test_that('set_database_filepath() works', {
+context('Testing \'filepath-tools\'')
+test_that('set_restez_path() works', {
   dir.create(test_filepath)
-  set_database_filepath(filepath = test_filepath)
-  expect_true(getOption('restez_database_filepath') ==
-                file.path(test_filepath, 'restez_database'))
+  set_restez_path(filepath = test_filepath)
+  expect_true(get_restez_path() ==
+                file.path(test_filepath, 'restez'))
   clean_up()
 })
 clean_up()

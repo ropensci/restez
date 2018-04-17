@@ -6,9 +6,8 @@
 #' @return list of sequences
 #' @export
 get_sequence <- function(id) {
-  filepath <- getOption('restez_database_filepath')
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = filepath)
+                               dbname = get_sql_path())
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT raw_sequence FROM nucleotide WHERE accession in ",
                 qry_id)
@@ -27,9 +26,8 @@ get_sequence <- function(id) {
 #' @return vector of characters
 #' @export
 list_db_ids <- function(db) {
-  filepath <- getOption('restez_database_filepath')
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = filepath)
+                               dbname = get_sql_path())
   if (db == 'nucleotide') {
     res <- DBI::dbGetQuery(conn = connection,
                            statement =

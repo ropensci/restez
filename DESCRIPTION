@@ -20,6 +20,7 @@ Imports:
     rentrez,
     RSQLite,
     DBI,
+    R.utils,
     downloader,
     RCurl
 Suggests:

@@ -63,61 +63,48 @@ identify_downloadable_files <- function(release_notes) {
   data.frame(seq_files, descripts)
 }
 
-#' @name download_genbank
-#' @title Download GenBank
-#' @description Download .seq files from the latest GenBank
-#' release. The user interacitvely selects the parts of
-#' GenBank to download (e.g. primates, plants, bacteria ...)
-#' @details
-#' The downloaded files will appear in the restez filepath under
-#' downloads.
-#' The downloaded files will be .tar compressed and will need
-#' extraction for inspection. (setup() does this itself.)
-#' Warning: this function will overwrite pre-exisitng files.
+#' @name download_file
+#' @title Download file
+#' @description Download a GenBank .seq.tar file. Check
+#' the file has downloaded properly. If not, returns FALSE.
+#' If overwrite is true, any previous file will be overwritten.
+#' @param fl character, base filename (e.g. gbpri9.seq) to be
+#' downloaded
+#' @param overwrite T/F
+#' @return T/F
+#' @noRd
+# based upon: biomartr::download.database
+download_file <- function(fl, overwrite=FALSE) {
+  remove <- function(fl) {
+    if (file.exists(fl)) {
+      file.remove(fl)
+    }
+  }
+  base_url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/'
+  gzfl <- paste0(fl, '.gz')
+  gzurl <- paste0(base_url, gzfl)
+  gzdest <- file.path(get_dwnld_path(), gzfl)
+  if (overwrite) {
+    remove(gzdest)
+  }
+  if (file.exists(gzurl)) {
+    return(TRUE)
+  }
+  success <- tryCatch({
+    custom_download(url = gzurl, destfile = gzdest, mode = "wb")
+    TRUE
+  }, error = function(e) {
+    cat('... ... [', gzurl, '] cannot be reached.\n', sep = '')
+    FALSE
+  })
+  success
+}
+
+#' @name save_download_details
+#' @title Save download details
+#' @description Records downloaded file details.
 #' @return NULL
-#' @export
-download_genbank <- function() {
-  # ping google to test for internet
-  connected.to.internet()
-  cat('Looking up latest GenBank release ...\n')
-  release <- identify_latest_genbank_release_notes()
-  release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
-                        release)
-  release_notes <- RCurl::getURL(url = release_url)
-  downloadable_table <- identify_downloadable_files(release_notes)
-  cat('... Found [', nrow(downloadable_table), '] sequence files\n',
-      sep = '')
-  types <- sort(table(downloadable_table[['descripts']]),
-                decreasing = TRUE)
-  cat('\nWhich sequence file types would you like to download?\n')
-  cat('Choose from those listed below:')
-  for (i in seq_along(types)) {
-    typ_nm <- names(types)[[i]]
-    cat(i, '  -  ', typ_nm, ' [', types[[i]],
-        ' sequence files]\n', sep = '')
-  }
-  cat('Provide one or more numbers separated by spaces.\n')
-  cat('e.g. "1 4 7"\n')
-  cat('Which files would you like to download?\n')
-  response <- readline(prompt = '(Press Esc to quit)')
-  selected_types <- as.numeric(strsplit(x = response,
-                                        split = '\\s')[[1]])
-  cat('Downloading [', sum(types[selected_types]),
-      '] files for:\n',paste0(names(types)[selected_types],
-                              collapse = ', '), ' ...\n', sep = '')
-  pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
-  files_to_download <- as.character(downloadable_table[['seq_files']][pull])
-  for (i in seq_along(files_to_download)) {
-    fl <- files_to_download[[i]]
-    cat('... ', fl, ' (', i, '/', length(files_to_download),
-        ')\n', sep = '')
-    fl <- paste0(fl, '.gz')
-    # TODO: update restez filepath to a folder
-    flpth <- file.path('restez_test_downloads', fl)
-    url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/', fl)
-    # custom_download chooses the best download protocol given
-    # the OS
-    custom_download(url = url, destfile = flpth,
-                    mode = "wb")
-  }
+#' @noRd
+save_download_details <- function() {
+
 }

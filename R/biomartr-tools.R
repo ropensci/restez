@@ -5,7 +5,8 @@
 #' the google homepage and throws an error if it cannot be reached.
 #' @author Hajk-Georg Drost
 #' @noRd
-connected.to.internet <- function() {
+# originally connected.to.internet
+check_connection <- function() {
   if (is.character(RCurl::getURL("www.google.com"))) {
     TRUE
   } else {

@@ -1,13 +1,3 @@
-#' @name setup_database
-#' @title Setup database
-#' @description Download and create GenBank database
-#' @return NULL
-#' @export
-setup_database <- function() {
-  # run download_genbank
-  # for each in downloads, decompress and add to database.
-}
-
 #' @name read_records
 #' @title Read records
 #' @description Read records from a .seq file.
@@ -71,9 +61,8 @@ generate_dataframe <- function(records) {
 #' @return NULL
 #' @noRd
 add_to_database <- function(df, database) {
-  filepath <- getOption('restez_database_filepath')
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = filepath)
+                               dbname = get_sql_path())
   DBI::dbWriteTable(conn = connection, name = database,
                     value = df, append = TRUE)
   DBI::dbDisconnect(conn = connection)

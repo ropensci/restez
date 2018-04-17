@@ -4,7 +4,7 @@ library(testthat)
 
 # VARS
 test_records_file <- 'test_records.txt'
-test_database_file <- 'test_database'
+test_db_fldr <- 'test_db_fldr'
 nrcrds <- 3  # how many fake records to test on?
 wd <- getwd()
 if (grepl('testthat', wd)) {
@@ -48,20 +48,14 @@ clean <- function() {
   if (file.exists(test_records_file)) {
     file.remove(test_records_file)
   }
-  if (file.exists(test_database_file)) {
-    unlink(test_database_file)
+  if (dir.exists(test_db_fldr)) {
+    unlink(test_db_fldr, recursive = TRUE)
   }
 }
-
-# SETUP
-options(restez_database_filepath = test_database_file)
 
 # RUNNING
 context('Testing \'setup-tools\'')
 clean()
-test_that('setup_database() works', {
-  NULL
-})
 test_that('read_records() works', {
   write_fake_records(n = nrcrds)
   records <- restez:::read_records(filepath = test_records_file)
@@ -76,10 +70,11 @@ test_that('generate_dataframe() works', {
   expect_true(all(colnames(df) %in% expctd_clnms))
 })
 test_that('add_to_database() works', {
+  dir.create(test_db_fldr)
+  set_restez_path(test_db_fldr)
   df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
   restez:::add_to_database(df = df, database = 'nucleotide')
-  expect_true(file.exists(test_database_file))
+  expect_true(file.exists(restez:::get_sql_path()))
   clean()
 })
 clean()
-
