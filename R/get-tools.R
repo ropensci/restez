@@ -7,15 +7,18 @@
 #' @return data.frame
 #' @noRd
 query_sql <- function(nm, id) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = get_sql_path())
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT ", nm, " FROM nucleotide WHERE accession in ",
                 qry_id)
+  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
+                               dbname = get_sql_path())
+  on.exit(DBI::dbDisconnect(conn = connection))
   qry <- DBI::dbSendQuery(conn = connection, statement = qry)
+  on.exit(expr = {
+    DBI::dbClearResult(res = qry)
+    DBI::dbDisconnect(conn = connection)
+    })
   res <- DBI::dbFetch(res = qry)
-  DBI::dbClearResult(res = qry)
-  DBI::dbDisconnect(conn = connection)
   res
 }
 
@@ -84,6 +87,6 @@ list_db_ids <- function(db) {
                            statement =
                              "SELECT accession from nucleotide")
   }
-  DBI::dbDisconnect(conn = connection)
+  on.exit(DBI::dbDisconnect(conn = connection))
   res[[1]]
 }

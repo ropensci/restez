@@ -25,6 +25,7 @@ clean <- function() {
 }
 
 # SETUP
+clean()
 dir.create(test_filepath)
 set_restez_path(filepath = test_filepath)
 df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))

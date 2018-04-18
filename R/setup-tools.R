@@ -84,7 +84,7 @@ make_nucleotide_df <- function(accessions, organisms, definitions,
 add_to_database <- function(df, database) {
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
                                dbname = get_sql_path())
+  on.exit(DBI::dbDisconnect(conn = connection))
   DBI::dbWriteTable(conn = connection, name = database,
                     value = df, append = TRUE)
-  DBI::dbDisconnect(conn = connection)
 }
