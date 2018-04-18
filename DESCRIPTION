@@ -22,7 +22,8 @@ Imports:
     DBI,
     R.utils,
     downloader,
-    RCurl
+    RCurl,
+    crayon
 Suggests:
     testthat,
     knitr,

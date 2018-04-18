@@ -12,7 +12,7 @@ identify_latest_genbank_release_notes <- function() {
                               x = all_release_notes)
   all_release_numbers <- as.numeric(all_release_numbers)
   max_release <- max(all_release_numbers, na.rm = TRUE)
-  cat('... found release [', max_release, ']\n', sep = '')
+  cat_line('... found release ', stat(max_release))
   all_release_notes[which.max(all_release_numbers)]
 }
 
@@ -94,7 +94,7 @@ download_file <- function(fl, overwrite=FALSE) {
     custom_download(url = gzurl, destfile = gzdest, mode = "wb")
     TRUE
   }, error = function(e) {
-    cat('... ... [', gzurl, '] cannot be reached.\n', sep = '')
+    cat_line('... ... ', path(gzurl), ' cannot be reached.')
     FALSE
   })
   success

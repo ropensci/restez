@@ -15,12 +15,12 @@ set_restez_path <- function(filepath) {
   restez_path <- file.path(filepath, 'restez')
   options(restez_path = file.path(filepath, 'restez'))
   if (!dir.exists(restez_path)) {
-    cat('... Creating [', restez_path, ']\n', sep = '')
+    cat_line('... Creating ', path(restez_path))
     dir.create(restez_path)
   }
   dwnld_path <- get_dwnld_path()
   if (!dir.exists(dwnld_path)) {
-    cat('... Creating [', dwnld_path, ']\n', sep = '')
+    cat_line('... Creating ', path(dwnld_path))
     dir.create(dwnld_path)
   }
   readme_fl <- file.path(restez_path, 'README.txt')
@@ -80,7 +80,7 @@ check_restez_fp <- function() {
   if (!dir.exists(fp)) {
     msg <- paste0('Restez path [', fp,
                   '] does not exist.')
-    stop(msg)
+    stop(msg, .call = FALSE)
   }
 }
 
@@ -92,4 +92,3 @@ check_restez_fp <- function() {
 delete_database <- function() {
   file.remove(get_sql_path())
 }
-

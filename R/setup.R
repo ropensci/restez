@@ -13,7 +13,7 @@ download_genbank <- function(overwrite=FALSE) {
   # checks
   check_restez_fp()
   check_connection()
-  cat('Looking up latest GenBank release ...\n')
+  cat_line('Looking up latest GenBank release ..-')
   release <- identify_latest_genbank_release_notes()
   release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
                         release)
@@ -21,35 +21,35 @@ download_genbank <- function(overwrite=FALSE) {
   write(x = release_notes, file = file.path(get_dwnld_path(),
                                             'latest_release_notes.txt'))
   downloadable_table <- identify_downloadable_files(release_notes)
-  cat('... Found [', nrow(downloadable_table), '] sequence files\n',
-      sep = '')
+  cat_line('... Found ', stat(nrow(downloadable_table)),
+           ' sequence files')
   types <- sort(table(downloadable_table[['descripts']]),
                 decreasing = TRUE)
-  cat('\nWhich sequence file types would you like to download?\n')
-  cat('Choose from those listed below:\n')
+  cat_line('\nWhich sequence file types would you like to download?')
+  cat_line('Choose from those listed below:')
   for (i in seq_along(types)) {
     typ_nm <- names(types)[[i]]
-    cat(i, '  -  ', typ_nm, ' [', types[[i]],
-        ' sequence files]\n', sep = '')
+    cat_line(i, '  -  ', typ_nm, ' [', types[[i]],
+        ' sequence files]', sep = '')
   }
-  cat('Provide one or more numbers separated by spaces.\n')
-  cat('e.g. "1 4 7"\n')
-  cat('Which files would you like to download?\n')
+  cat_line('Provide one or more numbers separated by spaces.')
+  cat_line('e.g. "1 4 7"')
+  cat_line('Which files would you like to download?')
   response <- restez_rl(prompt = '(Press Esc to quit) ')
   selected_types <- as.numeric(strsplit(x = response,
                                         split = '\\s')[[1]])
-  cat('Downloading [', sum(types[selected_types]),
-      '] files for:\n', paste0(names(types)[selected_types],
-                               collapse = ', '), ' ...\n', sep = '')
+  cat_line('Downloading [', sum(types[selected_types]),
+      '] files for:', paste0(names(types)[selected_types],
+                               collapse = ', '), ' ...', sep = '')
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
   files_to_download <- as.character(downloadable_table[['seq_files']][pull])
   for (i in seq_along(files_to_download)) {
     fl <- files_to_download[[i]]
-    cat('... ', fl, ' (', i, '/', length(files_to_download),
-        ')\n', sep = '')
+    cat_line('... ', fl, ' (', i, '/', length(files_to_download),
+        ')', sep = '')
     success <- download_file(fl, overwrite = overwrite)
     if (!success) {
-      cat('... unable to download. You can run download_genbank() again.')
+      cat_line('... unable to download. You can run download_genbank() again.')
     }
   }
 }
@@ -71,13 +71,13 @@ create_database <- function(db_type='nucleotide') {
   check_restez_fp()
   dpth <- get_dwnld_path()
   gz_files <- list.files(path = dpth, pattern = '.gz$')
-  cat('... Decompressing downloaded files\n')
+  cat_line('... Decompressing downloaded files')
   for (gz_file in gz_files) {
     flpth <- file.path(dpth, gz_file)
     R.utils::gunzip(flpth, remove = FALSE)
   }
   seq_files <- list.files(path = get_dwnld_path(), pattern = '.seq$')
-  cat('... Adding files to database\n')
+  cat_line('... Adding files to database')
   for (seq_file in seq_files) {
     flpth <- file.path(dpth, seq_file)
     records <- read_records(filepath = flpth)
