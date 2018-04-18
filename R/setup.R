@@ -35,7 +35,7 @@ download_genbank <- function(overwrite=FALSE) {
                     ' (', stat(types[[i]]), ' files available)')
   }
   cat_line('Provide one or more numbers separated by spaces.')
-  cat_line('e.g. "1 4 7" followed by Enter')
+  cat_line('e.g. to download all Mammal sequences type: "12 14 15" followed by Enter')
   cat_line('Which files would you like to download?')
   response <- restez_rl(prompt = '(Press Esc to quit) ')
   tryCatch(expr = {
@@ -44,12 +44,17 @@ download_genbank <- function(overwrite=FALSE) {
     }, error = function(e) {
       stop('Invalid number or argument', call. = FALSE)
       })
-  cat_line("You've selected a total of ", stat(sum(types[selected_types])),
+  nfiles <- sum(types[selected_types])
+  cat_line("You've selected a total of ", stat(nfiles),
            " file types. These represent:")
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }
-  response <- restez_rl(prompt = 'Continue? (Enter any key or press Esc to quit) ')
+  cat_line('Each file contains about 300 MB of decompressed data.')
+  ngbytes <- nfiles * 300 / 1000
+  cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes, 'GB'),
+           '. Is that OK?')
+  response <- restez_rl(prompt = 'Enter any key to continue or press Esc to quit ')
   cat_line(cli::rule())
   cat_line("Downloading ...")
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
