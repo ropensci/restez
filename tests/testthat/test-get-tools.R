@@ -38,6 +38,24 @@ test_that('get_sequence() works', {
   sequence <- get_sequence(id = id)
   expect_true(grepl('[atcgn]*', sequence[[1]]))
 })
+test_that('get_record() works', {
+  id <- sample(ids, 1)
+  record <- get_record(id = id)
+  expect_true(inherits(record, 'list'))
+  expect_true(is.character(record[[1]]))
+})
+test_that('get_definition() works', {
+  id <- sample(ids, 1)
+  definition <- get_definition(id = id)
+  expect_true(inherits(definition, 'list'))
+  expect_true(is.character(definition[[1]]))
+})
+test_that('get_organism() works', {
+  id <- sample(ids, 1)
+  organism <- get_organism(id = id)
+  expect_true(inherits(organism, 'list'))
+  expect_true(is.character(organism[[1]]))
+})
 test_that('list_db_ids() works', {
   res <- restez:::list_db_ids(db = 'nucleotide')
   expect_true(all(ids %in% res))
