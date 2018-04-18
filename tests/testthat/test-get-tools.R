@@ -33,6 +33,12 @@ restez:::add_to_database(df = df, database = 'nucleotide')
 
 # RUNNING
 context('Testing \'get-tools\'')
+test_that('query_sql() works', {
+  id <- sample(ids, 1)
+  res <- restez:::query_sql(nm = 'accession', id = id)
+  expect_true(res[[1]] == id)
+  expect_error(restez:::query_sql(nm = 'notathing', id = id))
+})
 test_that('get_sequence() works', {
   id <- sample(ids, 1)
   sequence <- get_sequence(id = id)

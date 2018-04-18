@@ -16,3 +16,7 @@ vector of characters
 Return a vector of all IDs in
 a database.
 }
+\details{
+Warning: can return very large vectors
+for large databases.
+}

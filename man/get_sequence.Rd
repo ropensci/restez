@@ -7,7 +7,7 @@
 get_sequence(id)
 }
 \arguments{
-\item{id}{sequence accession ID(s)}
+\item{id}{character, sequence accession ID(s)}
 }
 \value{
 list of sequences

@@ -1,20 +1,33 @@
-#' @name get_sequence
-#' @title Get sequence
-#' @description Return the sequence(s) for a record(s)
-#' from the accession ID(s).
-#' @param id sequence accession ID(s)
-#' @return list of sequences
-#' @export
-get_sequence <- function(id) {
+#' @name query_sql
+#' @title Query SQL
+#' @description Generic query function for retrieving
+#' data from the SQL database for the get functions.
+#' @param nm character, column name
+#' @param id character, sequence accession ID(s)
+#' @return data.frame
+#' @noRd
+query_sql <- function(nm, id) {
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
                                dbname = get_sql_path())
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
-  qry <- paste0("SELECT raw_sequence FROM nucleotide WHERE accession in ",
+  qry <- paste0("SELECT ", nm, " FROM nucleotide WHERE accession in ",
                 qry_id)
   qry <- DBI::dbSendQuery(conn = connection, statement = qry)
   res <- DBI::dbFetch(res = qry)
   DBI::dbClearResult(res = qry)
   DBI::dbDisconnect(conn = connection)
+  res
+}
+
+#' @name get_sequence
+#' @title Get sequence
+#' @description Return the sequence(s) for a record(s)
+#' from the accession ID(s).
+#' @param id character, sequence accession ID(s)
+#' @return list of sequences
+#' @export
+get_sequence <- function(id) {
+  res <- query_sql(nm = 'raw_sequence', id = id)
   lapply(res[['raw_sequence']], rawToChar)
 }
 
@@ -22,19 +35,11 @@ get_sequence <- function(id) {
 #' @title Get record
 #' @description Return the entire GenBank record
 #' for an accession ID.
-#' @param id sequence accession ID(s)
+#' @param id character, sequence accession ID(s)
 #' @return list of records
 #' @export
 get_record <- function(id) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = get_sql_path())
-  qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
-  qry <- paste0("SELECT raw_record FROM nucleotide WHERE accession in ",
-                qry_id)
-  qry <- DBI::dbSendQuery(conn = connection, statement = qry)
-  res <- DBI::dbFetch(res = qry)
-  DBI::dbClearResult(res = qry)
-  DBI::dbDisconnect(conn = connection)
+  res <- query_sql(nm = 'raw_record', id = id)
   lapply(res[['raw_record']], rawToChar)
 }
 
@@ -42,19 +47,11 @@ get_record <- function(id) {
 #' @title Get definition
 #' @description Return the definition line
 #' for an accession ID.
-#' @param id sequence accession ID(s)
+#' @param id character, sequence accession ID(s)
 #' @return list of definitions
 #' @export
 get_definition <- function(id) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = get_sql_path())
-  qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
-  qry <- paste0("SELECT raw_definition FROM nucleotide WHERE accession in ",
-                qry_id)
-  qry <- DBI::dbSendQuery(conn = connection, statement = qry)
-  res <- DBI::dbFetch(res = qry)
-  DBI::dbClearResult(res = qry)
-  DBI::dbDisconnect(conn = connection)
+  res <- query_sql(nm = 'raw_definition', id = id)
   lapply(res[['raw_definition']], rawToChar)
 }
 
@@ -62,19 +59,11 @@ get_definition <- function(id) {
 #' @title Get organism
 #' @description Return the organism name
 #' for an accession ID.
-#' @param id sequence accession ID(s)
+#' @param id character, sequence accession ID(s)
 #' @return list of definitions
 #' @export
 get_organism <- function(id) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = get_sql_path())
-  qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
-  qry <- paste0("SELECT organism FROM nucleotide WHERE accession in ",
-                qry_id)
-  qry <- DBI::dbSendQuery(conn = connection, statement = qry)
-  res <- DBI::dbFetch(res = qry)
-  DBI::dbClearResult(res = qry)
-  DBI::dbDisconnect(conn = connection)
+  res <- query_sql(nm = 'organism', id = id)
   as.list(res[['organism']])
 }
 
@@ -82,6 +71,8 @@ get_organism <- function(id) {
 #' @title List database IDs
 #' @description Return a vector of all IDs in
 #' a database.
+#' @details Warning: can return very large vectors
+#' for large databases.
 #' @param db character, database name
 #' @return vector of characters
 #' @export

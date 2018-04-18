@@ -7,7 +7,7 @@
 get_record(id)
 }
 \arguments{
-\item{id}{sequence accession ID(s)}
+\item{id}{character, sequence accession ID(s)}
 }
 \value{
 list of records
