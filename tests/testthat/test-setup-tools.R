@@ -19,27 +19,11 @@ if (grepl('testthat', wd)) {
 records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # FUNCTIONS
-make_fake_record <- function(i) {
-  paste0('LOCUS       i
-DEFINITION  defintion
-ACCESSION   information
-VERSION     version
-KEYWORDS    keyword
-SOURCE      tissue, organism
-ORGANISM    species name
-REFERENCE   reference data
-AUTHORS     all the authors
-TITLE       title
-JOURNAL     journal
-FEATURES    features
-ORIGIN      sequence
-//')
-}
 write_fake_records <- function(n=nrcrds) {
   records_text <- ''
   for (i in 1:n) {
     records_text <- paste0(records_text,
-                           make_fake_record(i), '\n')
+                           restez:::mock_rec(i), '\n')
   }
   cat(records_text, file = test_records_file)
   NULL
@@ -61,6 +45,15 @@ test_that('read_records() works', {
   records <- restez:::read_records(filepath = test_records_file)
   expect_true(length(records) == nrcrds)
   clean()
+})
+test_that('make_nucleotide_df() works', {
+  fake_data <- rep('', nrcrds)
+  df <- restez:::make_nucleotide_df(accessions = fake_data,
+                                    organisms = fake_data,
+                                    definitions = fake_data,
+                                    sequences = fake_data,
+                                    records = fake_data)
+  expect_true(nrow(df) == nrcrds)
 })
 test_that('generate_dataframe() works', {
   df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))

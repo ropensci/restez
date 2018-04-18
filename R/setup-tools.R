@@ -29,9 +29,11 @@ read_records <- function(filepath) {
 #' The prefix 'raw_' indicates the data has been covnerted to the
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
-#' @param records list of GenBank records in text format
+#' @param records character, vector of GenBank records in text format
 #' @return data.frame
 #' @noRd
+# TODO: name will need updating if any new databases other than GB
+# are incorportated
 generate_dataframe <- function(records) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
                        FUN = extract_version)
@@ -41,7 +43,26 @@ generate_dataframe <- function(records) {
                       FUN = extract_organism)
   sequences <- vapply(X = records, FUN.VALUE = character(1),
                       FUN = extract_sequence)
-  # make raw
+  make_nucleotide_df(accessions = accessions,
+                     organisms = organisms,
+                     definitions = definitions,
+                     sequences = sequences,
+                     records = records)
+}
+
+#' @name make_nucleotide_df
+#' @title Make nucleotide df
+#' @description Make data.frame from columns vectors for
+#' nucleotide entries. As part of generate_dataframe().
+#' @param accessions character, vector of accession versions
+#' @param organisms character, vector of organism names
+#' @param definitions character, vector of sequence definitions
+#' @param sequences character, vector of sequences
+#' @param records character, vector of GenBank records in text format
+#' @return data.frame
+#' @noRd
+make_nucleotide_df <- function(accessions, organisms, definitions,
+                               sequences, records) {
   raw_definitions <- lapply(definitions, charToRaw)
   raw_sequences <- lapply(sequences, charToRaw)
   raw_records <- lapply(records, charToRaw)
