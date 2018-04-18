@@ -26,7 +26,7 @@ download_genbank <- function(overwrite=FALSE) {
   types <- sort(table(downloadable_table[['descripts']]),
                 decreasing = TRUE)
   cat('\nWhich sequence file types would you like to download?\n')
-  cat('Choose from those listed below:')
+  cat('Choose from those listed below:\n')
   for (i in seq_along(types)) {
     typ_nm <- names(types)[[i]]
     cat(i, '  -  ', typ_nm, ' [', types[[i]],
@@ -35,7 +35,7 @@ download_genbank <- function(overwrite=FALSE) {
   cat('Provide one or more numbers separated by spaces.\n')
   cat('e.g. "1 4 7"\n')
   cat('Which files would you like to download?\n')
-  response <- readline(prompt = '(Press Esc to quit) ')
+  response <- restez_rl(prompt = '(Press Esc to quit) ')
   selected_types <- as.numeric(strsplit(x = response,
                                         split = '\\s')[[1]])
   cat('Downloading [', sum(types[selected_types]),
@@ -56,10 +56,17 @@ download_genbank <- function(overwrite=FALSE) {
 
 #' @name create_database
 #' @title Create database
-#' @description Searches
+#' @description Checks for downloaded .seq.tar files,
+#' decompresses and then adds the files to a local SQL
+#' database.
+#' @param db_type character, database type
 #' @return NULL
 #' @export
-create_database <- function() {
+# db_type: a nod to the future,
+create_database <- function(db_type='nucleotide') {
+  if (db_type != 'nucleotide') {
+    stop('Database types, other than nucleotide, not yet supported.')
+  }
   # checks
   check_restez_fp()
   dpth <- get_dwnld_path()
@@ -77,4 +84,27 @@ create_database <- function() {
     df <- generate_dataframe(records = records)
     add_to_database(df = df, database = 'nucleotide')
   }
+}
+
+#' @name create_demo_database
+#' @title Create demo database
+#' @description Creates a local mock SQL database
+#' from package test data for demonstration purposes.
+#' No internet connection required.
+#' @param db_type character, database type
+#' @param n integer, number of mock sequences
+#' @return NULL
+#' @export
+create_demo_database <- function(db_type='nucleotide', n = 100) {
+  if (db_type != 'nucleotide') {
+    stop('Database types, other than nucleotide, not yet supported.')
+  }
+  if (n <= 1) {
+    stop('n must be greater than 1.')
+  }
+  # checks
+  check_restez_fp()
+  # create
+  df <- mock_nucleotide_df(n = n)
+  add_to_database(df = df, database = 'nucleotide')
 }

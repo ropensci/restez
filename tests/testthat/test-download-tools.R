@@ -3,6 +3,7 @@ library(restez)
 library(testthat)
 
 # VARS
+test_db_fldr <- 'test_db_fldr'
 wd <- getwd()
 if (grepl('testthat', wd)) {
   data_d <- file.path('data')
@@ -15,6 +16,13 @@ if (grepl('testthat', wd)) {
 # DATA
 release_notes <- readRDS(file = file.path(data_d,
                                           'release_notes_gb224.RData'))
+
+# FUNCTIONS
+clean <- function() {
+  if (dir.exists(test_db_fldr)) {
+    unlink(test_db_fldr, recursive = TRUE)
+  }
+}
 
 # MOCKS
 mockGetUrl <- function(...) {
@@ -31,7 +39,7 @@ test_that('identify_latest_genbank_release_notes() works', {
   res <- with_mock(
     `RCurl::getURL` = mockGetUrl,
     restez:::identify_latest_genbank_release_notes()
-    )
+  )
   expect_true(res == "gb500.release.notes")
 })
 test_that('identify_downloadable_files() works', {
@@ -40,3 +48,19 @@ test_that('identify_downloadable_files() works', {
   expect_true(nrow(downloadable) == 3057)
   expect_true(all(grepl('\\.seq$', downloadable[['seq_files']])))
 })
+test_that('download_file() works', {
+  dir.create(test_db_fldr)
+  set_restez_path(test_db_fldr)
+  res <- with_mock(
+    `restez:::custom_download` = function(...) stop(),
+    restez:::download_file(fl = 'test.seq')
+  )
+  expect_false(res)
+  res <- with_mock(
+    `restez:::custom_download` = function(...) NULL,
+    restez:::download_file(fl = 'test.seq')
+  )
+  expect_true(res)
+  clean()
+})
+clean()

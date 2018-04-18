@@ -83,3 +83,13 @@ check_restez_fp <- function() {
     stop(msg)
   }
 }
+
+#' @name delete_database
+#' @title Delete database
+#' @description Delete the local SQL database.
+#' @return NULL
+#' @export
+delete_database <- function() {
+  file.remove(get_sql_path())
+}
+

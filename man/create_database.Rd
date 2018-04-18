@@ -4,8 +4,13 @@
 \alias{create_database}
 \title{Create database}
 \usage{
-create_database()
+create_database(db_type = "nucleotide")
+}
+\arguments{
+\item{db_type}{character, database type}
 }
 \description{
-Searches
+Checks for downloaded .seq.tar files,
+decompresses and then adds the files to a local SQL
+database.
 }
