@@ -4,10 +4,12 @@
 \alias{create_database}
 \title{Create database}
 \usage{
-create_database(db_type = "nucleotide")
+create_database(db_type = "nucleotide", overwrite = FALSE)
 }
 \arguments{
 \item{db_type}{character, database type}
+
+\item{overwrite}{T/F, overwrite files already in database?}
 }
 \description{
 Checks for downloaded .seq.tar files,

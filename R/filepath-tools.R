@@ -15,12 +15,12 @@ set_restez_path <- function(filepath) {
   restez_path <- file.path(filepath, 'restez')
   options(restez_path = file.path(filepath, 'restez'))
   if (!dir.exists(restez_path)) {
-    cat_line('... Creating ', path(restez_path))
+    cat_line('... Creating ', char(restez_path))
     dir.create(restez_path)
   }
   dwnld_path <- get_dwnld_path()
   if (!dir.exists(dwnld_path)) {
-    cat_line('... Creating ', path(dwnld_path))
+    cat_line('... Creating ', char(dwnld_path))
     dir.create(dwnld_path)
   }
   readme_fl <- file.path(restez_path, 'README.txt')

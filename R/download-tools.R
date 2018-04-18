@@ -94,7 +94,7 @@ download_file <- function(fl, overwrite=FALSE) {
     custom_download(url = gzurl, destfile = gzdest, mode = "wb")
     TRUE
   }, error = function(e) {
-    cat_line('... ... ', path(gzurl), ' cannot be reached.')
+    cat_line('... ... ', char(gzurl), ' cannot be reached.')
     FALSE
   })
   success

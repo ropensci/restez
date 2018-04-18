@@ -1,9 +1,9 @@
 # Framework copied from pkgdown
-stat <- function(x) {
-  crayon::blue(encodeString(x, quote = "'"))
+stat <- function(...) {
+  crayon::blue(...)
 }
 
-path <- function(x) {
+char <- function(x) {
   crayon::green(encodeString(x, quote = "'"))
 }
 
