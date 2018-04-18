@@ -16,3 +16,8 @@ list of definitions
 Return the definition line
 for an accession ID.
 }
+\seealso{
+Other get: \code{\link{get_organism}},
+  \code{\link{get_record}}, \code{\link{get_sequence}},
+  \code{\link{list_db_ids}}
+}

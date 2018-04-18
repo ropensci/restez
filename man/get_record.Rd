@@ -16,3 +16,8 @@ list of records
 Return the entire GenBank record
 for an accession ID.
 }
+\seealso{
+Other get: \code{\link{get_definition}},
+  \code{\link{get_organism}}, \code{\link{get_sequence}},
+  \code{\link{list_db_ids}}
+}

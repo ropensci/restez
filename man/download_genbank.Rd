@@ -18,3 +18,9 @@ GenBank to download (e.g. primates, plants, bacteria ...)
 The downloaded files will appear in the restez filepath under
 downloads.
 }
+\seealso{
+Other setup: \code{\link{create_database}},
+  \code{\link{delete_database}},
+  \code{\link{get_restez_path}},
+  \code{\link{set_restez_path}}
+}

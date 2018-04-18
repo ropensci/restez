@@ -24,6 +24,7 @@ query_sql <- function(nm, id) {
 
 #' @name get_sequence
 #' @title Get sequence
+#' @family get
 #' @description Return the sequence(s) for a record(s)
 #' from the accession ID(s).
 #' @param id character, sequence accession ID(s)
@@ -36,6 +37,7 @@ get_sequence <- function(id) {
 
 #' @name get_record
 #' @title Get record
+#' @family get
 #' @description Return the entire GenBank record
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
@@ -48,6 +50,7 @@ get_record <- function(id) {
 
 #' @name get_definition
 #' @title Get definition
+#' @family get
 #' @description Return the definition line
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
@@ -60,6 +63,7 @@ get_definition <- function(id) {
 
 #' @name get_organism
 #' @title Get organism
+#' @family get
 #' @description Return the organism name
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
@@ -72,6 +76,7 @@ get_organism <- function(id) {
 
 #' @name list_db_ids
 #' @title List database IDs
+#' @family get
 #' @description Return a vector of all IDs in
 #' a database.
 #' @details Warning: can return very large vectors

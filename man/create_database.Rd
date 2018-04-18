@@ -16,3 +16,9 @@ Checks for downloaded .seq.tar files,
 decompresses and then adds the files to a local SQL
 database.
 }
+\seealso{
+Other setup: \code{\link{delete_database}},
+  \code{\link{download_genbank}},
+  \code{\link{get_restez_path}},
+  \code{\link{set_restez_path}}
+}

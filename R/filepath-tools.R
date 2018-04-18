@@ -1,5 +1,6 @@
 #' @name set_restez_path
 #' @title Set restez path
+#' @family setup
 #' @description Specify the filepath for the local GenBank database.
 #' @details Adds 'restez_path' to options(). In this path
 #' the folder 'restez' will be created and all downloaded and
@@ -37,6 +38,7 @@ set_restez_path <- function(filepath) {
 
 #' @name get_restez_path
 #' @title Get restez path
+#' @family setup
 #' @description Return filepath to where the restez
 #' database is stored.
 #' @return character
@@ -86,6 +88,7 @@ check_restez_fp <- function() {
 
 #' @name delete_database
 #' @title Delete database
+#' @family setup
 #' @description Delete the local SQL database.
 #' @return NULL
 #' @export

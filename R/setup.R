@@ -1,4 +1,5 @@
 #' @name download_genbank
+#' @family setup
 #' @title Download GenBank
 #' @description Download .seq.tar files from the latest GenBank
 #' release. The user interacitvely selects the parts of
@@ -84,6 +85,7 @@ download_genbank <- function(overwrite=FALSE) {
 
 #' @name create_database
 #' @title Create database
+#' @family setup
 #' @description Checks for downloaded .seq.tar files,
 #' decompresses and then adds the files to a local SQL
 #' database.

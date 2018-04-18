@@ -16,3 +16,8 @@ list of sequences
 Return the sequence(s) for a record(s)
 from the accession ID(s).
 }
+\seealso{
+Other get: \code{\link{get_definition}},
+  \code{\link{get_organism}}, \code{\link{get_record}},
+  \code{\link{list_db_ids}}
+}

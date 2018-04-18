@@ -13,3 +13,9 @@ character
 Return filepath to where the restez
 database is stored.
 }
+\seealso{
+Other setup: \code{\link{create_database}},
+  \code{\link{delete_database}},
+  \code{\link{download_genbank}},
+  \code{\link{set_restez_path}}
+}

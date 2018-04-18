@@ -20,3 +20,8 @@ a database.
 Warning: can return very large vectors
 for large databases.
 }
+\seealso{
+Other get: \code{\link{get_definition}},
+  \code{\link{get_organism}}, \code{\link{get_record}},
+  \code{\link{get_sequence}}
+}
