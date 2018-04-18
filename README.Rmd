@@ -3,6 +3,7 @@ output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- devtools::rmarkdown::render("README.Rmd") -->
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -13,8 +14,9 @@ knitr::opts_chunk$set(
 ```
 
 # restez
+[![Build Status](https://travis-ci.org/AntonelliLab/restez.svg?branch=master)](https://travis-ci.org/AntonelliLab/restez) [![Coverage Status](https://coveralls.io/repos/github/AntonelliLab/restez/badge.svg?branch=master)](https://coveralls.io/github/AntonelliLab/restez?branch=master)
 
-The goal of restez is to ...
+Create and Query a Local Copy of GenBank in R
 
 ## Installation
 
@@ -27,8 +29,12 @@ devtools::install_github("AntonelliLab/restez")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+No examples just yet.
 
-```{r example}
-## basic example code
-```
+## Licence
+
+MIT
+
+## Author
+
+Dom Bennett

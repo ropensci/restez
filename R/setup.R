@@ -98,7 +98,7 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
   }
   # checks
   check_restez_fp()
-  dpth <- restez:::get_dwnld_path()
+  dpth <- get_dwnld_path()
   gz_files <- list.files(path = dpth, pattern = '.gz$')
   if (!overwrite) {
     already_added <- list.files(path = dpth, pattern = '.seq$')

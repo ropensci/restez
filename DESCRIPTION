@@ -4,10 +4,9 @@ Title: Create and Query a Local Copy of GenBank in R
 Version: 0.1.0
 Authors@R: person("Dom", "Bennett", role = c("aut", "cre"), email = "dominic.john.bennett@gmail.com")
 Maintainer: D.J. Bennett <dominic.john.bennett@gmail.com>
-Description: This package allows a user to download large
-    sections of GenBank and generate a local SQL-based database.
-    A user can then query this database using restez functions
-    or through rentrez wrappers.
+Description: Download large sections of GenBank and generate a
+    local SQL-based database. A user can then query this database
+    using restez functions or through rentrez wrappers.
 URL: https://github.com/AntonelliLab/restez#readme
 BugReports: https://github.com/AntonelliLab/restez/issues    
 License: MIT + file LICENSE
@@ -23,6 +22,7 @@ Imports:
     R.utils,
     downloader,
     RCurl,
+    cli,
     crayon
 Suggests:
     testthat,

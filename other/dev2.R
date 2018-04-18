@@ -1,4 +1,4 @@
 library(restez)
 
 download_genbank()
-create_database()
+create_database(overwrite = TRUE)

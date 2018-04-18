@@ -3,6 +3,7 @@ restez/
 *.seq
 restez_database
 .Rprofile
+README.html
 
 # History files
 .Rhistory
