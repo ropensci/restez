@@ -94,12 +94,12 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
     gz_files <- gz_files[!gz_files %in% already_added]
   }
   cat_line('Decompressing and adding ', stat(length(gz_files)),
-           ' to database ...')
+           'files to database ...')
   for (gz_file in gz_files) {
     cat_line('... ', char(gz_file))
     cat_line('... ... decompressing')
     flpth <- file.path(dpth, gz_file)
-    R.utils::gunzip(flpth, remove = FALSE)
+    R.utils::gunzip(flpth, remove = FALSE, overwrite = TRUE)
     cat_line('... ... adding')
     seq_file <- sub(pattern = '\\.gz$', replacement = '',
                     x = gz_file)
