@@ -1,0 +1,26 @@
+---
+title: "Create a local GenBank database"
+author: "Dom Bennett"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create a local GenBank database}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+It can be difficult to download data from GenBank blah blah....
+
+# Download
+
+# Create a database
+
+# Entrez tools
+
