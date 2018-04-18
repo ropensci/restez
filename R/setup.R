@@ -50,24 +50,36 @@ download_genbank <- function(overwrite=FALSE) {
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }
-  cat_line('Each file contains about 300 MB of decompressed data.')
-  ngbytes <- nfiles * 300 / 1000
-  cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes, 'GB'),
-           '. Is that OK?')
+  cat_line('Each file contains about 250 MB of decompressed data.')
+  ngbytes_fls <- nfiles * 250 / 1000
+  cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes_fls, 'GB'))
+  cat_line('Additionally, the resulting SQL database takes about 500 MB per file')
+  ngbytes <- ngbytes_fls + (nfiles * 500 / 1000)
+  # TODO: create option for a user to delete downloaded files after download?
+  cat_line('In total, the uncompressed files and SQL database should amount to ',
+           stat(ngbytes), ' Is that OK?')
   response <- restez_rl(prompt = 'Enter any key to continue or press Esc to quit ')
   cat_line(cli::rule())
   cat_line("Downloading ...")
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
   files_to_download <- as.character(downloadable_table[['seq_files']][pull])
+  any_fails <- FALSE
   for (i in seq_along(files_to_download)) {
     fl <- files_to_download[[i]]
     cat_line('... ', char(fl), ' (', stat(i, '/', length(files_to_download)), ')')
+    # TODO: move overwrite to here
     success <- download_file(fl, overwrite = overwrite)
     if (!success) {
-      cat_line('... Hmmmm, unable to download. Try again, later?')
+      cat_line('... Hmmmm, unable to download that file.')
+      any_fails <- TRUE
     }
   }
-  cat_line('Done. Enjoy your day.')
+  if (any_fails) {
+    cat_line('Not all the files downloaded. The server may be down. ',
+             'You can always try running download_genbank() again at a later time.')
+  } else {
+    cat_line('Done. Enjoy your day.')
+  }
 }
 
 #' @name create_database
@@ -95,11 +107,13 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
   }
   cat_line('Decompressing and adding ', stat(length(gz_files)),
            'files to database ...')
-  for (gz_file in gz_files) {
-    cat_line('... ', char(gz_file))
+  for (i in seq_along(gz_files)) {
+    gz_file <- gz_files[[i]]
+    cat_line('... ', char(gz_file), '(',
+             stat(i, '/', length(gz_files)), ')')
     cat_line('... ... decompressing')
     flpth <- file.path(dpth, gz_file)
-    R.utils::gunzip(flpth, remove = FALSE, overwrite = TRUE)
+    R.utils::gunzip(flpth, remove = TRUE, overwrite = TRUE)
     cat_line('... ... adding')
     seq_file <- sub(pattern = '\\.gz$', replacement = '',
                     x = gz_file)
