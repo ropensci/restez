@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get organism — get_organism • restez</title>
+<title>Get fasta — get_fasta • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Get organism — get_organism" />
+<meta property="og:title" content="Get fasta — get_fasta" />
 
-<meta property="og:description" content="Return the organism name
-for an accession ID." />
+<meta property="og:description" content="Get sequence and definition data
+in FASTA format." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,17 +106,17 @@ for an accession ID." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get organism</h1>
+    <h1>Get fasta</h1>
     <small>Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/get-tools.R'><code>R/get-tools.R</code></a></small>
-    <div class="hidden name"><code>get_organism.Rd</code></div>
+    <div class="hidden name"><code>get_fasta.Rd</code></div>
     </div>
 
     
-    <p>Return the organism name
-for an accession ID.</p>
+    <p>Get sequence and definition data
+in FASTA format.</p>
     
 
-    <pre class="usage"><span class='fu'>get_organism</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>get_fasta</span>(<span class='no'>id</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,12 +129,12 @@ for an accession ID.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list of definitions</p>
+    <p>list of fasta sequences</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other get: <code><a href='get_definition.html'>get_definition</a></code>,
-  <code><a href='get_fasta.html'>get_fasta</a></code>, <code><a href='get_record.html'>get_record</a></code>,
+  <code><a href='get_organism.html'>get_organism</a></code>, <code><a href='get_record.html'>get_record</a></code>,
   <code><a href='get_sequence.html'>get_sequence</a></code>, <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
     
 
@@ -142,8 +142,8 @@ for an accession ID.</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpZH4Hwu/restez'
 #&gt; ... Creating '/tmp/RtmpZH4Hwu/restez/downloads'</div><div class='input'><span class='fu'><a href='create_demo_database.html'>create_demo_database</a></span>()
-<span class='no'>org</span> <span class='kw'>&lt;-</span> <span class='fu'>get_organism</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>)
-<span class='no'>orgs</span> <span class='kw'>&lt;-</span> <span class='fu'>get_organism</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>))
+<span class='no'>fasta</span> <span class='kw'>&lt;-</span> <span class='fu'>get_fasta</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>)
+<span class='no'>fastas</span> <span class='kw'>&lt;-</span> <span class='fu'>get_fasta</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>))
 
 <span class='co'># delete demo after example</span>
 <span class='fu'><a href='delete_database.html'>delete_database</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
