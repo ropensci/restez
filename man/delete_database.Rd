@@ -11,6 +11,7 @@ Delete the local SQL database.
 }
 \seealso{
 Other setup: \code{\link{create_database}},
+  \code{\link{create_demo_database}},
   \code{\link{download_genbank}},
   \code{\link{get_restez_path}},
   \code{\link{set_restez_path}}

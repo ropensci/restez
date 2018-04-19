@@ -16,6 +16,13 @@ list of sequences
 Return the sequence(s) for a record(s)
 from the accession ID(s).
 }
+\examples{
+library(restez)
+set_restez_path(filepath = tempdir())
+create_demo_database()
+seq <- get_sequence(id = 'demo_1')
+seqs <- get_sequence(id = c('demo_1', 'demo_2'))
+}
 \seealso{
 Other get: \code{\link{get_definition}},
   \code{\link{get_organism}}, \code{\link{get_record}},

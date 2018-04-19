@@ -16,6 +16,13 @@ list of definitions
 Return the definition line
 for an accession ID.
 }
+\examples{
+library(restez)
+set_restez_path(filepath = tempdir())
+create_demo_database()
+def <- get_definition(id = 'demo_1')
+defs <- get_definition(id = c('demo_1', 'demo_2'))
+}
 \seealso{
 Other get: \code{\link{get_organism}},
   \code{\link{get_record}}, \code{\link{get_sequence}},

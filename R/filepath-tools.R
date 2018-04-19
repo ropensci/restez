@@ -9,6 +9,11 @@
 #' database should be stored.
 #' @return NULL
 #' @export
+#' @examples
+#' \dontrun{
+#' library(restez)
+#' set_restez_path(filepath = 'path/to/where/you/want/files/to/download')
+#' }
 set_restez_path <- function(filepath) {
   if (!dir.exists(filepath)) {
     stop('Invalid filepath.')
@@ -43,6 +48,7 @@ set_restez_path <- function(filepath) {
 #' database is stored.
 #' @return character
 #' @export
+#' @example examples/get_restez_path.R
 get_restez_path <- function() {
   getOption('restez_path')
 }

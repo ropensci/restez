@@ -13,8 +13,16 @@ character
 Return filepath to where the restez
 database is stored.
 }
+\examples{
+library(restez)
+# set a restez path with a tempdir
+set_restez_path(filepath = tempdir())
+# check what the set path is
+(get_restez_path())
+}
 \seealso{
 Other setup: \code{\link{create_database}},
+  \code{\link{create_demo_database}},
   \code{\link{delete_database}},
   \code{\link{download_genbank}},
   \code{\link{set_restez_path}}

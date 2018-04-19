@@ -18,8 +18,15 @@ Adds 'restez_path' to options(). In this path
 the folder 'restez' will be created and all downloaded and
 database files will be stored there.
 }
+\examples{
+\dontrun{
+library(restez)
+set_restez_path(filepath = 'path/to/where/you/want/files/to/download')
+}
+}
 \seealso{
 Other setup: \code{\link{create_database}},
+  \code{\link{create_demo_database}},
   \code{\link{delete_database}},
   \code{\link{download_genbank}},
   \code{\link{get_restez_path}}

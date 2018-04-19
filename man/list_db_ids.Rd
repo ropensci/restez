@@ -4,7 +4,7 @@
 \alias{list_db_ids}
 \title{List database IDs}
 \usage{
-list_db_ids(db)
+list_db_ids(db = "nucleotide")
 }
 \arguments{
 \item{db}{character, database name}
@@ -19,6 +19,22 @@ a database.
 \details{
 Warning: can return very large vectors
 for large databases.
+}
+\examples{
+library(restez)
+set_restez_path(filepath = tempdir())
+create_demo_database(n = 10)
+# Warning: not recommended for real databases
+#  with potentially millions of IDs
+all_ids <- list_db_ids()
+# What shall we do with these IDs?
+# ... how about make a mock fasta file
+seqs <- get_sequence(id = all_ids)
+defs <- get_definition(id = all_ids)
+# paste together
+fasta_seqs <- paste0('>', defs, '\\n', seqs)
+fasta_file <- paste0(fasta_seqs, collapse = '\\n')
+cat(fasta_file)
 }
 \seealso{
 Other get: \code{\link{get_definition}},

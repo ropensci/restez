@@ -30,6 +30,7 @@ query_sql <- function(nm, id) {
 #' @param id character, sequence accession ID(s)
 #' @return list of sequences
 #' @export
+#' @example examples/get_sequence.R
 get_sequence <- function(id) {
   res <- query_sql(nm = 'raw_sequence', id = id)
   lapply(res[['raw_sequence']], rawToChar)
@@ -43,6 +44,7 @@ get_sequence <- function(id) {
 #' @param id character, sequence accession ID(s)
 #' @return list of records
 #' @export
+#' @example examples/get_record.R
 get_record <- function(id) {
   res <- query_sql(nm = 'raw_record', id = id)
   lapply(res[['raw_record']], rawToChar)
@@ -56,6 +58,7 @@ get_record <- function(id) {
 #' @param id character, sequence accession ID(s)
 #' @return list of definitions
 #' @export
+#' @example examples/get_definition.R
 get_definition <- function(id) {
   res <- query_sql(nm = 'raw_definition', id = id)
   lapply(res[['raw_definition']], rawToChar)
@@ -69,6 +72,7 @@ get_definition <- function(id) {
 #' @param id character, sequence accession ID(s)
 #' @return list of definitions
 #' @export
+#' @example examples/get_organism.R
 get_organism <- function(id) {
   res <- query_sql(nm = 'organism', id = id)
   as.list(res[['organism']])
@@ -84,7 +88,8 @@ get_organism <- function(id) {
 #' @param db character, database name
 #' @return vector of characters
 #' @export
-list_db_ids <- function(db) {
+#' @example examples/list_db_ids.R
+list_db_ids <- function(db = 'nucleotide') {
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
                                dbname = get_sql_path())
   if (db == 'nucleotide') {

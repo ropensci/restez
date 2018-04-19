@@ -16,8 +16,17 @@ Checks for downloaded .seq.tar files,
 decompresses and then adds the files to a local SQL
 database.
 }
+\examples{
+\dontrun{
+library(restez)
+set_restez_path(filepath = 'path/for/downloads')
+download_genbank()
+create_database()
+}
+}
 \seealso{
-Other setup: \code{\link{delete_database}},
+Other setup: \code{\link{create_demo_database}},
+  \code{\link{delete_database}},
   \code{\link{download_genbank}},
   \code{\link{get_restez_path}},
   \code{\link{set_restez_path}}

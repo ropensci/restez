@@ -10,6 +10,12 @@
 #' @param overwrite T/F, overwrite pre-existing downloaded files?
 #' @return NULL
 #' @export
+#' @examples
+#' \dontrun{
+#' library(restez)
+#' set_restez_path(filepath = 'path/for/downloads')
+#' download_genbank()
+#' }
 download_genbank <- function(overwrite=FALSE) {
   # checks
   check_restez_fp()
@@ -93,6 +99,13 @@ download_genbank <- function(overwrite=FALSE) {
 #' @param overwrite T/F, overwrite files already in database?
 #' @return NULL
 #' @export
+#' @examples
+#' \dontrun{
+#' library(restez)
+#' set_restez_path(filepath = 'path/for/downloads')
+#' download_genbank()
+#' create_database()
+#' }
 # db_type: a nod to the future,
 create_database <- function(db_type='nucleotide', overwrite=FALSE) {
   if (db_type != 'nucleotide') {
@@ -129,6 +142,7 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
 
 #' @name create_demo_database
 #' @title Create demo database
+#' @family setup
 #' @description Creates a local mock SQL database
 #' from package test data for demonstration purposes.
 #' No internet connection required.
@@ -136,6 +150,7 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
 #' @param n integer, number of mock sequences
 #' @return NULL
 #' @export
+#' @example examples/create_demo_database.R
 create_demo_database <- function(db_type='nucleotide', n = 100) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')

@@ -16,6 +16,13 @@ list of records
 Return the entire GenBank record
 for an accession ID.
 }
+\examples{
+library(restez)
+set_restez_path(filepath = tempdir())
+create_demo_database()
+rec <- get_record(id = 'demo_1')
+recs <- get_record(id = c('demo_1', 'demo_2'))
+}
 \seealso{
 Other get: \code{\link{get_definition}},
   \code{\link{get_organism}}, \code{\link{get_sequence}},

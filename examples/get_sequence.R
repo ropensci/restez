@@ -1,0 +1,5 @@
+library(restez)
+set_restez_path(filepath = tempdir())
+create_demo_database()
+seq <- get_sequence(id = 'demo_1')
+seqs <- get_sequence(id = c('demo_1', 'demo_2'))
