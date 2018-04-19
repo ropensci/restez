@@ -118,7 +118,7 @@ decompresses and then adds the files to a local SQL
 database.</p>
     
 
-    <pre class="usage"><span class='fu'>create_database</span>(<span class='kw'>db_type</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>)</pre>
+    <pre class="usage"><span class='fu'>create_database</span>(<span class='kw'>db_type</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,7 +127,18 @@ database.</p>
       <th>db_type</th>
       <td><p>character, database type</p></td>
     </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>T/F, overwrite files already in database?</p></td>
+    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other setup: <code><a href='delete_database.html'>delete_database</a></code>,
+  <code><a href='download_genbank.html'>download_genbank</a></code>,
+  <code><a href='get_restez_path.html'>get_restez_path</a></code>,
+  <code><a href='set_restez_path.html'>set_restez_path</a></code></p></div>
     
 
   </div>
@@ -135,7 +146,9 @@ database.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>

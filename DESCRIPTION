@@ -8,7 +8,7 @@ Description: Download large sections of GenBank and generate a
     local SQL-based database. A user can then query this database
     using restez functions or through rentrez wrappers.
 URL: https://github.com/AntonelliLab/restez#readme
-BugReports: https://github.com/AntonelliLab/restez/issues    
+BugReports: https://github.com/AntonelliLab/restez/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
