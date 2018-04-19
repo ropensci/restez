@@ -27,7 +27,8 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Delete database — delete_database" />
 
-<meta property="og:description" content="Delete the local SQL database." />
+<meta property="og:description" content="Delete the local SQL database and/or restez
+folder." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,26 +112,51 @@
     </div>
 
     
-    <p>Delete the local SQL database.</p>
+    <p>Delete the local SQL database and/or restez
+folder.</p>
     
 
-    <pre class="usage"><span class='fu'>delete_database</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>delete_database</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>everything</th>
+      <td><p>T/F, delete the whole restez folder as well?</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other setup: <code><a href='create_database.html'>create_database</a></code>,
+    <div class='dont-index'><p>Other setup: <code><a href='check_status.html'>check_status</a></code>,
+  <code><a href='create_database.html'>create_database</a></code>,
+  <code><a href='create_demo_database.html'>create_demo_database</a></code>,
   <code><a href='download_genbank.html'>download_genbank</a></code>,
   <code><a href='get_restez_path.html'>get_restez_path</a></code>,
-  <code><a href='set_restez_path.html'>set_restez_path</a></code></p></div>
+  <code><a href='set_restez_path.html'>set_restez_path</a></code>,
+  <code><a href='unset_restez_path.html'>unset_restez_path</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
+<span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
+<span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)
+<span class='fu'><a href='create_demo_database.html'>create_demo_database</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'>delete_database</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Will not run: get_sequence(id = 'demo_1')</span>
+<span class='co'># only the SQL database is deleted</span>
+<span class='fu'>delete_database</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Now returns NULL</span>
+(<span class='fu'><a href='get_restez_path.html'>get_restez_path</a></span>())</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

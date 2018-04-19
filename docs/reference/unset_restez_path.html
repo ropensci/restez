@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get organism — get_organism • restez</title>
+<title>Unset restez path — unset_restez_path • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Get organism — get_organism" />
+<meta property="og:title" content="Unset restez path — unset_restez_path" />
 
-<meta property="og:description" content="Return the organism name
-for an accession ID." />
+<meta property="og:description" content="Set the restez path to NULL" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,59 +105,35 @@ for an accession ID." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get organism</h1>
-    <small>Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/get-tools.R'><code>R/get-tools.R</code></a></small>
-    <div class="hidden name"><code>get_organism.Rd</code></div>
+    <h1>Unset restez path</h1>
+    <small>Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/filepath-tools.R'><code>R/filepath-tools.R</code></a></small>
+    <div class="hidden name"><code>unset_restez_path.Rd</code></div>
     </div>
 
     
-    <p>Return the organism name
-for an accession ID.</p>
+    <p>Set the restez path to NULL</p>
     
 
-    <pre class="usage"><span class='fu'>get_organism</span>(<span class='no'>id</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>id</th>
-      <td><p>character, sequence accession ID(s)</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>list of definitions</p>
-    
+    <pre class="usage"><span class='fu'>unset_restez_path</span>()</pre>
+        
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='get_definition.html'>get_definition</a></code>,
-  <code><a href='get_record.html'>get_record</a></code>, <code><a href='get_sequence.html'>get_sequence</a></code>,
-  <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
+    <div class='dont-index'><p>Other setup: <code><a href='check_status.html'>check_status</a></code>,
+  <code><a href='create_database.html'>create_database</a></code>,
+  <code><a href='create_demo_database.html'>create_demo_database</a></code>,
+  <code><a href='delete_database.html'>delete_database</a></code>,
+  <code><a href='download_genbank.html'>download_genbank</a></code>,
+  <code><a href='get_restez_path.html'>get_restez_path</a></code>,
+  <code><a href='set_restez_path.html'>set_restez_path</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/Rtmp2563wZ/restez'
-#&gt; ... Creating '/tmp/Rtmp2563wZ/restez/downloads'</div><div class='input'><span class='fu'><a href='create_demo_database.html'>create_demo_database</a></span>()
-<span class='no'>org</span> <span class='kw'>&lt;-</span> <span class='fu'>get_organism</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>)
-<span class='no'>orgs</span> <span class='kw'>&lt;-</span> <span class='fu'>get_organism</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>))
-
-<span class='co'># delete demo after example</span>
-<span class='fu'><a href='delete_database.html'>delete_database</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

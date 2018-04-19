@@ -25,9 +25,11 @@ create_database()
 }
 }
 \seealso{
-Other setup: \code{\link{create_demo_database}},
+Other setup: \code{\link{check_status}},
+  \code{\link{create_demo_database}},
   \code{\link{delete_database}},
   \code{\link{download_genbank}},
   \code{\link{get_restez_path}},
-  \code{\link{set_restez_path}}
+  \code{\link{set_restez_path}},
+  \code{\link{unset_restez_path}}
 }

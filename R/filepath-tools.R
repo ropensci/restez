@@ -1,3 +1,13 @@
+#' @name unset_restez_path
+#' @title Unset restez path
+#' @family setup
+#' @description Set the restez path to NULL
+#' @return NULL
+#' @export
+unset_restez_path <- function() {
+  options(restez_path = NULL)
+}
+
 #' @name set_restez_path
 #' @title Set restez path
 #' @family setup
@@ -95,9 +105,84 @@ check_restez_fp <- function() {
 #' @name delete_database
 #' @title Delete database
 #' @family setup
-#' @description Delete the local SQL database.
+#' @description Delete the local SQL database and/or restez
+#' folder.
+#' @param everything T/F, delete the whole restez folder as well?
 #' @return NULL
 #' @export
-delete_database <- function() {
-  file.remove(get_sql_path())
+#' @example examples/delete_database.R
+delete_database <- function(everything = TRUE) {
+  if (file.exists(get_sql_path())) {
+    file.remove(get_sql_path())
+  }
+  if (everything) {
+    if (dir.exists(get_restez_path())) {
+      unlink(get_restez_path(), recursive = TRUE)
+      unset_restez_path()
+    }
+  }
+  NULL
+}
+
+#' @name check_status
+#' @title Check status
+#' @family setup
+#' @description Report to console current setup status of restez.
+#' Determines if the restez path is set, how many downloaded files
+#' there are, if there is an SQL database.
+#' @return NULL
+#' @export
+#' @example examples/check_status.R
+check_status <- function() {
+  no_downloads <- FALSE
+  no_database <- FALSE
+  cat_line('Checking setup status ...')
+  fp <- get_restez_path()
+  if (is.null(fp)) {
+    cat_line('... restez path not set')
+    message('You need to use set_restez_path()')
+  } else if (!dir.exists(fp)) {
+    cat_line('... restez path ', char(fp),
+             ' does not exist')
+    message('set_restez_path() filepath must be a valid filepath')
+  } else {
+    fp <- get_dwnld_path()
+    if (!dir.exists(fp)) {
+      cat_line('... ', char('downloads/'),
+               ' does not exist')
+      message('Use set_restez_path() to recreate the folder')
+    } else {
+      dwn_fls <- list.files(path = fp)
+      if (length(dwn_fls) == 0) {
+        cat_line('... no files in ', char('downloads/'))
+        no_downloads <- TRUE
+      } else {
+        dwn_fls <- file.path(fp, dwn_fls)
+        cat_line('... found ', stat(length(dwn_fls)),
+                 ' files in ', char('downloads/'))
+        totsz <- sum(vapply(X = dwn_fls, FUN = file.size,
+                            FUN.VALUE = double(1)))
+        totsz <- round(x = totsz / 1E9, digits = 2)
+        cat_line('... totalling ', stat(totsz, 'GB'))
+      }
+    }
+    fp <- get_sql_path()
+    if (!file.exists(fp)) {
+      cat_line('... ', char('sql_db'),
+               ' does not exist')
+      no_database <- TRUE
+    } else {
+      dbsz <- file.size(fp)
+      dbsz <- round(x = dbsz / 1E9, digits = 2)
+      cat_line('... found ', char('sql_db'),
+               ' of ', stat(dbsz, 'GB'))
+    }
+  }
+  if (no_database & no_downloads) {
+    message('You need to run download_genbank() and create_database()')
+  }
+  if (no_database) {
+    message('You need to run create_database()')
+  }
+  NULL
 }

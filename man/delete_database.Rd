@@ -4,15 +4,33 @@
 \alias{delete_database}
 \title{Delete database}
 \usage{
-delete_database()
+delete_database(everything = TRUE)
+}
+\arguments{
+\item{everything}{T/F, delete the whole restez folder as well?}
 }
 \description{
-Delete the local SQL database.
+Delete the local SQL database and/or restez
+folder.
+}
+\examples{
+library(restez)
+fp <- tempdir()
+set_restez_path(filepath = fp)
+create_demo_database(n = 10)
+delete_database(everything = FALSE)
+# Will not run: get_sequence(id = 'demo_1')
+# only the SQL database is deleted
+delete_database(everything = TRUE)
+# Now returns NULL
+(get_restez_path())
 }
 \seealso{
-Other setup: \code{\link{create_database}},
+Other setup: \code{\link{check_status}},
+  \code{\link{create_database}},
   \code{\link{create_demo_database}},
   \code{\link{download_genbank}},
   \code{\link{get_restez_path}},
-  \code{\link{set_restez_path}}
+  \code{\link{set_restez_path}},
+  \code{\link{unset_restez_path}}
 }

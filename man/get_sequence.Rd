@@ -22,6 +22,9 @@ set_restez_path(filepath = tempdir())
 create_demo_database()
 seq <- get_sequence(id = 'demo_1')
 seqs <- get_sequence(id = c('demo_1', 'demo_2'))
+
+# delete demo after example
+delete_database()
 }
 \seealso{
 Other get: \code{\link{get_definition}},

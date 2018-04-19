@@ -121,7 +121,7 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
     gz_files <- gz_files[!gz_files %in% already_added]
   }
   cat_line('Decompressing and adding ', stat(length(gz_files)),
-           'files to database ...')
+           ' files to database ...')
   for (i in seq_along(gz_files)) {
     gz_file <- gz_files[[i]]
     cat_line('... ', char(gz_file), '(',

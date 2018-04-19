@@ -12,3 +12,6 @@ defs <- get_definition(id = all_ids)
 fasta_seqs <- paste0('>', defs, '\n', seqs)
 fasta_file <- paste0(fasta_seqs, collapse = '\n')
 cat(fasta_file)
+
+# delete after example
+delete_database()
