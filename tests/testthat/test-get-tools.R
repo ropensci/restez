@@ -57,6 +57,12 @@ test_that('get_definition() works', {
   expect_true(inherits(definition, 'list'))
   expect_true(is.character(definition[[1]]))
 })
+test_that('get_fasta() works', {
+  id <- sample(ids, 2)
+  fasta <- get_fasta(id = id)
+  expect_true(inherits(fasta, 'list'))
+  expect_true(is.character(fasta[[1]]))
+})
 test_that('get_organism() works', {
   id <- sample(ids, 1)
   organism <- get_organism(id = id)

@@ -99,4 +99,4 @@ Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. *PeerJ Preprint
 
 ## Author
 
-Dom Bennett
+[Dom Bennett](https://github.com/DomBennett)

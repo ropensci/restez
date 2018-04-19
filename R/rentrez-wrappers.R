@@ -1,9 +1,15 @@
 #' @name entrez_fetch
 #' @title Entrez fetch
+#' @family entrez
 #' @description Wrapper for rentrez::entrez_fetch.
-#' @details Attempts to first search local database with user-sepcified
+#' @details Attempts to first search local database with user-specified
 #' parameters, if the record is missing in the database, the function then
 #' calls rentrez::entrez_fetch to search GenBank remotely.
+#'
+#' @section Supported return types and modes:
+#' XML retmode is not supported. Rettypes 'seqid', 'ft', 'acc' and 'uilist'
+#' are also not supported.
+#' @note rentrez::entrez_fetch is always called silently.
 #' @param db character, name of the database
 #' @param id vector, unique ID(s) for record(s)
 #' @param rettype character, data format
@@ -11,10 +17,26 @@
 #' @param ... Arguments to be passed on to rentrez
 #' @seealso \code{\link[rentrez]{entrez_fetch}}
 #' @return character string containing the file created
+#' @example examples/entrez_fetch.R
 #' @export
 entrez_fetch <- function(db, id=NULL, rettype, retmode="", ...) {
-
+  # https://www.ncbi.nlm.nih.gov/books/NBK25499/table/chapter4.T._valid_values_of__retmode_and/
+  if (db %in% c('nucleotide', 'nuccore')) {
+    if (rettype == 'fasta' & retmode != 'xml') {
+      return(get_entrez_fasta(id = id))
+    }
+    if (rettype == 'gb' & retmode != 'xml') {
+      return(get_entrez_gb(id = id))
+    }
+    if (rettype == 'gbwithparts' & retmode != 'xml') {
+      # TODO: I have detected no difference between gb and gbwithparts
+      return(get_entrez_gb(id = id))
+    }
+    # TODO
+    # if (rettype == 'ft' & rettype != 'xml') {
+    #   return(get_entrez_ft(id = id))
+    # }
+  }
+  rentrez::entrez_fetch(db = db, id = id, rettype = rettype,
+                        retmode = retmode, ...)
 }
-
-#rettype='gbwithparts',
-#retmode='xml'

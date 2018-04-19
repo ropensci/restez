@@ -1,3 +1,4 @@
+# TODO: get tools should return a named list
 #' @name query_sql
 #' @title Query SQL
 #' @description Generic query function for retrieving
@@ -20,6 +21,21 @@ query_sql <- function(nm, id) {
     })
   res <- DBI::dbFetch(res = qry)
   res
+}
+
+#' @name get_fasta
+#' @title Get fasta
+#' @family get
+#' @description Get sequence and definition data
+#' in FASTA format.
+#' @param id character, sequence accession ID(s)
+#' @return list of fasta sequences
+#' @export
+#' @example examples/get_fasta.R
+get_fasta <- function(id) {
+  seqs <- get_sequence(id = id)
+  defs <- get_definition(id = id)
+  as.list(paste0('>', defs, '\n', seqs))
 }
 
 #' @name get_sequence

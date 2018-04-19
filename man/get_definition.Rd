@@ -27,7 +27,7 @@ defs <- get_definition(id = c('demo_1', 'demo_2'))
 delete_database()
 }
 \seealso{
-Other get: \code{\link{get_organism}},
-  \code{\link{get_record}}, \code{\link{get_sequence}},
-  \code{\link{list_db_ids}}
+Other get: \code{\link{get_fasta}},
+  \code{\link{get_organism}}, \code{\link{get_record}},
+  \code{\link{get_sequence}}, \code{\link{list_db_ids}}
 }

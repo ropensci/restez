@@ -24,9 +24,44 @@ character string containing the file created
 Wrapper for rentrez::entrez_fetch.
 }
 \details{
-Attempts to first search local database with user-sepcified
+Attempts to first search local database with user-specified
 parameters, if the record is missing in the database, the function then
 calls rentrez::entrez_fetch to search GenBank remotely.
+}
+\note{
+rentrez::entrez_fetch is always called silently.
+}
+\section{Supported return types and modes}{
+
+XML retmode is not supported. Rettypes 'seqid', 'ft', 'acc' and 'uilist'
+are also not supported.
+}
+
+\examples{
+library(restez)
+set_restez_path(tempdir())
+create_demo_database()
+# return fasta record
+fasta_res <- entrez_fetch(db = 'nucleotide',
+                          id = c('demo_1', 'demo_2'),
+                          rettype = 'fasta')
+cat(fasta_res)
+# return whold GB record in text format
+gb_res <- entrez_fetch(db = 'nucleotide',
+                       id = c('demo_1', 'demo_2'),
+                       rettype = 'gb')
+cat(gb_res)
+# NOT RUN
+# whereas these request would go through rentrez
+# fasta_res <- entrez_fetch(db = 'nucleotide',
+#                           id = c('S71333', 'S71334'),
+#                           rettype = 'fasta')
+# gb_res <- entrez_fetch(db = 'nucleotide',
+#                        id = c('S71333', 'S71334'),
+#                        rettype = 'gb')
+
+# delete demo after example
+delete_database()
 }
 \seealso{
 \code{\link[rentrez]{entrez_fetch}}

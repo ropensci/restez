@@ -28,6 +28,6 @@ delete_database()
 }
 \seealso{
 Other get: \code{\link{get_definition}},
-  \code{\link{get_record}}, \code{\link{get_sequence}},
-  \code{\link{list_db_ids}}
+  \code{\link{get_fasta}}, \code{\link{get_record}},
+  \code{\link{get_sequence}}, \code{\link{list_db_ids}}
 }
