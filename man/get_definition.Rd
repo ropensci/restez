@@ -10,7 +10,7 @@ get_definition(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-named vector of definitions
+named vector of definitions, if no results found NULL
 }
 \description{
 Return the definition line

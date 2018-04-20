@@ -10,7 +10,7 @@ get_record(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-named vector of records
+named vector of records, if no results found NULL
 }
 \description{
 Return the entire GenBank record

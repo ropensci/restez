@@ -10,7 +10,7 @@ get_sequence(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-named vector of sequences
+named vector of sequences, if no results found NULL
 }
 \description{
 Return the sequence(s) for a record(s)

@@ -10,7 +10,7 @@ get_version(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-named vector of versions
+named vector of versions, if no results found NULL
 }
 \description{
 Return the accession version

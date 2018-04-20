@@ -30,13 +30,18 @@ query_sql <- function(nm, id) {
 #' @description Get sequence and definition data
 #' in FASTA format.
 #' @param id character, sequence accession ID(s)
-#' @return named vector of fasta sequences
+#' @return named vector of fasta sequences, if no results found NULL
 #' @export
 #' @example examples/get_fasta.R
 get_fasta <- function(id) {
   seqs <- get_sequence(id = id)
+  if (length(seqs) == 0) {
+    return(NULL)
+  }
   defs <- get_definition(id = id)
-  paste0('>', defs, '\n', seqs)
+  fastas <- paste0('>', defs, '\n', seqs)
+  names(fastas) <- names(defs)
+  fastas
 }
 
 #' @name get_sequence
@@ -45,7 +50,7 @@ get_fasta <- function(id) {
 #' @description Return the sequence(s) for a record(s)
 #' from the accession ID(s).
 #' @param id character, sequence accession ID(s)
-#' @return named vector of sequences
+#' @return named vector of sequences, if no results found NULL
 #' @export
 #' @example examples/get_sequence.R
 get_sequence <- function(id) {
@@ -61,7 +66,7 @@ get_sequence <- function(id) {
 #' @description Return the entire GenBank record
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
-#' @return named vector of records
+#' @return named vector of records, if no results found NULL
 #' @export
 #' @example examples/get_record.R
 get_record <- function(id) {
@@ -77,7 +82,7 @@ get_record <- function(id) {
 #' @description Return the definition line
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
-#' @return named vector of definitions
+#' @return named vector of definitions, if no results found NULL
 #' @export
 #' @example examples/get_definition.R
 get_definition <- function(id) {
@@ -93,11 +98,14 @@ get_definition <- function(id) {
 #' @description Return the organism name
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
-#' @return named vector of definitions
+#' @return named vector of definitions, if no results found NULL
 #' @export
 #' @example examples/get_organism.R
 get_organism <- function(id) {
   res <- query_sql(nm = 'organism', id = id)
+  if (nrow(res) == 0) {
+    return(NULL)
+  }
   ors <- res[['organism']]
   names(ors) <- res[['accession']]
   ors
@@ -109,7 +117,7 @@ get_organism <- function(id) {
 #' @description Return the accession version
 #' for an accession ID.
 #' @param id character, sequence accession ID(s)
-#' @return named vector of versions
+#' @return named vector of versions, if no results found NULL
 #' @export
 #' @example examples/get_version.R
 get_version <- function(id) {

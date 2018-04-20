@@ -10,7 +10,7 @@ get_fasta(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-named vector of fasta sequences
+named vector of fasta sequences, if no results found NULL
 }
 \description{
 Get sequence and definition data
