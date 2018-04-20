@@ -1,0 +1,26 @@
+---
+title: "Download GenBank"
+author: "Dom Bennett"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Download GenBank}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this tutorial, we will explain how to setup the restez database on your computer. 
+
+# Download
+
+Sorry haven't had time to do this yet!
+
+# Create a database
+

@@ -1,5 +1,5 @@
 ---
-title: "Create a local GenBank database"
+title: "Query the local GenBank database"
 author: "Dom Bennett"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -16,11 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-It can be difficult to download data from GenBank blah blah....
+In this tutorial, when it's written, we will explain how you send queries to your local copy of GenBank using the get methods.
 
-# Download
+# Get methods
 
-# Create a database
-
-# Entrez tools
-
+# Other methods

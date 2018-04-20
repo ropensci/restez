@@ -8,9 +8,18 @@
 
 **Create and Query a Local Copy of GenBank in R.**
 
-Download parts of [NCBI's GenBank](https://www.ncbi.nlm.nih.gov/nuccore) to a local folder and create a simple SQLite database. Use 'get' tools to query the database by accession IDs. [rentrez](https://github.com/ropensci/rentrez) wrappers are available, so that if sequences are not available locally they can be searched for online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
+> Download parts of [NCBI's GenBank](https://www.ncbi.nlm.nih.gov/nuccore) to a local folder and create a simple SQLite database. Use 'get' tools to query the database by accession IDs. [rentrez](https://github.com/ropensci/rentrez) wrappers are available, so that if sequences are not available locally they can be searched for online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
-*For more information, visit the [restez website](https://antonellilab.github.io/restez/index.html).*
+Introduction
+------------
+
+*Vous entrez, vous rentrez et, maintenant, vous .... restez!*
+
+Downloading sequences and sequence information from GenBank and related NCBI taxonomic databases is often performed via the NCBI API, Entrez. Entrez, however, has a limit on the number of requests and downloading large amounts of sequence data in this way can be inefficient. For programmatic situations where multiple Entrez calls are made, downloading may take days, weeks or even months.
+
+This package aims to make sequence retrieval more efficient by allowing a user to download large sections of the GenBank database to their local machine and query this local database either through package specific functions or Entrez wrappers. This process is more efficient as GenBank downloads are made via NCBI's FTP using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 20 GB of sequence information can be generated in less than 10 minutes.
+
+**For more detailed information on the pacakge's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
 
 Installation
 ------------
@@ -73,10 +82,10 @@ library(restez)
 set_restez_path('.')
 create_demo_database()
 # use the entrez_* wrappers to access GB data
-demo_record <- entrez_fetch(db='nucleotide', id='demo_1')
+demo_record <- entrez_fetch(db='nucleotide', id='demo_1', rettype = 'fasta')
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
-real_record <- entrez_fetch(db='nucleotide', id='S71333.1')
+real_record <- entrez_fetch(db='nucleotide', id='S71333.1', rettype = 'fasta')
 ```
 
 Licence
@@ -94,4 +103,4 @@ Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. *PeerJ Preprint
 Author
 ------
 
-Dom Bennett
+[Dom Bennett](https://github.com/DomBennett)
