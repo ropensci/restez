@@ -6,7 +6,7 @@ fasta_res <- entrez_fetch(db = 'nucleotide',
                           id = c('demo_1', 'demo_2'),
                           rettype = 'fasta')
 cat(fasta_res)
-# return whold GB record in text format
+# return whole GB record in text format
 gb_res <- entrez_fetch(db = 'nucleotide',
                        id = c('demo_1', 'demo_2'),
                        rettype = 'gb')

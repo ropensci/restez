@@ -148,10 +148,10 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_record
 <span class="kw"><a href="reference/set_restez_path.html">set_restez_path</a></span>(<span class="st">'.'</span>)
 <span class="kw"><a href="reference/create_demo_database.html">create_demo_database</a></span>()
 <span class="co"># use the entrez_* wrappers to access GB data</span>
-demo_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'demo_1'</span>)
+demo_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'demo_1'</span>, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
-real_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'S71333.1'</span>)</code></pre></div>
+real_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'S71333.1'</span>, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</code></pre></div>
 </div>
 </div>
 <div id="licence" class="section level2">

@@ -7,5 +7,6 @@ create_demo_database(n = 100)
 ids <- c('thisisnotanid', 'demo_1', 'demo_2')
 (is_in_db(id = ids))
 
+
 # delete demo after example
 delete_database()

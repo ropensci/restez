@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get definition — get_definition • restez</title>
+<title>Get version — get_version • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Get definition — get_definition" />
+<meta property="og:title" content="Get version — get_version" />
 
-<meta property="og:description" content="Return the definition line
+<meta property="og:description" content="Return the accession version
 for an accession ID." />
 <meta name="twitter:card" content="summary" />
 
@@ -106,17 +106,17 @@ for an accession ID." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get definition</h1>
+    <h1>Get version</h1>
     <small>Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/get-tools.R'><code>R/get-tools.R</code></a></small>
-    <div class="hidden name"><code>get_definition.Rd</code></div>
+    <div class="hidden name"><code>get_version.Rd</code></div>
     </div>
 
     
-    <p>Return the definition line
+    <p>Return the accession version
 for an accession ID.</p>
     
 
-    <pre class="usage"><span class='fu'>get_definition</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>get_version</span>(<span class='no'>id</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,13 +129,13 @@ for an accession ID.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>named vector of definitions, if no results found NULL</p>
+    <p>named vector of versions, if no results found NULL</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='get_fasta.html'>get_fasta</a></code>,
-  <code><a href='get_organism.html'>get_organism</a></code>, <code><a href='get_record.html'>get_record</a></code>,
-  <code><a href='get_sequence.html'>get_sequence</a></code>, <code><a href='get_version.html'>get_version</a></code>,
+    <div class='dont-index'><p>Other get: <code><a href='get_definition.html'>get_definition</a></code>,
+  <code><a href='get_fasta.html'>get_fasta</a></code>, <code><a href='get_organism.html'>get_organism</a></code>,
+  <code><a href='get_record.html'>get_record</a></code>, <code><a href='get_sequence.html'>get_sequence</a></code>,
   <code><a href='is_in_db.html'>is_in_db</a></code>, <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
     
 
@@ -143,9 +143,9 @@ for an accession ID.</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/Rtmp4MDXxn/restez'
 #&gt; ... Creating '/tmp/Rtmp4MDXxn/restez/downloads'</div><div class='input'><span class='fu'><a href='create_demo_database.html'>create_demo_database</a></span>()
-(<span class='no'>def</span> <span class='kw'>&lt;-</span> <span class='fu'>get_definition</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;                                 demo_1 
-#&gt; "A demonstration sequence | id demo_1" </div><div class='input'>(<span class='no'>defs</span> <span class='kw'>&lt;-</span> <span class='fu'>get_definition</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                 demo_1                                 demo_2 
-#&gt; "A demonstration sequence | id demo_1" "A demonstration sequence | id demo_2" </div><div class='input'>
+(<span class='no'>ver</span> <span class='kw'>&lt;-</span> <span class='fu'>get_version</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;     demo_1 
+#&gt; "demo_1.1" </div><div class='input'>(<span class='no'>vers</span> <span class='kw'>&lt;-</span> <span class='fu'>get_version</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;     demo_1     demo_2 
+#&gt; "demo_1.1" "demo_2.2" </div><div class='input'>
 
 <span class='co'># delete demo after example</span>
 <span class='fu'><a href='delete_database.html'>delete_database</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
