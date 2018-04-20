@@ -4,7 +4,8 @@ set_restez_path(filepath = tempdir())
 # create demo database
 create_demo_database(n = 100)
 # in the demo, IDs are 'demo_1', 'demo_2' ...
-(get_sequence(id = 'demo_1'))
+ids <- c('thisisnotanid', 'demo_1', 'demo_2')
+(is_in_db(id = ids))
 
 # delete demo after example
 delete_database()

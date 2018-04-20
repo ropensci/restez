@@ -1,4 +1,4 @@
-# entrez tools should run rentrez if they do not return all request IDs
+# TODO entrez tools should run rentrez if they do not return all request IDs
 #' @name get_entrez_fasta
 #' @title Get Entrez fasta
 #' @description Return fasta format as expected from

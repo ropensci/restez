@@ -10,7 +10,7 @@ get_sequence(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-list of sequences
+named vector of sequences
 }
 \description{
 Return the sequence(s) for a record(s)
@@ -29,5 +29,6 @@ delete_database()
 \seealso{
 Other get: \code{\link{get_definition}},
   \code{\link{get_fasta}}, \code{\link{get_organism}},
-  \code{\link{get_record}}, \code{\link{list_db_ids}}
+  \code{\link{get_record}}, \code{\link{is_in_db}},
+  \code{\link{list_db_ids}}
 }

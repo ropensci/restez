@@ -10,7 +10,7 @@ get_organism(id)
 \item{id}{character, sequence accession ID(s)}
 }
 \value{
-list of definitions
+named vector of definitions
 }
 \description{
 Return the organism name
@@ -29,5 +29,6 @@ delete_database()
 \seealso{
 Other get: \code{\link{get_definition}},
   \code{\link{get_fasta}}, \code{\link{get_record}},
-  \code{\link{get_sequence}}, \code{\link{list_db_ids}}
+  \code{\link{get_sequence}}, \code{\link{is_in_db}},
+  \code{\link{list_db_ids}}
 }

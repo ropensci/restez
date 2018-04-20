@@ -24,6 +24,9 @@ set_restez_path(filepath = tempdir())
 create_demo_database(n = 100)
 # in the demo, IDs are 'demo_1', 'demo_2' ...
 (get_sequence(id = 'demo_1'))
+
+# delete demo after example
+delete_database()
 }
 \seealso{
 Other setup: \code{\link{check_status}},

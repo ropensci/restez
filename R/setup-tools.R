@@ -36,7 +36,7 @@ read_records <- function(filepath) {
 # are incorportated
 generate_dataframe <- function(records) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
-                       FUN = extract_version)
+                       FUN = extract_accession)
   definitions <- vapply(X = records, FUN.VALUE = character(1),
                         FUN = extract_definition)
   organisms <- vapply(X = records, FUN.VALUE = character(1),

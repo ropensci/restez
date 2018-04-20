@@ -28,12 +28,22 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
 
 #' @name extract_version
 #' @title Extract version
-#' @description Return version ID from GenBank record
+#' @description Return accession + version ID from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character
 #' @noRd
 extract_version <- function(record) {
   extract_by_keyword(record = record, keyword = 'VERSION')
+}
+
+#' @name extract_accession
+#' @title Extract accession
+#' @description Return accession ID from GenBank record
+#' @param record GenBank record in text format, character
+#' @return character
+#' @noRd
+extract_accession <- function(record) {
+  extract_by_keyword(record = record, keyword = 'ACCESSION')
 }
 
 #' @name extract_organism
