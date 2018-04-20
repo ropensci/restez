@@ -49,6 +49,7 @@ test_that('read_records() works', {
 test_that('make_nucleotide_df() works', {
   fake_data <- rep('', nrcrds)
   df <- restez:::make_nucleotide_df(accessions = fake_data,
+                                    versions = fake_data,
                                     organisms = fake_data,
                                     definitions = fake_data,
                                     sequences = fake_data,
@@ -58,7 +59,7 @@ test_that('make_nucleotide_df() works', {
 test_that('generate_dataframe() works', {
   df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
   expect_true(nrow(df) == nrcrds)
-  expctd_clnms <- c("accession", "organism", "raw_definition",
+  expctd_clnms <- c("accession", "version", "organism", "raw_definition",
                     "raw_sequence", "raw_record")
   expect_true(all(colnames(df) %in% expctd_clnms))
 })

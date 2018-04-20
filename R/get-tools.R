@@ -103,6 +103,22 @@ get_organism <- function(id) {
   ors
 }
 
+#' @name get_version
+#' @title Get version
+#' @family get
+#' @description Return the accession version
+#' for an accession ID.
+#' @param id character, sequence accession ID(s)
+#' @return named vector of versions
+#' @export
+#' @example examples/get_version.R
+get_version <- function(id) {
+  res <- query_sql(nm = 'version', id = id)
+  vrs <- res[['version']]
+  names(vrs) <- res[['accession']]
+  vrs
+}
+
 #' @name list_db_ids
 #' @title List database IDs
 #' @family get
@@ -139,7 +155,7 @@ list_db_ids <- function(db = 'nucleotide') {
 is_in_db <- function(id, db = 'nucleotide') {
   accssns <- sub(pattern = '\\.[0-9]+', replacement = '',
                  x = id)
-  db_res <- query_sql(nm = 'accession', id = id)
+  db_res <- query_sql(nm = 'version', id = id)
   res <- accssns %in% db_res[['accession']]
   names(res) <- id
   res

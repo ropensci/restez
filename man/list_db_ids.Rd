@@ -43,5 +43,5 @@ delete_database()
 Other get: \code{\link{get_definition}},
   \code{\link{get_fasta}}, \code{\link{get_organism}},
   \code{\link{get_record}}, \code{\link{get_sequence}},
-  \code{\link{is_in_db}}
+  \code{\link{get_version}}, \code{\link{is_in_db}}
 }

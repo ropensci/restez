@@ -61,6 +61,11 @@ test_that('get_fasta() works', {
   expect_true(length(fasta) == 2)
   expect_true(is.character(fasta[[1]]))
 })
+test_that('get_version() works', {
+  id <- sample(ids, 1)
+  version <- get_version(id = id)
+  expect_true(is.character(version))
+})
 test_that('get_organism() works', {
   id <- sample(ids, 1)
   organism <- get_organism(id = id)

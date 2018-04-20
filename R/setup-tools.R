@@ -37,6 +37,8 @@ read_records <- function(filepath) {
 generate_dataframe <- function(records) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
                        FUN = extract_accession)
+  versions <- vapply(X = records, FUN.VALUE = character(1),
+                     FUN = extract_version)
   definitions <- vapply(X = records, FUN.VALUE = character(1),
                         FUN = extract_definition)
   organisms <- vapply(X = records, FUN.VALUE = character(1),
@@ -44,6 +46,7 @@ generate_dataframe <- function(records) {
   sequences <- vapply(X = records, FUN.VALUE = character(1),
                       FUN = extract_sequence)
   make_nucleotide_df(accessions = accessions,
+                     versions = versions,
                      organisms = organisms,
                      definitions = definitions,
                      sequences = sequences,
@@ -54,19 +57,21 @@ generate_dataframe <- function(records) {
 #' @title Make nucleotide df
 #' @description Make data.frame from columns vectors for
 #' nucleotide entries. As part of generate_dataframe().
-#' @param accessions character, vector of accession versions
+#' @param accessions character, vector of accessions
+#' @param versions character, vector of accessions + versions
 #' @param organisms character, vector of organism names
 #' @param definitions character, vector of sequence definitions
 #' @param sequences character, vector of sequences
 #' @param records character, vector of GenBank records in text format
 #' @return data.frame
 #' @noRd
-make_nucleotide_df <- function(accessions, organisms, definitions,
-                               sequences, records) {
+make_nucleotide_df <- function(accessions, versions, organisms,
+                               definitions, sequences, records) {
   raw_definitions <- lapply(definitions, charToRaw)
   raw_sequences <- lapply(sequences, charToRaw)
   raw_records <- lapply(records, charToRaw)
   df <- data.frame(accession = accessions,
+                   version = versions,
                    organism = organisms,
                    raw_definition = I(raw_definitions),
                    raw_sequence = I(raw_sequences),

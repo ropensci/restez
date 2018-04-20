@@ -11,11 +11,11 @@
 #' @return character
 #' @noRd
 mock_rec <- function(i, definition=NULL, accession=NULL,
-                     organism=NULL, sequence=NULL) {
+                     version=NULL, organism=NULL, sequence=NULL) {
   paste0('LOCUS       [This is a mock GenBank data record]\n',
          'DEFINITION  ', definition, '\n',
          'ACCESSION   ', accession, '\n',
-         'VERSION     [version]\n',
+         'VERSION     ', version, '\n',
          'KEYWORDS    [keyword]\n',
          'SOURCE      [tissue, organism]\n',
          'ORGANISM    ', organism, '\n',
@@ -70,16 +70,20 @@ mock_org <- function(i) {
 #' @noRd
 mock_nucleotide_df <- function(n) {
   accession <- paste0('demo_', 1:n)
+  version <- paste0(accession, '.', sample(x = 1:4, size = length(accession),
+                                           replace = TRUE))
   sequence <- vapply(X = 1:n, FUN = mock_seq, FUN.VALUE = character(1))
   definition <- vapply(X = 1:n, FUN = mock_def, FUN.VALUE = character(1))
   organism <- vapply(X = 1:n, FUN = mock_org, FUN.VALUE = character(1))
   record <- vapply(X = 1:n, FUN = function(i) {
     mock_rec(i, definition = definition[[i]],
              accession = accession[[i]],
+             version = version[[i]],
              organism = organism[[i]],
              sequence = sequence[[i]])
   }, FUN.VALUE = character(1))
   make_nucleotide_df(accessions = accession,
+                     versions = version,
                      organisms = organism,
                      definitions = definition,
                      sequences = sequence,
