@@ -95,6 +95,10 @@ demo_record <- entrez_fetch(db='nucleotide', id='demo_1', rettype = 'fasta')
 real_record <- entrez_fetch(db='nucleotide', id='S71333.1', rettype = 'fasta')
 ```
 
+## Contributing
+
+Want to contribute? Check the [contributing page](https://antonellilab.github.io/restez/CONTRIBUTING.html).
+
 ## Licence
 
 MIT
