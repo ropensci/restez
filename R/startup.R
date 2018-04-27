@@ -1,9 +1,9 @@
 .onAttach <- function(...) {
   v <- utils::packageVersion("restez")
-  fp <- get_restez_path()
+  fp <- restez_path_get()
   if (is.null(fp)) {
     msg <- paste0('restez ', v, '\n',
-                  'Remember to set_restez_path()')
+                  'Remember to restez_path_set()')
   } else {
     msg <- paste0('restez v', v, '\n',
                   'path = [', fp, ']\n')

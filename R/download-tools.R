@@ -63,8 +63,8 @@ identify_downloadable_files <- function(release_notes) {
   data.frame(seq_files, descripts)
 }
 
-#' @name download_file
-#' @title Download file
+#' @name file_download
+#' @title Download a file
 #' @description Download a GenBank .seq.tar file. Check
 #' the file has downloaded properly. If not, returns FALSE.
 #' If overwrite is true, any previous file will be overwritten.
@@ -74,7 +74,7 @@ identify_downloadable_files <- function(release_notes) {
 #' @return T/F
 #' @noRd
 # based upon: biomartr::download.database
-download_file <- function(fl, overwrite=FALSE) {
+file_download <- function(fl, overwrite=FALSE) {
   remove <- function(fl) {
     if (file.exists(fl)) {
       file.remove(fl)
@@ -83,7 +83,7 @@ download_file <- function(fl, overwrite=FALSE) {
   base_url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/'
   gzfl <- paste0(fl, '.gz')
   gzurl <- paste0(base_url, gzfl)
-  gzdest <- file.path(get_dwnld_path(), gzfl)
+  gzdest <- file.path(dwnld_path_get(), gzfl)
   if (overwrite) {
     remove(gzdest)
   }

@@ -1,6 +1,6 @@
 library(restez)
 
-set_restez_path(filepath = tempdir())
+restez_path_set(filepath = tempdir())
 # create demo database
 create_demo_database(n = 100)
 # in the demo, IDs are 'demo_1', 'demo_2' ...

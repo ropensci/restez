@@ -127,35 +127,35 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#setup" class="anchor"></a>Setup</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co"># choose a location to store GB files</span>
-<span class="kw"><a href="reference/set_restez_path.html">set_restez_path</a></span>(<span class="st">'.'</span>)
+<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
 <span class="co"># run download function</span>
-<span class="co"># interactively choose GB files to download</span>
-<span class="kw"><a href="reference/download_genbank.html">download_genbank</a></span>()
-<span class="co"># create database</span>
-<span class="kw"><a href="reference/create_database.html">create_database</a></span>()</code></pre></div>
+<span class="co"># interactively choose GenBank files to download</span>
+<span class="kw"><a href="reference/gb_download.html">gb_download</a></span>()
+<span class="co"># create local database</span>
+<span class="kw"><a href="reference/db_create.html">db_create</a></span>()</code></pre></div>
 </div>
 <div id="query" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query" class="anchor"></a>Query</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co"># set a restez path</span>
-<span class="kw"><a href="reference/set_restez_path.html">set_restez_path</a></span>(<span class="st">'.'</span>)
+<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
 <span class="co"># create a demo database</span>
-<span class="kw"><a href="reference/create_demo_database.html">create_demo_database</a></span>(<span class="dt">n =</span> <span class="dv">10</span>)
+<span class="kw"><a href="reference/demo_db_create.html">demo_db_create</a></span>(<span class="dt">n =</span> <span class="dv">10</span>)
 <span class="co"># contains fake sequence data of 10 records</span>
 (all_ids &lt;-<span class="st"> </span><span class="kw"><a href="reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>))
 <span class="co"># you can extract:</span>
 <span class="co"># sequences</span>
-seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_sequence.html">get_sequence</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(seq)
 <span class="co"># definitions</span>
-def &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_definition.html">get_definition</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(def)
 <span class="co"># organisms</span>
-org &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_organism.html">get_organism</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(org)
 <span class="co"># or whole records</span>
-rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_record.html">get_record</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
 <span class="kw">cat</span>(rec)</code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
@@ -163,8 +163,8 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_record
 <a href="#entrez-wrappers" class="anchor"></a>Entrez wrappers</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co"># setup as above</span>
-<span class="kw"><a href="reference/set_restez_path.html">set_restez_path</a></span>(<span class="st">'.'</span>)
-<span class="kw"><a href="reference/create_demo_database.html">create_demo_database</a></span>()
+<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
+<span class="kw"><a href="reference/demo_db_create.html">demo_db_create</a></span>()
 <span class="co"># use the entrez_* wrappers to access GB data</span>
 demo_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'demo_1'</span>, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co"># if the id is not in the local database</span>

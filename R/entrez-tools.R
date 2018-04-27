@@ -1,4 +1,4 @@
-#' @name get_entrez_fasta
+#' @name entrez_fasta_get
 #' @title Get Entrez fasta
 #' @description Return fasta format as expected from
 #' an Entrez call. If not all IDs are returned, will
@@ -7,8 +7,8 @@
 #' @param ... arguments passed on to rentrez
 #' @return character string containing the file created
 #' @noRd
-get_entrez_fasta <- function(id, ...) {
-  fastas <- get_fasta(id = id)
+entrez_fasta_get <- function(id, ...) {
+  fastas <- gb_fasta_get(id = id)
   if (length(fastas) > 0) {
     res <- paste(fastas, collapse = '\n\n')
     res <- paste0(res, '\n\n')
@@ -24,8 +24,8 @@ get_entrez_fasta <- function(id, ...) {
   paste0(res, '\n\n')
 }
 
-#' @name get_entrez_fasta
-#' @title Get Entrez fasta
+#' @name entrez_gb_get
+#' @title Get Entrez GenBank record
 #' @description Return gb and gbwithparts format as expected from
 #' an Entrez call. If not all IDs are returned, will
 #' run rentrez::entrez_fetch.
@@ -33,8 +33,8 @@ get_entrez_fasta <- function(id, ...) {
 #' @param ... arguments passed on to rentrez
 #' @return character string containing the file created
 #' @noRd
-get_entrez_gb <- function(id, ...) {
-  recs <- get_record(id = id)
+entrez_gb_get <- function(id, ...) {
+  recs <- gb_record_get(id = id)
   if (length(recs) > 0) {
     res <- paste(recs, collapse = '\n\n')
     res <- paste0(res, '\n\n')

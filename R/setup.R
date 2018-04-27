@@ -1,4 +1,4 @@
-#' @name download_genbank
+#' @name gb_download
 #' @family setup
 #' @title Download GenBank
 #' @description Download .seq.tar files from the latest GenBank
@@ -13,12 +13,12 @@
 #' @examples
 #' \dontrun{
 #' library(restez)
-#' set_restez_path(filepath = 'path/for/downloads')
-#' download_genbank()
+#' restez_path_set(filepath = 'path/for/downloads')
+#' gb_download()
 #' }
-download_genbank <- function(overwrite=FALSE) {
+gb_download <- function(overwrite=FALSE) {
   # checks
-  check_restez_fp()
+  restez_path_check()
   check_connection()
   cat_line(cli::rule())
   cat_line('Looking up latest GenBank release ...')
@@ -26,7 +26,7 @@ download_genbank <- function(overwrite=FALSE) {
   release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
                         release)
   release_notes <- RCurl::getURL(url = release_url)
-  write(x = release_notes, file = file.path(get_dwnld_path(),
+  write(x = release_notes, file = file.path(dwnld_path_get(),
                                             'latest_release_notes.txt'))
   downloadable_table <- identify_downloadable_files(release_notes)
   cat_line('Found ', stat(nrow(downloadable_table)),
@@ -64,7 +64,7 @@ download_genbank <- function(overwrite=FALSE) {
   ngbytes <- ngbytes_fls + (nfiles * 500 / 1000)
   # TODO: create option for a user to delete downloaded files after download?
   cat_line('In total, the uncompressed files and SQL database should amount to ',
-           stat(ngbytes), ' Is that OK?')
+           stat(ngbytes, 'GB'), ' Is that OK?')
   response <- restez_rl(prompt = 'Enter any key to continue or press Esc to quit ')
   cat_line(cli::rule())
   cat_line("Downloading ...")
@@ -75,7 +75,7 @@ download_genbank <- function(overwrite=FALSE) {
     fl <- files_to_download[[i]]
     cat_line('... ', char(fl), ' (', stat(i, '/', length(files_to_download)), ')')
     # TODO: move overwrite to here
-    success <- download_file(fl, overwrite = overwrite)
+    success <- file_download(fl, overwrite = overwrite)
     if (!success) {
       cat_line('... Hmmmm, unable to download that file.')
       any_fails <- TRUE
@@ -83,13 +83,13 @@ download_genbank <- function(overwrite=FALSE) {
   }
   if (any_fails) {
     cat_line('Not all the files downloaded. The server may be down. ',
-             'You can always try running download_genbank() again at a later time.')
+             'You can always try running gb_download() again at a later time.')
   } else {
     cat_line('Done. Enjoy your day.')
   }
 }
 
-#' @name create_database
+#' @name db_create
 #' @title Create database
 #' @family setup
 #' @description Checks for downloaded .seq.tar files,
@@ -102,18 +102,18 @@ download_genbank <- function(overwrite=FALSE) {
 #' @examples
 #' \dontrun{
 #' library(restez)
-#' set_restez_path(filepath = 'path/for/downloads')
-#' download_genbank()
-#' create_database()
+#' restez_path_set(filepath = 'path/for/downloads')
+#' gb_download()
+#' db_create()
 #' }
 # db_type: a nod to the future,
-create_database <- function(db_type='nucleotide', overwrite=FALSE) {
+db_create <- function(db_type='nucleotide', overwrite=FALSE) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
   # checks
-  check_restez_fp()
-  dpth <- get_dwnld_path()
+  restez_path_check()
+  dpth <- dwnld_path_get()
   gz_files <- list.files(path = dpth, pattern = '.gz$')
   if (!overwrite) {
     already_added <- list.files(path = dpth, pattern = '.seq$')
@@ -133,14 +133,14 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
     seq_file <- sub(pattern = '\\.gz$', replacement = '',
                     x = gz_file)
     flpth <- file.path(dpth, seq_file)
-    records <- read_records(filepath = flpth)
-    df <- generate_dataframe(records = records)
-    add_to_database(df = df, database = 'nucleotide')
+    records <- flatfile_read(filepath = flpth)
+    df <- gb_df_generate(records = records)
+    gb_sql_add(df = df, database = 'nucleotide')
   }
   cat_line('Done.')
 }
 
-#' @name create_demo_database
+#' @name demo_db_create
 #' @title Create demo database
 #' @family setup
 #' @description Creates a local mock SQL database
@@ -150,8 +150,8 @@ create_database <- function(db_type='nucleotide', overwrite=FALSE) {
 #' @param n integer, number of mock sequences
 #' @return NULL
 #' @export
-#' @example examples/create_demo_database.R
-create_demo_database <- function(db_type='nucleotide', n = 100) {
+#' @example examples/demo_db_create.R
+demo_db_create <- function(db_type='nucleotide', n = 100) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
@@ -159,8 +159,8 @@ create_demo_database <- function(db_type='nucleotide', n = 100) {
     stop('n must be greater than 1.')
   }
   # checks
-  check_restez_fp()
+  restez_path_check()
   # create
-  df <- mock_nucleotide_df(n = n)
-  add_to_database(df = df, database = 'nucleotide')
+  df <- mock_gb_df_generate(n = n)
+  gb_sql_add(df = df, database = 'nucleotide')
 }

@@ -1,6 +1,6 @@
 library(restez)
-set_restez_path(tempdir())
-create_demo_database()
+restez_path_set(tempdir())
+demo_db_create()
 # return fasta record
 fasta_res <- entrez_fetch(db = 'nucleotide',
                           id = c('demo_1', 'demo_2'),
@@ -21,4 +21,4 @@ cat(gb_res)
 #                        rettype = 'gb')
 
 # delete demo after example
-delete_database()
+db_delete()

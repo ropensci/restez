@@ -1,9 +1,0 @@
-library(restez)
-set_restez_path(filepath = tempdir())
-create_demo_database()
-(def <- get_definition(id = 'demo_1'))
-(defs <- get_definition(id = c('demo_1', 'demo_2')))
-
-
-# delete demo after example
-delete_database()

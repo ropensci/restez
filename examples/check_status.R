@@ -1,7 +1,0 @@
-library(restez)
-fp <- tempdir()
-set_restez_path(filepath = fp)
-create_demo_database()
-check_status()
-delete_database()
-check_status()

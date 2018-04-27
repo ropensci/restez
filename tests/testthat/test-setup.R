@@ -16,7 +16,7 @@ if (grepl('testthat', wd)) {
 
 # DATA
 records <- readRDS(file = file.path(data_d, 'records.RData'))
-mck_dwnldbl <- data.frame(descripts='type1', seq_files='file1.seq')
+mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq')
 
 # FUNCTIONS
 clean <- function() {
@@ -28,37 +28,37 @@ clean <- function() {
 # RUNNING
 context('Testing \'setup\'')
 clean()
-test_that('create_demo_database() works', {
+test_that('demo_db_create() works', {
   dir.create(test_db_fldr)
-  set_restez_path(test_db_fldr)
-  create_demo_database()
-  sequence <- get_sequence('demo_1')[[1]]
+  restez_path_set(test_db_fldr)
+  demo_db_create()
+  sequence <- gb_sequence_get('demo_1')[[1]]
   expect_true(grepl(pattern = '[atcg]', x = sequence))
   clean()
 })
-test_that('create_database() works', {
+test_that('db_create() works', {
   dir.create(test_db_fldr)
-  set_restez_path(test_db_fldr)
-  fp <- file.path(restez:::get_dwnld_path(), 'test.seq')
+  restez_path_set(test_db_fldr)
+  fp <- file.path(restez:::dwnld_path_get(), 'test.seq')
   rndm_rcrds <- sample(records, nrcrds)
   record_text <- paste0(unlist(rndm_rcrds), collapse = '\n')
   write(x = record_text, file = fp)
   R.utils::gzip(fp)
-  create_database()
-  expect_true(file.exists(restez:::get_sql_path()))
+  db_create()
+  expect_true(file.exists(restez:::sql_path_get()))
   clean()
 })
-test_that('download_genbank() works', {
+test_that('gb_download() works', {
   dir.create(test_db_fldr)
-  set_restez_path(test_db_fldr)
+  restez_path_set(test_db_fldr)
   res <- with_mock(
     `restez:::check_connection` = function() TRUE,
     `restez:::identify_latest_genbank_release_notes` = function() 1,
     `RCurl::getURL` = function(url) '',
     `restez:::identify_downloadable_files` = function(release_notes) mck_dwnldbl,
     `restez:::restez_rl` = function(prompt) '1',
-    `restez:::download_file` = function(...) TRUE,
-    restez:::download_genbank()
+    `restez:::file_download` = function(...) TRUE,
+    restez:::gb_download()
   )
   expect_null(res)
   clean()

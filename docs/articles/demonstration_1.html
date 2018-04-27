@@ -88,7 +88,7 @@
       <h1>Demonstration 1: search and fetch</h1>
                         <h4 class="author">Dom Bennett</h4>
             
-            <h4 class="date">2018-04-26</h4>
+            <h4 class="date">2018-04-27</h4>
       
       <small>Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/demonstration_1.Rmd"><code>vignettes/demonstration_1.Rmd</code></a></small>
       <div class="hidden name"><code>demonstration_1.Rmd</code></div>
@@ -101,13 +101,13 @@
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>First, we need to download and setup the restez database. When we use <code><a href="../reference/download_genbank.html">download_genbank()</a></code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration.</p>
+<p>First, we need to download and setup the restez database. When we use <code><a href="../reference/gb_download.html">gb_download()</a></code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 fp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">'demo'</span>)
 <span class="kw">dir.create</span>(fp)
-<span class="kw"><a href="../reference/set_restez_path.html">set_restez_path</a></span>(fp)
-<span class="kw"><a href="../reference/download_genbank.html">download_genbank</a></span>()
-<span class="kw"><a href="../reference/create_database.html">create_database</a></span>()</code></pre></div>
+<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(fp)
+<span class="kw"><a href="../reference/gb_download.html">gb_download</a></span>()
+<span class="kw"><a href="../reference/db_create.html">db_create</a></span>()</code></pre></div>
 </div>
 <div id="search-ncbi" class="section level2">
 <h2 class="hasAnchor">
@@ -127,8 +127,8 @@ accessions &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class
 <div id="retrieve-sequences" class="section level2">
 <h2 class="hasAnchor">
 <a href="#retrieve-sequences" class="anchor"></a>Retrieve sequences</h2>
-<p>To fetch the sequences from the database we set up, we can just use the <code>get_fasta</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_fasta.html">get_fasta</a></span>(<span class="dt">id =</span> accessions)
+<p>To fetch the sequences from the database we set up, we can just use the <code>gb_fasta_get</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> accessions)
 <span class="co"># are all accessions in results?</span>
 <span class="kw">all</span>(accessions <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(coi_sequences))
 <span class="co"># .... no</span></code></pre></div>
@@ -147,7 +147,7 @@ smmry<span class="op">$</span>assemblyacc <span class="op">%in%</span><span clas
 <h2 class="hasAnchor">
 <a href="#take-down" class="anchor"></a>Take down</h2>
 <p>Finally, because this is only a demonstration. It might be a good idea to delete the database we built to free up hard disk space.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/delete_database.html">delete_database</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_delete.html">db_delete</a></span>()</code></pre></div>
 </div>
   </div>
 

@@ -27,10 +27,10 @@ clean <- function() {
 # SETUP
 clean()
 dir.create(test_filepath)
-set_restez_path(filepath = test_filepath)
-df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
+restez_path_set(filepath = test_filepath)
+df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
-restez:::add_to_database(df = df, database = 'nucleotide')
+restez:::gb_sql_add(df = df, database = 'nucleotide')
 
 # RUNNING
 context('Testing \'rentrez-wrappers\'')

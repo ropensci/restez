@@ -27,48 +27,48 @@ clean <- function() {
 # SETUP
 clean()
 dir.create(test_filepath)
-set_restez_path(filepath = test_filepath)
-df <- restez:::generate_dataframe(records = sample(records, size = nrcrds))
+restez_path_set(filepath = test_filepath)
+df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
-restez:::add_to_database(df = df, database = 'nucleotide')
+restez:::gb_sql_add(df = df, database = 'nucleotide')
 
 # RUNNING
 context('Testing \'get-tools\'')
-test_that('query_sql() works', {
+test_that('gb_sql_query() works', {
   id <- sample(ids, 1)
-  res <- restez:::query_sql(nm = 'accession', id = id)
+  res <- restez:::gb_sql_query(nm = 'accession', id = id)
   expect_true(res[[1]] == id)
-  expect_error(restez:::query_sql(nm = 'notathing', id = id))
+  expect_error(restez:::gb_sql_query(nm = 'notathing', id = id))
 })
-test_that('get_sequence() works', {
+test_that('gb_sequence_get() works', {
   id <- sample(ids, 1)
-  sequence <- get_sequence(id = id)
+  sequence <- gb_sequence_get(id = id)
   expect_true(grepl('[atcgn]*', sequence[[1]]))
 })
-test_that('get_record() works', {
+test_that('gb_record_get() works', {
   id <- sample(ids, 1)
-  record <- get_record(id = id)
+  record <- gb_record_get(id = id)
   expect_true(is.character(record))
 })
-test_that('get_definition() works', {
+test_that('gb_definition_get() works', {
   id <- sample(ids, 1)
-  definition <- get_definition(id = id)
+  definition <- gb_definition_get(id = id)
   expect_true(is.character(definition))
 })
-test_that('get_fasta() works', {
+test_that('gb_fasta_get() works', {
   id <- sample(ids, 2)
-  fasta <- get_fasta(id = id)
+  fasta <- gb_fasta_get(id = id)
   expect_true(length(fasta) == 2)
   expect_true(is.character(fasta[[1]]))
 })
-test_that('get_version() works', {
+test_that('gb_version_get() works', {
   id <- sample(ids, 1)
-  version <- get_version(id = id)
+  version <- gb_version_get(id = id)
   expect_true(is.character(version))
 })
-test_that('get_organism() works', {
+test_that('gb_organism_get() works', {
   id <- sample(ids, 1)
-  organism <- get_organism(id = id)
+  organism <- gb_organism_get(id = id)
   expect_true(is.character(organism))
 })
 test_that('is_in_db() works', {

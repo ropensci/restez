@@ -177,17 +177,17 @@ are also not supported.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpDauX3u/restez'
-#&gt; ... Creating '/tmp/RtmpDauX3u/restez/downloads'</div><div class='input'><span class='fu'><a href='create_demo_database.html'>create_demo_database</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpQIbJmr/restez'
+#&gt; ... Creating '/tmp/RtmpQIbJmr/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 <span class='co'># return fasta record</span>
 <span class='no'>fasta_res</span> <span class='kw'>&lt;-</span> <span class='fu'>entrez_fetch</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='st'>'nucleotide'</span>,
                           <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>),
                           <span class='kw'>rettype</span> <span class='kw'>=</span> <span class='st'>'fasta'</span>)
 <span class='fu'>cat</span>(<span class='no'>fasta_res</span>)</div><div class='output co'>#&gt; &gt;A demonstration sequence | id demo_1
-#&gt; tataccttct
+#&gt; gctggacgta
 #&gt; 
 #&gt; &gt;A demonstration sequence | id demo_2
-#&gt; tccgtctgca
+#&gt; cgcggtgttc
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'><span class='co'># return whole GB record in text format</span>
@@ -197,7 +197,7 @@ are also not supported.</p>
 <span class='fu'>cat</span>(<span class='no'>gb_res</span>)</div><div class='output co'>#&gt; LOCUS       [This is a mock GenBank data record]
 #&gt; DEFINITION  A demonstration sequence | id demo_1
 #&gt; ACCESSION   demo_1
-#&gt; VERSION     demo_1.2
+#&gt; VERSION     demo_1.1
 #&gt; KEYWORDS    [keyword]
 #&gt; SOURCE      [tissue, organism]
 #&gt; ORGANISM    Unreal organism 1
@@ -207,13 +207,13 @@ are also not supported.</p>
 #&gt; JOURNAL     [journal]
 #&gt; FEATURES    [features]
 #&gt; ORIGIN
-#&gt;         1 tataccttct
+#&gt;         1 gctggacgta
 #&gt; //
 #&gt; 
 #&gt; LOCUS       [This is a mock GenBank data record]
 #&gt; DEFINITION  A demonstration sequence | id demo_2
 #&gt; ACCESSION   demo_2
-#&gt; VERSION     demo_2.4
+#&gt; VERSION     demo_2.2
 #&gt; KEYWORDS    [keyword]
 #&gt; SOURCE      [tissue, organism]
 #&gt; ORGANISM    Unreal organism 2
@@ -223,7 +223,7 @@ are also not supported.</p>
 #&gt; JOURNAL     [journal]
 #&gt; FEATURES    [features]
 #&gt; ORIGIN
-#&gt;         1 tccgtctgca
+#&gt;         1 cgcggtgttc
 #&gt; //
 #&gt; </div><div class='input'><span class='co'># NOT RUN</span>
 <span class='co'># whereas these request would go through rentrez</span>
@@ -235,7 +235,7 @@ are also not supported.</p>
 <span class='co'>#                        rettype = 'gb')</span>
 
 <span class='co'># delete demo after example</span>
-<span class='fu'><a href='delete_database.html'>delete_database</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
+<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

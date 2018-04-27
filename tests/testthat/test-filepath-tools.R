@@ -15,67 +15,67 @@ clean_up <- function() {
 # RUNNING
 clean_up()
 context('Testing \'filepath-tools\'')
-test_that('set_restez_path() works', {
+test_that('restez_path_set() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  expect_true(get_restez_path() ==
+  restez_path_set(filepath = test_filepath)
+  expect_true(restez_path_get() ==
                 file.path(test_filepath, 'restez'))
   clean_up()
 })
-test_that('unset_restez_path() works', {
+test_that('restez_path_unset() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  unset_restez_path()
-  expect_null(get_restez_path())
+  restez_path_set(filepath = test_filepath)
+  restez_path_unset()
+  expect_null(restez_path_get())
   clean_up()
 })
-test_that('get_restez_path() works', {
+test_that('restez_path_get() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  expect_true(grepl(test_filepath, get_restez_path()))
+  restez_path_set(filepath = test_filepath)
+  expect_true(grepl(test_filepath, restez_path_get()))
   clean_up()
 })
-test_that('get_sql_path() works', {
+test_that('sql_path_get() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  expect_true(is.character(restez:::get_sql_path()))
+  restez_path_set(filepath = test_filepath)
+  expect_true(is.character(restez:::sql_path_get()))
   clean_up()
 })
-test_that('get_dwnld_path() works', {
+test_that('dwnld_path_get() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  expect_true(is.character(restez:::get_dwnld_path()))
+  restez_path_set(filepath = test_filepath)
+  expect_true(is.character(restez:::dwnld_path_get()))
   clean_up()
 })
-test_that('check_restez_fp() works', {
-  expect_error(restez:::check_restez_fp())
+test_that('restez_path_check() works', {
+  expect_error(restez:::restez_path_check())
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  expect_null(restez:::check_restez_fp())
+  restez_path_set(filepath = test_filepath)
+  expect_null(restez:::restez_path_check())
   unlink(test_filepath, recursive = TRUE)
-  expect_error(restez:::check_restez_fp())
+  expect_error(restez:::restez_path_check())
   clean_up()
 })
-test_that('delete_database() works', {
+test_that('db_delete() works', {
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  create_demo_database()
-  delete_database(everything = FALSE)
-  expect_false(file.exists(restez:::get_sql_path()))
-  expect_true(file.exists(get_restez_path()))
-  delete_database(everything = TRUE)
+  restez_path_set(filepath = test_filepath)
+  demo_db_create()
+  db_delete(everything = FALSE)
+  expect_false(file.exists(restez:::sql_path_get()))
+  expect_true(file.exists(restez_path_get()))
+  db_delete(everything = TRUE)
   expect_false(file.exists(file.path(test_filepath,
                                      'restez')))
-  expect_null(get_restez_path())
+  expect_null(restez_path_get())
   clean_up()
 })
-test_that('check_status() works', {
-  check_status()
+test_that('status_check() works', {
+  status_check()
   dir.create(test_filepath)
-  set_restez_path(filepath = test_filepath)
-  check_status()
-  create_demo_database()
-  expect_null(check_status())
+  restez_path_set(filepath = test_filepath)
+  status_check()
+  demo_db_create()
+  expect_null(status_check())
   clean_up()
 })
 clean_up()

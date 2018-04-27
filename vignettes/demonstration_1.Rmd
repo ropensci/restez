@@ -21,16 +21,16 @@ restez.
 
 ## Setup
 
-First, we need to download and setup the restez database. When we use `download_genbank()` we are going to select 'rodents'. We are downloading
+First, we need to download and setup the restez database. When we use `gb_download()` we are going to select 'rodents'. We are downloading
 rodents because they are the smallest available set of sequences, minismising the download time for this demonstration.
 
 ```{r setup-database, eval=FALSE, include=TRUE}
 library(restez)
 fp <- file.path(getwd(), 'demo')
 dir.create(fp)
-set_restez_path(fp)
-download_genbank()
-create_database()
+restez_path_set(fp)
+gb_download()
+db_create()
 ```
 
 ## Search NCBI
@@ -59,10 +59,10 @@ accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
 
 ## Retrieve sequences
 
-To fetch the sequences from the database we set up, we can just use the `get_fasta` function.
+To fetch the sequences from the database we set up, we can just use the `gb_fasta_get` function.
 
 ```{r retrieve, eval=FALSE, include=TRUE}
-coi_sequences <- get_fasta(id = accessions)
+coi_sequences <- gb_fasta_get(id = accessions)
 # are all accessions in results?
 all(accessions %in% names(coi_sequences))
 # .... no
@@ -90,5 +90,5 @@ smmry$assemblyacc %in% accessions
 Finally, because this is only a demonstration. It might be a good idea to delete the database we built to free up hard disk space.
 
 ```{r delete, eval=FALSE, include=TRUE}
-delete_database()
+db_delete()
 ```

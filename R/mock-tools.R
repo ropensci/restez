@@ -61,14 +61,14 @@ mock_org <- function(i) {
   paste0('Unreal organism ', i)
 }
 
-#' @name mock_nucleotide_df
-#' @title Mock nucleotide df
+#' @name mock_gb_df_generate
+#' @title Generate mock GenBank records data.frame
 #' @description Make a mock nucleotide data.frame
 #' for entry into a demonstration SQL database.
 #' @param n integer, number of entries
 #' @return data.frame
 #' @noRd
-mock_nucleotide_df <- function(n) {
+mock_gb_df_generate <- function(n) {
   accession <- paste0('demo_', 1:n)
   version <- paste0(accession, '.', sample(x = 1:4, size = length(accession),
                                            replace = TRUE))
@@ -82,10 +82,7 @@ mock_nucleotide_df <- function(n) {
              organism = organism[[i]],
              sequence = sequence[[i]])
   }, FUN.VALUE = character(1))
-  make_nucleotide_df(accessions = accession,
-                     versions = version,
-                     organisms = organism,
-                     definitions = definition,
-                     sequences = sequence,
-                     records = record)
+  gb_df_create(accessions = accession, versions = version,
+               organisms = organism, definitions = definition,
+               sequences = sequence, records = record)
 }

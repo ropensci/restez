@@ -21,7 +21,7 @@ test_that('mock_org() works', {
   org <- restez:::mock_org(i = 1)
   expect_true(is.character(org))
 })
-test_that('mock_nucleotide_df() works', {
-  df <- restez:::mock_nucleotide_df(n = 100)
+test_that('mock_gb_df_generate() works', {
+  df <- restez:::mock_gb_df_generate(n = 100)
   expect_true(nrow(df) == 100)
 })

@@ -48,17 +48,17 @@ test_that('identify_downloadable_files() works', {
   expect_true(nrow(downloadable) == 3057)
   expect_true(all(grepl('\\.seq$', downloadable[['seq_files']])))
 })
-test_that('download_file() works', {
+test_that('file_download() works', {
   dir.create(test_db_fldr)
-  set_restez_path(test_db_fldr)
+  restez_path_set(test_db_fldr)
   res <- with_mock(
     `restez:::custom_download` = function(...) stop(),
-    restez:::download_file(fl = 'test.seq')
+    restez:::file_download(fl = 'test.seq')
   )
   expect_false(res)
   res <- with_mock(
     `restez:::custom_download` = function(...) NULL,
-    restez:::download_file(fl = 'test.seq')
+    restez:::file_download(fl = 'test.seq')
   )
   expect_true(res)
   clean()

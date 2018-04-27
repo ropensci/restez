@@ -23,21 +23,21 @@ entrez_fetch <- function(db, id=NULL, rettype, retmode="", ...) {
   # https://www.ncbi.nlm.nih.gov/books/NBK25499/table/chapter4.T._valid_values_of__retmode_and/
   if (db %in% c('nucleotide', 'nuccore')) {
     if (rettype == 'fasta' & retmode != 'xml') {
-      return(get_entrez_fasta(db = db, id = id, rettype = rettype,
+      return(entrez_fasta_get(db = db, id = id, rettype = rettype,
                               retmode = retmode, ...))
     }
     if (rettype == 'gb' & retmode != 'xml') {
-      return(get_entrez_gb(db = db, id = id, rettype = rettype,
+      return(entrez_gb_get(db = db, id = id, rettype = rettype,
                            retmode = retmode, ...))
     }
     if (rettype == 'gbwithparts' & retmode != 'xml') {
       # TODO: I have detected no difference between gb and gbwithparts
-      return(get_entrez_gb(db = db, id = id, rettype = rettype,
+      return(entrez_gb_get(db = db, id = id, rettype = rettype,
                            retmode = retmode, ...))
     }
     # TODO
     # if (rettype == 'ft' & rettype != 'xml') {
-    #   return(get_entrez_ft(id = id))
+    #   return(entrez_ft_get(id = id))
     # }
   }
   rentrez::entrez_fetch(db = db, id = id, rettype = rettype,

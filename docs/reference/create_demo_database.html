@@ -144,34 +144,29 @@ No internet connection required.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other setup: <code><a href='check_status.html'>check_status</a></code>,
-  <code><a href='create_database.html'>create_database</a></code>,
-  <code><a href='delete_database.html'>delete_database</a></code>,
-  <code><a href='download_genbank.html'>download_genbank</a></code>,
-  <code><a href='get_restez_path.html'>get_restez_path</a></code>,
-  <code><a href='set_restez_path.html'>set_restez_path</a></code>,
-  <code><a href='unset_restez_path.html'>unset_restez_path</a></code></p></div>
+    <div class='dont-index'><p>Other setup: <code><a href='create_database.html'>create_database</a></code>,
+  <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='download_genbank.html'>download_genbank</a></code>,
+  <code><a href='restez_path_get.html'>restez_path_get</a></code>,
+  <code><a href='restez_path_set.html'>restez_path_set</a></code>,
+  <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
+  <code><a href='status_check.html'>status_check</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='co'># set the restez path to a temporary dir</span>
-<span class='fu'><a href='set_restez_path.html'>set_restez_path</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpDauX3u/restez'
-#&gt; ... Creating '/tmp/RtmpDauX3u/restez/downloads'</div><div class='input'><span class='co'># create demo database</span>
-<span class='fu'>create_demo_database</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='co'># in the demo, IDs are 'demo_1', 'demo_2' ...</span>
-(<span class='fu'><a href='get_sequence.html'>get_sequence</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1 
-#&gt; "ccctcagatc" </div><div class='input'>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())
+<span class='co'># create demo database</span>
+<span class='fu'>create_demo_database</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; <span class='error'>Error in check_restez_fp(): could not find function "check_restez_fp"</span></div><div class='input'><span class='co'># in the demo, IDs are 'demo_1', 'demo_2' ...</span>
+(<span class='fu'><a href='get_sequence.html'>get_sequence</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in get_sql_path(): could not find function "get_sql_path"</span></div><div class='input'>
 <span class='co'># Be careful with the database as it build cummulatively.</span>
 <span class='co'>#  if we running create_demo_database/create_database</span>
 <span class='co'>#  will append new entries to the preexisitng database</span>
-<span class='fu'>create_demo_database</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='co'># Leading to multiple entries if IDs are the same</span>
-(<span class='fu'><a href='get_sequence.html'>get_sequence</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1       demo_1 
-#&gt; "ccctcagatc" "actcgcaagt" </div><div class='input'>
+<span class='fu'>create_demo_database</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; <span class='error'>Error in check_restez_fp(): could not find function "check_restez_fp"</span></div><div class='input'><span class='co'># Leading to multiple entries if IDs are the same</span>
+(<span class='fu'><a href='get_sequence.html'>get_sequence</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in get_sql_path(): could not find function "get_sql_path"</span></div><div class='input'>
 <span class='co'># To resovle this issue, always delete a demo database</span>
 <span class='co'>#  after an example</span>
-<span class='fu'><a href='delete_database.html'>delete_database</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
+<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in get_sql_path(): could not find function "get_sql_path"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

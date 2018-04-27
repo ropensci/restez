@@ -4,9 +4,9 @@ library(restez)
 # SETUP
 fp <- file.path(getwd(), 'demo')
 dir.create(fp)
-set_restez_path(fp)
-download_genbank()
-create_database()
+restez_path_set(fp)
+gb_download()
+db_create()
 
 # LOOK UP ACCESSIONS
 # 33553 - Sciuromorpha - squirrel-like things
@@ -20,7 +20,7 @@ accessions <- strsplit(x = accessions, split = '\\n')[[1]]
 accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
 
 # FETCH
-coi_sequences <- get_fasta(id = accessions)
+coi_sequences <- gb_fasta_get(id = accessions)
 # are all accessions in results?
 all(accessions %in% names(coi_sequences))
 # .... no
@@ -32,4 +32,4 @@ smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 smmry$assemblyacc %in% accessions
 
 # TAKE DOWN
-delete_database()
+db_delete()
