@@ -1,6 +1,5 @@
 ---
-title: "Demonstration 1: search and fetch"
-author: "Dom Bennett"
+title: "Demo 1: Search and Fetch"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -59,7 +58,9 @@ accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
 
 ## Retrieve sequences
 
-To fetch the sequences from the database we set up, we can just use the `gb_fasta_get` function.
+To fetch the sequences from the database we set up, we can just use the `gb_fasta_get` function. This is a lot faster than using the Entrez API
+for very large requests, because NCBI limits the number of requests per user, often to as lower as 300 items per request with varying time
+delays.
 
 ```{r retrieve, eval=FALSE, include=TRUE}
 coi_sequences <- gb_fasta_get(id = accessions)

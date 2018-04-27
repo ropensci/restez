@@ -41,12 +41,12 @@ Quick Examples
 ``` r
 library(restez)
 # choose a location to store GB files
-set_restez_path('.')
+restez_path_set('.')
 # run download function
-# interactively choose GB files to download
-download_genbank()
-# create database
-create_database()
+# interactively choose GenBank files to download
+gb_download()
+# create local database
+db_create()
 ```
 
 ### Query
@@ -54,23 +54,23 @@ create_database()
 ``` r
 library(restez)
 # set a restez path
-set_restez_path('.')
+restez_path_set('.')
 # create a demo database
-create_demo_database(n = 10)
+demo_db_create(n = 10)
 # contains fake sequence data of 10 records
 (all_ids <- list_db_ids(db='nucleotide'))
 # you can extract:
 # sequences
-seq <- get_sequence('demo_1')[[1]]
+seq <- gb_sequence_get('demo_1')[[1]]
 print(seq)
 # definitions
-def <- get_definition('demo_1')[[1]]
+def <- gb_definition_get('demo_1')[[1]]
 print(def)
 # organisms
-org <- get_organism('demo_1')[[1]]
+org <- gb_organism_get('demo_1')[[1]]
 print(org)
 # or whole records
-rec <- get_record('demo_1')[[1]]
+rec <- gb_record_get('demo_1')[[1]]
 cat(rec)
 ```
 
@@ -79,8 +79,8 @@ cat(rec)
 ``` r
 library(restez)
 # setup as above
-set_restez_path('.')
-create_demo_database()
+restez_path_set('.')
+demo_db_create()
 # use the entrez_* wrappers to access GB data
 demo_record <- entrez_fetch(db='nucleotide', id='demo_1', rettype = 'fasta')
 # if the id is not in the local database
