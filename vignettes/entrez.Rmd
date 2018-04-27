@@ -1,10 +1,9 @@
 ---
-title: "Entrez and restez"
-author: "Dom Bennett"
+title: "Intro 3: Entrez and restez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Create a local GenBank database}
+  %\VignetteIndexEntry{Intro 3: Entrez and restez}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

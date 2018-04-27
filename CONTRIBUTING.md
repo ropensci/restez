@@ -1,7 +1,7 @@
 # Contributing
 
 You are very welcome to help out in the development of restez. The NCBI databases and resources are vast, it is not possible
-for a single person from a single discpline within the biological sciences to effectively reaslise all of what NCBI has to offer.
+for a single person from a single discpline within the biological sciences to effectively realise all of what NCBI has to offer.
 Restez needs your help!
 
 If you have any ideas for future features than please add them to the [issues page](https://github.com/AntonelliLab/restez/issues).

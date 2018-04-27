@@ -55,13 +55,13 @@
       <a href="../articles/demonstration_1.html">Demo 1: Search and Fetch</a>
     </li>
     <li>
-      <a href="../articles/download.html">Download GenBank</a>
+      <a href="../articles/download.html">Intro 1: Download GenBank</a>
     </li>
     <li>
-      <a href="../articles/entrez.html">Entrez and restez</a>
+      <a href="../articles/entrez.html">Intro 3: Entrez and restez</a>
     </li>
     <li>
-      <a href="../articles/query.html">Query the local GenBank database</a>
+      <a href="../articles/query.html">Intro 2: Querying with restez</a>
     </li>
   </ul>
 </li>
@@ -100,7 +100,7 @@
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>First, we need to download and setup the restez database. When we use <code><a href="../reference/gb_download.html">gb_download()</a></code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration.</p>
+<p>First, we need to download and setup the restez database. When we use <code><a href="../reference/gb_download.html">gb_download()</a></code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration. If you have already downloaded the rodents flatfiles as explained in previous tutorials, then simply set your restez path to wherever you previously set your restez path.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 fp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">'demo'</span>)
 <span class="kw">dir.create</span>(fp)
@@ -146,7 +146,8 @@ smmry<span class="op">$</span>assemblyacc <span class="op">%in%</span><span clas
 <h2 class="hasAnchor">
 <a href="#take-down" class="anchor"></a>Take down</h2>
 <p>Finally, because this is only a demonstration. It might be a good idea to delete the database we built to free up hard disk space.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_delete.html">db_delete</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_delete.html">db_delete</a></span>()
+<span class="kw">restez_path_check</span>()  <span class="co"># confirm it is deleted</span></code></pre></div>
 </div>
   </div>
 

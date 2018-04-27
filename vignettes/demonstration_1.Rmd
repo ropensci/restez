@@ -20,8 +20,7 @@ restez.
 
 ## Setup
 
-First, we need to download and setup the restez database. When we use `gb_download()` we are going to select 'rodents'. We are downloading
-rodents because they are the smallest available set of sequences, minismising the download time for this demonstration.
+First, we need to download and setup the restez database. When we use `gb_download()` we are going to select 'rodents'. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration. If you have already downloaded the rodents flatfiles as explained in previous tutorials, then simply set your restez path to wherever you previously set your restez path.
 
 ```{r setup-database, eval=FALSE, include=TRUE}
 library(restez)
@@ -92,4 +91,5 @@ Finally, because this is only a demonstration. It might be a good idea to delete
 
 ```{r delete, eval=FALSE, include=TRUE}
 db_delete()
+restez_path_check()  # confirm it is deleted
 ```

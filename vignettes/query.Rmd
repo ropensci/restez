@@ -1,10 +1,9 @@
 ---
-title: "Query the local GenBank database"
-author: "Dom Bennett"
+title: "Intro 2: Querying with restez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Create a local GenBank database}
+  %\VignetteIndexEntry{Intro 2: Querying with restez}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
