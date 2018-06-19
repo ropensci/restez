@@ -20,13 +20,13 @@ database.
 \dontrun{
 library(restez)
 restez_path_set(filepath = 'path/for/downloads')
-gb_download()
+db_download()
 db_create()
 }
 }
 \seealso{
 Other setup: \code{\link{db_delete}},
-  \code{\link{demo_db_create}}, \code{\link{gb_download}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

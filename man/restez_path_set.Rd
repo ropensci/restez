@@ -26,8 +26,9 @@ restez_path_set(filepath = 'path/to/where/you/want/files/to/download')
 }
 \seealso{
 Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{demo_db_create}},
-  \code{\link{gb_download}}, \code{\link{restez_path_get}},
+  \code{\link{db_delete}}, \code{\link{db_download}},
+  \code{\link{demo_db_create}},
+  \code{\link{restez_path_get}},
   \code{\link{restez_path_unset}},
   \code{\link{status_check}}
 }

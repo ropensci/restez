@@ -15,8 +15,7 @@ flatfile_read <- function(filepath) {
   close(connection)
   record_ends <- which(lines == '//')
   record_starts <- c(1, record_ends[-1*length(record_ends)] + 1)
-  records <- lapply(X = seq_along(record_ends),
-                    FUN = generate_records)
+  records <- lapply(X = seq_along(record_ends), FUN = generate_records)
   records
 }
 
@@ -60,17 +59,14 @@ gb_df_generate <- function(records) {
 #' @param records character, vector of GenBank records in text format
 #' @return data.frame
 #' @noRd
-gb_df_create <- function(accessions, versions, organisms,
-                               definitions, sequences, records) {
+gb_df_create <- function(accessions, versions, organisms, definitions,
+                         sequences, records) {
   raw_definitions <- lapply(definitions, charToRaw)
   raw_sequences <- lapply(sequences, charToRaw)
   raw_records <- lapply(records, charToRaw)
-  df <- data.frame(accession = accessions,
-                   version = versions,
-                   organism = organisms,
-                   raw_definition = I(raw_definitions),
-                   raw_sequence = I(raw_sequences),
-                   raw_record = I(raw_records))
+  df <- data.frame(accession = accessions, version = versions,
+                   organism = organisms, raw_definition = I(raw_definitions),
+                   raw_sequence = I(raw_sequences), raw_record = I(raw_records))
   df
 }
 
@@ -82,9 +78,8 @@ gb_df_create <- function(accessions, versions, organisms,
 #' @return NULL
 #' @noRd
 gb_sql_add <- function(df, database) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = sql_path_get())
+  connection <- DBI::dbConnect(drv = RSQLite::SQLite(), dbname = sql_path_get())
   on.exit(DBI::dbDisconnect(conn = connection))
-  DBI::dbWriteTable(conn = connection, name = database,
-                    value = df, append = TRUE)
+  DBI::dbWriteTable(conn = connection, name = database, value = df,
+                    append = TRUE)
 }

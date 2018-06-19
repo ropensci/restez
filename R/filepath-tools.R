@@ -179,7 +179,7 @@ status_check <- function() {
     }
   }
   if (no_database & no_downloads) {
-    message('You need to run gb_download() and db_create()')
+    message('You need to run db_download() and db_create()')
   }
   if (no_database) {
     message('You need to run db_create()')

@@ -148,9 +148,10 @@ If your status shows the same, then you are ready to move to the next section.
 
 #2. Query
 
-In this tutorial, when it's written, we will explain how you send queries to your local copy of GenBank using the get methods.
+In this section we will explain how you make queries to your local copy of GenBank.
 
 ##2.1 Get methods
+
 
 ##2.2 Other methods
 

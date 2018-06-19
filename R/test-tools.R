@@ -1,0 +1,29 @@
+#' @name cleanup
+#' @title Clean up test data
+#' @description Removes all temporary test data created.
+#' @return NULL
+#' @noRd
+cleanup <- function() {
+  if (dir.exists('test_db_fldr')) {
+    unlink('test_db_fldr', recursive = TRUE)
+  }
+  if (file.exists('test_records.txt')) {
+    file.remove('test_records.txt')
+  }
+}
+
+#' @name testdatadir_get
+#' @title Get test data directory
+#' @description Get the folder containing test data.
+#' @return NULL
+#' @noRd
+testdatadir_get <- function() {
+  wd <- getwd()
+  if (grepl('testthat', wd)) {
+    data_d <- file.path('data')
+  } else {
+    # for running test at package level
+    data_d <- file.path('tests', 'testthat', 'data')
+  }
+  data_d
+}

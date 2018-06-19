@@ -3,26 +3,10 @@ library(restez)
 library(testthat)
 
 # VARS
-test_db_fldr <- 'test_db_fldr'
-wd <- getwd()
-if (grepl('testthat', wd)) {
-  data_d <- file.path('data')
-} else {
-  # for running test at package level
-  data_d <- file.path('tests', 'testthat',
-                      'data')
-}
+data_d <- restez:::testdatadir_get()
 
 # DATA
-release_notes <- readRDS(file = file.path(data_d,
-                                          'release_notes_gb224.RData'))
-
-# FUNCTIONS
-clean <- function() {
-  if (dir.exists(test_db_fldr)) {
-    unlink(test_db_fldr, recursive = TRUE)
-  }
-}
+release_notes <- readRDS(file = file.path(data_d, 'release_notes_gb224.RData'))
 
 # MOCKS
 mockGetUrl <- function(...) {
@@ -49,8 +33,8 @@ test_that('identify_downloadable_files() works', {
   expect_true(all(grepl('\\.seq$', downloadable[['seq_files']])))
 })
 test_that('file_download() works', {
-  dir.create(test_db_fldr)
-  restez_path_set(test_db_fldr)
+  dir.create('test_db_fldr')
+  restez_path_set('test_db_fldr')
   res <- with_mock(
     `restez:::custom_download` = function(...) stop(),
     restez:::file_download(fl = 'test.seq')
@@ -61,6 +45,6 @@ test_that('file_download() works', {
     restez:::file_download(fl = 'test.seq')
   )
   expect_true(res)
-  clean()
+  restez:::cleanup()
 })
-clean()
+restez:::cleanup()

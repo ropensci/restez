@@ -38,7 +38,7 @@ db_delete()
 }
 \seealso{
 Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{gb_download}},
+  \code{\link{db_delete}}, \code{\link{db_download}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

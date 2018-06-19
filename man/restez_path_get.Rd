@@ -22,8 +22,9 @@ restez_path_set(filepath = tempdir())
 }
 \seealso{
 Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{demo_db_create}},
-  \code{\link{gb_download}}, \code{\link{restez_path_set}},
+  \code{\link{db_delete}}, \code{\link{db_download}},
+  \code{\link{demo_db_create}},
+  \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},
   \code{\link{status_check}}
 }

@@ -1,12 +1,12 @@
-#' @name gb_download
+#' @name db_download
 #' @family setup
 #' @title Download GenBank
-#' @description Download .seq.tar files from the latest GenBank
-#' release. The user interacitvely selects the parts of
-#' GenBank to download (e.g. primates, plants, bacteria ...)
+#' @description Download .seq.tar files from the latest GenBank release. The
+#' user interacitvely selects the parts of GenBank to download (e.g. primates,
+#' plants, bacteria ...)
 #' @details
-#' The downloaded files will appear in the restez filepath under
-#' downloads.
+#' The downloaded files will appear in the restez filepath under downloads.
+#' @param db Database type, only 'nucleotide' currently available.
 #' @param overwrite T/F, overwrite pre-existing downloaded files?
 #' @return NULL
 #' @export
@@ -14,9 +14,9 @@
 #' \dontrun{
 #' library(restez)
 #' restez_path_set(filepath = 'path/for/downloads')
-#' gb_download()
+#' db_download()
 #' }
-gb_download <- function(overwrite=FALSE) {
+db_download <- function(db='nucleotide', overwrite=FALSE) {
   # checks
   restez_path_check()
   check_connection()
@@ -29,20 +29,19 @@ gb_download <- function(overwrite=FALSE) {
   write(x = release_notes, file = file.path(dwnld_path_get(),
                                             'latest_release_notes.txt'))
   downloadable_table <- identify_downloadable_files(release_notes)
-  cat_line('Found ', stat(nrow(downloadable_table)),
-           ' sequence files')
-  types <- sort(table(downloadable_table[['descripts']]),
-                decreasing = TRUE)
+  cat_line('Found ', stat(nrow(downloadable_table)), ' sequence files')
+  types <- sort(table(downloadable_table[['descripts']]), decreasing = TRUE)
   cat(cli::rule())
   cat_line('\nWhich sequence file types would you like to download?')
   cat_line('Choose from those listed below:')
   for (i in seq_along(types)) {
     typ_nm <- names(types)[[i]]
-    cli::cat_bullet(i, '  -  ', char(typ_nm),
-                    ' (', stat(types[[i]]), ' files available)')
+    cli::cat_bullet(i, '  -  ', char(typ_nm), ' (', stat(types[[i]]),
+                    ' files available)')
   }
   cat_line('Provide one or more numbers separated by spaces.')
-  cat_line('e.g. to download all Mammal sequences type: "12 14 15" followed by Enter')
+  cat_line('e.g. to download all Mammal sequences type:',
+           '"12 14 15" followed by Enter')
   cat_line('Which files would you like to download?')
   response <- restez_rl(prompt = '(Press Esc to quit) ')
   tryCatch(expr = {
@@ -73,7 +72,8 @@ gb_download <- function(overwrite=FALSE) {
   any_fails <- FALSE
   for (i in seq_along(files_to_download)) {
     fl <- files_to_download[[i]]
-    cat_line('... ', char(fl), ' (', stat(i, '/', length(files_to_download)), ')')
+    cat_line('... ', char(fl), ' (', stat(i, '/', length(files_to_download)),
+             ')')
     # TODO: move overwrite to here
     success <- file_download(fl, overwrite = overwrite)
     if (!success) {
@@ -83,7 +83,7 @@ gb_download <- function(overwrite=FALSE) {
   }
   if (any_fails) {
     cat_line('Not all the files downloaded. The server may be down. ',
-             'You can always try running gb_download() again at a later time.')
+             'You can always try running db_download() again at a later time.')
   } else {
     cat_line('Done. Enjoy your day.')
   }
@@ -103,7 +103,7 @@ gb_download <- function(overwrite=FALSE) {
 #' \dontrun{
 #' library(restez)
 #' restez_path_set(filepath = 'path/for/downloads')
-#' gb_download()
+#' db_download()
 #' db_create()
 #' }
 # db_type: a nod to the future,

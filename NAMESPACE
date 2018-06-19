@@ -2,10 +2,10 @@
 
 export(db_create)
 export(db_delete)
+export(db_download)
 export(demo_db_create)
 export(entrez_fetch)
 export(gb_definition_get)
-export(gb_download)
 export(gb_fasta_get)
 export(gb_organism_get)
 export(gb_record_get)

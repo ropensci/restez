@@ -27,7 +27,7 @@ db_delete(everything = TRUE)
 }
 \seealso{
 Other setup: \code{\link{db_create}},
-  \code{\link{demo_db_create}}, \code{\link{gb_download}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

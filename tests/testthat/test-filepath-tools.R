@@ -2,80 +2,68 @@
 library(restez)
 library(testthat)
 
-# VARS
-test_filepath <- 'test_startup'
-
-# FUNCTIONS
-clean_up <- function() {
-  if (dir.exists(test_filepath)) {
-    unlink(test_filepath, recursive = TRUE)
-  }
-}
-
 # RUNNING
-clean_up()
+restez:::cleanup()
 context('Testing \'filepath-tools\'')
 test_that('restez_path_set() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
-  expect_true(restez_path_get() ==
-                file.path(test_filepath, 'restez'))
-  clean_up()
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
+  expect_true(restez_path_get() == file.path('test_db_fldr', 'restez'))
+  restez:::cleanup()
 })
 test_that('restez_path_unset() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   restez_path_unset()
   expect_null(restez_path_get())
-  clean_up()
+  restez:::cleanup()
 })
 test_that('restez_path_get() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
-  expect_true(grepl(test_filepath, restez_path_get()))
-  clean_up()
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
+  expect_true(grepl('test_db_fldr', restez_path_get()))
+  restez:::cleanup()
 })
 test_that('sql_path_get() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   expect_true(is.character(restez:::sql_path_get()))
-  clean_up()
+  restez:::cleanup()
 })
 test_that('dwnld_path_get() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   expect_true(is.character(restez:::dwnld_path_get()))
-  clean_up()
+  restez:::cleanup()
 })
 test_that('restez_path_check() works', {
   expect_error(restez:::restez_path_check())
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   expect_null(restez:::restez_path_check())
-  unlink(test_filepath, recursive = TRUE)
+  unlink('test_db_fldr', recursive = TRUE)
   expect_error(restez:::restez_path_check())
-  clean_up()
+  restez:::cleanup()
 })
 test_that('db_delete() works', {
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   demo_db_create()
   db_delete(everything = FALSE)
   expect_false(file.exists(restez:::sql_path_get()))
   expect_true(file.exists(restez_path_get()))
   db_delete(everything = TRUE)
-  expect_false(file.exists(file.path(test_filepath,
-                                     'restez')))
+  expect_false(file.exists(file.path('test_db_fldr', 'restez')))
   expect_null(restez_path_get())
-  clean_up()
+  restez:::cleanup()
 })
 test_that('status_check() works', {
   status_check()
-  dir.create(test_filepath)
-  restez_path_set(filepath = test_filepath)
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
   status_check()
   demo_db_create()
   expect_null(status_check())
-  clean_up()
+  restez:::cleanup()
 })
-clean_up()
+restez:::cleanup()
