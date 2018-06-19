@@ -65,7 +65,7 @@ No internet connection required." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -78,6 +78,9 @@ No internet connection required." />
   </a>
 </li>
 <li>
+  <a href="../articles/restez.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -88,16 +91,7 @@ No internet connection required." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/demonstration_1.html">Demo 1: Search and Fetch</a>
-    </li>
-    <li>
-      <a href="../articles/download.html">Intro 1: Download GenBank</a>
-    </li>
-    <li>
-      <a href="../articles/entrez.html">Intro 3: Entrez and restez</a>
-    </li>
-    <li>
-      <a href="../articles/query.html">Intro 2: Querying with restez</a>
+      <a href="../articles/search_and_fetch.html">Search and Fetch</a>
     </li>
   </ul>
 </li>
@@ -163,8 +157,8 @@ No internet connection required.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='co'># set the restez path to a temporary dir</span>
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpWqRos0/restez'
-#&gt; ... Creating '/tmp/RtmpWqRos0/restez/downloads'</div><div class='input'><span class='co'># create demo database</span>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/Rtmp7uCmmA/restez'
+#&gt; ... Creating '/tmp/Rtmp7uCmmA/restez/downloads'</div><div class='input'><span class='co'># create demo database</span>
 <span class='fu'>demo_db_create</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)
 <span class='co'># in the demo, IDs are 'demo_1', 'demo_2' ...</span>
 (<span class='fu'><a href='gb_sequence_get.html'>gb_sequence_get</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1 

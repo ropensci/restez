@@ -1,9 +1,8 @@
 ---
-title: "Intro 1: Download GenBank"
-date: "`r Sys.Date()`"
+title: "Create and Query a Local Copy of GenBank in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Intro 1: Download GenBank}
+  %\VignetteIndexEntry{restez_tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,16 +14,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-In the first of the restez introductory tutorials we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser,
+#0. Contents
+ 
+1. **[Download GenBank](#download-genbank)**
+2. **[Query your local database](#query)**
+3. **[Use Entrez tools](#entrez)**
+
+#1. Download GenBank
+
+In the first section of this introduction to `restez` we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser,
 [FTP NCBI GenBank](ftp://ftp.ncbi.nlm.nih.gov/genbank/). GenBank is hosted at this portal as 1000s of compressed sequence files called flatfiles. New versions of these flatfiles are released once a month as new sequence information is uploaded. For information on the latest GenBank release, see the [NCBI statistics page](https://www.ncbi.nlm.nih.gov/genbank/statistics/).
 
-Restez downloads a selection of these flatfiles, decompresses them and unpacks them into an SQLite database that can be searched using its functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, restez allows you to select the sets of flatfiles to download. For the most part these sets of flatfile types are determined by taxonomy: a user can download all primates or plant sequences, for example.
+`restez` downloads a selection of these flatfiles, decompresses them and unpacks them into an SQLite database that can be searched using its functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, `restez` allows you to select the sets of flatfiles to download. For the most part these sets of flatfile types are determined by taxonomy: a user can download all primates or plant sequences, for example.
 
-Here, we will explain how to set up restez, download genbank and then create a database from the downloaded files.
+Here, we will explain how to set up `restez`, download genbank and then create a database from the downloaded files.
 
-## Setting up
+##1.1 Setting up
 
-Before we can download, we need to tell restez where we would like to store the downloaded files and the eventual GenBank database. To do this we use the `restez_path_set` function. A user provides a system file path to a folder, and within that folder a new folder called 'restez' is created. In this example, I will create a restez folder in my desktop.
+Before we can download, we need to tell `restez` where we would like to store the downloaded files and the eventual GenBank database. To do this we use the `restez_path_set` function. A user provides a system file path to a folder, and within that folder a new folder called 'restez' is created. In this example, I will create a `restez` folder in my desktop.
 
 ```{r setting up, eval=FALSE, include=TRUE}
 library(restez)
@@ -39,9 +46,9 @@ restez_path_set(filepath = fp)
 
 Messages are printed to console telling us that the path was created and that a downloads subfolder was created.
 
-> **Note**, whenever you intend to use restez you will need to specify the restez path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.
+> **Note**, whenever you intend to use `restez` you will need to specify the `restez` path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.
 
-## Download
+##1.2 Download
 
 Next, we download genbank using `gb_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.
 
@@ -100,9 +107,9 @@ Downloading ...
 
 Now the download has begun, we just need to wait for it to finish. This can take quite a while.
 
-## Create a database
+##1.3 Create a database
 
-After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our restez path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.
+After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.
 
 ```{r create database, eval=FALSE, include=TRUE}
 db_create()
@@ -119,7 +126,7 @@ Decompressing and adding 30 files to database ...
 
 Again, this can take quite a while.
 
-## Checking the setup
+##1.4 Checking the setup
 
 After the download and the database creation steps are complete, we can confirm our setup with the following commands.
 
@@ -135,6 +142,20 @@ Checking setup status ...
 ... found 'sql_db' of 12.23 GB
 ```
 
-The above messages tell us that the restez path is set to the desktop and that the restez folder contains a database of 12.23 GB and that the downloads folder contains all of the rodent downloads, 7.28 GB.
+The above messages tell us that the `restez` path is set to the desktop and that the `restez` folder contains a database of 12.23 GB and that the downloads folder contains all of the rodent downloads, 7.28 GB.
 
-If your status shows the same, then you are ready to move to the next tutorial, Intro 2: Querying with restez.
+If your status shows the same, then you are ready to move to the next section.
+
+#2. Query
+
+In this tutorial, when it's written, we will explain how you send queries to your local copy of GenBank using the get methods.
+
+##2.1 Get methods
+
+##2.2 Other methods
+
+#3. Entrez
+
+It this tutorial, we will explain how entrez wrappers are part of the `restez` pacakge. These allow a user to make use of the local GenBank using functions that were built for [`rentrez`](https://github.com/ropensci/rentrez). This minimises the amount of coding changes required for any Entrez dependent code.
+
+##3.1 rentrez wrappers

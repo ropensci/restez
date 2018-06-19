@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -74,6 +74,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/restez.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -84,16 +87,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/demonstration_1.html">Demo 1: Search and Fetch</a>
-    </li>
-    <li>
-      <a href="../articles/download.html">Intro 1: Download GenBank</a>
-    </li>
-    <li>
-      <a href="../articles/entrez.html">Intro 3: Entrez and restez</a>
-    </li>
-    <li>
-      <a href="../articles/query.html">Intro 2: Querying with restez</a>
+      <a href="../articles/search_and_fetch.html">Search and Fetch</a>
     </li>
   </ul>
 </li>
@@ -132,8 +126,46 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-set-up" class="hasAnchor"><a href="#section-set-up" class="anchor"></a>Set-up</h2>
+          <p class="section-desc"><p>Set and verify your restez path</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="restez.html">restez</a></code> </p>
+        </td>
+        <td><p>restez: Create and Query a Local Copy of GenBank in R</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="restez_path_set.html">restez_path_set()</a></code> </p>
+        </td>
+        <td><p>Set restez path</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="restez_path_get.html">restez_path_get()</a></code> </p>
+        </td>
+        <td><p>Get restez path</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="restez_path_unset.html">restez_path_unset()</a></code> </p>
+        </td>
+        <td><p>Unset restez path</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="status_check.html">status_check()</a></code> </p>
+        </td>
+        <td><p>Check restez status</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-database" class="hasAnchor"><a href="#section-database" class="anchor"></a>Database</h2>
+          <p class="section-desc"><p>Download, create, delete and verify your local database</p></p>
         </th>
       </tr>
       <tr>
@@ -151,27 +183,41 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="gb_download.html">gb_download()</a></code> </p>
+        </td>
+        <td><p>Download GenBank</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="demo_db_create.html">demo_db_create()</a></code> </p>
         </td>
         <td><p>Create demo database</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="entrez_fetch.html">entrez_fetch()</a></code> </p>
+          <p><code><a href="is_in_db.html">is_in_db()</a></code> </p>
         </td>
-        <td><p>Entrez fetch</p></td>
+        <td><p>Is in db</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="list_db_ids.html">list_db_ids()</a></code> </p>
+        </td>
+        <td><p>List database IDs</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-genbank" class="hasAnchor"><a href="#section-genbank" class="anchor"></a>GenBank</h2>
+          <p class="section-desc"><p>Retrieve data from the local GenBank database</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="gb_definition_get.html">gb_definition_get()</a></code> </p>
         </td>
         <td><p>Get definition from GenBank</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gb_download.html">gb_download()</a></code> </p>
-        </td>
-        <td><p>Download GenBank</p></td>
       </tr><tr>
         
         <td>
@@ -202,48 +248,20 @@
           <p><code><a href="gb_version_get.html">gb_version_get()</a></code> </p>
         </td>
         <td><p>Get version from GenBank</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-entrez-wrappers" class="hasAnchor"><a href="#section-entrez-wrappers" class="anchor"></a>Entrez wrappers</h2>
+          <p class="section-desc"><p>Wrappers for integration with the R package rentrez</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
-          <p><code><a href="is_in_db.html">is_in_db()</a></code> </p>
+          <p><code><a href="entrez_fetch.html">entrez_fetch()</a></code> </p>
         </td>
-        <td><p>Is in db</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="list_db_ids.html">list_db_ids()</a></code> </p>
-        </td>
-        <td><p>List database IDs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="restez.html">restez</a></code> </p>
-        </td>
-        <td><p>restez: Create and Query a Local Copy of GenBank in R</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="restez_path_get.html">restez_path_get()</a></code> </p>
-        </td>
-        <td><p>Get restez path</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="restez_path_set.html">restez_path_set()</a></code> </p>
-        </td>
-        <td><p>Set restez path</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="restez_path_unset.html">restez_path_unset()</a></code> </p>
-        </td>
-        <td><p>Unset restez path</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="status_check.html">status_check()</a></code> </p>
-        </td>
-        <td><p>Check restez status</p></td>
+        <td><p>Entrez fetch</p></td>
       </tr>
     </tbody>
     </table>
@@ -252,7 +270,10 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-set-up">Set-up</a></li>
+      <li><a href="#section-database">Database</a></li>
+      <li><a href="#section-genbank">GenBank</a></li>
+      <li><a href="#section-entrez-wrappers">Entrez wrappers</a></li>
     </ul>
   </div>
 </div>

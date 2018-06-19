@@ -1,0 +1,31 @@
+reference:
+- title: Set-up
+  desc: Set and verify your restez path
+  contents:
+    - restez
+    - restez_path_set
+    - restez_path_get
+    - restez_path_unset
+    - status_check
+- title: Database
+  desc: Download, create, delete and verify your local database
+  contents:
+    - db_create
+    - db_delete
+    - gb_download
+    - demo_db_create
+    - is_in_db
+    - list_db_ids
+- title: GenBank
+  desc: Retrieve data from the local GenBank database
+  contents:
+    - gb_definition_get
+    - gb_fasta_get
+    - gb_organism_get
+    - gb_record_get
+    - gb_sequence_get
+    - gb_version_get
+- title: Entrez wrappers
+  desc: Wrappers for integration with the R package rentrez
+  contents:
+    - entrez_fetch

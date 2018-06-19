@@ -1,9 +1,9 @@
 ---
-title: "Demo 1: Search and Fetch"
+title: "Search and Fetch"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Demonstration 1: search and fetch}
+  %\VignetteIndexEntry{Search and fetch}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 In this demonstration we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using
-restez.
+`restez`.
 
 ## Setup
 

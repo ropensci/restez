@@ -1,0 +1,19 @@
+---
+title: "phylotaR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{phylotaR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this demonstration we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/AntonelliLab/phylotaR) run.
+
+
