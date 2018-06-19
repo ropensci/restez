@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get organism from GenBank — gb_organism_get • restez</title>
+<title>Download GenBank — db_download • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Get organism from GenBank — gb_organism_get" />
+<meta property="og:title" content="Download GenBank — db_download" />
 
-<meta property="og:description" content="Return the organism name
-for an accession ID." />
+<meta property="og:description" content="Download .seq.tar files from the latest GenBank release. The
+user interacitvely selects the parts of GenBank to download (e.g. primates,
+plants, bacteria ...)" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -118,59 +119,61 @@ for an accession ID." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get organism from GenBank</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/gb-get-tools.R'><code>R/gb-get-tools.R</code></a></small>
-    <div class="hidden name"><code>gb_organism_get.Rd</code></div>
+    <h1>Download GenBank</h1>
+    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/setup.R'><code>R/setup.R</code></a></small>
+    <div class="hidden name"><code>db_download.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Return the organism name
-for an accession ID.</p>
+    <p>Download .seq.tar files from the latest GenBank release. The
+user interacitvely selects the parts of GenBank to download (e.g. primates,
+plants, bacteria ...)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gb_organism_get</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>db_download</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>character, sequence accession ID(s)</p></td>
+      <th>db</th>
+      <td><p>Database type, only 'nucleotide' currently available.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>T/F, overwrite pre-existing downloaded files?</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>named vector of definitions, if no results found NULL</p>
+    <p>The downloaded files will appear in the restez filepath under downloads.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
-  <code><a href='gb_fasta_get.html'>gb_fasta_get</a></code>, <code><a href='gb_record_get.html'>gb_record_get</a></code>,
-  <code><a href='gb_sequence_get.html'>gb_sequence_get</a></code>,
-  <code><a href='gb_version_get.html'>gb_version_get</a></code>, <code><a href='is_in_db.html'>is_in_db</a></code>,
-  <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
+    <div class='dont-index'><p>Other setup: <code><a href='db_create.html'>db_create</a></code>,
+  <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='demo_db_create.html'>demo_db_create</a></code>,
+  <code><a href='restez_path_get.html'>restez_path_get</a></code>,
+  <code><a href='restez_path_set.html'>restez_path_set</a></code>,
+  <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
+  <code><a href='status_check.html'>status_check</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/tmp/RtmpFBbQAa/restez'
-#&gt; ... Creating '/tmp/RtmpFBbQAa/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-(<span class='no'>org</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_organism_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;              demo_1 
-#&gt; "Unreal organism 1" </div><div class='input'>(<span class='no'>orgs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_organism_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;              demo_1              demo_2 
-#&gt; "Unreal organism 1" "Unreal organism 2" </div><div class='input'>
-
-<span class='co'># delete demo after example</span>
-<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>library</span>(<span class='no'>restez</span>)
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='st'>'path/for/downloads'</span>)
+<span class='fu'>db_download</span>()
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -56,6 +56,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/phylotar.html">phylotaR</a>
+    </li>
+    <li>
       <a href="../articles/search_and_fetch.html">Search and Fetch</a>
     </li>
   </ul>
@@ -102,13 +105,13 @@
 <div id="download-genbank" class="section level1">
 <h1 class="hasAnchor">
 <a href="#download-genbank" class="anchor"></a>1. Download GenBank</h1>
-<p>In the first of the restez introductory tutorials we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser, <a href="ftp://ftp.ncbi.nlm.nih.gov/genbank/">FTP NCBI GenBank</a>. GenBank is hosted at this portal as 1000s of compressed sequence files called flatfiles. New versions of these flatfiles are released once a month as new sequence information is uploaded. For information on the latest GenBank release, see the <a href="https://www.ncbi.nlm.nih.gov/genbank/statistics/">NCBI statistics page</a>.</p>
-<p>Restez downloads a selection of these flatfiles, decompresses them and unpacks them into an SQLite database that can be searched using its functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, restez allows you to select the sets of flatfiles to download. For the most part these sets of flatfile types are determined by taxonomy: a user can download all primates or plant sequences, for example.</p>
-<p>Here, we will explain how to set up restez, download genbank and then create a database from the downloaded files.</p>
+<p>In the first section of this introduction to <code>restez</code> we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser, <a href="ftp://ftp.ncbi.nlm.nih.gov/genbank/">FTP NCBI GenBank</a>. GenBank is hosted at this portal as 1000s of compressed sequence files called flatfiles. New versions of these flatfiles are released once a month as new sequence information is uploaded. For information on the latest GenBank release, see the <a href="https://www.ncbi.nlm.nih.gov/genbank/statistics/">NCBI statistics page</a>.</p>
+<p><code>restez</code> downloads a selection of these flatfiles, decompresses them and unpacks them into an SQLite database that can be searched using its functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, <code>restez</code> allows you to select the sets of flatfiles to download. For the most part these sets of flatfile types are determined by taxonomy: a user can download all primates or plant sequences, for example.</p>
+<p>Here, we will explain how to set up <code>restez</code>, download genbank and then create a database from the downloaded files.</p>
 <div id="setting-up" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-up" class="anchor"></a>1.1 Setting up</h2>
-<p>Before we can download, we need to tell restez where we would like to store the downloaded files and the eventual GenBank database. To do this we use the <code>restez_path_set</code> function. A user provides a system file path to a folder, and within that folder a new folder called ‘restez’ is created. In this example, I will create a restez folder in my desktop.</p>
+<p>Before we can download, we need to tell <code>restez</code> where we would like to store the downloaded files and the eventual GenBank database. To do this we use the <code>restez_path_set</code> function. A user provides a system file path to a folder, and within that folder a new folder called ‘restez’ is created. In this example, I will create a <code>restez</code> folder in my desktop.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co"># On my linux computer and I specify my desktop</span>
 fp &lt;-<span class="st"> '~/Desktop'</span>
@@ -117,14 +120,14 @@ fp &lt;-<span class="st"> '~/Desktop'</span>
 ... Creating '~/Desktop/restez/downloads'</code></pre>
 <p>Messages are printed to console telling us that the path was created and that a downloads subfolder was created.</p>
 <blockquote>
-<p><strong>Note</strong>, whenever you intend to use restez you will need to specify the restez path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
+<p><strong>Note</strong>, whenever you intend to use <code>restez</code> you will need to specify the <code>restez</code> path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
 </blockquote>
 </div>
 <div id="download" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download" class="anchor"></a>1.2 Download</h2>
-<p>Next, we download genbank using <code><a href="../reference/gb_download.html">gb_download()</a></code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/gb_download.html">gb_download</a></span>()</code></pre></div>
+<p>Next, we download genbank using <code>gb_download()</code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gb_download</span>()</code></pre></div>
 <pre><code>──────────────────────────────────────────────────────────────────────────────────────────────────────
 Looking up latest GenBank release ...
 ... found release 224
@@ -173,7 +176,7 @@ Downloading ...
 <div id="create-a-database" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-database" class="anchor"></a>1.3 Create a database</h2>
-<p>After the download has completed, we need to use <code><a href="../reference/db_create.html">db_create()</a></code> to create our local database. This looks in the downloads folder of our restez path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.</p>
+<p>After the download has completed, we need to use <code><a href="../reference/db_create.html">db_create()</a></code> to create our local database. This looks in the downloads folder of our <code>restez</code> path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_create.html">db_create</a></span>()</code></pre></div>
 <pre><code>Decompressing and adding 30 files to database ...
 ... 'gbrod10.seq.gz'(1 / 30)
@@ -195,14 +198,14 @@ Checking setup status ...
 ... found 31 files in 'downloads/'
 ... totalling 7.28 GB
 ... found 'sql_db' of 12.23 GB</code></pre>
-<p>The above messages tell us that the restez path is set to the desktop and that the restez folder contains a database of 12.23 GB and that the downloads folder contains all of the rodent downloads, 7.28 GB.</p>
-<p>If your status shows the same, then you are ready to move to the next tutorial, Intro 2: Querying with restez.</p>
+<p>The above messages tell us that the <code>restez</code> path is set to the desktop and that the <code>restez</code> folder contains a database of 12.23 GB and that the downloads folder contains all of the rodent downloads, 7.28 GB.</p>
+<p>If your status shows the same, then you are ready to move to the next section.</p>
 </div>
 </div>
 <div id="query" class="section level1">
 <h1 class="hasAnchor">
 <a href="#query" class="anchor"></a>2. Query</h1>
-<p>In this tutorial, when it’s written, we will explain how you send queries to your local copy of GenBank using the get methods.</p>
+<p>In this section we will explain how you make queries to your local copy of GenBank.</p>
 <div id="get-methods" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-methods" class="anchor"></a>2.1 Get methods</h2>
@@ -215,7 +218,7 @@ Checking setup status ...
 <div id="entrez" class="section level1">
 <h1 class="hasAnchor">
 <a href="#entrez" class="anchor"></a>3. Entrez</h1>
-<p>It this tutorial, we will explain how entrez wrappers are part of the restez pacakge. These allow a user to make use of the local GenBank using functions that were built for rentrez. This minimises the amount of coding changes required for any Entrez dependent code.</p>
+<p>It this tutorial, we will explain how entrez wrappers are part of the <code>restez</code> pacakge. These allow a user to make use of the local GenBank using functions that were built for <a href="https://github.com/ropensci/rentrez"><code>rentrez</code></a>. This minimises the amount of coding changes required for any Entrez dependent code.</p>
 <div id="rentrez-wrappers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rentrez-wrappers" class="anchor"></a>3.1 rentrez wrappers</h2>

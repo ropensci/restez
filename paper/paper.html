@@ -126,13 +126,57 @@ $(document).ready(function () {
 
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>This is a R package for downloading large sections of GenBank <span class="citation">(Benson et al. 2013)</span>.</p>
+<p>Downloading sequences and sequence information from GenBank <span class="citation">(Benson et al. 2013)</span> and related NCBI databases is often performed via the NCBI API, Entrez <span class="citation">(J. Ostell 2002)</span>. Entrez, however, has a limit on the number of requests and downloading large amounts of sequence data in this way can be inefficient. For programmatic situations where multiple Entrez calls are made, downloading may take days, weeks or even months and could even result in a user being blacklisted from the NCBI services.</p>
+<p>The <code>restez</code> package <span class="citation">(Zenodo, n.d.)</span> aims to make sequence retrieval more efficient by allowing a user to download large sections of the GenBank database to their local machine and query this local database instead. This process is more efficient as GenBank downloads are made via NCBI’s FTP using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 20 GB of sequence information can be generated in less than 10 minutes.</p>
+<div id="rentrez-integration" class="section level2">
+<h2>Rentrez integration</h2>
+<p><code>rentrez</code> <span class="citation">(Winter 2017)</span> is a popular R package for querying via Entrez in R. To maximise the transmissability of <code>restez</code>, the package comes with <code>rentrez</code> wrapper functions that take the exact same arguments as the <code>rentrez</code> equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database, secondarily, a call to Entrez is made via the internet. The amount of recoding of a user is thus reduced. At a minimum, a user currently using <code>rentrez</code> will only need to create a local GenBank copy and call <code>restez</code> instead of <code>rentrez</code> in their scripts and packages.</p>
+</div>
+<div id="a-worked-example" class="section level2">
+<h2>A worked example</h2>
+<p><code>phylotaR</code> <span class="citation">(D. Bennett et al. 2018)</span> is an R package for identifying orthologous sequence clusters in GenBank as a first step in a phylogenetic analysis. Because the package runs an automated pipeline, multiple queries to GenBank via Entrez are made using the <code>rentrez</code> package. As a result, for large taxonomic groups containing well-sequenced species the pipeline can take a long time to complete.</p>
+<pre class="{r}"><code>library(phylotaR)
+# run phylotaR pipeline for New World Monkeys
+txid &lt;- 9479  # taxonomic ID
+setup(wd = 'nw_monkeys', txid = txid)
+run(wd = wd)
+# ^ takes around 40 minutes</code></pre>
+<p>We can download and create a local copy of the primates GenBank locally and re-run the above code with a library call to <code>restez</code> for massive speed-up gains.</p>
+<pre class="{r}"><code># setup database
+library(restez)
+restez_path_set(filepath = 'restez_db')
+db_download(db = 'nucleotide')
+db_create(db = 'nucleotide')</code></pre>
+<pre class="{r}"><code># run phylotaR again
+library(phylotaR)
+library(restez)
+txid &lt;- 9479
+setup(wd = 'nw_monkeys', txid = txid)
+run(wd = wd)
+# ^ takes around 5 minutes</code></pre>
+<p>For more examples and tutorials, see the <code>restez</code> GitHub page <span class="citation">(D. J. Bennett 2018)</span>.</p>
+</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
+<div id="ref-restez_gh">
+<p>Bennett, Dominic J. 2018. “Restez: Create and Query a Local Copy of Genbank in R.” <a href="https://github.com/AntonelliLab/restez" class="uri">https://github.com/AntonelliLab/restez</a>.</p>
+</div>
+<div id="ref-Bennett2018">
+<p>Bennett, Dominic, Hannes Hettling, Daniele Silvestro, Alexander Zizka, Christine Bacon, Søren Faurby, Rutger Vos, and Alexandre Antonelli. 2018. “phylotaR: An Automated Pipeline for Retrieving Orthologous DNA Sequences from GenBank in R.” <em>Life</em> 8 (2). Multidisciplinary Digital Publishing Institute: 20. doi:<a href="https://doi.org/10.3390/life8020020">10.3390/life8020020</a>.</p>
+</div>
 <div id="ref-Benson2013">
 <p>Benson, Dennis A., Mark Cavanaugh, Karen Clark, Ilene Karsch-Mizrachi, David J. Lipman, James Ostell, and Eric W. Sayers. 2013. “GenBank.” <em>Nucleic Acids Research</em> 41 (D1). doi:<a href="https://doi.org/10.1093/nar/gks1195">10.1093/nar/gks1195</a>.</p>
+</div>
+<div id="ref-Ostell2002">
+<p>Ostell, J. 2002. “The Entrez search and retrieval system.” In <em>The Ncbi Handbook</em>, 1–6. <a href="http://www.ncbi.nlm.nih.gov/books/NBK21081/" class="uri">http://www.ncbi.nlm.nih.gov/books/NBK21081/</a>.</p>
+</div>
+<div id="ref-Winter2017">
+<p>Winter, David J. 2017. “rentrez: An R package for the NCBI eUtils API.” <em>The R Journal</em> 9 (2): 520–26. doi:<a href="https://doi.org/10.7287/peerj.preprints.3179v2">10.7287/peerj.preprints.3179v2</a>.</p>
+</div>
+<div id="ref-restez_z">
+<p>Zenodo. n.d. “Restez: Create and Query a Local Copy of Genbank in R.”</p>
 </div>
 </div>
 </div>

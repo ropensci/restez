@@ -56,6 +56,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/phylotar.html">phylotaR</a>
+    </li>
+    <li>
       <a href="../articles/search_and_fetch.html">Search and Fetch</a>
     </li>
   </ul>
@@ -91,16 +94,16 @@
 
     
     
-<p>In this demonstration we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using restez.</p>
+<p>In this demonstration we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using <code>restez</code>.</p>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>First, we need to download and setup the restez database. When we use <code><a href="../reference/gb_download.html">gb_download()</a></code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration. If you have already downloaded the rodents flatfiles as explained in previous tutorials, then simply set your restez path to wherever you previously set your restez path.</p>
+<p>First, we need to download and setup the restez database. When we use <code>gb_download()</code> we are going to select ‘rodents’. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration. If you have already downloaded the rodents flatfiles as explained in previous tutorials, then simply set your restez path to wherever you previously set your restez path.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 fp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">'demo'</span>)
 <span class="kw">dir.create</span>(fp)
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(fp)
-<span class="kw"><a href="../reference/gb_download.html">gb_download</a></span>()
+<span class="kw">gb_download</span>()
 <span class="kw"><a href="../reference/db_create.html">db_create</a></span>()</code></pre></div>
 </div>
 <div id="search-ncbi" class="section level2">

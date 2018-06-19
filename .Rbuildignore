@@ -1,5 +1,7 @@
 restez/
+paper/
 other/
+examples/
 .travis.yml
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -7,6 +9,6 @@ other/
 ^README-.*\.png$
 docs/
 README.html
-examples/
 CONTRIBUTING.md
-
+logo.png
+_pkgdown.yml
