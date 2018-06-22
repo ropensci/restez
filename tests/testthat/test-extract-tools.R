@@ -39,7 +39,8 @@ test_that('extract_sequence() works', {
                      ignore.case = TRUE))
 })
 test_that('extract_features() works', {
-  features <- restez:::extract_features(sample(records, 1))
+  record <- sample(records, 1)
+  features <- restez:::extract_features(record = record)
   expect_true(inherits(features, 'list'))
 })
 test_that('extract_locus() works', {
@@ -51,5 +52,9 @@ test_that('gb_extract() works', {
             'locus', 'features')
   what <- sample(opts, 1)
   res <- gb_extract(record = sample(records, 1), what = what)
-  expect_true(inherits(res, 'character'))
+  if (what == 'features') {
+    expect_true(inherits(res, 'list'))
+  } else {
+    expect_true(inherits(res, 'character'))
+  }
 })

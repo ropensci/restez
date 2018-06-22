@@ -110,15 +110,14 @@ extract_locus <- function(record) {
 #' @return list of lists
 #' @noRd
 extract_features <- function(record) {
-  feature_text <- extract_by_keyword(record = record, keyword = 'FEATURES',
+  feature_text <- extract_by_keyword(record = record,
+                                     keyword = 'FEATURES\\s+Location/Q',
                                      end_pattern = 'ORIGIN')
-  features_lines <- strsplit(x = feature_text, split = '\n')[[1]]
-  features_lines <- features_lines[!grepl(pattern = 'Location/Qualifiers',
-                                          x = features_lines)]
+  features_lines <- strsplit(x = feature_text, split = '\n')[[1]][-1]
   features <- list()
   i <- 0
   for (ln in features_lines) {
-    with_location <- grepl(pattern = '[0-9]+\\.\\.[0-9]+', x = ln)
+    with_location <- !grepl(pattern = '/', x = ln)
     if (with_location) {
       i <- i + 1
       features[[i]] <- list()

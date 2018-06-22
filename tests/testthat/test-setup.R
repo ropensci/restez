@@ -45,7 +45,7 @@ test_that('db_download() works', {
     `restez:::file_download` = function(...) TRUE,
     restez:::db_download()
   )
-  expect_null(res)
+  expect_true(res)
   restez:::cleanup()
 })
 restez:::cleanup()
