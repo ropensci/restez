@@ -47,9 +47,13 @@ test_that('extract_locus() works', {
   locus <- restez:::extract_locus(sample(records, 1))
   expect_true(inherits(locus, 'character'))
 })
+test_that('extract_keywords() works', {
+  keywords <- restez:::extract_keywords(sample(records, 1))
+  expect_true(inherits(keywords, 'character'))
+})
 test_that('gb_extract() works', {
   opts <- c('accession', 'version', 'organism','sequence', 'definition',
-            'locus', 'features')
+            'locus', 'features', 'keywords')
   what <- sample(opts, 1)
   res <- gb_extract(record = sample(records, 1), what = what)
   if (what == 'features') {
