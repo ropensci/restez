@@ -83,5 +83,87 @@ extract_sequence <- function(record) {
                                  end_pattern = '//')
   # clean
   sequence <- gsub('([0-9]|\\s+|\n)', '', sequence)
-  sequence
+  sequence 
+}
+
+#' @name extract_locus
+#' @title Extract locus
+#' @description Return locus information from GenBank record
+#' @param record GenBank record in text format, character
+#' @return named character vector
+#' @noRd
+extract_locus <- function(record) {
+  locus <- extract_by_keyword(record = record, keyword = 'LOCUS',
+                              end_pattern = 'DEFINITION')
+  locus_elements <- strsplit(x = locus, split = '\\s+')[[1]]
+  locus_elements <- locus_elements[!grepl(pattern = '^bp$',
+                                          x = locus_elements)]
+  names(locus_elements) <- c('accession', 'length', 'mol', 'type', 'domain',
+                             'date')
+  locus_elements
+}
+
+#' @name extract_features
+#' @title Extract features
+#' @description Return feature table as list from GenBank record
+#' @param record GenBank record in text format, character
+#' @return list of lists
+#' @noRd
+extract_features <- function(record) {
+  feature_text <- extract_by_keyword(record = record, keyword = 'FEATURES',
+                                     end_pattern = 'ORIGIN')
+  features_lines <- strsplit(x = feature_text, split = '\n')[[1]]
+  features_lines <- features_lines[!grepl(pattern = 'Location/Qualifiers',
+                                          x = features_lines)]
+  features <- list()
+  i <- 0
+  for (ln in features_lines) {
+    with_location <- grepl(pattern = '[0-9]+\\.\\.[0-9]+', x = ln)
+    if (with_location) {
+      i <- i + 1
+      features[[i]] <- list()
+      typ_location <- strsplit(x = ln, split = '\\s+')[[1]][-1]
+      features[[i]][['type']] <- typ_location[[1]]
+      features[[i]][['location']] <- typ_location[[2]]
+    } else {
+      nm_value <- strsplit(x = ln, split = '=')[[1]]
+      nm <- trimws(x = nm_value[[1]])
+      nm <- sub(pattern = '/', replacement = '', x = nm)
+      value <- trimws(x = nm_value[[2]])
+      value <- gsub(pattern = '\"', replacement = '', x = value)
+      features[[i]][[nm]] <- value
+    }
+  }
+  features
+}
+
+#' @name gb_extract
+#' @title Extract elements of a GenBank record
+#' @description Return elements of GenBank record e.g. sequence, definition ...
+#' @details This function uses a REGEX to extract particular elements of a
+#' GenBank record. All of the what options return a single character with the 
+#' exception of 'locus' that returns a named character vector of the first line
+#' in a GB record and 'features' which returns a list of lists for all features.
+#' 
+#' 
+#' The accuracy of these functions cannot be guarranteed due to the enormity of
+#' the GenBank database. But the function is regurlarly tested on a range of
+#' GenBank records.
+#' @param record GenBank record in text format, character
+#' @param what Which element to extract
+#' @example examples/gb_extract.R
+#' @return character or list of lists (what='features') or named character
+#' vector (what='locus')
+#' @export
+gb_extract <- function(record, what=c('accession', 'version', 'organism',
+                                      'sequence', 'definition', 'locus',
+                                      'features')) {
+  what <- match.arg(arg = what)
+  switch(what, accession = extract_accession(record = record),
+         version = extract_version(record = record),
+         organism = extract_organism(record = record),
+         sequence = extract_sequence(record = record),
+         definition = extract_definition(record = record),
+         locus = extract_locus(record = record),
+         features = extract_features(record = record))
 }

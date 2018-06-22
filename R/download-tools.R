@@ -87,7 +87,7 @@ file_download <- function(fl, overwrite=FALSE) {
   if (overwrite) {
     remove(gzdest)
   }
-  if (file.exists(gzurl)) {
+  if (file.exists(gzdest)) {
     return(TRUE)
   }
   success <- tryCatch({
@@ -95,6 +95,8 @@ file_download <- function(fl, overwrite=FALSE) {
     TRUE
   }, error = function(e) {
     cat_line('... ... ', char(gzurl), ' cannot be reached.')
+    cat_line('... ... deleting what has already downloaded.')
+    remove(gzdest)
     FALSE
   })
   success

@@ -1,14 +1,15 @@
 #' @name db_download
 #' @family setup
-#' @title Download GenBank
+#' @title Download database
 #' @description Download .seq.tar files from the latest GenBank release. The
-#' user interacitvely selects the parts of GenBank to download (e.g. primates,
+#' user interactively selects the parts of GenBank to download (e.g. primates,
 #' plants, bacteria ...)
 #' @details
 #' The downloaded files will appear in the restez filepath under downloads.
 #' @param db Database type, only 'nucleotide' currently available.
+#' @param preselection character of user input
 #' @param overwrite T/F, overwrite pre-existing downloaded files?
-#' @return NULL
+#' @return T/F, if all files download correctly, TRUE else FALSE.
 #' @export
 #' @examples
 #' \dontrun{
@@ -16,7 +17,7 @@
 #' restez_path_set(filepath = 'path/for/downloads')
 #' db_download()
 #' }
-db_download <- function(db='nucleotide', overwrite=FALSE) {
+db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   # checks
   restez_path_check()
   check_connection()
@@ -43,7 +44,11 @@ db_download <- function(db='nucleotide', overwrite=FALSE) {
   cat_line('e.g. to download all Mammal sequences type:',
            '"12 14 15" followed by Enter')
   cat_line('Which files would you like to download?')
-  response <- restez_rl(prompt = '(Press Esc to quit) ')
+  if (is.null(preselection)) {
+    response <- restez_rl(prompt = '(Press Esc to quit) ')
+  } else {
+    response <- preselection
+  }
   tryCatch(expr = {
     selected_types <- as.numeric(strsplit(x = response,
                                           split = '\\s')[[1]])
@@ -59,12 +64,16 @@ db_download <- function(db='nucleotide', overwrite=FALSE) {
   cat_line('Each file contains about 250 MB of decompressed data.')
   ngbytes_fls <- nfiles * 250 / 1000
   cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes_fls, 'GB'))
-  cat_line('Additionally, the resulting SQL database takes about 500 MB per file')
+  cat_line('Additionally, the resulting SQL database takes about 500 MB',
+           ' per file')
   ngbytes <- ngbytes_fls + (nfiles * 500 / 1000)
   # TODO: create option for a user to delete downloaded files after download?
-  cat_line('In total, the uncompressed files and SQL database should amount to ',
+  cat_line('In total the uncompressed files and SQL database should amount to ',
            stat(ngbytes, 'GB'), ' Is that OK?')
-  response <- restez_rl(prompt = 'Enter any key to continue or press Esc to quit ')
+  if (is.null(preselection)) {
+    msg <- 'Enter any key to continue or press Esc to quit '
+    response <- restez_rl(prompt = msg)
+  }
   cat_line(cli::rule())
   cat_line("Downloading ...")
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
@@ -87,6 +96,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE) {
   } else {
     cat_line('Done. Enjoy your day.')
   }
+  !any_fails
 }
 
 #' @name db_create

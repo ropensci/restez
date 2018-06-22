@@ -38,3 +38,18 @@ test_that('extract_sequence() works', {
   expect_false(grepl('[0-9]', sequence,
                      ignore.case = TRUE))
 })
+test_that('extract_features() works', {
+  features <- restez:::extract_features(sample(records, 1))
+  expect_true(inherits(features, 'list'))
+})
+test_that('extract_locus() works', {
+  locus <- restez:::extract_locus(sample(records, 1))
+  expect_true(inherits(locus, 'character'))
+})
+test_that('gb_extract() works', {
+  opts <- c('accession', 'version', 'organism','sequence', 'definition',
+            'locus', 'features')
+  what <- sample(opts, 1)
+  res <- gb_extract(record = sample(records, 1), what = what)
+  expect_true(inherits(res, 'character'))
+})

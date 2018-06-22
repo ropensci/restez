@@ -2,18 +2,23 @@
 % Please edit documentation in R/setup.R
 \name{db_download}
 \alias{db_download}
-\title{Download GenBank}
+\title{Download database}
 \usage{
-db_download(db = "nucleotide", overwrite = FALSE)
+db_download(db = "nucleotide", overwrite = FALSE, preselection = NULL)
 }
 \arguments{
 \item{db}{Database type, only 'nucleotide' currently available.}
 
 \item{overwrite}{T/F, overwrite pre-existing downloaded files?}
+
+\item{preselection}{character of user input}
+}
+\value{
+T/F, if all files download correctly, TRUE else FALSE.
 }
 \description{
 Download .seq.tar files from the latest GenBank release. The
-user interacitvely selects the parts of GenBank to download (e.g. primates,
+user interactively selects the parts of GenBank to download (e.g. primates,
 plants, bacteria ...)
 }
 \details{
