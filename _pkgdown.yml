@@ -25,6 +25,7 @@ reference:
     - gb_record_get
     - gb_sequence_get
     - gb_version_get
+    - gb_extract
 - title: Entrez wrappers
   desc: Wrappers for integration with the R package rentrez
   contents:

@@ -176,6 +176,7 @@ extract_keywords <- function(record) {
 #' @example examples/gb_extract.R
 #' @return character or list of lists (what='features') or named character
 #' vector (what='locus')
+#' @family parse
 #' @export
 gb_extract <- function(record, what=c('accession', 'version', 'organism',
                                       'sequence', 'definition', 'locus',
