@@ -11,54 +11,75 @@
 #' The end_pattern depends on how much of the selected element
 #' a user wants returned. By default, the extraction will stop
 #' at the next newline.
-#' @return character
+#' If keyword or end pattern not found, returns NULL.
+#' @return character or NULL
 #' @noRd
 extract_by_keyword <- function(record, keyword, end_pattern='\n') {
   # cut record from keyword to end_pattern
   start_index <- regexpr(pattern = keyword, text = record)
+  if (start_index == -1) {
+    return(NULL)
+  }
   part_record <- substr(x = record, start = start_index,
                         stop = nchar(record))
   end_index <- regexpr(pattern = end_pattern, text = part_record)
-  res  <- substr(x = part_record, start = 1,
-                 stop = end_index - 1)
-  res <- sub(pattern = paste0(keyword, '\\s+'),
-             replacement = '', x = res)
+  if (end_index == -1) {
+    return(NULL)
+  }
+  res  <- substr(x = part_record, start = 1, stop = end_index - 1)
+  res <- sub(pattern = paste0(keyword, '\\s+'), replacement = '', x = res)
   res
 }
 
 #' @name extract_version
 #' @title Extract version
 #' @description Return accession + version ID from GenBank record
+#' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
 #' @noRd
 extract_version <- function(record) {
-  extract_by_keyword(record = record, keyword = 'VERSION')
+  vrsn <- extract_by_keyword(record = record, keyword = 'VERSION')
+  if (is.null(vrsn)) {
+    return('')
+  }
+  vrsn
 }
 
 #' @name extract_accession
 #' @title Extract accession
 #' @description Return accession ID from GenBank record
+#' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
 #' @noRd
 extract_accession <- function(record) {
-  extract_by_keyword(record = record, keyword = 'ACCESSION')
+  accssn <- extract_by_keyword(record = record, keyword = 'ACCESSION')
+  if (is.null(accssn)) {
+    return('')
+  }
+  accssn
 }
 
 #' @name extract_organism
 #' @title Extract organism
 #' @description Return organism name from GenBank record
+#' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
 #' @noRd
 extract_organism <- function(record) {
-  extract_by_keyword(record = record, keyword = 'ORGANISM')
+  orgnsm <- extract_by_keyword(record = record, keyword = 'ORGANISM')
+  if (is.null(orgnsm)) {
+    return('')
+  }
+  orgnsm
 }
 
 #' @name extract_definition
 #' @title Extract definition
-#' @description Return definition from GenBank record
+#' @description Return definition from GenBank record.
+#' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
 #' @noRd
@@ -66,6 +87,9 @@ extract_definition <- function(record) {
   # assumes ACCESSION always follows DEFINTION
   definition <- extract_by_keyword(record = record, keyword = 'DEFINITION',
                                    end_pattern = 'ACCESSION')
+  if (is.null(definition)) {
+    return('')
+  }
   # clean
   definition <- gsub('\n', '', definition)
   definition <- gsub('\\s{2,}', ' ', definition)
@@ -76,11 +100,15 @@ extract_definition <- function(record) {
 #' @title Extract sequence
 #' @description Return sequecne from GenBank record
 #' @param record GenBank record in text format, character
+#' @details If element is not found, '' returned.
 #' @return character
 #' @noRd
 extract_sequence <- function(record) {
   sequence <- extract_by_keyword(record = record, keyword = 'ORIGIN',
                                  end_pattern = '//')
+  if (is.null(sequence)) {
+    return('')
+  }
   # clean
   sequence <- gsub('([0-9]|\\s+|\n)', '', sequence)
   sequence 
@@ -91,10 +119,14 @@ extract_sequence <- function(record) {
 #' @description Return locus information from GenBank record
 #' @param record GenBank record in text format, character
 #' @return named character vector
+#' @details If element is not found, '' returned.
 #' @noRd
 extract_locus <- function(record) {
   locus <- extract_by_keyword(record = record, keyword = 'LOCUS',
                               end_pattern = 'DEFINITION')
+  if (is.null(locus)) {
+    return('')
+  }
   locus_elements <- strsplit(x = locus, split = '\\s+')[[1]]
   locus_elements <- locus_elements[!grepl(pattern = '^bp$',
                                           x = locus_elements)]
@@ -108,11 +140,15 @@ extract_locus <- function(record) {
 #' @description Return feature table as list from GenBank record
 #' @param record GenBank record in text format, character
 #' @return list of lists
+#' @details If element is not found, empty list returned.
 #' @noRd
 extract_features <- function(record) {
   feature_text <- extract_by_keyword(record = record,
                                      keyword = 'FEATURES\\s+Location/Q',
                                      end_pattern = 'ORIGIN')
+  if (is.null(feature_text)) {
+    return(list())
+  }
   features_lines <- strsplit(x = feature_text, split = '\n')[[1]][-1]
   features <- list()
   i <- 0
@@ -151,11 +187,15 @@ extract_features <- function(record) {
 #' @description Return keywords as list from GenBank record
 #' @param record GenBank record in text format, character
 #' @return character vector
+#' @details If element is not found, '' returned.
 #' @noRd
 extract_keywords <- function(record) {
   keyword_text <- extract_by_keyword(record = record,
                                      keyword = 'KEYWORDS\\s+',
                                      end_pattern = 'SOURCE')
+  if (is.null(keyword_text)) {
+    return('')
+  }
   strsplit(x = keyword_text, split = '\\s+')[[1]]
 }
 
