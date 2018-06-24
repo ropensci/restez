@@ -196,6 +196,13 @@ extract_keywords <- function(record) {
   if (is.null(keyword_text)) {
     return('')
   }
+  # remove everything that is not letters or numbers
+  keyword_text <- gsub(pattern = '[^a-zA-Z0-9\\.]', replacement = '',
+                       x = keyword_text)
+  # # remove .
+  # if (keyword_text == '.') {
+  #   keyword_text <- ''
+  # }
   strsplit(x = keyword_text, split = '\\s+')[[1]]
 }
 
