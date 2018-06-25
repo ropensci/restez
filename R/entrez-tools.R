@@ -8,6 +8,7 @@
 #' @return character string containing the file created
 #' @noRd
 entrez_fasta_get <- function(id, ...) {
+  id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   fastas <- gb_fasta_get(id = id)
   if (length(fastas) > 0) {
     res <- paste(fastas, collapse = '\n\n')
@@ -34,6 +35,7 @@ entrez_fasta_get <- function(id, ...) {
 #' @return character string containing the file created
 #' @noRd
 entrez_gb_get <- function(id, ...) {
+  id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   recs <- gb_record_get(id = id)
   if (length(recs) > 0) {
     res <- paste(recs, collapse = '\n\n')
