@@ -28,10 +28,14 @@ flatfile_read <- function(filepath) {
 #' The prefix 'raw_' indicates the data has been covnerted to the
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
+#' 
+#' Use max and min sequence lengths to minimise the size of the database.
 #' @param records character, vector of GenBank records in text format
+#' @param min_length Minimum sequence length, default 0.
+#' @param max_length Maximum sequence length, default NULL.
 #' @return data.frame
 #' @noRd
-gb_df_generate <- function(records) {
+gb_df_generate <- function(records, min_length=0, max_length=NULL) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
                        FUN = extract_accession)
   versions <- vapply(X = records, FUN.VALUE = character(1),
@@ -42,9 +46,14 @@ gb_df_generate <- function(records) {
                       FUN = extract_organism)
   sequences <- vapply(X = records, FUN.VALUE = character(1),
                       FUN = extract_sequence)
-  gb_df_create(accessions = accessions, versions = versions,
-               organisms = organisms, definitions = definitions,
-               sequences = sequences, records = records)
+  seqlengths <- vapply(X = sequences, FUN = nchar, FUN.VALUE = integer(1))
+  pull <- seqlengths >= min_length
+  if (!is.null(max_length)) {
+    pull <- pull & seqlengths <= max_length
+  }
+  gb_df_create(accessions = accessions[pull], versions = versions[pull],
+               organisms = organisms[pull], definitions = definitions[pull],
+               sequences = sequences[pull], records = records[pull])
 }
 
 #' @name gb_df_create

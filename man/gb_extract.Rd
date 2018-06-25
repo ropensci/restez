@@ -26,8 +26,8 @@ exception of 'locus' or 'keywords' that return character vectors and
 'features' that returns a list of lists for all features.
 
 
-The accuracy of these functions cannot be guarranteed due to the enormity of
-the GenBank database. But the function is regurlarly tested on a range of
+The accuracy of these functions cannot be guaranteed due to the enormity of
+the GenBank database. But the function is regularly tested on a range of
 GenBank records.
 }
 \examples{

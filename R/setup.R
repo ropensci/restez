@@ -100,12 +100,25 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 }
 
 #' @name db_create
-#' @title Create database
+#' @title Create new NCBI database
 #' @family setup
-#' @description Checks for downloaded .seq.tar files,
-#' decompresses and then adds the files to a local SQL
-#' database.
+#' @description Create a new local SQL database from downloaded files.
+#' Currently only GenBank/nucleotide/nuccore database is supported.
+#' @details Decompresses any .seq.tar files to create .seq files, .seq.tar files
+#' are deleted after decompression.
+#' 
+#' All .seq files are added to the database. A user can specify sequence limit
+#' sizes for those sequences to be added to the database -- smaller databases
+#' are faster to  search and is best to limit the database size if possible.
+#' 
+#' Whenever this function is run, the old database is deleted and a new one
+#' created.
+#' 
+#' If overwrite=TRUE, any .seq file with the same name as the newly downloaded
+#' .seq.tar files will be overwritten.
 #' @param db_type character, database type
+#' @param min_length Minimum sequence length, default 0.
+#' @param max_length Maximum sequence length, default NULL.
 #' @param overwrite T/F, overwrite files already in database?
 #' @return NULL
 #' @export
@@ -117,7 +130,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' db_create()
 #' }
 # db_type: a nod to the future,
-db_create <- function(db_type='nucleotide', overwrite=FALSE) {
+db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
+                      max_length=NULL) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
@@ -130,21 +144,21 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE) {
     already_added <- paste0(already_added, '.gz')
     gz_files <- gz_files[!gz_files %in% already_added]
   }
-  cat_line('Decompressing and adding ', stat(length(gz_files)),
-           ' files to database ...')
+  cat_line('Decompressing ', stat(length(gz_files)), ' ...')
   for (i in seq_along(gz_files)) {
     gz_file <- gz_files[[i]]
-    cat_line('... ', char(gz_file), '(',
-             stat(i, '/', length(gz_files)), ')')
-    cat_line('... ... decompressing')
+    cat_line('... ', char(gz_file), '(', stat(i, '/', length(gz_files)), ')')
     flpth <- file.path(dpth, gz_file)
     R.utils::gunzip(flpth, remove = TRUE, overwrite = TRUE)
-    cat_line('... ... adding')
-    seq_file <- sub(pattern = '\\.gz$', replacement = '',
-                    x = gz_file)
+  }
+  seq_files <- list.files(path = dpth, pattern = '.seq$')
+  cat_line('Adding ', stat(length(seq_files)), ' to the database ...')
+  for (i in seq_along(seq_files)) {
+    seq_file <- seq_files[[i]]
     flpth <- file.path(dpth, seq_file)
     records <- flatfile_read(filepath = flpth)
-    df <- gb_df_generate(records = records)
+    df <- gb_df_generate(records = records, min_length = min_length,
+                         max_length = max_length)
     gb_sql_add(df = df, database = 'nucleotide')
   }
   cat_line('Done.')

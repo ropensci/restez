@@ -38,9 +38,9 @@ with_restez <- system.time(expr = {
   download_run(wd = wd)
 })
 # user  system elapsed 
-# 116.221  89.019 535.422
+#  97.205  31.017 303.477
 
-467.001 - 535.422
-ps <- phylotaR:::parameters_load(wd)
-ids <- phylotaR:::sids_get(txid = '51338', direct = FALSE, ps = ps)
-id <- ids[[1]]
+# TAKE HOME STAT
+# ~35% faster
+pfaster <- round((467.001 - 303.477)*100/467.001)
+cat(pfaster, '% faster with restez\n', sep = '')

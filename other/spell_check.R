@@ -1,0 +1,22 @@
+ignore <- c('restez',
+            'db',
+            "restez's",
+            'acc',
+            'booleans',
+            'entrez',
+            'Entrez',
+            'fasta',
+            'FASTA',
+            'filepath',
+            'GenBank',
+            'nuccore',
+            'REGEX',
+            'rentrez',
+            "rentrez's",
+            'retmode',
+            'Rettypes',
+            'seq',
+            'seqid',
+            'SQLite')
+            #'uilist')
+devtools::spell_check(ignore = ignore, dict = 'en_GB')
