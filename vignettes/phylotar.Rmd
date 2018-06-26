@@ -42,7 +42,7 @@ db_download()  # select Rodents, in this run it was 15.
 db_create(db_type = 'nucleotide', min_length = 250, min_length = 2000)
 
 # Did it download correclty?
-status_check()
+restez_status()
 ```
 
 #phylotaR run

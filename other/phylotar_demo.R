@@ -21,14 +21,14 @@ taxise_run(wd = wd)
 without_restez <- system.time(expr = {
   download_run(wd = wd)
 })
-# user  system elapsed 
-# 121.104  32.604 467.001 
+# user  system elapsed
+# 121.104  32.604 467.001
 
 # SET-UP RESTEZ ----
 restez_path_set(filepath = restez_path)
 db_download()  # select 15 for rodents
 db_create()
-status_check()
+restez_status()
 
 # RESET PHYLOTAR ----
 reset(wd = wd, stage = 'download', hard = TRUE)
@@ -37,7 +37,7 @@ reset(wd = wd, stage = 'download', hard = TRUE)
 with_restez <- system.time(expr = {
   download_run(wd = wd)
 })
-# user  system elapsed 
+# user  system elapsed
 #  97.205  31.017 303.477
 
 # TAKE HOME STAT

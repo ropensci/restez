@@ -132,7 +132,7 @@ After the download and the database creation steps are complete, we can confirm 
 
 ```{r confirm setup, eval=FALSE, include=TRUE}
 (restez_path_get())
-status_check()
+restez_status()
 ```
 ```
 [1] "~/Desktop/restez"
