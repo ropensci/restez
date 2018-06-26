@@ -1,0 +1,65 @@
+---
+title: "GenBank record parsing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{parsing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#Introduction
+
+In this vigennette we will demonstrate how the `gb_extract()` function works. Restez downloads and stores all GenBank records in text format. Ordinarily, to be able to extract relevant bits of information from a text record in a systematic way we would need to make use of [regular expressions](https://en.wikipedia.org/wiki/Regular_expression). `gb_extract()` uses regular expressions, so we don't have to. Here's how it works.
+
+#A GenBank record
+
+restez comes with an example GenBank record, AY952423, which can be viewed [online](https://www.ncbi.nlm.nih.gov/nuccore/AY952423.1). We can retrieve the record with `rentrez` or load it using the `data()`. We can visual the record as it appears online using `cat()` -- like print but parses the newline spaces correctly.
+
+```{r record, echo=TRUE}
+library(restez)
+# record <- rentrez::entrez_fetch(db = 'nucleotide', id = 'AY952423', rettype = 'gb', retmode = 'text')
+data(record)
+cat(record)
+```
+
+#Extracting
+
+We can extract different elements of the above record with `gb_extract()` ....
+
+```{r extract, echo=TRUE}
+# such as the LOCUS information ...
+(gb_extract(record = record, what = 'locus'))
+# the accession
+(gb_extract(record = record, what = 'accession'))
+# the accession + version
+(gb_extract(record = record, what = 'version'))
+# the organism name
+(gb_extract(record = record, what = 'organism'))
+# the sequence definition line
+(gb_extract(record = record, what = 'definition'))
+# the keywords (this record doesn't have any ....)
+(gb_extract(record = record, what = 'keywords'))
+# even the features as a list object
+features <- gb_extract(record = record, what = 'features')
+print(features[[1]])
+# and of coure the sequence itself
+seq <- gb_extract(record = record, what = 'sequence')
+str(seq)
+```
+
+#From the database
+
+You can try and the above functions out manually by downloading them through the [`rentrez` package](https://github.com/ropensci/rentrez). You can also parse the text formatted records from a restez database.
+
+```{r database, eval=FALSE, include=TRUE}
+# ensure restez database is already set-up
+record <- gb_record_get(id = 'ACCESSIONID')
+gb_extract(record = record, what = 'features')
+```

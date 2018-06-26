@@ -89,6 +89,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/parsing.html">GenBank record parsing</a>
+    </li>
+    <li>
       <a href="../articles/phylotar.html">phylotaR</a>
     </li>
     <li>
@@ -162,7 +165,11 @@ GenBank records.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='co'># TODO</span></div></pre>
+<span class='fu'>data</span>(<span class='st'>'record'</span>)
+(<span class='fu'>gb_extract</span>(<span class='kw'>record</span> <span class='kw'>=</span> <span class='no'>record</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>'locus'</span>))</div><div class='output co'>#&gt;     accession        length           mol          type        domain 
+#&gt;    "AY952423"        "2623"         "DNA"      "linear"         "PLN" 
+#&gt;          date 
+#&gt; "17-APR-2005" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

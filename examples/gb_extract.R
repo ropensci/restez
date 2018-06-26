@@ -1,2 +1,3 @@
 library(restez)
-# TODO
+data('record')
+(gb_extract(record = record, what = 'locus'))

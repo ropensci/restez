@@ -31,6 +31,9 @@ reference:
   desc: Wrappers for integration with the R package rentrez
   contents:
     - entrez_fetch
+- title: Data
+  desc: Example data
+    - record
 - title: Internal functions
   desc: Private internal functions, documented here for openness
   contents:
