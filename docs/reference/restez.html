@@ -137,26 +137,29 @@ setup, get and entrez.</p>
     <h2 class="hasAnchor" id="setup-functions"><a class="anchor" href="#setup-functions"></a>setup functions</h2>
 
     
-    <p>These functions allow a user to set the filepath for
-where the GenBank files should be stored, to download
-specific parts of GenBank and to create a local SQLite
-database.</p>
+    <p>These functions allow a user to set the filepath for where the GenBank files
+should be stored and verify the filepaths.</p>
     
-    <h2 class="hasAnchor" id="get-functions"><a class="anchor" href="#get-functions"></a>get functions</h2>
+    <h2 class="hasAnchor" id="database-functions"><a class="anchor" href="#database-functions"></a>database functions</h2>
 
     
-    <p>The get functions allow a user to query the local SQLite
-database. A user can use an NCBI accession ID to retrieve
-sequences or whole GenBank records.</p>
+    <p>These functions to download specific parts of GenBank and to create a local
+SQLite database.</p>
     
-    <h2 class="hasAnchor" id="entrez-functions"><a class="anchor" href="#entrez-functions"></a>entrez functions</h2>
+    <h2 class="hasAnchor" id="genbank-functions"><a class="anchor" href="#genbank-functions"></a>GenBank functions</h2>
 
     
-    <p>The entrez functions are wrappers to the <code>entrez_*</code>
-functions in the rentrez package. e.g the restez's entrez_fetch
-will first try to search the local database, if it fails it will
-then call rentrez's <code><a href='http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch'>entrez_fetch</a></code> with the
-same arguments.</p>
+    <p>These functions allow a user to query the local SQLite GenBank database. A
+user can use an NCBI accession ID to retrieve sequences or whole GenBank
+records.</p>
+    
+    <h2 class="hasAnchor" id="entrez-functions"><a class="anchor" href="#entrez-functions"></a>Entrez functions</h2>
+
+    
+    <p>The entrez functions are wrappers to the <code>entrez_*</code> functions in the
+rentrez package. e.g the restez's entrez_fetch will first try to search the
+local database, if it fails it will then call rentrez's
+<code><a href='http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch'>entrez_fetch</a></code> with the same arguments.</p>
     
 
   </div>
@@ -166,9 +169,11 @@ same arguments.</p>
       
       <li><a href="#setup-functions">setup functions</a></li>
 
-      <li><a href="#get-functions">get functions</a></li>
+      <li><a href="#database-functions">database functions</a></li>
 
-      <li><a href="#entrez-functions">entrez functions</a></li>
+      <li><a href="#genbank-functions">GenBank functions</a></li>
+
+      <li><a href="#entrez-functions">Entrez functions</a></li>
           </ul>
 
   </div>

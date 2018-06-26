@@ -25,7 +25,7 @@ flatfile_read <- function(filepath) {
 #' for insertion into SQL database.
 #' @details The resulting data.frame has five columns: accession,
 #' organism, raw_definition, raw_sequence, raw_record.
-#' The prefix 'raw_' indicates the data has been covnerted to the
+#' The prefix 'raw_' indicates the data has been converted to the
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
 #'

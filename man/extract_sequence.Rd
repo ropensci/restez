@@ -13,7 +13,7 @@ extract_sequence(record)
 character
 }
 \description{
-Return sequecne from GenBank record
+Return sequence from GenBank record
 }
 \details{
 If element is not found, '' returned.

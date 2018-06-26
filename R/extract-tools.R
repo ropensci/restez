@@ -98,7 +98,7 @@ extract_definition <- function(record) {
 
 #' @name extract_sequence
 #' @title Extract sequence
-#' @description Return sequecne from GenBank record
+#' @description Return sequence from GenBank record
 #' @param record GenBank record in text format, character
 #' @details If element is not found, '' returned.
 #' @return character
