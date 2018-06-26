@@ -96,8 +96,7 @@ restez_path_check <- function() {
     stop('Restez path not set. Use restez_path_set().')
   }
   if (!dir.exists(fp)) {
-    msg <- paste0('Restez path [', fp,
-                  '] does not exist.')
+    msg <- paste0('Restez path [', fp, '] does not exist.')
     stop(msg, .call = FALSE)
   }
 }
@@ -124,65 +123,78 @@ db_delete <- function(everything = TRUE) {
   NULL
 }
 
-#' @name status_check
+#' @name restez_status
 #' @title Check restez status
 #' @family setup
 #' @description Report to console current setup status of restez.
 #' Determines if the restez path is set, how many downloaded files
-#' there are, if there is an SQL database.
-#' @return NULL
+#' there are, if there is an SQL database. If SQL database available, returns
+#' TRUE else FALSE.
+#' @return T/F
 #' @export
-#' @example examples/status_check.R
-status_check <- function() {
+#' @example examples/restez_status.R
+restez_status <- function() {
   no_downloads <- FALSE
   no_database <- FALSE
-  cat_line('Checking setup status ...')
   fp <- restez_path_get()
+  cat_line('Checking setup status at ', char(fp), ' ...')
   if (is.null(fp)) {
     cat_line('... restez path not set')
     message('You need to use restez_path_set()')
-  } else if (!dir.exists(fp)) {
-    cat_line('... restez path ', char(fp),
-             ' does not exist')
-    message('restez_path_set() filepath must be a valid filepath')
-  } else {
-    fp <- dwnld_path_get()
-    if (!dir.exists(fp)) {
-      cat_line('... ', char('downloads/'),
-               ' does not exist')
-      message('Use restez_path_set() to recreate the folder')
-    } else {
-      dwn_fls <- list.files(path = fp)
-      if (length(dwn_fls) == 0) {
-        cat_line('... no files in ', char('downloads/'))
-        no_downloads <- TRUE
-      } else {
-        dwn_fls <- file.path(fp, dwn_fls)
-        cat_line('... found ', stat(length(dwn_fls)),
-                 ' files in ', char('downloads/'))
-        totsz <- sum(vapply(X = dwn_fls, FUN = file.size,
-                            FUN.VALUE = double(1)))
-        totsz <- round(x = totsz / 1E9, digits = 2)
-        cat_line('... totalling ', stat(totsz, 'GB'))
-      }
-    }
-    fp <- sql_path_get()
-    if (!file.exists(fp)) {
-      cat_line('... ', char('sql_db'),
-               ' does not exist')
-      no_database <- TRUE
-    } else {
-      dbsz <- file.size(fp)
-      dbsz <- round(x = dbsz / 1E9, digits = 2)
-      cat_line('... found ', char('sql_db'),
-               ' of ', stat(dbsz, 'GB'))
-    }
+    return(FALSE)
   }
+  if (!dir.exists(fp)) {
+    cat_line('... restez path ', char(fp), ' does not exist')
+    message('restez_path_set() filepath must be a valid filepath')
+    return(FALSE)
+  }
+  fp <- dwnld_path_get()
+  if (!dir.exists(fp)) {
+    cat_line('... ', char('downloads/'), ' does not exist')
+    message('Use restez_path_set() to recreate the folder')
+    return(FALSE)
+  }
+  dwn_fls <- list.files(path = fp)
+  if (length(dwn_fls) == 0) {
+    cat_line('... no files in ', char('downloads/'))
+    no_downloads <- TRUE
+  } else {
+    dwn_fls <- file.path(fp, dwn_fls)
+    cat_line('... found ', stat(length(dwn_fls)), ' files in ',
+             char('downloads/'))
+    totsz <- sum(vapply(X = dwn_fls, FUN = file.size,
+                        FUN.VALUE = double(1)))
+    totsz <- round(x = totsz / 1E9, digits = 2)
+    cat_line('... totalling ', stat(totsz, 'GB'))
+  }
+  if (!restez_ready()) {
+    cat_line('... ', char('sql_db'), ' does not exist')
+    no_database <- TRUE
+  } else {
+    dbsz <- file.size(sql_path_get())
+    dbsz <- round(x = dbsz / 1E9, digits = 2)
+    cat_line('... found ', char('sql_db'), ' of ', stat(dbsz, 'GB'))
+  }
+  res <- FALSE
   if (no_database & no_downloads) {
     message('You need to run db_download() and db_create()')
-  }
-  if (no_database) {
+  } else if (no_database) {
     message('You need to run db_create()')
+  } else {
+    res <- TRUE
   }
-  NULL
+  res
+}
+
+#' @name restez_ready
+#' @title Is restez ready?
+#' @family setup
+#' @description Returns TRUE if a restez SQL database is available. Use
+#' restez_status() for more information.
+#' @return T/F
+#' @export
+#' @example examples/restez_ready.R
+restez_ready <- function() {
+  fp <- sql_path_get()
+  inherits(fp, 'character') && length(fp) == 1 && file.exists(fp)
 }

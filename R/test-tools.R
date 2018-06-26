@@ -4,6 +4,7 @@
 #' @return NULL
 #' @noRd
 cleanup <- function() {
+  restez_path_unset()
   if (dir.exists('test_db_fldr')) {
     unlink('test_db_fldr', recursive = TRUE)
   }

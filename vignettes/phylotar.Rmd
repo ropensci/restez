@@ -14,7 +14,72 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this demonstration we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/AntonelliLab/phylotaR) run.
+#Intoduction
 
+In this demonstration we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/AntonelliLab/phylotaR) run. phylotaR runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on phylotaR see its [published article](https://doi.org/10.3390/life8020020).
 
+By using restez in conjunction with phylotaR, we will not only being saving time, but also improving the chances of a successful phylotaR run -- often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using restez with phylotaR only make sense if you make use of the restez database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a restez database does not currently eliminate the need for an internet connection. phylotaR still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as restez develops).
 
+We will run a phylotaR run for the beaver-like, rodent suborder, Caviomorpha, the clade that contains things like beavers and gophers. We will first set-up our restez database followed by our phylotaR pipeline and then run the pipeline. To run the entire pipeline can take a long time (1 or 2 hours, with most time being taken by the database set-up) but depends on your internet connection and computer specs.
+
+#Restez set-up
+
+First we need to create a local GenBank database. Because the Caviomorpha are rodents we must select the rodent GenBank files.
+We also should limit the size of the resulting SQL database by specifying minimum and maximum sequence lengths. Making requests from a large SQL database can take a long time to complete, limiting the advantages of generating a restez database. Since in our phylotaR pipeline we are only interested in sequences of greater than 250 bp but less than 2000 bp, we can limit the restez database size at its inception. The `db_create()` function can be run again later using the same downloaded files if you would like to change the minimum and maximum sequence lengths contained within it.
+
+```r
+library(restez)
+
+# Setup
+restez_path <- '[PATH/WHERE/TO/STORE/DATABASE]'
+restez_path_set(filepath = restez_path)
+
+# Download
+db_download()  # select Rodents, in this run it was 15.
+
+# Create
+# only build a database of relevant sequences by limiting sequence length
+db_create(db_type = 'nucleotide', min_length = 250, min_length = 2000)
+
+# Did it download correclty?
+status_check()
+```
+
+#phylotaR run
+
+```r
+# Currently only a specific version of phylotaR can work with restez
+# It must be installed from GitHub using devtools, restez branch
+devtools::install_github(repo = 'AntonelliLab/phylotaR', ref = 'restez')
+```
+
+Now we have set-up a restez database for rodents, we can run our phylotaR
+pipeline. We do not need to set-up the pipeline any differently with a restez
+database, except to ensure we have called the restez library and pointed the
+package to the rodent database.
+
+```r
+library(phylotaR)
+library(restez)
+
+# Restez
+restez_path <- '[PATH/WHERE/TO/RODENT/DATABASE]'
+restez_path_set(filepath = restez_path)
+
+# Vars
+wd <- 'beavers'
+txid <- 1963757  # Castorimorpha
+v <- TRUE        # print progress to console
+btchsz <- 100    # max number of downloads per request
+mnsql <- 250     # minimum sequence length
+mxsql <- 2000    # maximum sequence length
+ncbi_dr <- '[PATH/TO/BLAST]' # e.g. '/usr/local/ncbi/blast/bin'
+
+# Setup and run
+dir.create(wd)
+setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, v = v, btchsz = btchsz,
+      mnsql = mnsql, mxsql = mxsql)
+run(wd = wd)
+```
+
+Compared to running without a restez database, the above code is [**35%** faster during the download stage](https://github.com/AntonelliLab/restez/blob/master/other/phylotar_demo.R).

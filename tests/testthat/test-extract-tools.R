@@ -18,7 +18,7 @@ test_that('extract_by_keyword() works', {
 })
 test_that('extract_version() works', {
   accession_version <- restez:::extract_version(sample(records, 1))
-  expect_true(grepl('^[a-z0-9]+\\.[0-9]+$', accession_version,
+  expect_true(grepl('^[a-z0-9_]+\\.[0-9]+$', accession_version,
                     ignore.case = TRUE))
 })
 test_that('extract_organism() works', {
