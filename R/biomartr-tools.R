@@ -4,7 +4,7 @@
 #' internet connection to work properly. This internal function pings
 #' the google homepage and throws an error if it cannot be reached.
 #' @author Hajk-Georg Drost
-#' @noRd
+#' @family private
 # originally connected.to.internet
 check_connection <- function() {
   if (is.character(RCurl::getURL("www.google.com"))) {
@@ -24,7 +24,7 @@ check_connection <- function() {
 #' @param ... additional arguments that shall be passed to
 #' \code{\link[downloader]{download}}
 #' @author Hajk-Georg Drost
-#' @noRd
+#' @family private
 custom_download <- function(...) {
   operating_sys <- Sys.info()[1]
   if (operating_sys == "Darwin") {

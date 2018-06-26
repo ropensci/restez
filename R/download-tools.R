@@ -3,7 +3,7 @@
 #' @description Searches through all release notes
 #' to find the latest. Returns the entire release notes.
 #' @return character
-#' @noRd
+#' @family private
 identify_latest_genbank_release_notes <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/'
   all_release_notes <- RCurl::getURL(url = url, dirlistonly = TRUE)
@@ -24,7 +24,7 @@ identify_latest_genbank_release_notes <- function() {
 #' description.
 #' @param release_notes character, GenBank release notes
 #' @return data.frame
-#' @noRd
+#' @family private
 identify_downloadable_files <- function(release_notes) {
   lines <- strsplit(x = release_notes, split = '\n')[[1]]
   descript_section <- FALSE
@@ -72,7 +72,7 @@ identify_downloadable_files <- function(release_notes) {
 #' downloaded
 #' @param overwrite T/F
 #' @return T/F
-#' @noRd
+#' @family private
 # based upon: biomartr::download.database
 file_download <- function(fl, overwrite=FALSE) {
   remove <- function(fl) {
@@ -106,7 +106,7 @@ file_download <- function(fl, overwrite=FALSE) {
 #' @title Save download details
 #' @description Records downloaded file details.
 #' @return NULL
-#' @noRd
+#' @family private
 save_download_details <- function() {
 
 }

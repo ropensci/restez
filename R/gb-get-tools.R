@@ -5,7 +5,7 @@
 #' @param nm character, column name
 #' @param id character, sequence accession ID(s)
 #' @return data.frame
-#' @noRd
+#' @family private
 gb_sql_query <- function(nm, id) {
   # reduce ids to accessions
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)

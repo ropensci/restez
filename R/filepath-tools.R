@@ -67,7 +67,7 @@ restez_path_get <- function() {
 #' @title Get SQL path
 #' @description Return path to where SQL database is stored.
 #' @return character
-#' @noRd
+#' @family private
 sql_path_get <- function() {
   fp <- restez_path_get()
   file.path(fp, 'sql_db')
@@ -78,7 +78,7 @@ sql_path_get <- function() {
 #' @description Return path to folder where raw .seq files
 #' are stored.
 #' @return character
-#' @noRd
+#' @family private
 dwnld_path_get <- function() {
   fp <- restez_path_get()
   file.path(fp, 'downloads')
@@ -89,7 +89,7 @@ dwnld_path_get <- function() {
 #' @description Raises error if restez path does
 #' not exist.
 #' @return NULL
-#' @noRd
+#' @family private
 restez_path_check <- function() {
   fp <- restez_path_get()
   if (is.null(fp)) {

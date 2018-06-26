@@ -3,7 +3,7 @@
 #' @description Read records from a .seq file.
 #' @param filepath Path to .seq file
 #' @return list of GenBank records in text format
-#' @noRd
+#' @family private
 flatfile_read <- function(filepath) {
   generate_records <- function(i) {
     indexes <- record_starts[i]:record_ends[i]
@@ -28,13 +28,13 @@ flatfile_read <- function(filepath) {
 #' The prefix 'raw_' indicates the data has been covnerted to the
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
-#' 
+#'
 #' Use max and min sequence lengths to minimise the size of the database.
 #' @param records character, vector of GenBank records in text format
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
 #' @return data.frame
-#' @noRd
+#' @family private
 gb_df_generate <- function(records, min_length=0, max_length=NULL) {
   accessions <- vapply(X = records, FUN.VALUE = character(1),
                        FUN = extract_accession)
@@ -67,7 +67,7 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL) {
 #' @param sequences character, vector of sequences
 #' @param records character, vector of GenBank records in text format
 #' @return data.frame
-#' @noRd
+#' @family private
 gb_df_create <- function(accessions, versions, organisms, definitions,
                          sequences, records) {
   raw_definitions <- lapply(definitions, charToRaw)
@@ -85,7 +85,7 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @param df Records data.frame
 #' @param database Database name
 #' @return NULL
-#' @noRd
+#' @family private
 gb_sql_add <- function(df, database) {
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(), dbname = sql_path_get())
   on.exit(DBI::dbDisconnect(conn = connection))

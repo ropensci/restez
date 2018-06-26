@@ -21,7 +21,7 @@ Return elements of GenBank record e.g. sequence, definition ...
 }
 \details{
 This function uses a REGEX to extract particular elements of a
-GenBank record. All of the what options return a single character with the 
+GenBank record. All of the what options return a single character with the
 exception of 'locus' or 'keywords' that return character vectors and
 'features' that returns a list of lists for all features.
 

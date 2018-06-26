@@ -13,7 +13,7 @@
 #' at the next newline.
 #' If keyword or end pattern not found, returns NULL.
 #' @return character or NULL
-#' @noRd
+#' @family private
 extract_by_keyword <- function(record, keyword, end_pattern='\n') {
   # cut record from keyword to end_pattern
   start_index <- regexpr(pattern = keyword, text = record)
@@ -37,7 +37,7 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
 #' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
-#' @noRd
+#' @family private
 extract_version <- function(record) {
   vrsn <- extract_by_keyword(record = record, keyword = 'VERSION')
   if (is.null(vrsn)) {
@@ -52,7 +52,7 @@ extract_version <- function(record) {
 #' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
-#' @noRd
+#' @family private
 extract_accession <- function(record) {
   accssn <- extract_by_keyword(record = record, keyword = 'ACCESSION')
   if (is.null(accssn)) {
@@ -67,7 +67,7 @@ extract_accession <- function(record) {
 #' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
-#' @noRd
+#' @family private
 extract_organism <- function(record) {
   orgnsm <- extract_by_keyword(record = record, keyword = 'ORGANISM')
   if (is.null(orgnsm)) {
@@ -82,7 +82,7 @@ extract_organism <- function(record) {
 #' @details If element is not found, '' returned.
 #' @param record GenBank record in text format, character
 #' @return character
-#' @noRd
+#' @family private
 extract_definition <- function(record) {
   # assumes ACCESSION always follows DEFINTION
   definition <- extract_by_keyword(record = record, keyword = 'DEFINITION',
@@ -102,7 +102,7 @@ extract_definition <- function(record) {
 #' @param record GenBank record in text format, character
 #' @details If element is not found, '' returned.
 #' @return character
-#' @noRd
+#' @family private
 extract_sequence <- function(record) {
   sequence <- extract_by_keyword(record = record, keyword = 'ORIGIN',
                                  end_pattern = '//')
@@ -111,7 +111,7 @@ extract_sequence <- function(record) {
   }
   # clean
   sequence <- gsub('([0-9]|\\s+|\n)', '', sequence)
-  sequence 
+  sequence
 }
 
 #' @name extract_locus
@@ -120,7 +120,7 @@ extract_sequence <- function(record) {
 #' @param record GenBank record in text format, character
 #' @return named character vector
 #' @details If element is not found, '' returned.
-#' @noRd
+#' @family private
 extract_locus <- function(record) {
   locus <- extract_by_keyword(record = record, keyword = 'LOCUS',
                               end_pattern = 'DEFINITION')
@@ -141,7 +141,7 @@ extract_locus <- function(record) {
 #' @param record GenBank record in text format, character
 #' @return list of lists
 #' @details If element is not found, empty list returned.
-#' @noRd
+#' @family private
 extract_features <- function(record) {
   feature_text <- extract_by_keyword(record = record,
                                      keyword = 'FEATURES\\s+Location/Q',
@@ -188,7 +188,7 @@ extract_features <- function(record) {
 #' @param record GenBank record in text format, character
 #' @return character vector
 #' @details If element is not found, '' returned.
-#' @noRd
+#' @family private
 extract_keywords <- function(record) {
   keyword_text <- extract_by_keyword(record = record,
                                      keyword = 'KEYWORDS\\s+',
@@ -207,11 +207,11 @@ extract_keywords <- function(record) {
 #' @title Extract elements of a GenBank record
 #' @description Return elements of GenBank record e.g. sequence, definition ...
 #' @details This function uses a REGEX to extract particular elements of a
-#' GenBank record. All of the what options return a single character with the 
+#' GenBank record. All of the what options return a single character with the
 #' exception of 'locus' or 'keywords' that return character vectors and
 #' 'features' that returns a list of lists for all features.
-#' 
-#' 
+#'
+#'
 #' The accuracy of these functions cannot be guaranteed due to the enormity of
 #' the GenBank database. But the function is regularly tested on a range of
 #' GenBank records.

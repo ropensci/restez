@@ -6,7 +6,7 @@
 #' @param id vector, unique ID(s) for record(s)
 #' @param ... arguments passed on to rentrez
 #' @return character string containing the file created
-#' @noRd
+#' @family private
 entrez_fasta_get <- function(id, ...) {
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   fastas <- gb_fasta_get(id = id)
@@ -33,7 +33,7 @@ entrez_fasta_get <- function(id, ...) {
 #' @param id vector, unique ID(s) for record(s)
 #' @param ... arguments passed on to rentrez
 #' @return character string containing the file created
-#' @noRd
+#' @family private
 entrez_gb_get <- function(id, ...) {
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   recs <- gb_record_get(id = id)

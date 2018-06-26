@@ -2,7 +2,7 @@
 #' @title Clean up test data
 #' @description Removes all temporary test data created.
 #' @return NULL
-#' @noRd
+#' @family private
 cleanup <- function() {
   restez_path_unset()
   if (dir.exists('test_db_fldr')) {
@@ -17,7 +17,7 @@ cleanup <- function() {
 #' @title Get test data directory
 #' @description Get the folder containing test data.
 #' @return NULL
-#' @noRd
+#' @family private
 testdatadir_get <- function() {
   wd <- getwd()
   if (grepl('testthat', wd)) {

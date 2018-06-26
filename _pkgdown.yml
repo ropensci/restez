@@ -31,3 +31,39 @@ reference:
   desc: Wrappers for integration with the R package rentrez
   contents:
     - entrez_fetch
+- title: Internal functions
+  desc: Private internal functions, documented here for openness
+  contents:
+    - check_connection
+    - cleanup
+    - custom_download
+    - dwnld_path_get
+    - entrez_fasta_get
+    - entrez_gb_get
+    - extract_accession
+    - extract_by_keyword
+    - extract_definition
+    - extract_features
+    - extract_keywords
+    - extract_locus
+    - extract_organism
+    - extract_sequence
+    - extract_version
+    - file_download
+    - flatfile_read
+    - gb_df_create
+    - gb_df_generate
+    - gb_sql_add
+    - gb_sql_query
+    - identify_downloadable_files
+    - identify_latest_genbank_release_notes
+    - mock_def
+    - mock_gb_df_generate
+    - mock_org
+    - mock_rec
+    - mock_seq
+    - restez_path_check
+    - restez_rl
+    - save_download_details
+    - sql_path_get
+    - testdatadir_get
