@@ -93,10 +93,75 @@
 
     
     
-<p>In this demonstration we will showcase how a <code>restez</code> database can be used to speed up a <a href="https://github.com/AntonelliLab/phylotaR">phylotaR</a> run.</p>
+<div id="intoduction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#intoduction" class="anchor"></a>Intoduction</h1>
+<p>In this demonstration we will showcase how a <code>restez</code> database can be used to speed up a <a href="https://github.com/AntonelliLab/phylotaR">phylotaR</a> run. phylotaR runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on phylotaR see its <a href="https://doi.org/10.3390/life8020020">published article</a>.</p>
+<p>By using restez in conjunction with phylotaR, we will not only being saving time, but also improving the chances of a successful phylotaR run – often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using restez with phylotaR only make sense if you make use of the restez database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a restez database does not currently eliminate the need for an internet connection. phylotaR still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as restez develops).</p>
+<p>We will run a phylotaR run for the beaver-like, rodent suborder, Caviomorpha, the clade that contains things like beavers and gophers. We will first set-up our restez database followed by our phylotaR pipeline and then run the pipeline. To run the entire pipeline can take a long time (1 or 2 hours, with most time being taken by the database set-up) but depends on your internet connection and computer specs.</p>
+</div>
+<div id="restez-set-up" class="section level1">
+<h1 class="hasAnchor">
+<a href="#restez-set-up" class="anchor"></a>Restez set-up</h1>
+<p>First we need to create a local GenBank database. Because the Caviomorpha are rodents we must select the rodent GenBank files. We also should limit the size of the resulting SQL database by specifying minimum and maximum sequence lengths. Making requests from a large SQL database can take a long time to complete, limiting the advantages of generating a restez database. Since in our phylotaR pipeline we are only interested in sequences of greater than 250 bp but less than 2000 bp, we can limit the restez database size at its inception. The <code><a href="../reference/db_create.html">db_create()</a></code> function can be run again later using the same downloaded files if you would like to change the minimum and maximum sequence lengths contained within it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
+
+<span class="co"># Setup</span>
+restez_path &lt;-<span class="st"> '[PATH/WHERE/TO/STORE/DATABASE]'</span>
+<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> restez_path)
+
+<span class="co"># Download</span>
+<span class="kw"><a href="../reference/db_download.html">db_download</a></span>()  <span class="co"># select Rodents, in this run it was 15.</span>
+
+<span class="co"># Create</span>
+<span class="co"># only build a database of relevant sequences by limiting sequence length</span>
+<span class="kw"><a href="../reference/db_create.html">db_create</a></span>(<span class="dt">db_type =</span> <span class="st">'nucleotide'</span>, <span class="dt">min_length =</span> <span class="dv">250</span>, <span class="dt">min_length =</span> <span class="dv">2000</span>)
+
+<span class="co"># Did it download correclty?</span>
+<span class="kw">status_check</span>()</code></pre></div>
+</div>
+<div id="phylotar-run" class="section level1">
+<h1 class="hasAnchor">
+<a href="#phylotar-run" class="anchor"></a>phylotaR run</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Currently only a specific version of phylotaR can work with restez</span>
+<span class="co"># It must be installed from GitHub using devtools, restez branch</span>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">'AntonelliLab/phylotaR'</span>, <span class="dt">ref =</span> <span class="st">'restez'</span>)</code></pre></div>
+<p>Now we have set-up a restez database for rodents, we can run our phylotaR pipeline. We do not need to set-up the pipeline any differently with a restez database, except to ensure we have called the restez library and pointed the package to the rodent database.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phylotaR)
+<span class="kw">library</span>(restez)
+
+<span class="co"># Restez</span>
+restez_path &lt;-<span class="st"> '[PATH/WHERE/TO/RODENT/DATABASE]'</span>
+<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> restez_path)
+
+<span class="co"># Vars</span>
+wd &lt;-<span class="st"> 'beavers'</span>
+txid &lt;-<span class="st"> </span><span class="dv">1963757</span>  <span class="co"># Castorimorpha</span>
+v &lt;-<span class="st"> </span><span class="ot">TRUE</span>        <span class="co"># print progress to console</span>
+btchsz &lt;-<span class="st"> </span><span class="dv">100</span>    <span class="co"># max number of downloads per request</span>
+mnsql &lt;-<span class="st"> </span><span class="dv">250</span>     <span class="co"># minimum sequence length</span>
+mxsql &lt;-<span class="st"> </span><span class="dv">2000</span>    <span class="co"># maximum sequence length</span>
+ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. '/usr/local/ncbi/blast/bin'</span>
+
+<span class="co"># Setup and run</span>
+<span class="kw">dir.create</span>(wd)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/phylotaR/topics/setup">setup</a></span>(<span class="dt">wd =</span> wd, <span class="dt">txid =</span> txid, <span class="dt">ncbi_dr =</span> ncbi_dr, <span class="dt">v =</span> v, <span class="dt">btchsz =</span> btchsz,
+      <span class="dt">mnsql =</span> mnsql, <span class="dt">mxsql =</span> mxsql)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/phylotaR/topics/run">run</a></span>(<span class="dt">wd =</span> wd)</code></pre></div>
+<p>Compared to running without a restez database, the above code is <a href="https://github.com/AntonelliLab/restez/blob/master/other/phylotar_demo.R"><strong>35%</strong> faster during the download stage</a>.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#intoduction">Intoduction</a></li>
+      <li><a href="#restez-set-up">Restez set-up</a></li>
+      <li><a href="#phylotar-run">phylotaR run</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

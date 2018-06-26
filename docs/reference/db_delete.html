@@ -148,14 +148,14 @@ folder.</p>
   <code><a href='restez_path_get.html'>restez_path_get</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
-  <code><a href='status_check.html'>status_check</a></code></p></div>
+  <code><a href='restez_ready.html'>restez_ready</a></code>, <code><a href='restez_status.html'>restez_status</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpt1DS8C/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpt1DS8C/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/tmp/Rtmp06Qtr9/restez'
+#&gt; ... Creating '/tmp/Rtmp06Qtr9/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Will not run: gb_sequence_get(id = 'demo_1')</span>
 <span class='co'># only the SQL database is deleted</span>
 <span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Now returns NULL</span>

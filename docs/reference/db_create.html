@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create database — db_create • restez</title>
+<title>Create new NCBI database — db_create • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,10 @@
 
 
 
-<meta property="og:title" content="Create database — db_create" />
+<meta property="og:title" content="Create new NCBI database — db_create" />
 
-<meta property="og:description" content="Checks for downloaded .seq.tar files,
-decompresses and then adds the files to a local SQL
-database." />
+<meta property="og:description" content="Create a new local SQL database from downloaded files.
+Currently only GenBank/nucleotide/nuccore database is supported." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -119,20 +118,20 @@ database." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create database</h1>
+    <h1>Create new NCBI database</h1>
     <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/setup.R'><code>R/setup.R</code></a></small>
     <div class="hidden name"><code>db_create.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Checks for downloaded .seq.tar files,
-decompresses and then adds the files to a local SQL
-database.</p>
+    <p>Create a new local SQL database from downloaded files.
+Currently only GenBank/nucleotide/nuccore database is supported.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>db_create</span>(<span class='kw'>db_type</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>db_create</span>(<span class='kw'>db_type</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>min_length</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>max_length</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,7 +144,27 @@ database.</p>
       <th>overwrite</th>
       <td><p>T/F, overwrite files already in database?</p></td>
     </tr>
+    <tr>
+      <th>min_length</th>
+      <td><p>Minimum sequence length, default 0.</p></td>
+    </tr>
+    <tr>
+      <th>max_length</th>
+      <td><p>Maximum sequence length, default NULL.</p></td>
+    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Decompresses any .seq.tar files to create .seq files, .seq.tar files
+are deleted after decompression.</p>
+<p>All .seq files are added to the database. A user can specify sequence limit
+sizes for those sequences to be added to the database -- smaller databases
+are faster to  search and is best to limit the database size if possible.</p>
+<p>Whenever this function is run, the old database is deleted and a new one
+created.</p>
+<p>If overwrite=TRUE, any .seq file with the same name as the newly downloaded
+.seq.tar files will be overwritten.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -154,7 +173,7 @@ database.</p>
   <code><a href='restez_path_get.html'>restez_path_get</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
-  <code><a href='status_check.html'>status_check</a></code></p></div>
+  <code><a href='restez_ready.html'>restez_ready</a></code>, <code><a href='restez_status.html'>restez_status</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -170,6 +189,8 @@ database.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

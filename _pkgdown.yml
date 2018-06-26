@@ -6,7 +6,8 @@ reference:
     - restez_path_set
     - restez_path_get
     - restez_path_unset
-    - status_check
+    - restez_status
+    - restez_ready
 - title: Database
   desc: Download, create, delete and verify your local database
   contents:
