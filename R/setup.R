@@ -138,13 +138,21 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
   # checks
   restez_path_check()
   dpth <- dwnld_path_get()
+  # clean up procedure
+  cleanup <- function() {
+    tmpfls <- list.files(path = dpth, pattern = '.seq.tmp$')
+    for (tmpfl in tmpfls) {
+      file.remove(file.path(dpth, tmpfl))
+    }
+  }
+  on.exit(cleanup())
   gz_files <- list.files(path = dpth, pattern = '.gz$')
   if (!overwrite) {
     already_added <- list.files(path = dpth, pattern = '.seq$')
     already_added <- paste0(already_added, '.gz')
     gz_files <- gz_files[!gz_files %in% already_added]
   }
-  cat_line('Decompressing ', stat(length(gz_files)), ' ...')
+  cat_line('Decompressing ', stat(length(gz_files)), ' files ...')
   for (i in seq_along(gz_files)) {
     gz_file <- gz_files[[i]]
     cat_line('... ', char(gz_file), '(', stat(i, '/', length(gz_files)), ')')
@@ -152,7 +160,7 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
     R.utils::gunzip(flpth, remove = TRUE, overwrite = TRUE)
   }
   seq_files <- list.files(path = dpth, pattern = '.seq$')
-  cat_line('Adding ', stat(length(seq_files)), ' to the database ...')
+  cat_line('Adding ', stat(length(seq_files)), ' files to the database ...')
   for (i in seq_along(seq_files)) {
     seq_file <- seq_files[[i]]
     cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')

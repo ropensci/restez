@@ -50,10 +50,10 @@ Messages are printed to console telling us that the path was created and that a 
 
 ##1.2 Download
 
-Next, we download genbank using `gb_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.
+Next, we download genbank using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.
 
 ```{r download, eval=FALSE, include=TRUE}
-gb_download()
+db_download()
 ```
 ```
 ──────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -109,7 +109,7 @@ Now the download has begun, we just need to wait for it to finish. This can take
 
 ##1.3 Create a database
 
-After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.
+After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database. Again, this can take quite a while.
 
 ```{r create database, eval=FALSE, include=TRUE}
 db_create()
@@ -124,7 +124,7 @@ Decompressing and adding 30 files to database ...
 ... ... adding
 ```
 
-Again, this can take quite a while.
+`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only intersted in certain lengths fo sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. The function will delete the old database and create a new one from the already downloaded files.
 
 ##1.4 Checking the setup
 

@@ -5,11 +5,14 @@
 #' @details Attempts to first search local database with user-specified
 #' parameters, if the record is missing in the database, the function then
 #' calls rentrez::entrez_fetch to search GenBank remotely.
+#' 
+#' @note It is advisable to call restez and rentrez functions with '::' notation
+#' rather than library() calls to avoid namespace issues. e.g.
+#' restez::entrez_fetch().
 #'
 #' @section Supported return types and modes:
 #' XML retmode is not supported. Rettypes 'seqid', 'ft', 'acc' and 'uilist'
 #' are also not supported.
-#' @note rentrez::entrez_fetch is always called silently.
 #' @param db character, name of the database
 #' @param id vector, unique ID(s) for record(s)
 #' @param rettype character, data format
