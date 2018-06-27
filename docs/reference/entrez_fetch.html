@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
       </span>
     </div>
 
@@ -170,7 +170,9 @@ calls rentrez::entrez_fetch to search GenBank remotely.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>rentrez::entrez_fetch is always called silently.</p>
+    <p>It is advisable to call restez and rentrez functions with '::' notation
+rather than library() calls to avoid namespace issues. e.g.
+restez::entrez_fetch().</p>
     
     <h2 class="hasAnchor" id="supported-return-types-and-modes"><a class="anchor" href="#supported-return-types-and-modes"></a>Supported return types and modes</h2>
 
@@ -185,8 +187,8 @@ are also not supported.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpDqNeZy/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpDqNeZy/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp1lZ1sb/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp1lZ1sb/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 <span class='co'># return fasta record</span>
 <span class='no'>fasta_res</span> <span class='kw'>&lt;-</span> <span class='fu'>entrez_fetch</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='st'>'nucleotide'</span>,
                           <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>),

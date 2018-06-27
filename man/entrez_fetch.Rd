@@ -29,7 +29,9 @@ parameters, if the record is missing in the database, the function then
 calls rentrez::entrez_fetch to search GenBank remotely.
 }
 \note{
-rentrez::entrez_fetch is always called silently.
+It is advisable to call restez and rentrez functions with '::' notation
+rather than library() calls to avoid namespace issues. e.g.
+restez::entrez_fetch().
 }
 \section{Supported return types and modes}{
 

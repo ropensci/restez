@@ -17,7 +17,7 @@ Downloading sequences and sequence information from GenBank and related NCBI tax
 
 This package aims to make sequence retrieval more efficient by allowing a user to download large sections of the GenBank database to their local machine and query this local database either through package specific functions or Entrez wrappers. This process is more efficient as GenBank downloads are made via NCBI's FTP using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 20 GB of sequence information can be generated in less than 10 minutes.
 
-![restez outline](paper/outline.png)
+![restez outline](https://github.com/AntonelliLab/restez/tree/master/paper/outline.png)
 
 **For more detailed information on the pacakge's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
 

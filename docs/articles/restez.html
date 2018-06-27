@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
       </span>
     </div>
 
@@ -129,8 +129,8 @@ fp &lt;-<span class="st"> '~/Desktop'</span>
 <div id="download" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download" class="anchor"></a>1.2 Download</h2>
-<p>Next, we download genbank using <code>gb_download()</code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gb_download</span>()</code></pre></div>
+<p>Next, we download genbank using <code><a href="../reference/db_download.html">db_download()</a></code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_download.html">db_download</a></span>()</code></pre></div>
 <pre><code>──────────────────────────────────────────────────────────────────────────────────────────────────────
 Looking up latest GenBank release ...
 ... found release 224
@@ -179,7 +179,7 @@ Downloading ...
 <div id="create-a-database" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-database" class="anchor"></a>1.3 Create a database</h2>
-<p>After the download has completed, we need to use <code><a href="../reference/db_create.html">db_create()</a></code> to create our local database. This looks in the downloads folder of our <code>restez</code> path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database.</p>
+<p>After the download has completed, we need to use <code><a href="../reference/db_create.html">db_create()</a></code> to create our local database. This looks in the downloads folder of our <code>restez</code> path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database. Again, this can take quite a while.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_create.html">db_create</a></span>()</code></pre></div>
 <pre><code>Decompressing and adding 30 files to database ...
 ... 'gbrod10.seq.gz'(1 / 30)
@@ -188,7 +188,7 @@ Downloading ...
 ... 'gbrod11.seq.gz'(2 / 30)
 ... ... decompressing
 ... ... adding</code></pre>
-<p>Again, this can take quite a while.</p>
+<p><code><a href="../reference/db_create.html">db_create()</a></code> allows a user to specify minimum and maximum sequence lengths. It’s always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only intersted in certain lengths fo sequences it is a good idea to limit the sequences in the database at this stage. You can always run <code><a href="../reference/db_create.html">db_create()</a></code> again to change the limits. The function will delete the old database and create a new one from the already downloaded files.</p>
 </div>
 <div id="checking-the-setup" class="section level2">
 <h2 class="hasAnchor">

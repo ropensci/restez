@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
       </span>
     </div>
 
@@ -105,12 +105,15 @@
 <p><em>Vous entrez, vous rentrez et, maintenant, vous …. restez!</em></p>
 <p>Downloading sequences and sequence information from GenBank and related NCBI taxonomic databases is often performed via the NCBI API, Entrez. Entrez, however, has a limit on the number of requests and downloading large amounts of sequence data in this way can be inefficient. For programmatic situations where multiple Entrez calls are made, downloading may take days, weeks or even months.</p>
 <p>This package aims to make sequence retrieval more efficient by allowing a user to download large sections of the GenBank database to their local machine and query this local database either through package specific functions or Entrez wrappers. This process is more efficient as GenBank downloads are made via NCBI’s FTP using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 20 GB of sequence information can be generated in less than 10 minutes.</p>
+<div class="figure">
+<img src="https://github.com/AntonelliLab/restez/tree/master/paper/outline.png" alt="restez outline"><p class="caption">restez outline</p>
+</div>
 <p><strong>For more detailed information on the pacakge’s functions and detailed guides on downloading, constructing and querying a database, visit the <a href="https://antonellilab.github.io/restez/index.html">restez website</a>.</strong></p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install restez from github with:</p>
+<p>You can install restez from GitHub with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"AntonelliLab/restez"</span>)</code></pre></div>
 </div>
@@ -174,6 +177,11 @@ real_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/en
 <h2 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h2>
 <p>Want to contribute? Check the <a href="https://antonellilab.github.io/restez/CONTRIBUTING.html">contributing page</a>.</p>
+</div>
+<div id="version" class="section level2">
+<h2 class="hasAnchor">
+<a href="#version" class="anchor"></a>Version</h2>
+<p>Pre-release version 0 for review.</p>
 </div>
 <div id="licence" class="section level2">
 <h2 class="hasAnchor">

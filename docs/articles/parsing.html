@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
 <a href="#a-genbank-record" class="anchor"></a>A GenBank record</h1>
 <p>restez comes with an example GenBank record, AY952423, which can be viewed <a href="https://www.ncbi.nlm.nih.gov/nuccore/AY952423.1">online</a>. We can retrieve the record with <code>rentrez</code> or load it using the <code>data()</code>. We can visual the record as it appears online using <code>cat()</code> – like print but parses the newline spaces correctly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
-<span class="co">#&gt; restez 1.0.0</span>
+<span class="co">#&gt; restez 0.0.0</span>
 <span class="co">#&gt; Remember to restez_path_set()</span>
 <span class="co"># record &lt;- rentrez::entrez_fetch(db = 'nucleotide', id = 'AY952423', rettype = 'gb', retmode = 'text')</span>
 <span class="kw">data</span>(record)
