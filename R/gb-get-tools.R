@@ -11,16 +11,16 @@ gb_sql_query <- function(nm, id) {
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT accession,", nm,
-                " FROM nucleotide WHERE accession in ", qry_id)
+                " FROM nucleotide WHERE accession IN ", qry_id)
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
                                dbname = sql_path_get())
   on.exit(DBI::dbDisconnect(conn = connection))
-  qry <- DBI::dbSendQuery(conn = connection, statement = qry)
+  qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
   on.exit(expr = {
-    DBI::dbClearResult(res = qry)
+    DBI::dbClearResult(res = qry_res)
     DBI::dbDisconnect(conn = connection)
   })
-  res <- DBI::dbFetch(res = qry)
+  res <- DBI::dbFetch(res = qry_res)
   res
 }
 
@@ -30,18 +30,31 @@ gb_sql_query <- function(nm, id) {
 #' @description Get sequence and definition data
 #' in FASTA format.
 #' @param id character, sequence accession ID(s)
+#' @param width integer, maximum number of characters in a line
 #' @return named vector of fasta sequences, if no results found NULL
 #' @export
 #' @example examples/gb_fasta_get.R
-gb_fasta_get <- function(id) {
-  seqs <- gb_sequence_get(id = id)
-  if (length(seqs) == 0) {
+gb_fasta_get <- function(id, width=80) {
+  res <- gb_sql_query(nm = 'raw_definition,raw_sequence', id = id)
+  cnvrt <- function(i) {
+    sq <- rawToChar(res[i, 'raw_sequence'][[1]])
+    def <- rawToChar(res[i, 'raw_definition'][[1]])
+    n <- nchar(sq)
+    if (n > width) {
+      slices <- c(seq(from = 1, to = nchar(sq), by = width), nchar(sq))
+      sq <- vapply(X = 2:length(slices), function(x) {
+        substr(x = sq, start = slices[x - 1], stop = slices[x] - 1)
+      }, character(1))
+      sq <- paste0(sq, collapse = '\n')
+    }
+    paste0('>', def, '\n', sq)
+  }
+  if (nrow(res) == 0) {
     return(NULL)
   }
-  defs <- gb_definition_get(id = id)
-  fastas <- paste0('>', defs, '\n', seqs)
-  names(fastas) <- names(defs)
-  fastas
+  fasta <- vapply(1:nrow(res), cnvrt, character(1))
+  names(fasta) <- res[['accession']]
+  fasta
 }
 
 #' @name gb_sequence_get

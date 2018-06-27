@@ -4,10 +4,12 @@
 \alias{list_db_ids}
 \title{List database IDs}
 \usage{
-list_db_ids(db = "nucleotide")
+list_db_ids(db = "nucleotide", n = 100)
 }
 \arguments{
 \item{db}{character, database name}
+
+\item{n}{Maximum number of IDs to return, if NULL returns all}
 }
 \value{
 vector of characters

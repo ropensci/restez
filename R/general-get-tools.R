@@ -6,16 +6,18 @@
 #' @details Warning: can return very large vectors
 #' for large databases.
 #' @param db character, database name
+#' @param n Maximum number of IDs to return, if NULL returns all
 #' @return vector of characters
 #' @export
 #' @example examples/list_db_ids.R
-list_db_ids <- function(db = 'nucleotide') {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
-                               dbname = sql_path_get())
+list_db_ids <- function(db = 'nucleotide', n=100) {
+  connection <- DBI::dbConnect(drv = RSQLite::SQLite(), dbname = sql_path_get())
   if (db == 'nucleotide') {
-    res <- DBI::dbGetQuery(conn = connection,
-                           statement =
-                             "SELECT accession from nucleotide")
+    sttmnt <- "SELECT accession from nucleotide"
+    if (!is.null(n)) {
+      sttmnt <- paste0(sttmnt, '\nLIMIT ', n)
+    }
+    res <- DBI::dbGetQuery(conn = connection, statement = sttmnt)
   }
   on.exit(DBI::dbDisconnect(conn = connection))
   res[[1]]

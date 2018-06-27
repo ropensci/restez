@@ -89,6 +89,14 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 gb_sql_add <- function(df, database) {
   connection <- DBI::dbConnect(drv = RSQLite::SQLite(), dbname = sql_path_get())
   on.exit(DBI::dbDisconnect(conn = connection))
-  DBI::dbWriteTable(conn = connection, name = database, value = df,
-                    append = TRUE)
+  if (restez_ready()) {
+    DBI::dbWriteTable(conn = connection, name = database, value = df,
+                      append = TRUE)
+  } else {
+    field.types <- list('accession' = 'primary key', 'version' = 'varchar',
+                        'organism' = 'varchar', 'raw_definition' = '',
+                        'raw_sequence' = '', 'raw_record' = '')
+    DBI::dbWriteTable(conn = connection, name = database, value = df,
+                      field.types = field.types)
+  }
 }

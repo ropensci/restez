@@ -19,6 +19,7 @@ entrez_fasta_get <- function(id, ...) {
     res <- ''
   }
   if (length(mssng) > 0) {
+    message(paste0(length(mssng), ' unavailable locally, searching online.'))
     rentrez_fastas <- rentrez::entrez_fetch(id = mssng, ...)
     res <- paste0(res, rentrez_fastas)
   }
@@ -46,6 +47,7 @@ entrez_gb_get <- function(id, ...) {
     res <- ''
   }
   if (length(mssng) > 0) {
+    message(paste0(length(mssng), ' unavailable locally, searching online.'))
     rentrez_recs <- rentrez::entrez_fetch(id = mssng, ...)
     res <- paste0(res, rentrez_recs)
   }

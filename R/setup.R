@@ -64,9 +64,9 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   cat_line('Each file contains about 250 MB of decompressed data.')
   ngbytes_fls <- nfiles * 250 / 1000
   cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes_fls, 'GB'))
-  cat_line('Additionally, the resulting SQL database takes about 500 MB',
+  cat_line('Additionally, the resulting SQL database takes about 50 MB',
            ' per file')
-  ngbytes <- ngbytes_fls + (nfiles * 500 / 1000)
+  ngbytes <- ngbytes_fls + (nfiles * 50 / 1000)
   # TODO: create option for a user to delete downloaded files after download?
   cat_line('In total the uncompressed files and SQL database should amount to ',
            stat(ngbytes, 'GB'), ' Is that OK?')
@@ -155,13 +155,14 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
   cat_line('Adding ', stat(length(seq_files)), ' to the database ...')
   for (i in seq_along(seq_files)) {
     seq_file <- seq_files[[i]]
+    cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
     flpth <- file.path(dpth, seq_file)
     records <- flatfile_read(filepath = flpth)
     df <- gb_df_generate(records = records, min_length = min_length,
                          max_length = max_length)
     gb_sql_add(df = df, database = 'nucleotide')
   }
-  cat_line('Done.')
+  cat_line('Done. The database is ready to be queried!')
 }
 
 #' @name demo_db_create

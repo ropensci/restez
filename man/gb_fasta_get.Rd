@@ -4,10 +4,12 @@
 \alias{gb_fasta_get}
 \title{Get fasta from GenBank}
 \usage{
-gb_fasta_get(id)
+gb_fasta_get(id, width = 80)
 }
 \arguments{
 \item{id}{character, sequence accession ID(s)}
+
+\item{width}{integer, maximum number of characters in a line}
 }
 \value{
 named vector of fasta sequences, if no results found NULL

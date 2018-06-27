@@ -58,6 +58,9 @@ extract_accession <- function(record) {
   if (is.null(accssn)) {
     return('')
   }
+  if (grepl(pattern = '\\s', x = accssn)) {
+    accssn <- sub(pattern = '\\s.*', replacement = '', x = accssn)
+  }
   accssn
 }
 

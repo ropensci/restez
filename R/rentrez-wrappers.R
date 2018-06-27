@@ -40,6 +40,7 @@ entrez_fetch <- function(db, id=NULL, rettype, retmode="", ...) {
     #   return(entrez_ft_get(id = id))
     # }
   }
+  message('Invalid args for restez, searching online ....')
   rentrez::entrez_fetch(db = db, id = id, rettype = rettype,
                         retmode = retmode, ...)
 }
