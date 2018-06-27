@@ -33,6 +33,7 @@ reference:
     - entrez_fetch
 - title: Data
   desc: Example data
+  contents:
     - record
 - title: Internal functions
   desc: Private internal functions, documented here for openness

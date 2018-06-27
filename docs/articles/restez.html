@@ -168,8 +168,8 @@ You've selected a total of 30 file types. These represent:
 ● 'Rodent'
 Each file contains about 250 MB of decompressed data.
 30 files amounts to about 7.5 GB
-Additionally, the resulting SQL database takes about 500 MB per file
-In total, the uncompressed files and SQL database should amount to 22.5 GB Is that OK?
+Additionally, the resulting SQL database takes about 50 MB per file
+In total, the uncompressed files and SQL database should amount to 9 GB Is that OK?
 Enter any key to continue or press Esc to quit 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────
 Downloading ...
@@ -195,37 +195,65 @@ Downloading ...
 <a href="#checking-the-setup" class="anchor"></a>1.4 Checking the setup</h2>
 <p>After the download and the database creation steps are complete, we can confirm our setup with the following commands.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw"><a href="../reference/restez_path_get.html">restez_path_get</a></span>())
-<span class="kw"><a href="../reference/restez_status.html">restez_status</a></span>()</code></pre></div>
+<span class="kw"><a href="../reference/restez_status.html">restez_status</a></span>()
+(<span class="kw"><a href="../reference/restez_ready.html">restez_ready</a></span>())</code></pre></div>
 <pre><code>[1] "~/Desktop/restez"
-Checking setup status ...
+Checking setup status at '~/Desktop/restez' ...
 ... found 31 files in 'downloads/'
-... totalling 7.28 GB
-... found 'sql_db' of 12.23 GB</code></pre>
-<p>The above messages tell us that the <code>restez</code> path is set to the desktop and that the <code>restez</code> folder contains a database of 12.23 GB and that the downloads folder contains all of the rodent downloads, 7.28 GB.</p>
+... totalling 7.2 GB
+... found 'sql_db' of 1.31 GB
+[1] TRUE</code></pre>
+<p>The above messages tell us that the <code>restez</code> path is set to the desktop and that the <code>restez</code> folder contains a database of 1.31 GB and that the downloads folder contains all of the rodent downloads, 7.2 GB.</p>
 <p>If your status shows the same, then you are ready to move to the next section.</p>
 </div>
 </div>
 <div id="query" class="section level1">
 <h1 class="hasAnchor">
 <a href="#query" class="anchor"></a>2. Query</h1>
-<p>In this section we will explain how you make queries to your local copy of GenBank.</p>
-<div id="get-methods" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-methods" class="anchor"></a>2.1 Get methods</h2>
-</div>
-<div id="other-methods" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-methods" class="anchor"></a>2.2 Other methods</h2>
-</div>
+<p>Once a restez database has been set up we can query the database using the <code>gb_*_get()</code> functions. These functions allow us to retreive specific coulmns in the database: ‘sequence’, ‘definition’, ‘accession’, ‘version’ and ‘organism’. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use <code><a href="../reference/list_db_ids.html">list_db_ids()</a></code> to identify accession numbers in the database. We could also use <code>entrez_search()</code> provided the database contains sequences of interest to us, see <a href="https://antonellilab.github.io/restez/articles/search_and_fetch.html">‘search and fetch’</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
+<span class="co"># tell restez where to look for the database</span>
+<span class="co"># this must always be done whenever a new session is run</span>
+<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'~/Desktop'</span>)
+<span class="co"># select the top 100 accession IDs in the database</span>
+ids &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>)
+id &lt;-<span class="st"> </span><span class="kw">sample</span>(ids, <span class="dv">1</span>)
+<span class="co"># sequence</span>
+(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))
+<span class="co"># definition</span>
+(<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))
+<span class="co"># version</span>
+(<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))
+<span class="co"># organism</span>
+(<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))
+<span class="co"># fasta</span>
+<span class="kw">cat</span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))
+<span class="co"># Note, for large databases these requests can take a long time to complete.</span>
+<span class="co"># Always try and limit the size of the database by specifying min and max</span>
+<span class="co"># sequence lengths with db_create()</span></code></pre></div>
+<p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://antonellilab.github.io/restez/articles/parsing.html">GenBank record parsing</a>.</p>
 </div>
 <div id="entrez" class="section level1">
 <h1 class="hasAnchor">
 <a href="#entrez" class="anchor"></a>3. Entrez</h1>
-<p>It this tutorial, we will explain how entrez wrappers are part of the <code>restez</code> pacakge. These allow a user to make use of the local GenBank using functions that were built for <a href="https://github.com/ropensci/rentrez"><code>rentrez</code></a>. This minimises the amount of coding changes required for any Entrez dependent code.</p>
-<div id="rentrez-wrappers" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rentrez-wrappers" class="anchor"></a>3.1 rentrez wrappers</h2>
-</div>
+<p>Entrez wrappers are part of the <code>restez</code> package. These allow a user to make use of the local GenBank using functions that were built for <a href="https://github.com/ropensci/rentrez"><code>rentrez</code></a>. This minimises the amount of coding changes required for any Entrez dependent code.</p>
+<p>Currently, only <code><a href="../reference/entrez_fetch.html">entrez_fetch()</a></code> is available with restez and only text formatted rettypes are allowed.</p>
+<p>We can use <code><a href="../reference/entrez_fetch.html">restez::entrez_fetch</a></code> with exactly the same arguments as <code><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">rentrez::entrez_fetch()</a></code> and if any of the IDs provided are not available locally, they are passed to <code><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">rentrez::entrez_fetch()</a></code> for searching online.</p>
+<p>In this example, we are interested in rodent cytB sequences between 250 and 2000 bp. We can perform a search with <code><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_search">rentrez::entrez_search()</a></code> and then call <code><a href="../reference/entrez_fetch.html">restez::entrez_fetch()</a></code> to minimise the use of the internet. We can even make use of a web history object for any sequences not available locally.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
+<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'~/Desktop'</span>)
+<span class="co"># search for relevant sequences</span>
+search_term &lt;-<span class="st"> 'txid33553[Organism:exp] AND cytb [GENE] AND 250:2000[SLEN]'</span>
+<span class="co"># it is best to call rentrez functions with :: to avoid confusion</span>
+search_obj &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">term =</span> search_term, <span class="dt">use_history =</span> <span class="ot">TRUE</span>)
+<span class="co"># retrieve accession IDs</span>
+accessions &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>,
+                                    <span class="dt">web_history =</span> search_obj<span class="op">$</span>web_history,
+                                    <span class="dt">rettype =</span> <span class="st">'acc'</span>)
+accessions &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="dt">x =</span> accessions, <span class="dt">split =</span> <span class="st">'</span><span class="ch">\\</span><span class="st">n'</span>)[[<span class="dv">1</span>]]
+accessions &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="dt">pattern =</span> <span class="st">'</span><span class="ch">\\</span><span class="st">.[0-9]+'</span>, <span class="dt">replacement =</span> <span class="st">''</span>, <span class="dt">x =</span> accessions)
+<span class="co"># get fasta sequences</span>
+res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> accessions, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</code></pre></div>
 </div>
   </div>
 
@@ -243,17 +271,8 @@ Checking setup status ...
       <li><a href="#checking-the-setup">1.4 Checking the setup</a></li>
       </ul>
 </li>
-      <li>
-<a href="#query">2. Query</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#get-methods">2.1 Get methods</a></li>
-      <li><a href="#other-methods">2.2 Other methods</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#entrez">3. Entrez</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#rentrez-wrappers">3.1 rentrez wrappers</a></li>
-      </ul>
-</li>
+      <li><a href="#query">2. Query</a></li>
+      <li><a href="#entrez">3. Entrez</a></li>
       </ul>
 </div>
       </div>
