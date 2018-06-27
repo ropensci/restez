@@ -43,8 +43,9 @@ Downloading sequences and sequence information from GenBank [@Benson2013] and re
 
 The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
 
-![restez outline](outline.png)
-**Figure 1. The functions and file structure for downloading, setting up and querying a local copy of GenBank.`**
+<img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"/>
+
+**Figure 1. The functions and file structure for downloading, setting up and querying a local copy of GenBank.**
 
 ##Rentrez integration
 
