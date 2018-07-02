@@ -33,7 +33,6 @@ custom_download <- function(...) {
       method = "curl",
       extra = "--connect-timeout 120 --retry 3",
       cacheOK = FALSE,
-
          quiet = TRUE
     )
   }

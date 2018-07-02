@@ -52,7 +52,7 @@ gb_fasta_get <- function(id, width=80) {
   if (nrow(res) == 0) {
     return(NULL)
   }
-  fasta <- vapply(1:nrow(res), cnvrt, character(1))
+  fasta <- vapply(seq_len(nrow(res)), cnvrt, character(1))
   names(fasta) <- res[['accession']]
   fasta
 }

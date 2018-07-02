@@ -23,7 +23,7 @@
 #' @example examples/entrez_fetch.R
 #' @export
 entrez_fetch <- function(db, id=NULL, rettype, retmode="", ...) {
-  # https://www.ncbi.nlm.nih.gov/books/NBK25499/table/chapter4.T._valid_values_of__retmode_and/
+  # NCBI table https://tinyurl.com/yb5e7q9b
   if (db %in% c('nucleotide', 'nuccore')) {
     if (rettype == 'fasta' & retmode != 'xml') {
       return(entrez_fasta_get(db = db, id = id, rettype = rettype,
