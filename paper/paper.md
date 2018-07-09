@@ -39,9 +39,9 @@ bibliography: paper.bib
 
 #Summary
 
-Downloading sequences and sequence information from GenBank [@Benson2013] and related NCBI databases is often performed via the NCBI API, Entrez [@Ostell2002]. Entrez, however, has a limit on the number of requests, thus downloading large amounts of sequence data in this way can be inefficient. For situations where a large number of  Entrez calls are made, downloading may take days, weeks or even months and could even result in a user’s IP address being blacklisted from the NCBI services due to server overload. Additionally, Entrez limits the number of entries that can be retrieved at once, requiring a user to develop code for querying in batches.
+Downloading sequences and sequence information from GenBank [@Benson2013] and related NCBI databases is often performed via the NCBI API, Entrez [@Ostell2002]. Entrez, however, has a limit on the number of requests, thus downloading large amounts of sequence data in this way can be inefficient. For situations where a large number of Entrez calls is made, downloading may take days, weeks or even months and could result in a user’s IP address being blacklisted from the NCBI services due to server overload. Additionally, Entrez limits the number of entries that can be retrieved at once, requiring a user to develop code for querying in batches.
 
-The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
+The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a computer with currently standard capabilities, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
 
 <img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"/>
 
@@ -49,7 +49,7 @@ The `restez` package [@restez_z] aims to make sequence retrieval more efficient 
 
 ##Rentrez integration
 
-`rentrez` [@Winter2017] is a popular R package for querying NCBI’s databases via Entrez in R. To maximize the compatibility of `restez`, we implemented wrapper functions with the same names and arguments as the `rentrez` equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database a secondary call to Entrez is made via the internet. This allows for easy employment of `restez` in scripts and packages that are already using `rentrez`. At a minimum, a user currently using `rentrez` will only need to create a local, subset of the GenBank database and call `restez` instead of `rentrez`.
+`rentrez` [@Winter2017] is a popular R package for querying NCBI’s databases via Entrez in R. To maximize the compatibility of `restez`, we implemented wrapper functions with the same names and arguments as the `rentrez` equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database a secondary call to Entrez is made via the internet. This allows for easy employment of `restez` in scripts and packages that are already using `rentrez`. At a minimum, a user currently using `rentrez` will only need to create a local subset of the GenBank database and call `restez` instead of `rentrez`.
 
 ##A small example
 
@@ -86,6 +86,8 @@ restez_path_set(filepath = 'restez_db')
 db_download(db = 'nucleotide') # Interactively download GenBank data
 db_create(db = 'nucleotide')
 ```
+Now when re-running the first `phylotaR` code block with the inclusion of the `restez` package, the procedure completes approximately eight times faster.
+
 ```{r}
 # run phylotaR again
 library(phylotaR)
@@ -97,6 +99,10 @@ run(wd = wd)
 ```
 
 **For more detailed and up-to-date examples and tutorials, see the `restez` GitHub page [@restez_gh].**
+
+#Availability
+
+`restez` is open source software made available under the MIT license. At time of writing, it can be installed from its GitHub source code repository using the `devtools` package, e.g. as follows: `devtools::install_github("AntonelliLab/restez")`
 
 #Funding
 
