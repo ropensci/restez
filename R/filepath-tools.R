@@ -216,12 +216,16 @@ restez_ready <- function(connection = NULL) {
 #' @description Safely creates returns a connection to the local database. If
 #' database connection cannot be made, an error is returned.
 #' @return connection
+#' @export
 connect <- function() {
   if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
                          dbname = sql_path_get())) {
     stop('Unable to connect, is the restez path set?')
   }
-  DBI::dbConnect(drv = MonetDBLite::MonetDBLite(), dbname = sql_path_get())
+  connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
+                               dbname = sql_path_get())
+  assign(x = 'connection', value = connection, envir = .GlobalEnv)
+  invisible(connection)
 }
 
 #' @name disconnect
@@ -229,6 +233,8 @@ connect <- function() {
 #' @family setup
 #' @description Safely disconnect form a connection
 #' @return NULL
-disconnect <- function(connection) {
+#' @export
+disconnect <- function() {
+  connection <- get(x = 'connection', envir = .GlobalEnv)
   DBI::dbDisconnect(conn = connection, shutdown = TRUE)
 }
