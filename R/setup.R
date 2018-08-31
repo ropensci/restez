@@ -106,14 +106,14 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' Currently only GenBank/nucleotide/nuccore database is supported.
 #' @details Decompresses any .seq.tar files to create .seq files, .seq.tar files
 #' are deleted after decompression.
-#' 
+#'
 #' All .seq files are added to the database. A user can specify sequence limit
 #' sizes for those sequences to be added to the database -- smaller databases
 #' are faster to  search and is best to limit the database size if possible.
-#' 
+#'
 #' Whenever this function is run, the old database is deleted and a new one
 #' created.
-#' 
+#'
 #' If overwrite=TRUE, any .seq file with the same name as the newly downloaded
 #' .seq.tar files will be overwritten.
 #' @param db_type character, database type
@@ -184,7 +184,7 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
 #' @return NULL
 #' @export
 #' @example examples/demo_db_create.R
-demo_db_create <- function(db_type='nucleotide', n = 100) {
+demo_db_create <- function(db_type='nucleotide', n=100) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
@@ -195,5 +195,5 @@ demo_db_create <- function(db_type='nucleotide', n = 100) {
   restez_path_check()
   # create
   df <- mock_gb_df_generate(n = n)
-  gb_sql_add(df = df, database = 'nucleotide')
+  gb_sql_add(df = df, database = db_type)
 }

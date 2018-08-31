@@ -37,8 +37,9 @@ demo_db_create(n = 100)
 db_delete()
 }
 \seealso{
-Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
+Other setup: \code{\link{connect}},
+  \code{\link{db_create}}, \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{disconnect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

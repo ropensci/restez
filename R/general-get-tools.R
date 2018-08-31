@@ -11,7 +11,8 @@
 #' @export
 #' @example examples/list_db_ids.R
 list_db_ids <- function(db = 'nucleotide', n=100) {
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(), dbname = sql_path_get())
+  connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
+                               dbname = sql_path_get())
   if (db == 'nucleotide') {
     sttmnt <- "SELECT accession from nucleotide"
     if (!is.null(n)) {

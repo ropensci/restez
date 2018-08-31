@@ -12,7 +12,7 @@ gb_sql_query <- function(nm, id) {
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT accession,", nm,
                 " FROM nucleotide WHERE accession IN ", qry_id)
-  connection <- DBI::dbConnect(drv = RSQLite::SQLite(),
+  connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
                                dbname = sql_path_get())
   on.exit(DBI::dbDisconnect(conn = connection))
   qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)

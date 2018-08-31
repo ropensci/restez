@@ -4,14 +4,19 @@
 \alias{restez_ready}
 \title{Is restez ready?}
 \usage{
-restez_ready()
+restez_ready(connection = NULL)
+}
+\arguments{
+\item{connection}{A connection for checking. Default NULL.}
 }
 \value{
 T/F
 }
 \description{
 Returns TRUE if a restez SQL database is available. Use
-restez_status() for more information.
+restez_status() for more information. If a connection is already open,
+provide the connection as an argument. The function will then test whether
+the conection is set up correctly and not empty.
 }
 \examples{
 library(restez)
@@ -21,10 +26,10 @@ demo_db_create()
 (restez_ready())
 }
 \seealso{
-Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}},
-  \code{\link{restez_path_get}},
+Other setup: \code{\link{connect}},
+  \code{\link{db_create}}, \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
+  \code{\link{disconnect}}, \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},
   \code{\link{restez_status}}

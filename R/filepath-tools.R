@@ -112,7 +112,7 @@ restez_path_check <- function() {
 #' @example examples/db_delete.R
 db_delete <- function(everything = TRUE) {
   if (file.exists(sql_path_get())) {
-    file.remove(sql_path_get())
+    unlink(sql_path_get(), recursive = TRUE)
   }
   if (everything) {
     if (dir.exists(restez_path_get())) {
@@ -190,11 +190,45 @@ restez_status <- function() {
 #' @title Is restez ready?
 #' @family setup
 #' @description Returns TRUE if a restez SQL database is available. Use
-#' restez_status() for more information.
+#' restez_status() for more information. If a connection is already open,
+#' provide the connection as an argument. The function will then test whether
+#' the conection is set up correctly and not empty.
+#' @param connection A connection for checking. Default NULL.
 #' @return T/F
 #' @export
 #' @example examples/restez_ready.R
-restez_ready <- function() {
+restez_ready <- function(connection = NULL) {
+  has_tables <- function() {
+    if (is.null(connection)) {
+      connection <- connect()
+      on.exit(disconnect(connection))
+    }
+    res <- length(DBI::dbListTables(conn = connection)) > 0
+  }
   fp <- sql_path_get()
-  inherits(fp, 'character') && length(fp) == 1 && file.exists(fp)
+  inherits(fp, 'character') && length(fp) == 1 && dir.exists(fp) &&
+    has_tables()
+}
+
+#' @name connect
+#' @title Connect to the database
+#' @family setup
+#' @description Safely creates returns a connection to the local database. If
+#' database connection cannot be made, an error is returned.
+#' @return connection
+connect <- function() {
+  if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
+                         dbname = sql_path_get())) {
+    stop('Unable to connect, is the restez path set?')
+  }
+  DBI::dbConnect(drv = MonetDBLite::MonetDBLite(), dbname = sql_path_get())
+}
+
+#' @name disconnect
+#' @title Disconnect from a database
+#' @family setup
+#' @description Safely disconnect form a connection
+#' @return NULL
+disconnect <- function(connection) {
+  DBI::dbDisconnect(conn = connection, shutdown = TRUE)
 }

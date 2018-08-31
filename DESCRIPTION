@@ -17,7 +17,7 @@ Depends:
 Imports:
     utils,
     rentrez,
-    RSQLite,
+    MonetDBLite,
     DBI,
     R.utils,
     downloader,
