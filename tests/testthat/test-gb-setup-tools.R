@@ -44,11 +44,10 @@ test_that('gb_df_generate() works', {
   expect_true(all(colnames(df) %in% expctd_clnms))
 })
 test_that('gb_sql_add() works', {
-  dir.create('test_db_fldr')
-  restez_path_set('test_db_fldr')
+  restez:::setup()
+  on.exit(restez:::cleanup())
   df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
   restez:::gb_sql_add(df = df, database = 'nucleotide')
   expect_true(file.exists(restez:::sql_path_get()))
-  restez:::cleanup()
 })
 restez:::cleanup()

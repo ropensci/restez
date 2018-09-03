@@ -25,6 +25,7 @@ for large databases.
 \examples{
 library(restez)
 restez_path_set(filepath = tempdir())
+restez_connect()
 demo_db_create(n = 10)
 # Warning: not recommended for real databases
 #  with potentially millions of IDs
@@ -42,6 +43,7 @@ cat(fasta_file)
 
 
 # delete after example
+restez_disconnect()
 db_delete()
 }
 \seealso{

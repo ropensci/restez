@@ -32,9 +32,11 @@ db_download()
 }
 }
 \seealso{
-Other setup: \code{\link{connect}},
+Other setup: \code{\link{connection_get}},
   \code{\link{db_create}}, \code{\link{db_delete}},
-  \code{\link{demo_db_create}}, \code{\link{disconnect}},
+  \code{\link{demo_db_create}},
+  \code{\link{restez_connect}},
+  \code{\link{restez_disconnect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

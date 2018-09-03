@@ -1,5 +1,6 @@
 library(restez)
 restez_path_set(tempdir())
+restez_connect()
 demo_db_create()
 # return fasta record
 fasta_res <- entrez_fetch(db = 'nucleotide',
@@ -21,4 +22,5 @@ cat(gb_res)
 #                        rettype = 'gb')
 
 # delete demo after example
+restez_disconnect()
 db_delete()

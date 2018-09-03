@@ -11,8 +11,7 @@ records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # SETUP
 restez:::cleanup()
-dir.create('test_db_fldr')
-restez_path_set(filepath = 'test_db_fldr')
+restez:::setup()
 df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
 restez:::gb_sql_add(df = df, database = 'nucleotide')

@@ -190,51 +190,67 @@ restez_status <- function() {
 #' @title Is restez ready?
 #' @family setup
 #' @description Returns TRUE if a restez SQL database is available. Use
-#' restez_status() for more information. If a connection is already open,
-#' provide the connection as an argument. The function will then test whether
-#' the conection is set up correctly and not empty.
-#' @param connection A connection for checking. Default NULL.
+#' restez_status() for more information.
 #' @return T/F
 #' @export
 #' @example examples/restez_ready.R
-restez_ready <- function(connection = NULL) {
+restez_ready <- function() {
   has_tables <- function() {
-    if (is.null(connection)) {
-      connection <- connect()
-      on.exit(disconnect(connection))
+    res <- FALSE
+    connection <- getOption('restez_connection')
+    if (!is.null(connection)) {
+      res <- length(DBI::dbListTables(conn = connection)) > 0
     }
-    res <- length(DBI::dbListTables(conn = connection)) > 0
   }
   fp <- sql_path_get()
   inherits(fp, 'character') && length(fp) == 1 && dir.exists(fp) &&
     has_tables()
 }
 
-#' @name connect
-#' @title Connect to the database
+#' @name restez_connect
+#' @title Connect to the restez database
 #' @family setup
 #' @description Safely creates returns a connection to the local database. If
 #' database connection cannot be made, an error is returned.
-#' @return connection
+#' @return NULL
 #' @export
-connect <- function() {
+restez_connect <- function() {
   if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
                          dbname = sql_path_get())) {
     stop('Unable to connect, is the restez path set?')
   }
+  message('Remember to run `restez_disconnect()`')
   connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
                                dbname = sql_path_get())
-  assign(x = 'connection', value = connection, envir = .GlobalEnv)
-  invisible(connection)
+  options('restez_connection' = connection)
+  NULL
 }
 
-#' @name disconnect
-#' @title Disconnect from a database
+#' @name restez_disconnect
+#' @title Disconnect from restez database
 #' @family setup
-#' @description Safely disconnect form a connection
+#' @description Safely disconnect from the restez connection
 #' @return NULL
 #' @export
-disconnect <- function() {
-  connection <- get(x = 'connection', envir = .GlobalEnv)
-  DBI::dbDisconnect(conn = connection, shutdown = TRUE)
+restez_disconnect <- function() {
+  connection <- getOption('restez_connection')
+  if (!is.null(connection)) {
+    DBI::dbDisconnect(conn = connection, shutdown = TRUE)
+    options('restez_connection' = NULL)
+  }
+  NULL
+}
+
+#' @name connection_get
+#' @title Retrieve restez connection
+#' @family setup
+#' @description Safely acquire the restez connection. Raises error if no
+#' connection set.
+#' @return connection
+connection_get <- function() {
+  connection <- getOption('restez_connection')
+  if (is.null(connection)) {
+    stop('No restez connection. Did you run `restez_connect`?')
+  }
+  connection
 }

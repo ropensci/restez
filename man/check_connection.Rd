@@ -37,7 +37,7 @@ Other private: \code{\link{cleanup}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
   \code{\link{mock_seq}}, \code{\link{restez_path_check}},
   \code{\link{restez_rl}},
-  \code{\link{save_download_details}},
+  \code{\link{save_download_details}}, \code{\link{setup}},
   \code{\link{sql_path_get}}, \code{\link{testdatadir_get}}
 }
 \author{

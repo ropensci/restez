@@ -4,6 +4,7 @@
 #' @return NULL
 #' @family private
 cleanup <- function() {
+  restez_disconnect()
   restez_path_unset()
   if (dir.exists('test_db_fldr')) {
     unlink('test_db_fldr', recursive = TRUE)
@@ -11,6 +12,17 @@ cleanup <- function() {
   if (file.exists('test_records.txt')) {
     file.remove('test_records.txt')
   }
+}
+
+#' @name setup
+#' @title Set up test common test data
+#' @description Creates temporary test folders.
+#' @return NULL
+#' @family private
+setup <- function() {
+  dir.create('test_db_fldr')
+  restez_path_set(filepath = 'test_db_fldr')
+  restez_connect()
 }
 
 #' @name testdatadir_get

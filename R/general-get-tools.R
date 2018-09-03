@@ -11,8 +11,7 @@
 #' @export
 #' @example examples/list_db_ids.R
 list_db_ids <- function(db = 'nucleotide', n=100) {
-  connection <- connect()
-  on.exit(disconnect(connection))
+  connection <- connection_get()
   if (db == 'nucleotide') {
     sttmnt <- "SELECT accession from nucleotide"
     if (!is.null(n)) {

@@ -17,18 +17,22 @@ folder.
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
+restez_connect()
 demo_db_create(n = 10)
 db_delete(everything = FALSE)
 # Will not run: gb_sequence_get(id = 'demo_1')
 # only the SQL database is deleted
+restez_disconnect()
 db_delete(everything = TRUE)
 # Now returns NULL
 (restez_path_get())
 }
 \seealso{
-Other setup: \code{\link{connect}},
+Other setup: \code{\link{connection_get}},
   \code{\link{db_create}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}}, \code{\link{disconnect}},
+  \code{\link{demo_db_create}},
+  \code{\link{restez_connect}},
+  \code{\link{restez_disconnect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

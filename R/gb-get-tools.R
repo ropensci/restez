@@ -12,12 +12,10 @@ gb_sql_query <- function(nm, id) {
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT accession,", nm,
                 " FROM nucleotide WHERE accession IN ", qry_id)
-  connection <- connect()
-  on.exit(disconnect(connection))
+  connection <- connection_get()
   qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
   on.exit(expr = {
     DBI::dbClearResult(res = qry_res)
-    DBI::dbDisconnect(conn = connection)
   })
   res <- DBI::dbFetch(res = qry_res)
   res

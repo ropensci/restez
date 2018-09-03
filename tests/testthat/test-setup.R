@@ -14,16 +14,15 @@ mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq')
 context('Testing \'setup\'')
 restez:::cleanup()
 test_that('demo_db_create() works', {
-  dir.create('test_db_fldr')
-  restez_path_set('test_db_fldr')
+  restez:::setup()
+  on.exit(restez:::cleanup())
   demo_db_create()
   sequence <- gb_sequence_get('demo_1')[[1]]
   expect_true(grepl(pattern = '[atcg]', x = sequence))
-  restez:::cleanup()
 })
 test_that('db_create() works', {
-  dir.create('test_db_fldr')
-  restez_path_set('test_db_fldr')
+  restez:::setup()
+  on.exit(restez:::cleanup())
   fp <- file.path(restez:::dwnld_path_get(), 'test.seq')
   rndm_rcrds <- sample(records, nrcrds)
   record_text <- paste0(unlist(rndm_rcrds), collapse = '\n')
@@ -31,11 +30,10 @@ test_that('db_create() works', {
   R.utils::gzip(fp)
   db_create()
   expect_true(dir.exists(restez:::sql_path_get()))
-  restez:::cleanup()
 })
 test_that('db_download() works', {
-  dir.create('test_db_fldr')
-  restez_path_set('test_db_fldr')
+  restez:::setup()
+  on.exit(restez:::cleanup())
   res <- with_mock(
     `restez:::check_connection` = function() TRUE,
     `restez:::identify_latest_genbank_release_notes` = function() 1,
@@ -48,6 +46,5 @@ test_that('db_download() works', {
     restez:::db_download()
   )
   expect_true(res)
-  restez:::cleanup()
 })
 restez:::cleanup()

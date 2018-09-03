@@ -39,6 +39,6 @@ Other private: \code{\link{check_connection}},
   \code{\link{mock_gb_df_generate}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
   \code{\link{mock_seq}}, \code{\link{restez_path_check}},
-  \code{\link{save_download_details}},
+  \code{\link{save_download_details}}, \code{\link{setup}},
   \code{\link{sql_path_get}}, \code{\link{testdatadir_get}}
 }

@@ -87,9 +87,8 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @return NULL
 #' @family private
 gb_sql_add <- function(df, database) {
-  connection <- connect()
-  on.exit(disconnect(connection))
-  if (restez_ready(connection)) {
+  connection <- connection_get()
+  if (restez_ready()) {
     DBI::dbWriteTable(conn = connection, name = database, value = df,
                       append = TRUE)
   } else {

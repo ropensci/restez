@@ -37,6 +37,6 @@ Other private: \code{\link{check_connection}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
   \code{\link{mock_seq}}, \code{\link{restez_path_check}},
   \code{\link{restez_rl}},
-  \code{\link{save_download_details}},
+  \code{\link{save_download_details}}, \code{\link{setup}},
   \code{\link{testdatadir_get}}
 }

@@ -20,6 +20,7 @@ No internet connection required.
 library(restez)
 # set the restez path to a temporary dir
 restez_path_set(filepath = tempdir())
+restez_connect()
 # create demo database
 demo_db_create(n = 100)
 # in the demo, IDs are 'demo_1', 'demo_2' ...
@@ -34,12 +35,14 @@ demo_db_create(n = 100)
 
 # To resovle this issue, always delete a demo database
 #  after an example
+restez_disconnect()
 db_delete()
 }
 \seealso{
-Other setup: \code{\link{connect}},
+Other setup: \code{\link{connection_get}},
   \code{\link{db_create}}, \code{\link{db_delete}},
-  \code{\link{db_download}}, \code{\link{disconnect}},
+  \code{\link{db_download}}, \code{\link{restez_connect}},
+  \code{\link{restez_disconnect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},
