@@ -18,7 +18,7 @@ Imports:
     utils,
     rentrez,
     MonetDBLite,
-    DBI,
+    DBI (>= 1.0.0),
     R.utils,
     downloader,
     RCurl,
