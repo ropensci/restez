@@ -26,7 +26,7 @@ restez_path_unset <- function() {
 #' }
 restez_path_set <- function(filepath) {
   if (!dir.exists(filepath)) {
-    stop('Invalid filepath.')
+    stop('Invalid filepath.', call. = FALSE)
   }
   restez_path <- file.path(filepath, 'restez')
   options(restez_path = file.path(filepath, 'restez'))
@@ -93,7 +93,7 @@ dwnld_path_get <- function() {
 restez_path_check <- function() {
   fp <- restez_path_get()
   if (is.null(fp)) {
-    stop('Restez path not set. Use restez_path_set().')
+    stop('Restez path not set. Use restez_path_set().', .call = FALSE)
   }
   if (!dir.exists(fp)) {
     msg <- paste0('Restez path [', fp, '] does not exist.')
@@ -250,7 +250,7 @@ restez_disconnect <- function() {
 connection_get <- function() {
   connection <- getOption('restez_connection')
   if (is.null(connection)) {
-    stop('No restez connection. Did you run `restez_connect`?')
+    stop('No restez connection. Did you run `restez_connect`?', call. = FALSE)
   }
   connection
 }

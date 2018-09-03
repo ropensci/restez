@@ -88,13 +88,20 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @family private
 gb_sql_add <- function(df, database) {
   connection <- connection_get()
-  if (restez_ready()) {
-    DBI::dbWriteTable(conn = connection, name = database, value = df,
-                      append = TRUE)
-  } else {
-    # field.types <- c('accession' = 'primary key', 'version' = 'varchar',
-    #                  'organism' = 'varchar', 'raw_definition' = '',
-    #                  'raw_sequence' = '', 'raw_record' = '')
-    DBI::dbWriteTable(conn = connection, name = database, value = df)
+  if (!restez_ready()) {
+    DBI::dbBegin(conn = connection)
+    # TODO convert version to integer
+    DBI::dbSendQuery(conn = connection, "CREATE TABLE nucleotide (
+            accession VARCHAR(20),
+            version VARCHAR(20),
+            organism VARCHAR(100),
+            raw_definition BLOB,
+            raw_sequence BLOB,
+            raw_record BLOB,
+            PRIMARY KEY (accession)
+            )")
+    DBI::dbCommit(conn = connection)
   }
+  DBI::dbWriteTable(conn = connection, name = database, value = df,
+                    append = TRUE)
 }
