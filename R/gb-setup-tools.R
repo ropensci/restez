@@ -40,6 +40,8 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL) {
                        FUN = extract_accession)
   versions <- vapply(X = records, FUN.VALUE = character(1),
                      FUN = extract_version)
+  versions <- as.integer(sub(pattern = '^.*\\.', replacement = '',
+                             x = versions))
   definitions <- vapply(X = records, FUN.VALUE = character(1),
                         FUN = extract_definition)
   organisms <- vapply(X = records, FUN.VALUE = character(1),
@@ -90,10 +92,11 @@ gb_sql_add <- function(df, database) {
   connection <- connection_get()
   if (!restez_ready()) {
     DBI::dbBegin(conn = connection)
-    # TODO convert version to integer
+    # https://www.ncbi.nlm.nih.gov/Sequin/acc.html
+    # why does TINYINT not work?
     DBI::dbSendQuery(conn = connection, "CREATE TABLE nucleotide (
             accession VARCHAR(20),
-            version VARCHAR(20),
+            version INT,
             organism VARCHAR(100),
             raw_definition BLOB,
             raw_sequence BLOB,

@@ -71,8 +71,7 @@ mock_org <- function(i) {
 #' @family private
 mock_gb_df_generate <- function(n) {
   accession <- paste0('demo_', 1:n)
-  version <- paste0(accession, '.', sample(x = 1:4, size = length(accession),
-                                           replace = TRUE))
+  version <- sample(x = 1L:4L, size = length(accession), replace = TRUE)
   sequence <- vapply(X = 1:n, FUN = mock_seq, FUN.VALUE = character(1))
   definition <- vapply(X = 1:n, FUN = mock_def, FUN.VALUE = character(1))
   organism <- vapply(X = 1:n, FUN = mock_org, FUN.VALUE = character(1))

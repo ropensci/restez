@@ -132,7 +132,7 @@ gb_organism_get <- function(id) {
 #' @example examples/gb_version_get.R
 gb_version_get <- function(id) {
   res <- gb_sql_query(nm = 'version', id = id)
-  vrs <- res[['version']]
+  vrs <- paste0(res[['accession']], '.', res[['version']])
   names(vrs) <- res[['accession']]
   vrs
 }

@@ -5,13 +5,14 @@ df <- mock_gb_df_generate(n = 100)
 #df <- df[ , -1]
 colnames(df)
 
+
 connection <- connection_get()
 
 DBI::dbBegin(connection)
 # convert version to integer
 DBI::dbSendQuery(connection, "CREATE TABLE nucleotide (
             accession VARCHAR(20),
-            version VARCHAR(20),
+            version INT,
             organism VARCHAR(100),
             raw_definition BLOB,
             raw_sequence BLOB,
@@ -22,9 +23,7 @@ DBI::dbSendQuery(connection, "CREATE TABLE nucleotide (
 
 connection <- connection_get()
 # https://www.ncbi.nlm.nih.gov/Sequin/acc.html
-field.types <- c('accession' = 'varchar(20)', 'version' = 'varchar(20)',
-                 'organism' = 'varchar(100)', 'raw_definition' = 'blob',
-                 'raw_sequence' = 'blob', 'raw_record' = 'blob')
+
 DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df, append = TRUE)
 DBI::dbDataType(connection, df[1, 6])
 
