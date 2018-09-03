@@ -43,9 +43,8 @@ db_create()
 }
 }
 \seealso{
-Other setup: \code{\link{connection_get}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}},
+Other setup: \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{restez_connect}},
   \code{\link{restez_disconnect}},
   \code{\link{restez_path_get}},

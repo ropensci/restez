@@ -20,7 +20,8 @@ data from the SQL database for the get functions.
 }
 \seealso{
 Other private: \code{\link{check_connection}},
-  \code{\link{cleanup}}, \code{\link{custom_download}},
+  \code{\link{cleanup}}, \code{\link{connection_get}},
+  \code{\link{custom_download}},
   \code{\link{dwnld_path_get}},
   \code{\link{entrez_fasta_get}},
   \code{\link{entrez_gb_get}},

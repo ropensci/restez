@@ -16,7 +16,8 @@ ftp file downloads are customized for each operating system.
 }
 \seealso{
 Other private: \code{\link{check_connection}},
-  \code{\link{cleanup}}, \code{\link{dwnld_path_get}},
+  \code{\link{cleanup}}, \code{\link{connection_get}},
+  \code{\link{dwnld_path_get}},
   \code{\link{entrez_fasta_get}},
   \code{\link{entrez_gb_get}},
   \code{\link{extract_accession}},

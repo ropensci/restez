@@ -14,6 +14,7 @@ the google homepage and throws an error if it cannot be reached.
 }
 \seealso{
 Other private: \code{\link{cleanup}},
+  \code{\link{connection_get}},
   \code{\link{custom_download}},
   \code{\link{dwnld_path_get}},
   \code{\link{entrez_fasta_get}},

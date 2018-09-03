@@ -28,9 +28,8 @@ db_delete(everything = TRUE)
 (restez_path_get())
 }
 \seealso{
-Other setup: \code{\link{connection_get}},
-  \code{\link{db_create}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}},
+Other setup: \code{\link{db_create}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{restez_connect}},
   \code{\link{restez_disconnect}},
   \code{\link{restez_path_get}},

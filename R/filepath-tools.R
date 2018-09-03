@@ -210,9 +210,10 @@ restez_ready <- function() {
 #' @name restez_connect
 #' @title Connect to the restez database
 #' @family setup
-#' @description Safely creates returns a connection to the local database. If
-#' database connection cannot be made, an error is returned.
+#' @description Returns a connection to the local database. If database
+#' connection cannot be made, an error is returned.
 #' @return NULL
+#' @example examples/restez_connect.R
 #' @export
 restez_connect <- function() {
   if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
@@ -231,6 +232,7 @@ restez_connect <- function() {
 #' @family setup
 #' @description Safely disconnect from the restez connection
 #' @return NULL
+#' @example examples/restez_disconnect.R
 #' @export
 restez_disconnect <- function() {
   connection <- getOption('restez_connection')
@@ -243,7 +245,7 @@ restez_disconnect <- function() {
 
 #' @name connection_get
 #' @title Retrieve restez connection
-#' @family setup
+#' @family private
 #' @description Safely acquire the restez connection. Raises error if no
 #' connection set.
 #' @return connection

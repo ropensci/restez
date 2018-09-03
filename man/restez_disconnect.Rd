@@ -9,10 +9,22 @@ restez_disconnect()
 \description{
 Safely disconnect from the restez connection
 }
+\examples{
+library(restez)
+fp <- tempdir()
+restez_path_set(filepath = fp)
+restez_connect()
+demo_db_create()
+restez_status()
+# always remember to disconnect from a database when you've finished
+restez_disconnect()
+db_delete()
+restez_status()
+}
 \seealso{
-Other setup: \code{\link{connection_get}},
-  \code{\link{db_create}}, \code{\link{db_delete}},
-  \code{\link{db_download}}, \code{\link{demo_db_create}},
+Other setup: \code{\link{db_create}},
+  \code{\link{db_delete}}, \code{\link{db_download}},
+  \code{\link{demo_db_create}},
   \code{\link{restez_connect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},

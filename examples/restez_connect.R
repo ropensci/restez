@@ -1,8 +1,10 @@
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
+# always run connect before creating or querying a database
 restez_connect()
 demo_db_create()
-(restez_ready())
+restez_status()
 restez_disconnect()
 db_delete()
+restez_status()

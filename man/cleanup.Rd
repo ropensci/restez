@@ -11,6 +11,7 @@ Removes all temporary test data created.
 }
 \seealso{
 Other private: \code{\link{check_connection}},
+  \code{\link{connection_get}},
   \code{\link{custom_download}},
   \code{\link{dwnld_path_get}},
   \code{\link{entrez_fasta_get}},
