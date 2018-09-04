@@ -47,7 +47,7 @@ test_that('gb_sql_add() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
   df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
-  restez:::gb_sql_add(df = df, database = 'nucleotide')
+  restez:::gb_sql_add(df = df)
   expect_true(file.exists(restez:::sql_path_get()))
 })
 restez:::cleanup()

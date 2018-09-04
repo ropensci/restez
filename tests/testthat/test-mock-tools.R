@@ -11,7 +11,8 @@ test_that('mock_rec() works', {
 test_that('mock_seq() works', {
   sequence <- restez:::mock_seq(i = 1, sqlngth = 100)
   expect_true(grepl(pattern = '[atcg]', x = sequence))
-  expect_true(nchar(sequence) == 100)
+  expect_true(nchar(gsub(pattern = '[^atcg]', replacement = '',
+                         x = sequence)) == 100)
 })
 test_that('mock_def() works', {
   def <- restez:::mock_def(i = 1)

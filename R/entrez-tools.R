@@ -1,3 +1,14 @@
+#' @name message_missing
+#' @title Produce message of missing IDs
+#' @description Sends message to console stating number of missing IDs.
+#' @param n Number of missing IDs
+#' @return NULL
+#' @family private
+message_missing <- function(n) {
+  msg <- paste0('[', n, '] id(s) are unavailable locally, searching online.')
+  message(msg)
+}
+
 #' @name entrez_fasta_get
 #' @title Get Entrez fasta
 #' @description Return fasta format as expected from
@@ -19,7 +30,7 @@ entrez_fasta_get <- function(id, ...) {
     res <- ''
   }
   if (length(mssng) > 0) {
-    message(paste0(length(mssng), ' unavailable locally, searching online.'))
+    message_missing(length(mssng))
     rentrez_fastas <- rentrez::entrez_fetch(id = mssng, ...)
     res <- paste0(res, rentrez_fastas)
   }
@@ -47,7 +58,7 @@ entrez_gb_get <- function(id, ...) {
     res <- ''
   }
   if (length(mssng) > 0) {
-    message(paste0(length(mssng), ' unavailable locally, searching online.'))
+    message_missing(length(mssng))
     rentrez_recs <- rentrez::entrez_fetch(id = mssng, ...)
     res <- paste0(res, rentrez_recs)
   }

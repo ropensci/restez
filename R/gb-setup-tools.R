@@ -36,26 +36,31 @@ flatfile_read <- function(filepath) {
 #' @return data.frame
 #' @family private
 gb_df_generate <- function(records, min_length=0, max_length=NULL) {
-  accessions <- vapply(X = records, FUN.VALUE = character(1),
-                       FUN = extract_accession)
-  versions <- vapply(X = records, FUN.VALUE = character(1),
-                     FUN = extract_version)
+  infoparts <- unname(vapply(X = records, FUN = extract_inforecpart,
+                             FUN.VALUE = character(1)))
+  seqrecparts <- unname(vapply(X = records, FUN.VALUE = character(1),
+                               FUN = extract_seqrecpart))
+  accessions <- unname(vapply(X = infoparts, FUN.VALUE = character(1),
+                              FUN = extract_accession))
+  versions <- unname(vapply(X = infoparts, FUN.VALUE = character(1),
+                            FUN = extract_version))
   versions <- as.integer(sub(pattern = '^.*\\.', replacement = '',
                              x = versions))
-  definitions <- vapply(X = records, FUN.VALUE = character(1),
-                        FUN = extract_definition)
-  organisms <- vapply(X = records, FUN.VALUE = character(1),
-                      FUN = extract_organism)
-  sequences <- vapply(X = records, FUN.VALUE = character(1),
-                      FUN = extract_sequence)
-  seqlengths <- vapply(X = sequences, FUN = nchar, FUN.VALUE = integer(1))
+  definitions <- unname(vapply(X = infoparts, FUN.VALUE = character(1),
+                               FUN = extract_definition))
+  organisms <- unname(vapply(X = infoparts, FUN.VALUE = character(1),
+                             FUN = extract_organism))
+  # filter by sequence lengths
+  seqlengths <- unname(vapply(X = seqrecparts, FUN = function(x) {
+    nchar(extract_clean_sequence(x))
+    }, FUN.VALUE = integer(1)))
   pull <- seqlengths >= min_length
   if (!is.null(max_length)) {
     pull <- pull & seqlengths <= max_length
   }
   gb_df_create(accessions = accessions[pull], versions = versions[pull],
                organisms = organisms[pull], definitions = definitions[pull],
-               sequences = sequences[pull], records = records[pull])
+               sequences = seqrecparts[pull], records = infoparts[pull])
 }
 
 #' @name gb_df_create
@@ -85,10 +90,9 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @title Add to GenBank SQL database
 #' @description Add records data.frame to SQLite database.
 #' @param df Records data.frame
-#' @param database Database name
 #' @return NULL
 #' @family private
-gb_sql_add <- function(df, database) {
+gb_sql_add <- function(df) {
   connection <- connection_get()
   if (!restez_ready()) {
     DBI::dbBegin(conn = connection)
@@ -105,6 +109,6 @@ gb_sql_add <- function(df, database) {
             )")
     DBI::dbCommit(conn = connection)
   }
-  DBI::dbWriteTable(conn = connection, name = database, value = df,
+  DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
 }

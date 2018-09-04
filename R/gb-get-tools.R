@@ -35,6 +35,7 @@ gb_fasta_get <- function(id, width=80) {
   res <- gb_sql_query(nm = 'raw_definition,raw_sequence', id = id)
   cnvrt <- function(i) {
     sq <- rawToChar(res[i, 'raw_sequence'][[1]])
+    sq <- extract_clean_sequence(sq)
     def <- rawToChar(res[i, 'raw_definition'][[1]])
     n <- nchar(sq)
     if (n > width) {
@@ -66,6 +67,7 @@ gb_fasta_get <- function(id, width=80) {
 gb_sequence_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_sequence', id = id)
   sqs <- lapply(res[['raw_sequence']], rawToChar)
+  sqs <- lapply(sqs, extract_clean_sequence)
   names(sqs) <- res[['accession']]
   unlist(sqs)
 }
@@ -80,8 +82,13 @@ gb_sequence_get <- function(id) {
 #' @export
 #' @example examples/gb_record_get.R
 gb_record_get <- function(id) {
-  res <- gb_sql_query(nm = 'raw_record', id = id)
-  rcs <- lapply(res[['raw_record']], rawToChar)
+  res <- gb_sql_query(nm = 'raw_record,raw_sequence', id = id)
+  infs <- lapply(X = res[['raw_record']], FUN = rawToChar)
+  seqs <- lapply(X = res[['raw_sequence']], FUN = rawToChar)
+  # stick inf and seq together to make complete record
+  rcs <- lapply(X = seq_along(infs), FUN = function(x) {
+    paste0(infs[[x]], 'ORIGIN      \n        ', seqs[[x]])
+  })
   names(rcs) <- res[['accession']]
   unlist(rcs)
 }

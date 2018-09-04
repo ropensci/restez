@@ -168,9 +168,9 @@ db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
     records <- flatfile_read(filepath = flpth)
     df <- gb_df_generate(records = records, min_length = min_length,
                          max_length = max_length)
-    gb_sql_add(df = df, database = 'nucleotide')
+    gb_sql_add(df = df)
   }
-  cat_line('Done. The database is ready to be queried!')
+  cat_line('Done.')
 }
 
 #' @name demo_db_create
@@ -195,5 +195,5 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
   restez_path_check()
   # create
   df <- mock_gb_df_generate(n = n)
-  gb_sql_add(df = df, database = db_type)
+  gb_sql_add(df = df)
 }

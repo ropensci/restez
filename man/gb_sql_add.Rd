@@ -4,12 +4,10 @@
 \alias{gb_sql_add}
 \title{Add to GenBank SQL database}
 \usage{
-gb_sql_add(df, database)
+gb_sql_add(df)
 }
 \arguments{
 \item{df}{Records data.frame}
-
-\item{database}{Database name}
 }
 \description{
 Add records data.frame to SQLite database.
@@ -23,11 +21,14 @@ Other private: \code{\link{check_connection}},
   \code{\link{entrez_gb_get}},
   \code{\link{extract_accession}},
   \code{\link{extract_by_keyword}},
+  \code{\link{extract_clean_sequence}},
   \code{\link{extract_definition}},
   \code{\link{extract_features}},
+  \code{\link{extract_inforecpart}},
   \code{\link{extract_keywords}},
   \code{\link{extract_locus}},
   \code{\link{extract_organism}},
+  \code{\link{extract_seqrecpart}},
   \code{\link{extract_sequence}},
   \code{\link{extract_version}},
   \code{\link{file_download}}, \code{\link{flatfile_read}},
@@ -35,7 +36,7 @@ Other private: \code{\link{check_connection}},
   \code{\link{gb_sql_query}},
   \code{\link{identify_downloadable_files}},
   \code{\link{identify_latest_genbank_release_notes}},
-  \code{\link{mock_def}},
+  \code{\link{message_missing}}, \code{\link{mock_def}},
   \code{\link{mock_gb_df_generate}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
   \code{\link{mock_seq}}, \code{\link{restez_path_check}},

@@ -13,19 +13,22 @@
 #' @family private
 mock_rec <- function(i, definition=NULL, accession=NULL,
                      version=NULL, organism=NULL, sequence=NULL) {
-  paste0('LOCUS       [This is a mock GenBank data record]\n',
-         'DEFINITION  ', definition, '\n',
-         'ACCESSION   ', accession, '\n',
-         'VERSION     ', version, '\n',
-         'KEYWORDS    [keyword]\n',
-         'SOURCE      [tissue, organism]\n',
-         'ORGANISM    ', organism, '\n',
-         'REFERENCE   [reference data]\n',
-         'AUTHORS     [all the authors]\n',
-         'TITLE       [title]\n',
-         'JOURNAL     [journal]\n',
-         'FEATURES    [features]\n',
-         'ORIGIN\n        1 ', sequence, '\n//')
+  rec <- paste0('LOCUS       [This is a mock GenBank data record]\n',
+                'DEFINITION  ', definition, '\n',
+                'ACCESSION   ', accession, '\n',
+                'VERSION     ', version, '\n',
+                'KEYWORDS    [keyword]\n',
+                'SOURCE      [tissue, organism]\n',
+                'ORGANISM    ', organism, '\n',
+                'REFERENCE   [reference data]\n',
+                'AUTHORS     [all the authors]\n',
+                'TITLE       [title]\n',
+                'JOURNAL     [journal]\n',
+                'FEATURES    [features]\n')
+  if (is.null(sequence)) {
+    rec <- paste0(rec, 'ORIGIN\n        1 ', sequence, '\n//')
+  }
+  rec
 }
 
 #' @name mock_seq
@@ -36,8 +39,9 @@ mock_rec <- function(i, definition=NULL, accession=NULL,
 #' @return character
 #' @family private
 mock_seq <- function(i, sqlngth = 10) {
-  paste0(sample(x = c('a', 't', 'c', 'g'), size = sqlngth,
-                replace = TRUE), collapse = '')
+  sq <- paste0(sample(x = c('a', 't', 'c', 'g'), size = sqlngth,
+                      replace = TRUE), collapse = '')
+  paste0('1 ', sq, '\n')
 }
 
 #' @name mock_def
@@ -79,8 +83,7 @@ mock_gb_df_generate <- function(n) {
     mock_rec(i, definition = definition[[i]],
              accession = accession[[i]],
              version = version[[i]],
-             organism = organism[[i]],
-             sequence = sequence[[i]])
+             organism = organism[[i]])
   }, FUN.VALUE = character(1))
   gb_df_create(accessions = accession, versions = version,
                organisms = organism, definitions = definition,

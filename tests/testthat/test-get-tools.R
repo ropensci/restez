@@ -14,7 +14,7 @@ restez:::cleanup()
 restez:::setup()
 df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
-restez:::gb_sql_add(df = df, database = 'nucleotide')
+restez:::gb_sql_add(df = df)
 
 # RUNNING
 context('Testing \'get-tools\'')
@@ -24,11 +24,11 @@ test_that('gb_sql_query() works', {
   expect_true(res[[1]] == id)
   expect_error(restez:::gb_sql_query(nm = 'notathing', id = id))
 })
-# test_that('gb_sequence_get() works', {
-#   id <- sample(ids, 1)
-#   sequence <- gb_sequence_get(id = id)
-#   expect_true(grepl('[atcgn]*', sequence[[1]]))
-# })
+test_that('gb_sequence_get() works', {
+  id <- sample(ids, 1)
+  sequence <- gb_sequence_get(id = id)
+  expect_true(grepl('[atcgn]*', sequence[[1]]))
+})
 test_that('gb_record_get() works', {
   id <- sample(ids, 1)
   record <- gb_record_get(id = id)

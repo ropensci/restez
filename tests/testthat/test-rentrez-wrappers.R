@@ -15,7 +15,7 @@ restez:::cleanup()
 restez:::setup()
 df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
-restez:::gb_sql_add(df = df, database = 'nucleotide')
+restez:::gb_sql_add(df = df)
 
 # RUNNING
 context('Testing \'rentrez-wrappers\'')

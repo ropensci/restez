@@ -1,3 +1,5 @@
+# Background functions
+
 #' @name extract_by_keyword
 #' @title Extract by keyword
 #' @description Search through GenBank record for a keyword and
@@ -20,8 +22,7 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
   if (start_index == -1) {
     return(NULL)
   }
-  part_record <- substr(x = record, start = start_index,
-                        stop = nchar(record))
+  part_record <- substr(x = record, start = start_index, stop = nchar(record))
   end_index <- regexpr(pattern = end_pattern, text = part_record)
   if (end_index == -1) {
     return(NULL)
@@ -30,6 +31,51 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
   res <- sub(pattern = paste0(keyword, '\\s+'), replacement = '', x = res)
   res
 }
+
+#' @name extract_inforecpart
+#' @title Extract the information record part
+#' @description Return information part from GenBank record
+#' @param record GenBank record in text format, character
+#' @details If element is not found, '' returned.
+#' @return character
+#' @family private
+extract_inforecpart <- function(record) {
+  inforecpart <- extract_by_keyword(record = record, keyword = '^',
+                                    end_pattern = 'ORIGIN')
+  if (is.null(inforecpart)) {
+    inforecpart <- ''
+  }
+  inforecpart
+}
+
+#' @name extract_seqrecpart
+#' @title Extract the sequence record part
+#' @description Return sequence part from GenBank record
+#' @param record GenBank record in text format, character
+#' @details If element is not found, '' returned.
+#' @return character
+#' @family private
+extract_seqrecpart <- function(record) {
+  seqrecpart <- extract_by_keyword(record = record, keyword = 'ORIGIN',
+                                   end_pattern = '$')
+  if (is.null(seqrecpart)) {
+    seqrecpart <- ''
+  }
+  seqrecpart
+}
+
+#' @name extract_clean_sequence
+#' @title Extract clean sequence from sequence part
+#' @description Return clean sequence from seqrecpart of a GenBank record
+#' @param seqrecpart Sequence part of a GenBank record, character
+#' @details If element is not found, '' returned.
+#' @return character
+#' @family private
+extract_clean_sequence <- function(seqrecpart) {
+  gsub(pattern = '([0-9]|\\s+|\n)', replacement = '', x = seqrecpart)
+}
+
+# Foreground functions
 
 #' @name extract_version
 #' @title Extract version
@@ -107,14 +153,7 @@ extract_definition <- function(record) {
 #' @return character
 #' @family private
 extract_sequence <- function(record) {
-  sequence <- extract_by_keyword(record = record, keyword = 'ORIGIN',
-                                 end_pattern = '//')
-  if (is.null(sequence)) {
-    return('')
-  }
-  # clean
-  sequence <- gsub('([0-9]|\\s+|\n)', '', sequence)
-  sequence
+  extract_clean_sequence(extract_seqrecpart(record))
 }
 
 #' @name extract_locus
@@ -205,6 +244,8 @@ extract_keywords <- function(record) {
   keyword_text <- strsplit(x = keyword_text, split = ';\\s+')[[1]]
   keyword_text
 }
+
+# Public
 
 #' @name gb_extract
 #' @title Extract elements of a GenBank record
