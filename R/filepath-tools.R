@@ -120,7 +120,7 @@ db_delete <- function(everything = TRUE) {
       restez_path_unset()
     }
   }
-  NULL
+  invisible(NULL)
 }
 
 #' @name restez_status
@@ -224,7 +224,7 @@ restez_connect <- function() {
   connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
                                dbname = sql_path_get())
   options('restez_connection' = connection)
-  NULL
+  invisible(NULL)
 }
 
 #' @name restez_disconnect
@@ -240,7 +240,7 @@ restez_disconnect <- function() {
     DBI::dbDisconnect(conn = connection, shutdown = TRUE)
     options('restez_connection' = NULL)
   }
-  NULL
+  invisible(NULL)
 }
 
 #' @name connection_get
