@@ -46,8 +46,14 @@ restez_path_set <- function(filepath) {
                          'Created: ', Sys.time(), '\n\n',
                          'This is the database folder. ',
                          'It contains all downloaded files ',
-                         'from GenBank and the SQL database.')
+                         'from GenBank plus the SQL database.')
     write(x = readme_msg, file = readme_fl)
+    si_fl <- file.path(restez_path, 'session_info.txt')
+    session_info <- devtools::session_info()
+    write(x = 'SYSTEM\n', file = si_fl)
+    capture.output(session_info[[1]], file = si_fl, append = TRUE)
+    write(x = '\nPACKAGES\n', file = si_fl, append = TRUE)
+    capture.output(session_info[[2]], file = si_fl, append = TRUE)
   }
 }
 
