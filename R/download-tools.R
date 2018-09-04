@@ -91,6 +91,10 @@ file_download <- function(fl, overwrite=FALSE) {
     return(TRUE)
   }
   success <- tryCatch({
+    # TODO: wrap this into an independent R process to:
+    # 1. allow user interruption
+    #    (currently a generic wget exit status 0 is raised)
+    # 2. create a spinning icon
     custom_download(url = gzurl, destfile = gzdest, mode = "wb")
     TRUE
   }, error = function(e) {
