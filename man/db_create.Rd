@@ -39,7 +39,9 @@ If overwrite=TRUE, any .seq file with the same name as the newly downloaded
 library(restez)
 restez_path_set(filepath = 'path/for/downloads')
 db_download()
+restez_connect()
 db_create()
+restez_disconnect()
 }
 }
 \seealso{

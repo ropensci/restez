@@ -127,7 +127,9 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' library(restez)
 #' restez_path_set(filepath = 'path/for/downloads')
 #' db_download()
+#' restez_connect()
 #' db_create()
+#' restez_disconnect()
 #' }
 # db_type: a nod to the future,
 db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
