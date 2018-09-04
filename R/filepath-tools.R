@@ -51,9 +51,9 @@ restez_path_set <- function(filepath) {
     si_fl <- file.path(restez_path, 'session_info.txt')
     session_info <- devtools::session_info()
     write(x = 'SYSTEM\n', file = si_fl)
-    capture.output(session_info[[1]], file = si_fl, append = TRUE)
+    utils::capture.output(session_info[[1]], file = si_fl, append = TRUE)
     write(x = '\nPACKAGES\n', file = si_fl, append = TRUE)
-    capture.output(session_info[[2]], file = si_fl, append = TRUE)
+    utils::capture.output(session_info[[2]], file = si_fl, append = TRUE)
   }
 }
 
