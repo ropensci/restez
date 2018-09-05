@@ -39,22 +39,9 @@ restez_path_set <- function(filepath) {
     cat_line('... Creating ', char(dwnld_path))
     dir.create(dwnld_path)
   }
-  readme_fl <- file.path(restez_path, 'README.txt')
-  if (!file.exists(readme_fl)) {
-    v <- utils::packageVersion("restez")
-    readme_msg <- paste0('restez ', v, '\n',
-                         'Created: ', Sys.time(), '\n\n',
-                         'This is the database folder. ',
-                         'It contains all downloaded files ',
-                         'from GenBank plus the SQL database.')
-    write(x = readme_msg, file = readme_fl)
-    si_fl <- file.path(restez_path, 'session_info.txt')
-    session_info <- devtools::session_info()
-    write(x = 'SYSTEM\n', file = si_fl)
-    utils::capture.output(session_info[[1]], file = si_fl, append = TRUE)
-    write(x = '\nPACKAGES\n', file = si_fl, append = TRUE)
-    utils::capture.output(session_info[[2]], file = si_fl, append = TRUE)
-  }
+  fls <- list.files(path = restez_path, pattern = '.txt')
+  if (!'README.txt' %in% fls) readme_log()
+  if (!'session_info.txt' %in% fls) seshinfo_log()
 }
 
 #' @name restez_path_get

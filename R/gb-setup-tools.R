@@ -1,16 +1,16 @@
 #' @name flatfile_read
 #' @title Read flatfile sequence records
 #' @description Read records from a .seq file.
-#' @param filepath Path to .seq file
+#' @param flpth Path to .seq file
 #' @return list of GenBank records in text format
 #' @family private
-flatfile_read <- function(filepath) {
+flatfile_read <- function(flpth) {
   generate_records <- function(i) {
     indexes <- record_starts[i]:record_ends[i]
     record <- paste0(lines[indexes], collapse = '\n')
     record
   }
-  connection <- file(filepath, open = "r")
+  connection <- file(flpth, open = "r")
   lines <- readLines(con = connection)
   close(connection)
   record_ends <- which(lines == '//')

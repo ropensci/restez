@@ -4,10 +4,10 @@
 \alias{flatfile_read}
 \title{Read flatfile sequence records}
 \usage{
-flatfile_read(filepath)
+flatfile_read(flpth)
 }
 \arguments{
-\item{filepath}{Path to .seq file}
+\item{flpth}{Path to .seq file}
 }
 \value{
 list of GenBank records in text format
@@ -51,8 +51,9 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{message_missing}}, \code{\link{mock_def}},
   \code{\link{mock_gb_df_generate}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
-  \code{\link{mock_seq}}, \code{\link{restez_path_check}},
-  \code{\link{restez_rl}}, \code{\link{setup}},
+  \code{\link{mock_seq}}, \code{\link{readme_log}},
+  \code{\link{restez_path_check}}, \code{\link{restez_rl}},
+  \code{\link{seshinfo_log}}, \code{\link{setup}},
   \code{\link{slctn_get}}, \code{\link{slctn_log}},
   \code{\link{sql_path_get}}, \code{\link{testdatadir_get}}
 }

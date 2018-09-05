@@ -137,6 +137,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
+  read_errors <- FALSE
   # checks
   restez_path_check()
   if (restez_ready() && db_nrows_get() > 0) {
@@ -151,12 +152,20 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
     seq_file <- seq_files[[i]]
     cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
     flpth <- file.path(dpth, seq_file)
-    records <- flatfile_read(filepath = flpth)
-    df <- gb_df_generate(records = records, min_length = min_length,
-                         max_length = max_length)
-    gb_sql_add(df = df)
+    records <- flatfile_read(flpth = flpth)
+    if (length(records) > 0) {
+      df <- gb_df_generate(records = records, min_length = min_length,
+                           max_length = max_length)
+      gb_sql_add(df = df)
+    } else {
+      read_errors <- TRUE
+      cat_line('... ... Hmmmm... no records found in that file.')
+    }
   }
   cat_line('Done.')
+  if (read_errors) {
+    message('Some files failed to be read. Try running db_download() again.')
+  }
 }
 
 #' @name demo_db_create

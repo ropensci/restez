@@ -25,7 +25,7 @@ context('Testing \'setup-tools\'')
 restez:::cleanup()
 test_that('flatfile_read() works', {
   write_fake_records(n = nrcrds)
-  records <- restez:::flatfile_read(filepath = 'test_records.txt')
+  records <- restez:::flatfile_read(flpth = 'test_records.txt')
   expect_true(length(records) == nrcrds)
   restez:::cleanup()
 })

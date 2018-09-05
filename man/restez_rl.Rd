@@ -51,8 +51,9 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{message_missing}}, \code{\link{mock_def}},
   \code{\link{mock_gb_df_generate}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
-  \code{\link{mock_seq}}, \code{\link{restez_path_check}},
-  \code{\link{setup}}, \code{\link{slctn_get}},
-  \code{\link{slctn_log}}, \code{\link{sql_path_get}},
-  \code{\link{testdatadir_get}}
+  \code{\link{mock_seq}}, \code{\link{readme_log}},
+  \code{\link{restez_path_check}},
+  \code{\link{seshinfo_log}}, \code{\link{setup}},
+  \code{\link{slctn_get}}, \code{\link{slctn_log}},
+  \code{\link{sql_path_get}}, \code{\link{testdatadir_get}}
 }

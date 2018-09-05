@@ -6,7 +6,7 @@
 #' @section setup functions:
 #' These functions allow a user to set the filepath for where the GenBank files
 #' should be stored and verify the filepaths.
-#' 
+#'
 #' @section database functions:
 #' These functions to download specific parts of GenBank and to create a local
 #' SQLite database.

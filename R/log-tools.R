@@ -1,4 +1,41 @@
 # LOG TOOLS ----
+#' @name readme_log
+#' @title Create README in restez_path
+#' @description Write notes for the curious sorts who peruse the restez_path.
+#' @return NULL
+#' @family private
+readme_log <- function() {
+  flpth <- file.path(restez_path_get(), 'README.txt')
+  v <- utils::packageVersion("restez")
+  readme <- paste0('Hello! This is restez v', v, '\n\n',
+                   'This file was created: ', Sys.time(), '\n\n',
+                   'This is the restez database folder. ',
+                   'It contains all downloaded files ',
+                   'from GenBank plus the SQL database.\n\n',
+                   'Additionally, it contains useful log information ',
+                   'indicating when the database was created, what files were',
+                   ' added etc. Please provide this logged information if you ',
+                   'raise a bug.',
+                   ' It is best to raise any bug via GitHub issues:\n',
+                   'https://github.com/AntonelliLab/restez/issues')
+  write(x = readme, file = flpth)
+}
+
+#' @name seshinfo_log
+#' @title Log the system session information in restez path
+#' @description Records the session and system information to file.
+#' @return NULL
+#' @family private
+seshinfo_log <- function() {
+  flpth <- file.path(restez_path_get(), 'session_info.txt')
+  session_info <- devtools::session_info()
+  write(x = 'SYSTEM\n', file = flpth)
+  utils::capture.output(session_info[[1]], file = flpth, append = TRUE)
+  write(x = '\nPACKAGES\n', file = flpth, append = TRUE)
+  utils::capture.output(session_info[[2]], file = flpth, append = TRUE)
+}
+
+
 #' @name db_sqlngths_log
 #' @title Log the min and max sequence lengths
 #' @description Log the min and maximum sequnece length used in the created db.
