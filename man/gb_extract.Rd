@@ -29,6 +29,8 @@ exception of 'locus' or 'keywords' that return character vectors and
 The accuracy of these functions cannot be guaranteed due to the enormity of
 the GenBank database. But the function is regularly tested on a range of
 GenBank records.
+
+Note: all non-latin1 characters are converted to '-'.
 }
 \examples{
 library(restez)

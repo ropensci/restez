@@ -143,6 +143,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
   if (restez_ready() && db_nrows_get() > 0) {
     stop('Database already exists.')
   }
+  # TODO: have a is_connected function
   dpth <- dwnld_path_get()
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')

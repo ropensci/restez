@@ -1,5 +1,4 @@
-# Background functions
-
+# Background ----
 #' @name extract_by_keyword
 #' @title Extract by keyword
 #' @description Search through GenBank record for a keyword and
@@ -17,6 +16,8 @@
 #' @return character or NULL
 #' @family private
 extract_by_keyword <- function(record, keyword, end_pattern='\n') {
+  # have to make sure the text is formatted in a readable-format
+  record <- iconv(x = record, from = 'latin1', to = 'latin1', sub = '-')
   # cut record from keyword to end_pattern
   start_index <- regexpr(pattern = keyword, text = record)
   if (start_index == -1) {
@@ -75,7 +76,7 @@ extract_clean_sequence <- function(seqrecpart) {
   gsub(pattern = '([0-9]|\\s+|\n)', replacement = '', x = seqrecpart)
 }
 
-# Foreground functions
+# Foreground ----
 
 #' @name extract_version
 #' @title Extract version
@@ -245,7 +246,7 @@ extract_keywords <- function(record) {
   keyword_text
 }
 
-# Public
+# Public ----
 
 #' @name gb_extract
 #' @title Extract elements of a GenBank record
@@ -259,6 +260,8 @@ extract_keywords <- function(record) {
 #' The accuracy of these functions cannot be guaranteed due to the enormity of
 #' the GenBank database. But the function is regularly tested on a range of
 #' GenBank records.
+#'
+#' Note: all non-latin1 characters are converted to '-'.
 #' @param record GenBank record in text format, character
 #' @param what Which element to extract
 #' @example examples/gb_extract.R
