@@ -4,35 +4,30 @@
 \alias{db_create}
 \title{Create new NCBI database}
 \usage{
-db_create(db_type = "nucleotide", overwrite = FALSE, min_length = 0,
-  max_length = NULL)
+db_create(db_type = "nucleotide", min_length = 0, max_length = NULL)
 }
 \arguments{
 \item{db_type}{character, database type}
 
-\item{overwrite}{T/F, overwrite files already in database?}
-
 \item{min_length}{Minimum sequence length, default 0.}
 
 \item{max_length}{Maximum sequence length, default NULL.}
+
+\item{overwrite}{T/F, overwrite files already in database?}
 }
 \description{
 Create a new local SQL database from downloaded files.
 Currently only GenBank/nucleotide/nuccore database is supported.
 }
 \details{
-Decompresses any .seq.tar files to create .seq files, .seq.tar files
-are deleted after decompression.
+All .seq.gz files are added to the database. A user can specify sequence
+limit sizes for those sequences to be added to the database -- smaller
+databases are faster to  search and is best to limit the database size if
+possible.
 
-All .seq files are added to the database. A user can specify sequence limit
-sizes for those sequences to be added to the database -- smaller databases
-are faster to  search and is best to limit the database size if possible.
-
-Whenever this function is run, the old database is deleted and a new one
-created.
-
-If overwrite=TRUE, any .seq file with the same name as the newly downloaded
-.seq.tar files will be overwritten.
+This function will not overwrite a pre-exisitng database. Old databases must
+be deleted before a new one can be created. Use \code{\link{db_delete}} with
+everything=FALSE to delete an SQL database.
 }
 \examples{
 \dontrun{

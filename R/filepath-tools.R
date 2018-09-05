@@ -132,14 +132,14 @@ db_delete <- function(everything = TRUE) {
 #' @name restez_status
 #' @title Check restez status
 #' @family setup
-#' @description Report to console current setup status of restez.
-#' Determines if the restez path is set, how many downloaded files
-#' there are, if there is an SQL database. If SQL database available, returns
-#' TRUE else FALSE.
+#' @description Report to console current setup status of restez. If SQL
+#' database available, returns TRUE else FALSE.
+#' @param gb_check Check whether last download was from latest GenBank release?
+#' Default TRUE.
 #' @return T/F
 #' @export
 #' @example examples/restez_status.R
-restez_status <- function() {
+restez_status <- function(gb_check = TRUE) {
   no_downloads <- FALSE
   no_database <- FALSE
   fp <- restez_path_get()
@@ -168,18 +168,21 @@ restez_status <- function() {
     dwn_fls <- file.path(fp, dwn_fls)
     cat_line('... found ', stat(length(dwn_fls)), ' files in ',
              char('downloads/'))
-    totsz <- sum(vapply(X = dwn_fls, FUN = file.size,
-                        FUN.VALUE = double(1)))
-    totsz <- round(x = totsz / 1E9, digits = 2)
-    cat_line('... totalling ', stat(totsz, 'GB'))
+    cat_line('... totalling ', stat(dir_size(dwnld_path_get()), 'GB'))
+    cat_line('... last download was made on ', char(last_dwnld_get()))
+    cat_line('... from GenBank relase number ', stat(gbrelease_get()))
+    if (gb_check) {
+      gbrelease_check()
+    }
   }
   if (!restez_ready()) {
     cat_line('... ', char('sql_db'), ' does not exist')
     no_database <- TRUE
   } else {
-    dbsz <- file.size(sql_path_get())
-    dbsz <- round(x = dbsz / 1E9, digits = 2)
-    cat_line('... found ', char('sql_db'), ' of ', stat(dbsz, 'GB'))
+    cat_line('... found ', char('sql_db'), ' of ',
+             stat(dir_size(sql_path_get()), 'GB'))
+    cat_line('... and ', stat(db_nrows_get()), ' rows')
+    cat_line('... last sequence was added on ', char(last_add_get()))
   }
   res <- FALSE
   if (no_database & no_downloads) {
@@ -198,7 +201,6 @@ restez_status <- function() {
 #' @description Returns TRUE if a restez SQL database is available. Use
 #' restez_status() for more information.
 #' @return T/F
-#' @export
 #' @example examples/restez_ready.R
 restez_ready <- function() {
   has_tables <- function() {
@@ -207,6 +209,7 @@ restez_ready <- function() {
     if (!is.null(connection)) {
       res <- length(DBI::dbListTables(conn = connection)) > 0
     }
+    res
   }
   fp <- sql_path_get()
   inherits(fp, 'character') && length(fp) == 1 && dir.exists(fp) &&

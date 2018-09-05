@@ -105,7 +105,7 @@ file_download <- function(fl, overwrite=FALSE) {
     FALSE
   })
   if (success) {
-    download_record_log(fl)
+    dwnld_rcrd_log(fl)
   }
   success
 }

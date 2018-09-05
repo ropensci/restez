@@ -4,16 +4,18 @@
 \alias{restez_status}
 \title{Check restez status}
 \usage{
-restez_status()
+restez_status(gb_check = TRUE)
+}
+\arguments{
+\item{gb_check}{Check whether last download was from latest GenBank release?
+Default TRUE.}
 }
 \value{
 T/F
 }
 \description{
-Report to console current setup status of restez.
-Determines if the restez path is set, how many downloaded files
-there are, if there is an SQL database. If SQL database available, returns
-TRUE else FALSE.
+Report to console current setup status of restez. If SQL
+database available, returns TRUE else FALSE.
 }
 \examples{
 library(restez)

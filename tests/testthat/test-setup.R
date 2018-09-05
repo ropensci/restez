@@ -29,6 +29,7 @@ test_that('db_create() works', {
   write(x = record_text, file = fp)
   R.utils::gzip(fp)
   db_create()
+  expect_error(db_create())
   expect_true(dir.exists(restez:::sql_path_get()))
 })
 test_that('db_download() works', {

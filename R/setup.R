@@ -57,13 +57,13 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
       })
   nfiles <- sum(types[selected_types])
   cat_line("You've selected a total of ", stat(nfiles),
-           " file types. These represent:")
+           " file type(s). These represent:")
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }
   cat_line('Each file contains about 250 MB of decompressed data.')
   ngbytes_fls <- nfiles * 250 / 1000
-  cat_line(stat(nfiles), ' files amounts to about ', stat(ngbytes_fls, 'GB'))
+  cat_line(stat(nfiles), ' file(s) amounts to about ', stat(ngbytes_fls, 'GB'))
   cat_line('Additionally, the resulting SQL database takes about 50 MB',
            ' per file')
   ngbytes <- ngbytes_fls + (nfiles * 50 / 1000)
@@ -76,6 +76,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   }
   cat_line(cli::rule())
   cat_line("Downloading ...")
+  # log the release number
+  gbrelease_log(release = release)
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
   files_to_download <- as.character(downloadable_table[['seq_files']][pull])
   any_fails <- FALSE
@@ -91,7 +93,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
     }
   }
   if (any_fails) {
-    cat_line('Not all the files downloaded. The server may be down. ',
+    cat_line('Not all the file(s) downloaded. The server may be down. ',
              'You can always try running db_download() again at a later time.')
   } else {
     cat_line('Done. Enjoy your day.')
@@ -104,18 +106,16 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' @family setup
 #' @description Create a new local SQL database from downloaded files.
 #' Currently only GenBank/nucleotide/nuccore database is supported.
-#' @details Decompresses any .seq.tar files to create .seq files, .seq.tar files
-#' are deleted after decompression.
+#' @details
+#' All .seq.gz files are added to the database. A user can specify sequence
+#' limit sizes for those sequences to be added to the database -- smaller
+#' databases are faster to  search and is best to limit the database size if
+#' possible.
 #'
-#' All .seq files are added to the database. A user can specify sequence limit
-#' sizes for those sequences to be added to the database -- smaller databases
-#' are faster to  search and is best to limit the database size if possible.
+#' This function will not overwrite a pre-exisitng database. Old databases must
+#' be deleted before a new one can be created. Use \code{\link{db_delete}} with
+#' everything=FALSE to delete an SQL database.
 #'
-#' Whenever this function is run, the old database is deleted and a new one
-#' created.
-#'
-#' If overwrite=TRUE, any .seq file with the same name as the newly downloaded
-#' .seq.tar files will be overwritten.
 #' @param db_type character, database type
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
@@ -132,16 +132,18 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' restez_disconnect()
 #' }
 # db_type: a nod to the future,
-db_create <- function(db_type='nucleotide', overwrite=FALSE, min_length=0,
-                      max_length=NULL) {
+db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
   # checks
   restez_path_check()
+  if (restez_ready() && db_nrows_get() > 0) {
+    stop('Database already exists.')
+  }
   dpth <- dwnld_path_get()
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
-  cat_line('Adding ', stat(length(seq_files)), ' files to the database ...')
+  cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
   for (i in seq_along(seq_files)) {
     seq_file <- seq_files[[i]]
     cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
