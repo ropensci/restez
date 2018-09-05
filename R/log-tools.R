@@ -1,4 +1,20 @@
-# LOG TOOLS
+# LOG TOOLS ----
+#' @name db_sqlngths_log
+#' @title Log the min and max sequence lengths
+#' @description Log the min and maximum sequnece length used in the created db.
+#' @param min_lngth Minimum length
+#' @param max_lngth Maximum length
+#' @return NULL
+#' @family private
+db_sqlngths_log <- function(min_lngth, max_lngth) {
+  fp <- file.path(restez_path_get(), 'seqlengths.tsv')
+  if (is.null(max_lngth)) {
+    max_lngth <- 'Inf'
+  }
+  row_entry <- data.frame('min' = min_lngth, 'max' = max_lngth)
+  utils::write.table(x = row_entry, file = fp, sep = '\t')
+}
+
 #' @name slctn_log
 #' @title Log the GenBank selection made by a user
 #' @description This function is called whenever a user makes a selection with
@@ -70,14 +86,18 @@ gbrelease_log <- function(release) {
   write(x = gsub(pattern = '[^0-9]', replacement = '', x = release), file = fp)
 }
 
-# GET TOOLS
+# GET TOOLS ----
 #' @name slctn_get
 #' @title Retrieve GenBank selections made by user
 #' @description Returns the selections made by the user.
+#' @details If no file found, returns empty character vector.
 #' @return character vector
 #' @family private
 slctn_get <- function() {
   fp <- file.path(restez_path_get(), 'selection_log.tsv')
+  if (!file.exists(fp)) {
+    return('')
+  }
   sort(unique(utils::read.table(file = fp, header = TRUE, sep = '\t',
                                 stringsAsFactors = FALSE)[['Selection']]))
 }
@@ -87,13 +107,14 @@ slctn_get <- function() {
 #' @description Returns the GenBank release number. Returns empty character
 #' if none found.
 #' @return character
+#' @details If no file found, returns empty character vector.
 #' @family private
 gbrelease_get <- function() {
   fp <- file.path(restez_path_get(), 'gb_release.txt')
   if (file.exists(fp)) {
     res <- utils::read.table(file = fp, header = FALSE)[[1]]
   } else {
-    res <- ''
+    res <- '0'
   }
   res
 }
@@ -115,9 +136,13 @@ last_entry_get <- function(fp) {
 #' @description Return the date and time of the last download as determined
 #' using the 'download_log.tsv'.
 #' @return character
+#' @details If no file found, returns empty character vector.
 #' @family private
 last_dwnld_get <- function() {
   fp <- file.path(restez_path_get(), 'download_log.tsv')
+  if (!file.exists(fp)) {
+    return('')
+  }
   last_entry_get(fp = fp)[[3]]
 }
 
@@ -126,9 +151,13 @@ last_dwnld_get <- function() {
 #' @description Return the date and time of the last added sequence as
 #' determined using the 'add_log.tsv'.
 #' @return character
+#' @details If no file found, returns empty character vector.
 #' @family private
 last_add_get <- function() {
   fp <- file.path(restez_path_get(), 'add_log.tsv')
+  if (!file.exists(fp)) {
+    return('')
+  }
   last_entry_get(fp = fp)[[4]]
 }
 
@@ -150,6 +179,24 @@ db_nrows_get <- function() {
   res[[1]]
 }
 
+#' @name db_sqlngths_get
+#' @title Return the minimum and maximum sequence lengths in db
+#' @description Returns the maximum and minimum sequence lengths as set by the
+#' user upon db creation.
+#' @return vector of integers
+#' @details If no file found, returns empty character vector.
+#' @family private
+db_sqlngths_get <- function() {
+  fp <- file.path(restez_path_get(), 'seqlengths.tsv')
+  if (!file.exists(fp)) {
+    return(c('min' = '', 'max' = 'max'))
+  }
+  res <- utils::read.table(file = fp, header = TRUE, sep = '\t',
+                    stringsAsFactors = FALSE)[1, ]
+  res
+}
+
+# SPECIAL ----
 #' @name dir_size
 #' @title Calculate the size of a directory
 #' @description Returns the size of directory in GB
@@ -164,7 +211,6 @@ dir_size <- function(fp) {
   round(x = totsz / 1E9, digits = 2)
 }
 
-# SPECIAL
 #' @name gbrelease_check
 #' @title Check if the last GenBank release number is the latest
 #' @description Returns TRUE if the GenBank release number is the most recent
@@ -172,15 +218,13 @@ dir_size <- function(fp) {
 #' @return logical
 #' @family private
 gbrelease_check <- function() {
-  cat_line('... Looking up latest GenBank release number')
   latest_release <- identify_latest_genbank_release_notes()
   latest_release <- as.integer(gsub(pattern = '[^0-9]', replacement = '',
                                     x = latest_release))
-  current_release <- gbrelease_get()
+  current_release <- as.integer(gbrelease_get())
   if (latest_release > current_release) {
-    cat_line('... ... Your database is out-of-date.')
-    cat_line('... ... The latest GenBank release is ', stat(latest_release))
-    cat_line('... ... Consider re-running `db_download()` with overwrite=TRUE.')
+    cat_line('... ... Your database is out-of-date. Latest release is ',
+             stat(latest_release))
     res <- FALSE
   } else {
     cat_line('... ... Your database is up-to-date')

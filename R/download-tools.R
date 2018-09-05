@@ -11,8 +11,8 @@ identify_latest_genbank_release_notes <- function() {
   all_release_numbers <- gsub(pattern = "[^0-9]+", replacement = "",
                               x = all_release_notes)
   all_release_numbers <- as.numeric(all_release_numbers)
-  max_release <- max(all_release_numbers, na.rm = TRUE)
-  cat_line('... found release ', stat(max_release))
+  #max_release <- max(all_release_numbers, na.rm = TRUE)
+  #cat_line('... found release ', stat(max_release))
   all_release_notes[which.max(all_release_numbers)]
 }
 

@@ -145,6 +145,8 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
   dpth <- dwnld_path_get()
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
+  # log min and max
+  db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
   for (i in seq_along(seq_files)) {
     seq_file <- seq_files[[i]]
     cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')

@@ -13,12 +13,17 @@ character
 Return the date and time of the last download as determined
 using the 'download_log.tsv'.
 }
+\details{
+If no file found, returns empty character vector.
+}
 \seealso{
 Other private: \code{\link{add_rcrd_log}},
   \code{\link{check_connection}}, \code{\link{cleanup}},
   \code{\link{connection_get}},
   \code{\link{custom_download}},
-  \code{\link{db_nrows_get}}, \code{\link{dir_size}},
+  \code{\link{db_nrows_get}},
+  \code{\link{db_sqlngths_get}},
+  \code{\link{db_sqlngths_log}}, \code{\link{dir_size}},
   \code{\link{dwnld_path_get}},
   \code{\link{dwnld_rcrd_log}},
   \code{\link{entrez_fasta_get}},

@@ -1,4 +1,10 @@
 devtools::load_all('~/Coding/restez')
-
 restez_path_set('~/Desktop')
 db_delete(everything = TRUE)
+restez_path_set('~/Desktop')
+db_download(preselection = '15')
+restez_status()
+restez_connect()
+db_create()
+restez_status(gb_check = FALSE)
+restez_disconnect()

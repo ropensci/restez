@@ -4,11 +4,11 @@
 \alias{restez_status}
 \title{Check restez status}
 \usage{
-restez_status(gb_check = TRUE)
+restez_status(gb_check = FALSE)
 }
 \arguments{
 \item{gb_check}{Check whether last download was from latest GenBank release?
-Default TRUE.}
+Default FALSE.}
 }
 \value{
 T/F
@@ -16,6 +16,11 @@ T/F
 \description{
 Report to console current setup status of restez. If SQL
 database available, returns TRUE else FALSE.
+}
+\details{
+If the function returns TRUE, then querying can begin. Always
+remember to run \code{\link{restez_connect}} before running this function.
+Set gb_check=TRUE to see if your downloads are up-to-date.
 }
 \examples{
 library(restez)

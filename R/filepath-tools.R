@@ -117,11 +117,11 @@ restez_path_check <- function() {
 #' @export
 #' @example examples/db_delete.R
 db_delete <- function(everything = TRUE) {
-  if (file.exists(sql_path_get())) {
+  if (length(sql_path_get()) > 0 && dir.exists(sql_path_get())) {
     unlink(sql_path_get(), recursive = TRUE)
   }
   if (everything) {
-    if (dir.exists(restez_path_get())) {
+    if (length(restez_path_get()) > 0 && dir.exists(restez_path_get())) {
       unlink(restez_path_get(), recursive = TRUE)
       restez_path_unset()
     }
@@ -135,15 +135,21 @@ db_delete <- function(everything = TRUE) {
 #' @description Report to console current setup status of restez. If SQL
 #' database available, returns TRUE else FALSE.
 #' @param gb_check Check whether last download was from latest GenBank release?
-#' Default TRUE.
+#' Default FALSE.
+#' @details If the function returns TRUE, then querying can begin. Always
+#' remember to run \code{\link{restez_connect}} before running this function.
+#' Set gb_check=TRUE to see if your downloads are up-to-date.
 #' @return T/F
 #' @export
 #' @example examples/restez_status.R
-restez_status <- function(gb_check = TRUE) {
+restez_status <- function(gb_check = FALSE) {
   no_downloads <- FALSE
   no_database <- FALSE
+  latest <- TRUE
   fp <- restez_path_get()
+  cat_line(cli::rule())
   cat_line('Checking setup status at ', char(fp), ' ...')
+  cat_line(cli::rule())
   if (is.null(fp)) {
     cat_line('... restez path not set')
     message('You need to use restez_path_set()')
@@ -169,25 +175,30 @@ restez_status <- function(gb_check = TRUE) {
     cat_line('... found ', stat(length(dwn_fls)), ' files in ',
              char('downloads/'))
     cat_line('... totalling ', stat(dir_size(dwnld_path_get()), 'GB'))
-    cat_line('... of sequences representing')
+    cat_line('... of sequences representing:')
     for (slctn in slctn_get()) {
       cat_line('... ... ', char(slctn))
     }
     cat_line('... last download was made on ', char(last_dwnld_get()))
-    cat_line('... from GenBank relase number ', stat(gbrelease_get()))
+    cat_line('... GenBank relase number ', stat(gbrelease_get()))
     if (gb_check) {
-      gbrelease_check()
+      latest <- gbrelease_check()
     }
   }
+  cat_line(cli::rule())
   if (!restez_ready()) {
-    cat_line('... ', char('sql_db'), ' does not exist')
+    cat_line('... ', char('sql_db'), ' does not exist or is not connected')
     no_database <- TRUE
   } else {
     cat_line('... found ', char('sql_db'), ' of ',
              stat(dir_size(sql_path_get()), 'GB'))
     cat_line('... and ', stat(db_nrows_get()), ' rows')
+    sqlngths <- db_sqlngths_get()
+    cat_line('... and sequence length limits of ', stat(sqlngths[['min']], 'bp'),
+             ' to ', stat(sqlngths[['max']], 'bp'))
     cat_line('... last sequence was added on ', char(last_add_get()))
   }
+  cat_line(cli::rule())
   res <- FALSE
   if (no_database & no_downloads) {
     message('You need to run db_download() and db_create()')
@@ -195,6 +206,11 @@ restez_status <- function(gb_check = TRUE) {
     message('You need to run db_create()')
   } else {
     res <- TRUE
+  }
+  if (!latest) {
+    msg <- paste0('Not the latest GenBank release. ',
+                  'Consider re-running `db_download()` with overwrite=TRUE.')
+    message(msg)
   }
   res
 }
@@ -207,11 +223,12 @@ restez_status <- function(gb_check = TRUE) {
 #' @return T/F
 restez_ready <- function() {
   has_tables <- function() {
-    res <- FALSE
     connection <- getOption('restez_connection')
-    if (!is.null(connection)) {
-      res <- length(DBI::dbListTables(conn = connection)) > 0
-    }
+    res <- tryCatch({
+      length(DBI::dbListTables(conn = connection)) > 0
+      }, error = function(e) {
+        FALSE
+      })
     res
   }
   fp <- sql_path_get()
