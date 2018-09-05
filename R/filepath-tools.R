@@ -169,6 +169,10 @@ restez_status <- function(gb_check = TRUE) {
     cat_line('... found ', stat(length(dwn_fls)), ' files in ',
              char('downloads/'))
     cat_line('... totalling ', stat(dir_size(dwnld_path_get()), 'GB'))
+    cat_line('... of sequences representing')
+    for (slctn in slctn_get()) {
+      cat_line('... ... ', char(slctn))
+    }
     cat_line('... last download was made on ', char(last_dwnld_get()))
     cat_line('... from GenBank relase number ', stat(gbrelease_get()))
     if (gb_check) {
@@ -201,7 +205,6 @@ restez_status <- function(gb_check = TRUE) {
 #' @description Returns TRUE if a restez SQL database is available. Use
 #' restez_status() for more information.
 #' @return T/F
-#' @example examples/restez_ready.R
 restez_ready <- function() {
   has_tables <- function() {
     res <- FALSE

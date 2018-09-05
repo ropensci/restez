@@ -12,8 +12,6 @@ db_create(db_type = "nucleotide", min_length = 0, max_length = NULL)
 \item{min_length}{Minimum sequence length, default 0.}
 
 \item{max_length}{Maximum sequence length, default NULL.}
-
-\item{overwrite}{T/F, overwrite files already in database?}
 }
 \description{
 Create a new local SQL database from downloaded files.

@@ -1,5 +1,21 @@
-# TODO: record user's selection.
 # LOG TOOLS
+#' @name slctn_log
+#' @title Log the GenBank selection made by a user
+#' @description This function is called whenever a user makes a selection with
+#' the \code{\link{db_download}}. It records GenBank numbers selections.
+#' @param selection selected GenBank sequences, named vector
+#' @return NULL
+#' @family private
+slctn_log <- function(selection) {
+  fp <- file.path(restez_path_get(), 'selection_log.tsv')
+  row_entry <- data.frame('Selection' = names(selection),
+                          'N.files' = as.numeric(selection),
+                          'Time' = as.character(Sys.time()))
+  utils::write.table(x = row_entry, file = fp, append = file.exists(fp),
+                     sep = '\t', col.names = !file.exists(fp),
+                     row.names = FALSE, quote = FALSE)
+}
+
 #' @name dwnld_rcrd_log
 #' @title Log a downloaded file in the restez path
 #' @description This function is called whenever a file is successfully
@@ -14,8 +30,9 @@ dwnld_rcrd_log <- function(fl) {
   fp <- file.path(restez_path_get(), 'download_log.tsv')
   row_entry <- data.frame('File' = fl, 'GB.release' = gbrelease_get(),
                           'Time' = as.character(Sys.time()))
-  write.table(x = row_entry, file = fp, append = file.exists(fp), sep = '\t',
-              col.names = !file.exists(fp), row.names = FALSE, quote = FALSE)
+  utils::write.table(x = row_entry, file = fp, append = file.exists(fp),
+                     sep = '\t', col.names = !file.exists(fp),
+                     row.names = FALSE, quote = FALSE)
 }
 
 #' @name add_rcrd_log
@@ -34,8 +51,9 @@ add_rcrd_log <- function(df) {
                            'Version' = df[['version']],
                            'GB.release' = gbrelease_get(),
                            'Time' = as.character(Sys.time()))
-  write.table(x = rows_entry, file = fp, append = file.exists(fp), sep = '\t',
-              col.names = !file.exists(fp), row.names = FALSE, quote = FALSE)
+  utils::write.table(x = rows_entry, file = fp, append = file.exists(fp),
+                     sep = '\t', col.names = !file.exists(fp),
+                     row.names = FALSE, quote = FALSE)
 }
 
 #' @name gbrelease_log
@@ -53,18 +71,27 @@ gbrelease_log <- function(release) {
 }
 
 # GET TOOLS
-#' @name gbrelease_log
-#' @title Log the GenBank release number in the restez path
-#' @description This function is called whenever db_download is run. It logs the
-#' GB release number in the 'gb_release.txt' in the user's restez path.
-#' The log is to help users keep track of whether their database if out of date.
-#' @param release GenBank release number, character
-#' @return NULL
+#' @name slctn_get
+#' @title Retrieve GenBank selections made by user
+#' @description Returns the selections made by the user.
+#' @return character vector
+#' @family private
+slctn_get <- function() {
+  fp <- file.path(restez_path_get(), 'selection_log.tsv')
+  sort(unique(utils::read.table(file = fp, header = TRUE, sep = '\t',
+                                stringsAsFactors = FALSE)[['Selection']]))
+}
+
+#' @name gbrelease_get
+#' @title Get the GenBank release number in the restez path
+#' @description Returns the GenBank release number. Returns empty character
+#' if none found.
+#' @return character
 #' @family private
 gbrelease_get <- function() {
   fp <- file.path(restez_path_get(), 'gb_release.txt')
   if (file.exists(fp)) {
-    res <- read.table(file = fp, header = FALSE)[[1]]
+    res <- utils::read.table(file = fp, header = FALSE)[[1]]
   } else {
     res <- ''
   }
@@ -126,7 +153,8 @@ db_nrows_get <- function() {
 #' @name dir_size
 #' @title Calculate the size of a directory
 #' @description Returns the size of directory in GB
-#' @return numberic
+#' @param fp File path, character
+#' @return numeric
 #' @family private
 dir_size <- function(fp) {
   fls <- list.files(fp, all.files = TRUE, recursive = TRUE)

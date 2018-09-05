@@ -2,7 +2,6 @@
 #' @title Identify the latest GenBank Release Notes
 #' @description Searches through all release notes to find the latest. Returns
 #' "gb[release number].release.notes".
-#' @param just_release_number Logical. Default FALSE.
 #' @return character
 #' @family private
 identify_latest_genbank_release_notes <- function() {

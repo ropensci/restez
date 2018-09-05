@@ -78,6 +78,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   cat_line("Downloading ...")
   # log the release number
   gbrelease_log(release = release)
+  # log selection made
+  slctn_log(selection = types[selected_types])
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
   files_to_download <- as.character(downloadable_table[['seq_files']][pull])
   any_fails <- FALSE
@@ -119,7 +121,6 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' @param db_type character, database type
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
-#' @param overwrite T/F, overwrite files already in database?
 #' @return NULL
 #' @export
 #' @examples

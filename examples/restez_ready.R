@@ -1,8 +1,0 @@
-library(restez)
-fp <- tempdir()
-restez_path_set(filepath = fp)
-restez_connect()
-demo_db_create()
-(restez_ready())
-restez_disconnect()
-db_delete()

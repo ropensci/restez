@@ -51,12 +51,13 @@ test_that('db_delete() works', {
   expect_null(restez_path_get())
 })
 test_that('restez_status() works', {
-  expect_false(restez_status())
+  # TODO: check with TRUE!
+  expect_false(restez_status(gb_check = FALSE))
   restez:::setup()
   on.exit(restez:::cleanup())
-  expect_false(restez_status())
+  expect_false(restez_status(gb_check = FALSE))
   demo_db_create()
-  expect_true(restez_status())
+  expect_true(restez_status(gb_check = FALSE))
 })
 test_that('restez_ready() works', {
   expect_false(restez_ready())
