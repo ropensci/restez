@@ -130,6 +130,7 @@ db_delete <- function(everything = TRUE) {
 #' @export
 #' @example examples/restez_status.R
 restez_status <- function(gb_check = FALSE) {
+  # TODO: return a structured list
   no_downloads <- FALSE
   no_database <- FALSE
   latest <- TRUE
@@ -210,6 +211,7 @@ restez_status <- function(gb_check = FALSE) {
 #' restez_status() for more information.
 #' @return T/F
 restez_ready <- function() {
+  # TODO: separate into is_connected + has input
   has_tables <- function() {
     connection <- getOption('restez_connection')
     res <- tryCatch({
