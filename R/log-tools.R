@@ -69,6 +69,21 @@ slctn_log <- function(selection) {
                      row.names = FALSE, quote = FALSE)
 }
 
+#' @name filename_log
+#' @title Write filenames to log files
+#' @description Record a filename in a log file along with GB release and time.
+#' @param fl file name, character
+#' @param fp filepath to log file, character
+#' @return NULL
+#' @family private
+filename_log <- function(fl, fp) {
+  row_entry <- data.frame('File' = fl, 'GB.release' = gbrelease_get(),
+                          'Time' = as.character(Sys.time()))
+  utils::write.table(x = row_entry, file = fp, append = file.exists(fp),
+                     sep = '\t', col.names = !file.exists(fp),
+                     row.names = FALSE, quote = FALSE)
+}
+
 #' @name dwnld_rcrd_log
 #' @title Log a downloaded file in the restez path
 #' @description This function is called whenever a file is successfully
@@ -81,32 +96,22 @@ slctn_log <- function(selection) {
 #' @family private
 dwnld_rcrd_log <- function(fl) {
   fp <- file.path(restez_path_get(), 'download_log.tsv')
-  row_entry <- data.frame('File' = fl, 'GB.release' = gbrelease_get(),
-                          'Time' = as.character(Sys.time()))
-  utils::write.table(x = row_entry, file = fp, append = file.exists(fp),
-                     sep = '\t', col.names = !file.exists(fp),
-                     row.names = FALSE, quote = FALSE)
+  filename_log(fl = fl, fp = fp)
 }
 
 #' @name add_rcrd_log
-#' @title Log sequences added to the SQL database in the restez path
-#' @description This function is called whenever sequences have been
+#' @title Log files added to the SQL database in the restez path
+#' @description This function is called whenever sequence files have been
 #' successfully added to the nucleotide SQL database. Row entries are added to
-#' 'add_lot.tsv' in the user's restez path containing the sequence accession,
-#' version and GB release numbers as well as the time of successfuly adding.
+#' 'add_lot.tsv' in the user's restez path containing the filename, GB release
+#' numbers and the time of successful adding.
 #' The log is to help users keep track of when sequences have been added.
-#' @param df sequence records, data.frame
+#' @param fl filename, character
 #' @return NULL
 #' @family private
-add_rcrd_log <- function(df) {
+add_rcrd_log <- function(fl) {
   fp <- file.path(restez_path_get(), 'add_log.tsv')
-  rows_entry <- data.frame('Accession' = df[['accession']],
-                           'Version' = df[['version']],
-                           'GB.release' = gbrelease_get(),
-                           'Time' = as.character(Sys.time()))
-  utils::write.table(x = rows_entry, file = fp, append = file.exists(fp),
-                     sep = '\t', col.names = !file.exists(fp),
-                     row.names = FALSE, quote = FALSE)
+  filename_log(fl = fl, fp = fp)
 }
 
 #' @name gbrelease_log
@@ -163,9 +168,20 @@ gbrelease_get <- function() {
 #' @return vector
 #' @family private
 last_entry_get <- function(fp) {
-  last_entry <- readLines(con = fp)
-  last_entry <- last_entry[[length(last_entry)]]
-  strsplit(x = last_entry, split = '\\t')[[1]]
+  con <- file(fp, 'rb')
+  on.exit(close(con))
+  # count lines
+  #https://stackoverflow.com/questions/23456170
+  nlines <- 0L
+  while (length(chunk <- readBin(con = con, what = "raw", n = 65536)) > 0) {
+    nlines <- nlines + sum(chunk == as.raw(10L))
+  }
+  # close and open again
+  close(con)
+  con <- file(fp, 'rb')
+  last_entry <- scan(file = con, what = '', nlines = 1,
+                     skip = nlines - 1, sep = '\t', quiet = TRUE)
+  last_entry
 }
 
 #' @name last_dwnld_get
@@ -195,7 +211,7 @@ last_add_get <- function() {
   if (!file.exists(fp)) {
     return('')
   }
-  last_entry_get(fp = fp)[[4]]
+  last_entry_get(fp = fp)[[3]]
 }
 
 #' @name db_nrows_get

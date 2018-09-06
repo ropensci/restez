@@ -111,5 +111,4 @@ gb_sql_add <- function(df) {
   }
   DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
-  add_rcrd_log(df = df)
 }

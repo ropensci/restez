@@ -162,6 +162,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
       read_errors <- TRUE
       cat_line('... ... Hmmmm... no records found in that file.')
     }
+    add_rcrd_log(fl = seq_file)
   }
   cat_line('Done.')
   if (read_errors) {

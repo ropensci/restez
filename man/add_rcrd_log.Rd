@@ -2,18 +2,18 @@
 % Please edit documentation in R/log-tools.R
 \name{add_rcrd_log}
 \alias{add_rcrd_log}
-\title{Log sequences added to the SQL database in the restez path}
+\title{Log files added to the SQL database in the restez path}
 \usage{
-add_rcrd_log(df)
+add_rcrd_log(fl)
 }
 \arguments{
-\item{df}{sequence records, data.frame}
+\item{fl}{filename, character}
 }
 \description{
-This function is called whenever sequences have been
+This function is called whenever sequence files have been
 successfully added to the nucleotide SQL database. Row entries are added to
-'add_lot.tsv' in the user's restez path containing the sequence accession,
-version and GB release numbers as well as the time of successfuly adding.
+'add_lot.tsv' in the user's restez path containing the filename, GB release
+numbers and the time of successful adding.
 The log is to help users keep track of when sequences have been added.
 }
 \seealso{
@@ -39,9 +39,10 @@ Other private: \code{\link{check_connection}},
   \code{\link{extract_seqrecpart}},
   \code{\link{extract_sequence}},
   \code{\link{extract_version}},
-  \code{\link{file_download}}, \code{\link{flatfile_read}},
-  \code{\link{gb_df_create}}, \code{\link{gb_df_generate}},
-  \code{\link{gb_sql_add}}, \code{\link{gb_sql_query}},
+  \code{\link{file_download}}, \code{\link{filename_log}},
+  \code{\link{flatfile_read}}, \code{\link{gb_df_create}},
+  \code{\link{gb_df_generate}}, \code{\link{gb_sql_add}},
+  \code{\link{gb_sql_query}},
   \code{\link{gbrelease_check}},
   \code{\link{gbrelease_get}}, \code{\link{gbrelease_log}},
   \code{\link{identify_downloadable_files}},
