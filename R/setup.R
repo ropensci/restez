@@ -85,8 +85,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   any_fails <- FALSE
   for (i in seq_along(files_to_download)) {
     fl <- files_to_download[[i]]
-    cat_line('... ', char(fl), ' (', stat(i, '/', length(files_to_download)),
-             ')')
+    stat_i <- paste0(i, '/', length(files_to_download))
+    cat_line('... ', char(fl), ' (', stat(stat_i), ')')
     # TODO: move overwrite to here
     success <- file_download(fl, overwrite = overwrite)
     if (!success) {

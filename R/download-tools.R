@@ -90,6 +90,7 @@ file_download <- function(fl, overwrite=FALSE) {
     remove(gzdest)
   }
   if (file.exists(gzdest)) {
+    cat_line('... ... already downloaded')
     return(TRUE)
   }
   success <- tryCatch({
@@ -101,7 +102,7 @@ file_download <- function(fl, overwrite=FALSE) {
     remove(gzdest)
   }, interrupt = function(e) {
     remove(gzdest)
-    stop('User halted.', call. = FALSE)
+    stop('User halted', call. = FALSE)
   })
   if (success) {
     dwnld_rcrd_log(fl)
