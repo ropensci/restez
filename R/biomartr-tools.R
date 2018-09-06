@@ -29,14 +29,16 @@ custom_download <- function(...) {
   operating_sys <- Sys.info()[1]
   if (operating_sys == "Darwin") {
     downloader::download(..., method = "curl", cacheOK = FALSE, quiet = TRUE,
-                         extra = "--connect-timeout 120 --retry 3")
+                         extra = "--connect-timeout 120 --retry 3",
+                         mode = 'wb')
   }
   if (operating_sys == "Linux") {
     downloader::download(..., method = "wget", cacheOK = FALSE, quiet = TRUE,
-                         extra = "--timeout 120 --tries 3 --continue")
+                         extra = "--timeout 120 --tries 3 --continue",
+                         mode = 'wb')
   }
   if (operating_sys == "Windows") {
     downloader::download(..., method = "internal", cacheOK = FALSE,
-                         quiet = TRUE)
+                         quiet = TRUE, mode = 'wb')
   }
 }

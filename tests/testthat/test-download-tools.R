@@ -37,12 +37,12 @@ test_that('file_download() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
   res <- with_mock(
-    `restez:::custom_download` = function(...) stop(),
+    `restez:::custom_download2` = function(...) stop(),
     restez:::file_download(fl = 'test.seq')
   )
   expect_false(res)
   res <- with_mock(
-    `restez:::custom_download` = function(...) NULL,
+    `restez:::custom_download2` = function(...) NULL,
     restez:::file_download(fl = 'test.seq')
   )
   expect_true(res)

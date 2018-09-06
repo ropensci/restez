@@ -76,9 +76,11 @@ identify_downloadable_files <- function(release_notes) {
 # based upon: biomartr::download.database
 file_download <- function(fl, overwrite=FALSE) {
   remove <- function(fl) {
+    cat_line('... ... deleting ', char(fl))
     if (file.exists(fl)) {
       file.remove(fl)
     }
+    FALSE
   }
   base_url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/'
   gzfl <- paste0(fl, '.gz')
@@ -91,17 +93,15 @@ file_download <- function(fl, overwrite=FALSE) {
     return(TRUE)
   }
   success <- tryCatch({
-    # TODO: wrap this into an independent R process to:
-    # 1. allow user interruption
-    #    (currently a generic wget exit status 0 is raised)
-    # 2. create a spinning icon
-    custom_download(url = gzurl, destfile = gzdest, mode = "wb")
+    # can switch to custom_download() to avoid subprocess
+    custom_download2(url = gzurl, destfile = gzdest)
     TRUE
   }, error = function(e) {
     cat_line('... ... ', char(gzurl), ' cannot be reached.')
-    cat_line('... ... deleting what has already downloaded.')
     remove(gzdest)
-    FALSE
+  }, interrupt = function(e) {
+    remove(gzdest)
+    stop('User halted.', call. = FALSE)
   })
   if (success) {
     dwnld_rcrd_log(fl)

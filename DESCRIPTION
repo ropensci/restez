@@ -24,6 +24,7 @@ Imports:
     RCurl,
     cli,
     crayon,
+    subprocess,
     devtools
 Suggests:
     testthat,
