@@ -32,6 +32,8 @@ gb_sql_query <- function(nm, id) {
 #' @export
 #' @example examples/gb_fasta_get.R
 gb_fasta_get <- function(id, width=80) {
+  # TODO: separate the fasta conversion into a new function and
+  #  share with phylotaR
   res <- gb_sql_query(nm = 'raw_definition,raw_sequence', id = id)
   cnvrt <- function(i) {
     sq <- rawToChar(res[i, 'raw_sequence'][[1]])
@@ -39,13 +41,13 @@ gb_fasta_get <- function(id, width=80) {
     def <- rawToChar(res[i, 'raw_definition'][[1]])
     n <- nchar(sq)
     if (n > width) {
-      slices <- c(seq(from = 1, to = nchar(sq), by = width), nchar(sq))
+      slices <- c(seq(from = 1, to = nchar(sq), by = width), nchar(sq) + 1)
       sq <- vapply(X = 2:length(slices), function(x) {
         substr(x = sq, start = slices[x - 1], stop = slices[x] - 1)
       }, character(1))
       sq <- paste0(sq, collapse = '\n')
     }
-    paste0('>', def, '\n', sq)
+    paste0('>', def, '\n', sq, '\n')
   }
   if (nrow(res) == 0) {
     return(NULL)

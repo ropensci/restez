@@ -73,7 +73,7 @@ extract_seqrecpart <- function(record) {
 #' @return character
 #' @family private
 extract_clean_sequence <- function(seqrecpart) {
-  gsub(pattern = '([0-9]|\\s+|\n)', replacement = '', x = seqrecpart)
+  gsub(pattern = '([0-9]|\\s+|\n|/)', replacement = '', x = seqrecpart)
 }
 
 # Foreground ----

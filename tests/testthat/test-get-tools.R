@@ -44,6 +44,11 @@ test_that('gb_fasta_get() works', {
   fasta <- gb_fasta_get(id = id)
   expect_true(length(fasta) == 2)
   expect_true(is.character(fasta[[1]]))
+  # ensure conversion to fasta does not impact sequence
+  sq <- gb_sequence_get(id = id[[1]])
+  expctd_sq <- sub(pattern = '^>[^\n]*', replacement = '', x = fasta[id[[1]]])
+  expctd_sq <- gsub(pattern = '\n', replacement = '', x = expctd_sq)
+  sq[[1]] == expctd_sq[[1]]
 })
 test_that('gb_version_get() works', {
   id <- sample(ids, 1)

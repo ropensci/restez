@@ -181,8 +181,9 @@ restez_status <- function(gb_check = FALSE) {
              stat(dir_size(sql_path_get()), 'GB'))
     cat_line('... and ', stat(db_nrows_get()), ' rows')
     sqlngths <- db_sqlngths_get()
-    cat_line('... and sequence length limits of ', stat(sqlngths[['min']], 'bp'),
-             ' to ', stat(sqlngths[['max']], 'bp'))
+    cat_line('... and sequence length limits of ',
+             stat(sqlngths[['min']], 'bp'), ' to ',
+             stat(sqlngths[['max']], 'bp'))
     cat_line('... last sequence was added on ', char(last_add_get()))
   }
   cat_line(cli::rule())
