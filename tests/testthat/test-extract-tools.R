@@ -14,8 +14,7 @@ context('Testing \'extract-tools\'')
 test_that('extract_by_patterns() works', {
   record <- sample(records, 1)[[1]]
   res <- restez:::extract_by_patterns(record = record,
-                                      start_pattern = 'FEATURES\\s{2,}',
-                                      end_pattern = 'ORIGIN\\s{2,}')
+                                      start_pattern = '\nFEATURES\\s{2,}')
   expect_true(grepl('Location/Qualifiers', res))
 })
 test_that('extract_version() works', {
@@ -50,16 +49,19 @@ test_that('extract_sequence() works', {
 test_that('extract_features() works', {
   record <- sample(records, 1)[[1]]
   features <- restez:::extract_features(record = record)
+  print(features)
   expect_true(inherits(features, 'list'))
 })
 test_that('extract_locus() works', {
   record <- sample(records, 1)[[1]]
   locus <- restez:::extract_locus(record = record)
+  print(locus)
   expect_true(inherits(locus, 'character'))
 })
 test_that('extract_keywords() works', {
   record <- sample(records, 1)[[1]]
   keywords <- restez:::extract_keywords(record = record)
+  print(keywords)
   expect_true(inherits(keywords, 'character'))
 })
 test_that('gb_extract() works', {

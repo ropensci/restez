@@ -1,5 +1,5 @@
 # Vars
-n <- 500
+n <- 2
 wd <- '.'
 restez_lib_path <- '~/Coding/restez'
 

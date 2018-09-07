@@ -1,6 +1,7 @@
 # Accessions records that have caused problems
-# AI570151
-# AI607683
+# AI570151  -- origin in description
+# AI607683  -- accession in description
+# KBQR00000000  -- no sequence
 
 # Background ----
 #' @name extract_by_patterns
@@ -47,8 +48,10 @@ extract_by_patterns <- function(record, start_pattern, end_pattern='\n') {
 #' @return character
 #' @family private
 extract_inforecpart <- function(record) {
+  # stop at either beginning of sequence or if no seq, the TLS
+  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   inforecpart <- extract_by_patterns(record = record, start_pattern = '^',
-                                     end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
+                                     end_pattern = end_pattern)
   if (is.null(inforecpart)) {
     inforecpart <- ''
   }
@@ -63,8 +66,9 @@ extract_inforecpart <- function(record) {
 #' @return character
 #' @family private
 extract_seqrecpart <- function(record) {
+  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   seqrecpart <- extract_by_patterns(record = record, end_pattern = '$',
-                                    start_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
+                                    start_pattern = end_pattern)
   if (is.null(seqrecpart)) {
     seqrecpart <- ''
   }
@@ -195,9 +199,10 @@ extract_locus <- function(record) {
 #' @details If element is not found, empty list returned.
 #' @family private
 extract_features <- function(record) {
+  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   feature_text <- extract_by_patterns(record = record,
-                                      start_pattern = 'FEATURES\\s+Location/Q',
-                                      end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
+                                      start_pattern = '\nFEATURES\\s{3,}',
+                                      end_pattern = end_pattern)
   if (is.null(feature_text)) {
     return(list())
   }
