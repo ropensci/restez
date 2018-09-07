@@ -1,16 +1,18 @@
 # Accessions records that have caused problems
 # AI570151
+# AI607683
 
 # Background ----
-#' @name extract_by_keyword
+#' @name extract_by_patterns
 #' @title Extract by keyword
 #' @description Search through GenBank record for a keyword and
 #' return text up to the end_pattern.
 #' @param record GenBank record in text format, character
-#' @param keyword Keyword, character
+#' @param start_pattern REGEX pattern indicating the point to
+#' start extraction, character
 #' @param end_pattern REGEX pattern indicating the point to
 #' stop extraction, character
-#' @details The keyword should be any of the capitalized elements
+#' @details The start_pattern should be any of the capitalized elements
 #' in a GenBank record (e.g. LOCUS, DESCRIPTION, ACCESSION).
 #' The end_pattern depends on how much of the selected element
 #' a user wants returned. By default, the extraction will stop
@@ -18,21 +20,22 @@
 #' If keyword or end pattern not found, returns NULL.
 #' @return character or NULL
 #' @family private
-extract_by_keyword <- function(record, keyword, end_pattern='\n') {
+extract_by_patterns <- function(record, start_pattern, end_pattern='\n') {
   # have to make sure the text is formatted in a readable-format
   record <- iconv(x = record, from = 'latin1', to = 'latin1', sub = '-')
   # cut record from keyword to end_pattern
-  start_index <- regexpr(pattern = keyword, text = record)
+  start_index <- regexpr(pattern = start_pattern, text = record)
   if (start_index == -1) {
     return(NULL)
   }
-  part_record <- substr(x = record, start = start_index, stop = nchar(record))
+  start_at <- start_index + attr(start_index, 'match.length')
+  part_record <- substr(x = record, stop = nchar(record), start = start_at)
   end_index <- regexpr(pattern = end_pattern, text = part_record)
   if (end_index == -1) {
     return(NULL)
   }
   res  <- substr(x = part_record, start = 1, stop = end_index - 1)
-  res <- sub(pattern = paste0(keyword, '\\s+'), replacement = '', x = res)
+  res <- sub(pattern = paste0(start_pattern, '\\s+'), replacement = '', x = res)
   res
 }
 
@@ -44,8 +47,8 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
 #' @return character
 #' @family private
 extract_inforecpart <- function(record) {
-  inforecpart <- restez:::extract_by_keyword(record = record, keyword = '^',
-                                    end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
+  inforecpart <- extract_by_patterns(record = record, start_pattern = '^',
+                                     end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
   if (is.null(inforecpart)) {
     inforecpart <- ''
   }
@@ -60,9 +63,8 @@ extract_inforecpart <- function(record) {
 #' @return character
 #' @family private
 extract_seqrecpart <- function(record) {
-  seqrecpart <- extract_by_keyword(record = record,
-                                   keyword = 'ORIGIN\\s+\n\\s+1\\s+',
-                                   end_pattern = '$')
+  seqrecpart <- extract_by_patterns(record = record, end_pattern = '$',
+                                    start_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
   if (is.null(seqrecpart)) {
     seqrecpart <- ''
   }
@@ -90,7 +92,7 @@ extract_clean_sequence <- function(seqrecpart) {
 #' @return character
 #' @family private
 extract_version <- function(record) {
-  vrsn <- extract_by_keyword(record = record, keyword = 'VERSION')
+  vrsn <- extract_by_patterns(record = record, start_pattern = 'VERSION\\s{2,}')
   if (is.null(vrsn)) {
     return('')
   }
@@ -105,7 +107,8 @@ extract_version <- function(record) {
 #' @return character
 #' @family private
 extract_accession <- function(record) {
-  accssn <- extract_by_keyword(record = record, keyword = 'ACCESSION')
+  accssn <- extract_by_patterns(record = record,
+                                start_pattern = 'ACCESSION\\s{2,}')
   if (is.null(accssn)) {
     return('')
   }
@@ -123,7 +126,8 @@ extract_accession <- function(record) {
 #' @return character
 #' @family private
 extract_organism <- function(record) {
-  orgnsm <- extract_by_keyword(record = record, keyword = 'ORGANISM')
+  orgnsm <- extract_by_patterns(record = record,
+                                start_pattern = '\n\\s{1,}ORGANISM\\s{1,}')
   if (is.null(orgnsm)) {
     return('')
   }
@@ -139,8 +143,9 @@ extract_organism <- function(record) {
 #' @family private
 extract_definition <- function(record) {
   # assumes ACCESSION always follows DEFINTION
-  definition <- extract_by_keyword(record = record, keyword = 'DEFINITION',
-                                   end_pattern = 'ACCESSION')
+  definition <- extract_by_patterns(record = record,
+                                    start_pattern = 'DEFINITION\\s{2,}',
+                                    end_pattern = 'ACCESSION\\s{2,}')
   if (is.null(definition)) {
     return('')
   }
@@ -169,8 +174,8 @@ extract_sequence <- function(record) {
 #' @details If element is not found, '' returned.
 #' @family private
 extract_locus <- function(record) {
-  locus <- extract_by_keyword(record = record, keyword = 'LOCUS',
-                              end_pattern = 'DEFINITION')
+  locus <- extract_by_patterns(record = record, start_pattern = 'LOCUS\\s{2,}',
+                               end_pattern = 'DEFINITION\\s{2,}')
   if (is.null(locus)) {
     return('')
   }
@@ -190,9 +195,9 @@ extract_locus <- function(record) {
 #' @details If element is not found, empty list returned.
 #' @family private
 extract_features <- function(record) {
-  feature_text <- extract_by_keyword(record = record,
-                                     keyword = 'FEATURES\\s+Location/Q',
-                                     end_pattern = 'ORIGIN')
+  feature_text <- extract_by_patterns(record = record,
+                                      start_pattern = 'FEATURES\\s+Location/Q',
+                                      end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
   if (is.null(feature_text)) {
     return(list())
   }
@@ -237,9 +242,9 @@ extract_features <- function(record) {
 #' @details If element is not found, '' returned.
 #' @family private
 extract_keywords <- function(record) {
-  keyword_text <- extract_by_keyword(record = record,
-                                     keyword = 'KEYWORDS\\s+',
-                                     end_pattern = 'SOURCE')
+  keyword_text <- extract_by_patterns(record = record,
+                                      start_pattern = 'KEYWORDS\\s{2,}',
+                                      end_pattern = 'SOURCE\\s{2,}')
   if (is.null(keyword_text)) {
     return('')
   }

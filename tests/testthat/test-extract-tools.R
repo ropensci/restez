@@ -6,26 +6,29 @@ library(testthat)
 data_d <- restez:::testdatadir_get()
 
 # DATA
+# TODO: get ten random records of each NCBI domain
 records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # RUNNING
 context('Testing \'extract-tools\'')
-test_that('extract_by_keyword() works', {
+test_that('extract_by_patterns() works', {
   record <- sample(records, 1)[[1]]
-  res <- restez:::extract_by_keyword(record = record,
-                                     keyword = 'FEATURES',
-                                     end_pattern = 'ORIGIN')
+  res <- restez:::extract_by_patterns(record = record,
+                                      start_pattern = 'FEATURES\\s{2,}',
+                                      end_pattern = 'ORIGIN\\s{2,}')
   expect_true(grepl('Location/Qualifiers', res))
 })
 test_that('extract_version() works', {
   record <- sample(records, 1)[[1]]
   accession_version <- restez:::extract_version(record = record)
+  print(accession_version)
   expect_true(grepl('^[a-z0-9_]+\\.[0-9]+$', accession_version,
                     ignore.case = TRUE))
 })
 test_that('extract_organism() works', {
   record <- sample(records, 1)[[1]]
   organism <- restez:::extract_organism(record = record)
+  print(organism)
   expect_false(grepl('\\s{2,}', organism,
                     ignore.case = TRUE))
   expect_false(grepl('\n', organism, ignore.case = TRUE))
@@ -33,6 +36,7 @@ test_that('extract_organism() works', {
 test_that('extract_definition() works', {
   record <- sample(records, 1)[[1]]
   definition <- restez:::extract_definition(record = record)
+  print(definition)
   expect_false(grepl('\\s{2,}', definition,
                      ignore.case = TRUE))
   expect_false(grepl('\n', definition, ignore.case = TRUE))
