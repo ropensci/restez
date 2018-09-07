@@ -1,3 +1,6 @@
+# Accessions records that have caused problems
+# AI570151
+
 # Background ----
 #' @name extract_by_keyword
 #' @title Extract by keyword
@@ -41,8 +44,8 @@ extract_by_keyword <- function(record, keyword, end_pattern='\n') {
 #' @return character
 #' @family private
 extract_inforecpart <- function(record) {
-  inforecpart <- extract_by_keyword(record = record, keyword = '^',
-                                    end_pattern = 'ORIGIN')
+  inforecpart <- restez:::extract_by_keyword(record = record, keyword = '^',
+                                    end_pattern = 'ORIGIN\\s+\n\\s+1\\s+')
   if (is.null(inforecpart)) {
     inforecpart <- ''
   }
@@ -57,7 +60,8 @@ extract_inforecpart <- function(record) {
 #' @return character
 #' @family private
 extract_seqrecpart <- function(record) {
-  seqrecpart <- extract_by_keyword(record = record, keyword = 'ORIGIN',
+  seqrecpart <- extract_by_keyword(record = record,
+                                   keyword = 'ORIGIN\\s+\n\\s+1\\s+',
                                    end_pattern = '$')
   if (is.null(seqrecpart)) {
     seqrecpart <- ''

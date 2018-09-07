@@ -88,8 +88,9 @@ gb_record_get <- function(id) {
   infs <- lapply(X = res[['raw_record']], FUN = rawToChar)
   seqs <- lapply(X = res[['raw_sequence']], FUN = rawToChar)
   # stick inf and seq together to make complete record
+  # inverse of 'ORIGIN\\s+\n\\s+1\\s+'
   rcs <- lapply(X = seq_along(infs), FUN = function(x) {
-    paste0(infs[[x]], 'ORIGIN      \n        ', seqs[[x]])
+    paste0(infs[[x]], 'ORIGIN      \n        1 ', seqs[[x]])
   })
   names(rcs) <- res[['accession']]
   unlist(rcs)
