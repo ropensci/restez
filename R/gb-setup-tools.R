@@ -30,6 +30,8 @@ flatfile_read <- function(flpth) {
 #' The raw_record contains the entire GenBank record in text format.
 #'
 #' Use max and min sequence lengths to minimise the size of the database.
+#' All sequences have to be at least as long as min and less than or equal
+#' in length to max, unless max is NULL in which there is no maximum length.
 #' @param records character, vector of GenBank records in text format
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
@@ -38,6 +40,9 @@ flatfile_read <- function(flpth) {
 gb_df_generate <- function(records, min_length=0, max_length=NULL) {
   infoparts <- unname(vapply(X = records, FUN = extract_inforecpart,
                              FUN.VALUE = character(1)))
+  # not all records have sequences, in which the whole record is the infopart
+  pull <- infoparts == ''
+  infoparts[pull] <- records[pull]
   seqrecparts <- unname(vapply(X = records, FUN.VALUE = character(1),
                                FUN = extract_seqrecpart))
   accessions <- unname(vapply(X = infoparts, FUN.VALUE = character(1),

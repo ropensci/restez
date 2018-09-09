@@ -85,12 +85,13 @@ gb_sequence_get <- function(id) {
 #' @example examples/gb_record_get.R
 gb_record_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_record,raw_sequence', id = id)
-  infs <- lapply(X = res[['raw_record']], FUN = rawToChar)
+  rcs <- lapply(X = res[['raw_record']], FUN = rawToChar)
   seqs <- lapply(X = res[['raw_sequence']], FUN = rawToChar)
+  with_seq <- which(vapply(X = seqs, FUN = function(x) x != '', logical(1)))
   # stick inf and seq together to make complete record
-  # inverse of 'ORIGIN\\s+\n\\s+1\\s+'
-  rcs <- lapply(X = seq_along(infs), FUN = function(x) {
-    paste0(infs[[x]], 'ORIGIN      \n        1 ', seqs[[x]])
+  # inverse of '\nORIGIN\\s+\n\\s+1\\s+'
+  rcs[with_seq] <- lapply(X = with_seq, FUN = function(x) {
+    paste0(rcs[[x]], '\nORIGIN      \n        1 ', seqs[[x]])
   })
   names(rcs) <- res[['accession']]
   unlist(rcs)

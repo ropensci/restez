@@ -1,7 +1,9 @@
 # Accessions records that have caused problems
 # AI570151  -- origin in description
 # AI607683  -- accession in description
-# KBQR00000000  -- no sequence
+# EP216306 -- contig, synthetic sequences, multiple accessions
+# AACY020000000 -- wgs
+# KBQR00000000 -- targeted locus study
 
 # Background ----
 #' @name extract_by_patterns
@@ -36,7 +38,8 @@ extract_by_patterns <- function(record, start_pattern, end_pattern='\n') {
     return(NULL)
   }
   res  <- substr(x = part_record, start = 1, stop = end_index - 1)
-  res <- sub(pattern = paste0(start_pattern, '\\s+'), replacement = '', x = res)
+  res <- sub(pattern = paste0(start_pattern, '\\s+'), replacement = '',
+             x = res)
   res
 }
 
@@ -49,9 +52,8 @@ extract_by_patterns <- function(record, start_pattern, end_pattern='\n') {
 #' @family private
 extract_inforecpart <- function(record) {
   # stop at either beginning of sequence or if no seq, the TLS
-  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   inforecpart <- extract_by_patterns(record = record, start_pattern = '^',
-                                     end_pattern = end_pattern)
+                                     end_pattern = '\nORIGIN\\s+\n\\s+1\\s+')
   if (is.null(inforecpart)) {
     inforecpart <- ''
   }
@@ -66,9 +68,8 @@ extract_inforecpart <- function(record) {
 #' @return character
 #' @family private
 extract_seqrecpart <- function(record) {
-  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   seqrecpart <- extract_by_patterns(record = record, end_pattern = '$',
-                                    start_pattern = end_pattern)
+                                    start_pattern = '\nORIGIN\\s+\n\\s+1\\s+')
   if (is.null(seqrecpart)) {
     seqrecpart <- ''
   }
@@ -96,7 +97,8 @@ extract_clean_sequence <- function(seqrecpart) {
 #' @return character
 #' @family private
 extract_version <- function(record) {
-  vrsn <- extract_by_patterns(record = record, start_pattern = 'VERSION\\s{2,}')
+  vrsn <- extract_by_patterns(record = record,
+                              start_pattern = '\nVERSION\\s{2,}')
   if (is.null(vrsn)) {
     return('')
   }
@@ -112,7 +114,7 @@ extract_version <- function(record) {
 #' @family private
 extract_accession <- function(record) {
   accssn <- extract_by_patterns(record = record,
-                                start_pattern = 'ACCESSION\\s{2,}')
+                                start_pattern = '\nACCESSION\\s{2,}')
   if (is.null(accssn)) {
     return('')
   }
@@ -148,8 +150,8 @@ extract_organism <- function(record) {
 extract_definition <- function(record) {
   # assumes ACCESSION always follows DEFINTION
   definition <- extract_by_patterns(record = record,
-                                    start_pattern = 'DEFINITION\\s{2,}',
-                                    end_pattern = 'ACCESSION\\s{2,}')
+                                    start_pattern = '\nDEFINITION\\s{2,}',
+                                    end_pattern = '\nACCESSION\\s{2,}')
   if (is.null(definition)) {
     return('')
   }
@@ -178,8 +180,9 @@ extract_sequence <- function(record) {
 #' @details If element is not found, '' returned.
 #' @family private
 extract_locus <- function(record) {
-  locus <- extract_by_patterns(record = record, start_pattern = 'LOCUS\\s{2,}',
-                               end_pattern = 'DEFINITION\\s{2,}')
+  locus <- extract_by_patterns(record = record,
+                               start_pattern = '\nLOCUS\\s{2,}',
+                               end_pattern = '\nDEFINITION\\s{2,}')
   if (is.null(locus)) {
     return('')
   }
@@ -199,10 +202,9 @@ extract_locus <- function(record) {
 #' @details If element is not found, empty list returned.
 #' @family private
 extract_features <- function(record) {
-  end_pattern <- '(\nORIGIN\\s+\n\\s+1\\s+|\nTLS\\s{2,})'
   feature_text <- extract_by_patterns(record = record,
                                       start_pattern = '\nFEATURES\\s{3,}',
-                                      end_pattern = end_pattern)
+                                      end_pattern = '\n[A-Z]{2,}\\s+')
   if (is.null(feature_text)) {
     return(list())
   }
