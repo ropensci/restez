@@ -1,5 +1,5 @@
 # Vars
-n <- 2
+n <- 2  # n per genbank type
 wd <- '.'
 restez_lib_path <- '~/Coding/restez'
 
@@ -15,7 +15,13 @@ release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
                       release)
 release_notes <- RCurl::getURL(url = release_url)
 downloadable_table <- identify_downloadable_files(release_notes)
-seq_files <- as.character(sample(downloadable_table[['seq_files']], n))
+colnames(downloadable_table)
+cats <- as.character(unique(downloadable_table[['descripts']]))
+seq_files <- unlist(lapply(X = cats, FUN = function(x) {
+  indxs <- which(x == downloadable_table[['descripts']])
+  rand_indxs <- sample(indxs, n)
+  as.character(downloadable_table[rand_indxs, 'seq_files'])
+  }))
 
 # Download them
 for (i in seq_along(seq_files)) {
