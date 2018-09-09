@@ -28,6 +28,8 @@ raw format, see ?charToRaw, in order to save on RAM.
 The raw_record contains the entire GenBank record in text format.
 
 Use max and min sequence lengths to minimise the size of the database.
+All sequences have to be at least as long as min and less than or equal
+in length to max, unless max is NULL in which there is no maximum length.
 }
 \seealso{
 Other private: \code{\link{add_rcrd_log}},

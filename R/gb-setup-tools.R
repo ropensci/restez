@@ -13,6 +13,12 @@ flatfile_read <- function(flpth) {
   connection <- file(flpth, open = "r")
   lines <- readLines(con = connection)
   close(connection)
+  # throwaway file header
+  first_record_start <- which(grepl(pattern = '^LOCUS', x = lines[1:100]))[1]
+  if (first_record_start > 1) {
+    lines <- lines[first_record_start - 1, length(lines)]
+  }
+  # read files
   record_ends <- which(lines == '//')
   record_starts <- c(1, record_ends[-1*length(record_ends)] + 1)
   records <- lapply(X = seq_along(record_ends), FUN = generate_records)
