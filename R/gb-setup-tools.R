@@ -15,9 +15,7 @@ flatfile_read <- function(flpth) {
   close(connection)
   # throwaway file header
   first_record_start <- which(grepl(pattern = '^LOCUS', x = lines[1:100]))[1]
-  if (first_record_start > 1) {
-    lines <- lines[first_record_start - 1, length(lines)]
-  }
+  lines <- lines[first_record_start:length(lines)]
   # read files
   record_ends <- which(lines == '//')
   record_starts <- c(1, record_ends[-1*length(record_ends)] + 1)
