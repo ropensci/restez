@@ -8,7 +8,8 @@ data_d <- restez:::testdatadir_get()
 
 # DATA
 records <- readRDS(file = file.path(data_d, 'records.RData'))
-mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq')
+mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq',
+                          filesizes = '100')
 
 # RUNNING
 context('Testing \'setup\'')

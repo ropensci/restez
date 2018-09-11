@@ -16,11 +16,8 @@ if (to_download) {
   restez_path_set(wd)
 
   # Identify random seq files
-  release <- identify_latest_genbank_release_notes()
-  release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
-                        release)
-  release_notes <- RCurl::getURL(url = release_url)
-  downloadable_table <- identify_downloadable_files(release_notes)
+  identify_latest_genbank_release_notes()
+  downloadable_table <- identify_downloadable_files()
   colnames(downloadable_table)
   cats <- as.character(unique(downloadable_table[['descripts']]))
   seq_files <- unlist(lapply(X = cats, FUN = function(x) {

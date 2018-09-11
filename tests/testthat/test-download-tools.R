@@ -18,6 +18,7 @@ mockGetUrl <- function(...) {
 }
 
 # RUNNING
+restez:::cleanup()
 on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
 test_that('identify_latest_genbank_release_notes() works', {

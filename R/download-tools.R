@@ -17,21 +17,22 @@ identify_latest_genbank_release_notes <- function() {
 #' for a GenBank release to find all listed .seq files.
 #' Returns a data.frame for all .seq files and their
 #' description.
-#' @param release_notes character, GenBank release notes
 #' @return data.frame
 #' @family private
 identify_downloadable_files <- function() {
   # TODO: identify file sizes
   flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
   lines <- readLines(con = flpth)
-  descript_section <- FALSE
-  descript <- FALSE
-  kill_switch <- FALSE
-  descript_lines <- NULL
+  filesize_section <- filesize <- kill_switch <- descript <-
+    descript_section <- FALSE
+  filesize_lines <- descript_lines <- NULL
   for (line in lines) {
-    if (grepl(pattern = '^[0-9\\.]+\\sFile Descriptions',
-              x = line)) {
+    if (grepl(pattern = '^[0-9\\.]+\\sFile Descriptions', x = line)) {
       descript_section <- TRUE
+      next
+    }
+    if (grepl(pattern = '^File Size\\s+File Name', x = line)) {
+      filesize_section <- TRUE
       next
     }
     if (grepl(pattern = '^[0-9\\.]', x = line)) {
@@ -39,11 +40,19 @@ identify_downloadable_files <- function() {
     } else {
       descript <- FALSE
     }
+    if (grepl(pattern = '^\\s+[0-9]+\\s+gb', x = line)) {
+      filesize <- TRUE
+    } else {
+      filesize <- FALSE
+    }
     if (descript_section & descript) {
       descript_lines <- c(descript_lines, line)
+    }
+    if (filesize_section & filesize) {
+      filesize_lines <- c(filesize_lines, line)
       kill_switch <- TRUE
     }
-    if (kill_switch & !descript) {
+    if (kill_switch & !filesize) {
       break
     }
   }
@@ -57,7 +66,14 @@ identify_downloadable_files <- function() {
                    x = descripts)
   descripts <- sub(pattern = ' part [0-9]+\\.', replacement = '',
                    x = descripts)
-  data.frame(seq_files, descripts)
+  filesize_info <- strsplit(x = filesize_lines, split = '\\s')
+  filesize_info <- lapply(X = filesize_info, function(x) x[x != ''])
+  filesizes <- as.integer(vapply(X = filesize_info, FUN = '[[', i = 1,
+                                 FUN.VALUE = character(1)))
+  names(filesizes) <- vapply(X = filesize_info, FUN = '[[', i = 2,
+                             FUN.VALUE = character(1))
+  data.frame(seq_files = seq_files, descripts = descripts,
+             filesizes = filesizes[seq_files])
 }
 
 #' @name file_download

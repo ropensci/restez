@@ -27,13 +27,18 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   downloadable_table <- identify_downloadable_files()
   cat_line('Found ', stat(nrow(downloadable_table)), ' sequence files')
   types <- sort(table(downloadable_table[['descripts']]), decreasing = TRUE)
+  typesizes <- sort(tapply(as.numeric(downloadable_table[['filesizes']]),
+                           downloadable_table[['descripts']], sum),
+                    decreasing = TRUE)
+  typesizes <- typesizes / 1E9
   cat(cli::rule())
   cat_line('\nWhich sequence file types would you like to download?')
   cat_line('Choose from those listed below:')
   for (i in seq_along(types)) {
     typ_nm <- names(types)[[i]]
+    ngbs <- signif(typesizes[[typ_nm]], digits = 3)
     cli::cat_bullet(i, '  -  ', char(typ_nm), ' (', stat(types[[i]]),
-                    ' files available)')
+                    ' files and ', stat(ngbs, 'GB'), ')')
   }
   cat_line('Provide one or more numbers separated by spaces.')
   cat_line('e.g. to download all Mammal sequences type:',
@@ -51,20 +56,13 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
       stop('Invalid number or argument', call. = FALSE)
       })
   nfiles <- sum(types[selected_types])
+  ngbs <- signif(sum(typesizes[selected_types]), digits = 3)
   cat_line("You've selected a total of ", stat(nfiles),
-           " file type(s). These represent:")
+           " file type(s) and ", stat(ngbs, 'GB'), ". These represent: ")
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }
-  cat_line('Each file contains about 250 MB of decompressed data.')
-  ngbytes_fls <- nfiles * 250 / 1000
-  cat_line(stat(nfiles), ' file(s) amounts to about ', stat(ngbytes_fls, 'GB'))
-  cat_line('Additionally, the resulting SQL database takes about 50 MB',
-           ' per file')
-  ngbytes <- ngbytes_fls + (nfiles * 50 / 1000)
-  # TODO: create option for a user to delete downloaded files after download?
-  cat_line('In total the uncompressed files and SQL database should amount to ',
-           stat(ngbytes, 'GB'), ' Is that OK?')
+  cat_line('OK?')
   if (is.null(preselection)) {
     msg <- 'Enter any key to continue or press Esc to quit '
     response <- restez_rl(prompt = msg)

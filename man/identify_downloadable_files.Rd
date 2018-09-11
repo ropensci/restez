@@ -6,9 +6,6 @@
 \usage{
 identify_downloadable_files()
 }
-\arguments{
-\item{release_notes}{character, GenBank release notes}
-}
 \value{
 data.frame
 }
