@@ -18,17 +18,24 @@ mockGetUrl <- function(...) {
 }
 
 # RUNNING
+on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
 test_that('identify_latest_genbank_release_notes() works', {
-  res <- with_mock(
+  restez:::setup()
+  on.exit(restez:::cleanup())
+  with_mock(
     `RCurl::getURL` = mockGetUrl,
     restez:::identify_latest_genbank_release_notes()
   )
-  expect_true(res == "gb500.release.notes")
+  expect_true(file.exists(file.path(restez:::dwnld_path_get(),
+                                    'latest_release_notes.txt')))
 })
 test_that('identify_downloadable_files() works', {
-  downloadable <- restez:::identify_downloadable_files(release_notes =
-                                                         release_notes)
+  restez:::setup()
+  on.exit(restez:::cleanup())
+  write(x = release_notes, file = file.path(restez:::dwnld_path_get(),
+                                            'latest_release_notes.txt'))
+  downloadable <- restez:::identify_downloadable_files()
   expect_true(nrow(downloadable) == 3057)
   expect_true(all(grepl('\\.seq$', downloadable[['seq_files']])))
 })

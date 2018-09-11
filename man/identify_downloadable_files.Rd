@@ -4,7 +4,7 @@
 \alias{identify_downloadable_files}
 \title{Identify downloadable files}
 \usage{
-identify_downloadable_files(release_notes)
+identify_downloadable_files()
 }
 \arguments{
 \item{release_notes}{character, GenBank release notes}

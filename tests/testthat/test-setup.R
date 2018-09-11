@@ -39,7 +39,7 @@ test_that('db_download() works', {
     `restez:::check_connection` = function() TRUE,
     `restez:::identify_latest_genbank_release_notes` = function() 1,
     `RCurl::getURL` = function(url) '',
-    `restez:::identify_downloadable_files` = function(release_notes) {
+    `restez:::identify_downloadable_files` = function() {
       mck_dwnldbl
       },
     `restez:::restez_rl` = function(prompt) '1',

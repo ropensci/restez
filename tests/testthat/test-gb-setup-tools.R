@@ -3,7 +3,7 @@ library(restez)
 library(testthat)
 
 # VARS
-nrcrds <- 3  # how many fake records to test on?
+nrcrds <- 50  # how many fake records to test on?
 data_d <- restez:::testdatadir_get()
 
 # DATA
@@ -37,8 +37,8 @@ test_that('gb_df_create() works', {
   expect_true(nrow(df) == nrcrds)
 })
 test_that('gb_df_generate() works', {
-  df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
-  expect_true(nrow(df) == nrcrds)
+  df <- restez:::gb_df_generate(records = sample(records, size = 3))
+  expect_true(nrow(df) == 3)
   expctd_clnms <- c("accession", "version", "organism", "raw_definition",
                     "raw_sequence", "raw_record")
   expect_true(all(colnames(df) %in% expctd_clnms))
@@ -46,7 +46,7 @@ test_that('gb_df_generate() works', {
 test_that('gb_sql_add() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
-  df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
+  df <- restez:::gb_df_generate(records = sample(records, size = 3))
   restez:::gb_sql_add(df = df)
   expect_true(file.exists(restez:::sql_path_get()))
 })

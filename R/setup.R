@@ -72,7 +72,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   cat_line(cli::rule())
   cat_line("Downloading ...")
   # log the release number
-  gbrelease_log(release = release)
+  gbrelease_log(release = 280) # TODO
   # log selection made
   slctn_log(selection = types[selected_types])
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
