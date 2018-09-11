@@ -13,6 +13,9 @@ flatfile_read <- function(flpth) {
   connection <- file(flpth, open = "r")
   lines <- readLines(con = connection)
   close(connection)
+  if (length(lines) < 100) {
+    return(list())
+  }
   # throwaway file header
   first_record_start <- which(grepl(pattern = '^LOCUS', x = lines[1:100]))[1]
   lines <- lines[first_record_start:length(lines)]
