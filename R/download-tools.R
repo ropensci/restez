@@ -5,15 +5,10 @@
 #' @return character
 #' @family private
 identify_latest_genbank_release_notes <- function() {
-  url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/'
-  all_release_notes <- RCurl::getURL(url = url, dirlistonly = TRUE)
-  all_release_notes <- strsplit(x = all_release_notes, split = '\n')[[1]]
-  all_release_numbers <- gsub(pattern = "[^0-9]+", replacement = "",
-                              x = all_release_notes)
-  all_release_numbers <- as.numeric(all_release_numbers)
-  #max_release <- max(all_release_numbers, na.rm = TRUE)
-  #cat_line('... found release ', stat(max_release))
-  all_release_notes[which.max(all_release_numbers)]
+  url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
+  flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
+  custom_download2(url = url, destfile = flpth)
+  
 }
 
 #' @name identify_downloadable_files
@@ -25,8 +20,10 @@ identify_latest_genbank_release_notes <- function() {
 #' @param release_notes character, GenBank release notes
 #' @return data.frame
 #' @family private
-identify_downloadable_files <- function(release_notes) {
-  lines <- strsplit(x = release_notes, split = '\n')[[1]]
+identify_downloadable_files <- function() {
+  # TODO: identify file sizes
+  flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
+  lines <- readLines(con = flpth)
   descript_section <- FALSE
   descript <- FALSE
   kill_switch <- FALSE

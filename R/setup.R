@@ -23,13 +23,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   check_connection()
   cat_line(cli::rule())
   cat_line('Looking up latest GenBank release ...')
-  release <- identify_latest_genbank_release_notes()
-  release_url <- paste0('ftp://ftp.ncbi.nlm.nih.gov/genbank/release.notes/',
-                        release)
-  release_notes <- RCurl::getURL(url = release_url)
-  write(x = release_notes, file = file.path(dwnld_path_get(),
-                                            'latest_release_notes.txt'))
-  downloadable_table <- identify_downloadable_files(release_notes)
+  identify_latest_genbank_release_notes()
+  downloadable_table <- identify_downloadable_files()
   cat_line('Found ', stat(nrow(downloadable_table)), ' sequence files')
   types <- sort(table(downloadable_table[['descripts']]), decreasing = TRUE)
   cat(cli::rule())
