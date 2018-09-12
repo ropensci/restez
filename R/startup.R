@@ -9,7 +9,7 @@
                   'restez_connect()')
   } else {
     msg <- paste0(v_msg, 'Restez path = [', fp,
-                  ']\nRemeber to restez_connect()')
+                  ']\nRemember to restez_connect()')
   }
   packageStartupMessage(msg)
 }

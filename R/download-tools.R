@@ -1,14 +1,27 @@
-#' @name identify_latest_genbank_release_notes
-#' @title Identify the latest GenBank Release Notes
-#' @description Searches through all release notes to find the latest. Returns
-#' "gb[release number].release.notes".
-#' @return character
+#' @name latest_genbank_release_notes
+#' @title Download the latest GenBank Release Notes
+#' @description Downloads the latest GenBank release notes to a user's restez
+#' download path.
+#' @return NULL
 #' @family private
-identify_latest_genbank_release_notes <- function() {
+latest_genbank_release_notes <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
   flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
   custom_download2(url = url, destfile = flpth)
-  
+}
+
+#' @name latest_genbank_release
+#' @title Retrieve latest GenBank release number
+#' @description Downloads the latest GenBank release number and returns it.
+#' @return character
+#' @family private
+latest_genbank_release <- function() {
+  url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/GB_Release_Number'
+  flpth <- file.path(tempdir(), 'gb_release_number.txt')
+  custom_download2(url = url, destfile = flpth)
+  release <- readChar(con = flpth, nchars = 10)
+  file.remove(flpth)
+  gsub(pattern = '[^0-9]', replacement = '', x = release)
 }
 
 #' @name identify_downloadable_files

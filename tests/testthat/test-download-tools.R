@@ -21,12 +21,19 @@ mockGetUrl <- function(...) {
 restez:::cleanup()
 on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
-test_that('identify_latest_genbank_release_notes() works', {
+test_that('latest_genbank_release() works', {
+  res <- with_mock(
+    `RCurl::getURL` = function(...) '227',
+    restez:::latest_genbank_release()
+  )
+  expect_true(res == '227')
+})
+test_that('latest_genbank_release_notes() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
   with_mock(
     `RCurl::getURL` = mockGetUrl,
-    restez:::identify_latest_genbank_release_notes()
+    restez:::latest_genbank_release_notes()
   )
   expect_true(file.exists(file.path(restez:::dwnld_path_get(),
                                     'latest_release_notes.txt')))

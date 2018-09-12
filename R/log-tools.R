@@ -271,9 +271,7 @@ dir_size <- function(fp) {
 #' @return logical
 #' @family private
 gbrelease_check <- function() {
-  latest_release <- identify_latest_genbank_release_notes()
-  latest_release <- as.integer(gsub(pattern = '[^0-9]', replacement = '',
-                                    x = latest_release))
+  latest_release <- as.integer(latest_genbank_release())
   current_release <- as.integer(gbrelease_get())
   if (latest_release > current_release) {
     cat_line('... ... Your database is out-of-date. Latest release is ',

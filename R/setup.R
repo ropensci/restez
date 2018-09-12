@@ -23,9 +23,11 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   check_connection()
   cat_line(cli::rule())
   cat_line('Looking up latest GenBank release ...')
-  identify_latest_genbank_release_notes()
+  release <- latest_genbank_release()
+  cat_line('... release number ', stat(release))
+  latest_genbank_release_notes()
   downloadable_table <- identify_downloadable_files()
-  cat_line('Found ', stat(nrow(downloadable_table)), ' sequence files')
+  cat_line('... found ', stat(nrow(downloadable_table)), ' sequence files')
   types <- sort(table(downloadable_table[['descripts']]), decreasing = TRUE)
   typesizes <- sort(tapply(as.numeric(downloadable_table[['filesizes']]),
                            downloadable_table[['descripts']], sum),
@@ -70,7 +72,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   cat_line(cli::rule())
   cat_line("Downloading ...")
   # log the release number
-  gbrelease_log(release = 280) # TODO
+  gbrelease_log(release = release)
   # log selection made
   slctn_log(selection = types[selected_types])
   pull <- downloadable_table[['descripts']] %in% names(types)[selected_types]
