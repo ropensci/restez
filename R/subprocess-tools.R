@@ -12,7 +12,7 @@ handle_run <- function(handle, cmd) {
   subprocess::process_write(handle, cmd)
   # monitor: raise errors and spin dots
   while (subprocess::process_state(handle) == 'running') {
-    dot_spinner()
+    line_spinner()
     stderr <- subprocess::process_read(handle = handle,
                                        pipe = subprocess::PIPE_STDERR)
     if (length(stderr) > 0) {
