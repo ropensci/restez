@@ -106,8 +106,14 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' @details
 #' All .seq.gz files are added to the database. A user can specify sequence
 #' limit sizes for those sequences to be added to the database -- smaller
-#' databases are faster to  search and is best to limit the database size if
-#' possible.
+#' databases are faster to search.
+#'
+#' Alternatively, a user can use the \code{alt_restez_path} to add the files
+#' from an alternative restez file path. For example, you may wish to have a
+#' database of all environmental sequences but then an additional smaller one of
+#' just the sequences with lengths below 100 bp. Instead of having to download
+#' all environmental sequences twice, you can generate multiple restez databases
+#' using the same downloaded files from a single restez path.
 #'
 #' This function will not overwrite a pre-exisitng database. Old databases must
 #' be deleted before a new one can be created. Use \code{\link{db_delete}} with
@@ -116,19 +122,22 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' @param db_type character, database type
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
+#' @param alt_restez_path Alternative restez path if you would like to use the
+#' downloads from a different restez path.
 #' @return NULL
 #' @export
 #' @examples
 #' \dontrun{
 #' library(restez)
-#' restez_path_set(filepath = 'path/for/downloads')
+#' restez_path_set(filepath = 'path/for/downloads/and/database')
 #' db_download()
 #' restez_connect()
 #' db_create()
 #' restez_disconnect()
 #' }
 # db_type: a nod to the future,
-db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
+db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
+                      alt_restez_path = NULL) {
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
@@ -139,7 +148,14 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL) {
     stop('Database already exists.')
   }
   # TODO: have a is_connected function
-  dpth <- dwnld_path_get()
+  if (!is.null(alt_restez_path)) {
+    dpth <- file.path(alt_restez_path, 'downloads')
+    if (!dir.exists(dpth)) {
+      stop(paste0('[', dpth, '] could not be found.'))
+    }
+  } else {
+    dpth <- dwnld_path_get()
+  }
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
   # log min and max

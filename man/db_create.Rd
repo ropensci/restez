@@ -4,7 +4,8 @@
 \alias{db_create}
 \title{Create new NCBI database}
 \usage{
-db_create(db_type = "nucleotide", min_length = 0, max_length = NULL)
+db_create(db_type = "nucleotide", min_length = 0, max_length = NULL,
+  alt_restez_path = NULL)
 }
 \arguments{
 \item{db_type}{character, database type}
@@ -12,6 +13,9 @@ db_create(db_type = "nucleotide", min_length = 0, max_length = NULL)
 \item{min_length}{Minimum sequence length, default 0.}
 
 \item{max_length}{Maximum sequence length, default NULL.}
+
+\item{alt_restez_path}{Alternative restez path if you would like to use the
+downloads from a different restez path.}
 }
 \description{
 Create a new local SQL database from downloaded files.
@@ -20,8 +24,14 @@ Currently only GenBank/nucleotide/nuccore database is supported.
 \details{
 All .seq.gz files are added to the database. A user can specify sequence
 limit sizes for those sequences to be added to the database -- smaller
-databases are faster to  search and is best to limit the database size if
-possible.
+databases are faster to search.
+
+Alternatively, a user can use the \code{alt_restez_path} to add the files
+from an alternative restez file path. For example, you may wish to have a
+database of all environmental sequences but then an additional smaller one of
+just the sequences with lengths below 100 bp. Instead of having to download
+all environmental sequences twice, you can generate multiple restez databases
+using the same downloaded files from a single restez path.
 
 This function will not overwrite a pre-exisitng database. Old databases must
 be deleted before a new one can be created. Use \code{\link{db_delete}} with
@@ -30,7 +40,7 @@ everything=FALSE to delete an SQL database.
 \examples{
 \dontrun{
 library(restez)
-restez_path_set(filepath = 'path/for/downloads')
+restez_path_set(filepath = 'path/for/downloads/and/database')
 db_download()
 restez_connect()
 db_create()
