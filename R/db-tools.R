@@ -144,10 +144,13 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   read_errors <- FALSE
   # checks
   restez_path_check()
-  if (restez_ready() && db_nrows_get() > 0) {
-    stop('Database already exists.')
+  if (!connected()) {
+    stop('Database not connected. Did you run `restez_connect()`?')
   }
-  # TODO: have a is_connected function
+  if (has_data()) {
+    stop('Database already exists. Use `db_delete()`.')
+  }
+  # alternative downloads
   if (!is.null(alt_restez_path)) {
     dpth <- file.path(alt_restez_path, 'downloads')
     if (!dir.exists(dpth)) {
@@ -156,6 +159,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   } else {
     dpth <- dwnld_path_get()
   }
+  # add
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
   # log min and max
@@ -204,4 +208,26 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
   # create
   df <- mock_gb_df_generate(n = n)
   gb_sql_add(df = df)
+}
+
+#' @name db_delete
+#' @title Delete database
+#' @family setup
+#' @description Delete the local SQL database and/or restez
+#' folder.
+#' @param everything T/F, delete the whole restez folder as well?
+#' @return NULL
+#' @export
+#' @example examples/db_delete.R
+db_delete <- function(everything = TRUE) {
+  if (length(sql_path_get()) > 0 && dir.exists(sql_path_get())) {
+    unlink(sql_path_get(), recursive = TRUE)
+  }
+  if (everything) {
+    if (length(restez_path_get()) > 0 && dir.exists(restez_path_get())) {
+      unlink(restez_path_get(), recursive = TRUE)
+      restez_path_unset()
+    }
+  }
+  invisible(NULL)
 }
