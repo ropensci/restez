@@ -12,8 +12,9 @@ mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq',
                           filesizes = '100')
 
 # RUNNING
-context('Testing \'setup\'')
+context('Testing \'db-tools\'')
 restez:::cleanup()
+on.exit(restez:::cleanup())
 test_that('demo_db_create() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
@@ -38,8 +39,8 @@ test_that('db_download() works', {
   on.exit(restez:::cleanup())
   res <- with_mock(
     `restez:::check_connection` = function() TRUE,
-    `restez:::identify_latest_genbank_release_notes` = function() 1,
-    `RCurl::getURL` = function(url) '',
+    `restez:::latest_genbank_release` = function() 255,
+    `restez:::latest_genbank_release_notes` = function() NULL,
     `restez:::identify_downloadable_files` = function() {
       mck_dwnldbl
       },
@@ -49,4 +50,14 @@ test_that('db_download() works', {
   )
   expect_true(res)
 })
-restez:::cleanup()
+test_that('db_delete() works', {
+  restez:::setup()
+  on.exit(restez:::cleanup())
+  demo_db_create()
+  db_delete(everything = FALSE)
+  expect_false(file.exists(restez:::sql_path_get()))
+  expect_true(file.exists(restez_path_get()))
+  db_delete(everything = TRUE)
+  expect_false(file.exists(file.path('test_db_fldr', 'restez')))
+  expect_null(restez_path_get())
+})

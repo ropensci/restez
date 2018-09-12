@@ -9,12 +9,13 @@ data_d <- restez:::testdatadir_get()
 release_notes <- readRDS(file = file.path(data_d, 'release_notes_gb224.RData'))
 
 # MOCKS
-mockGetUrl <- function(...) {
+mock_releasenotes <- function(destfile, ...) {
   # fake releases, 500 is latest
   releases <- c(paste0(paste0('gb', 1:100), 'release.notes'),
                 'gb500.release.notes', 'README.genbank.release.notes')
   releases <- sample(releases)
-  paste0(paste0(releases, collapse = '\n'), '\n')
+  releases <- paste0(paste0(releases, collapse = '\n'), '\n')
+  write(x = releases, file = destfile)
 }
 
 # RUNNING
@@ -23,7 +24,8 @@ on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
 test_that('latest_genbank_release() works', {
   res <- with_mock(
-    `RCurl::getURL` = function(...) '227',
+    `restez::custom_download2` = function(destfile, ...) write(x = '227',
+                                                               file = destfile),
     restez:::latest_genbank_release()
   )
   expect_true(res == '227')
@@ -32,7 +34,7 @@ test_that('latest_genbank_release_notes() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
   with_mock(
-    `RCurl::getURL` = mockGetUrl,
+    `restez::custom_download2` = mock_releasenotes,
     restez:::latest_genbank_release_notes()
   )
   expect_true(file.exists(file.path(restez:::dwnld_path_get(),

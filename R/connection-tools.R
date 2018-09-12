@@ -78,7 +78,7 @@ restez_disconnect <- function() {
 #' connection set.
 #' @return connection
 connection_get <- function() {
-  if (connected()) {
+  if (!connected()) {
     stop('No restez connection. Did you run `restez_connect`?', call. = FALSE)
   }
   getOption('restez_connection')

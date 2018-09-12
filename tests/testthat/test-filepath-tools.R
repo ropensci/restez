@@ -4,6 +4,7 @@ library(testthat)
 
 # RUNNING
 restez:::cleanup()
+on.exit(restez:::cleanup())
 context('Testing \'filepath-tools\'')
 test_that('restez_path_set() works', {
   restez:::setup()
@@ -39,59 +40,3 @@ test_that('restez_path_check() works', {
   unlink('test_db_fldr', recursive = TRUE)
   expect_error(restez:::restez_path_check())
 })
-test_that('db_delete() works', {
-  restez:::setup()
-  on.exit(restez:::cleanup())
-  demo_db_create()
-  db_delete(everything = FALSE)
-  expect_false(file.exists(restez:::sql_path_get()))
-  expect_true(file.exists(restez_path_get()))
-  db_delete(everything = TRUE)
-  expect_false(file.exists(file.path('test_db_fldr', 'restez')))
-  expect_null(restez_path_get())
-})
-test_that('restez_status() works', {
-  # TODO: check with TRUE!
-  expect_false(restez_status(gb_check = FALSE))
-  restez:::setup()
-  on.exit(restez:::cleanup())
-  expect_false(restez_status(gb_check = FALSE))
-  demo_db_create()
-  expect_true(restez_status(gb_check = FALSE))
-})
-test_that('restez_ready() works', {
-  expect_false(restez_ready())
-  restez:::setup()
-  on.exit(restez:::cleanup())
-  expect_false(restez_ready())
-  demo_db_create()
-  expect_true(restez_ready())
-})
-test_that('restez_connect() works', {
-  expect_error(restez_connect())
-  restez:::setup()
-  # must disconnect because setup connects automatically
-  restez_disconnect()
-  on.exit(restez:::cleanup())
-  restez_connect()
-  expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
-})
-test_that('restez_disconnect() works', {
-  expect_null(restez_disconnect())
-  restez:::setup()
-  # must disconnect because setup connects automatically
-  restez_disconnect()
-  on.exit(restez:::cleanup())
-  restez_connect()
-  expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
-  restez_disconnect()
-  expect_error(restez:::connection_get())
-})
-test_that('connection_get() works', {
-  restez:::setup()
-  on.exit(restez:::cleanup())
-  expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
-  restez:::cleanup()
-  expect_error(restez:::connection_get())
-})
-restez:::cleanup()

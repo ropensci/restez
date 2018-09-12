@@ -38,7 +38,7 @@ test_that('add_rcrd_log() works', {
   expect_true(file.exists(file.path(restez_path_get(), 'add_log.tsv')))
 })
 test_that('gbrelease_log() works', {
-  restez:::gbrelease_log(release = 'gb.release.255')
+  restez:::gbrelease_log(release = '255')
   expect_true(file.exists(file.path(restez_path_get(), 'gb_release.txt')))
 })
 # get ----
@@ -96,12 +96,12 @@ test_that('dir_size() works', {
 test_that('gbrelease_check() works', {
   restez:::gbrelease_log(release = 'gb.release.255')
   res <- with_mock(
-    `restez::identify_latest_genbank_release_notes` = function(...) 256,
+    `restez::latest_genbank_release` = function(...) 256,
     restez:::gbrelease_check()
   )
   expect_false(res)
   res <- with_mock(
-    `restez::identify_latest_genbank_release_notes` = function(...) 255,
+    `restez::latest_genbank_release` = function(...) 255,
     restez:::gbrelease_check()
   )
   expect_true(res)
