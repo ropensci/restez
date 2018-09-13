@@ -20,7 +20,7 @@ This package aims to make sequence retrieval more efficient by allowing a user t
 
 <img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"/>
 
-**For more detailed information on the pacakge's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
+**For more detailed information on the package's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
 
 Installation
 ------------
@@ -48,11 +48,11 @@ library(restez)
 #> Remember to restez_path_set() and, then, restez_connect()
 # choose a location to store GenBank files
 restez_path_set(tempdir())
-#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpdUEnD6/restez'
-#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpdUEnD6/restez/downloads'
+#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpk2tcxZ/restez'
+#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpk2tcxZ/restez/downloads'
 # Running the download function ....
 # interactively choose GenBank files to download
-# e.g. 20 is smallest
+# e.g. Unannotated sequences, 20, is the smallest
 db_download(preselection = '20')
 #> ───────────────────────────────────────────────────────────────────────────────────────────────
 #> Looking up latest GenBank release ...
@@ -122,11 +122,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 print(seq)
-#> [1] "GATCCGGCGCTCGCCTCGTGACGGCGCCGGCTCATGGCAACGCCGCCAGGGCGCCGCGCAGGCCCGGTTCGGGGCTCGCGGGCACCGGCGGCGCCCGGTCACCCGCCTCCTCGGCAAGACCGCCGATGGTGGAGCAGGTGCACAGCACCACATCCTCCAGGCGCGCGGCTTCGGCGACGGCCGCGCCCACCGCCCTGTGCACGGCGGTGTCCTGGATGCCCCGGGTACGGGCGTCGTGCAGGAGATCCGCACGCACCAGGTGGCGCGCGCTGTTTCCGGGTGCCAGCTCCCGCAGCAGGGCGTCGAGCGCCTGGACATGGACGGGGGCCGTATGCACGAAAACCAGCTGTGACATATGCGCATGATGCCTCAGGGCGTGACGCCGGAGCCAGGAATCCCTGGAAGAGCATTTACATAGACATAAAGATATGTTGATATCCNGCCTTCCGCGATTCCACCGGGATGATCACCATGGCCAGCACCACCGGTACCCCCTGCATGGACTCAATCTTNGANGACACCCCCCGCCGCCTGGCAGCCGTCTGCCATGCCGTTCACGCCGCTGCGGCCCTGGACTGTCTTNNANCTGTTCCGCGGCANTGANGGCAGGGCTGGATTCACATGCTGGCGNCTTGCCCGTNGTNCCGTTTTTTGGGACTACGGGCCGNGGAGACCGGATCCACCTGAA"
+#> [1] "GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGGCGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGAGAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCGCCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCGAGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGAGGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCGGCCTTCGAGGAGTATGACGGA"
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified clone B17 DNA sequence from ocean beach sand"
+#> [1] "Unidentified clone A22 DNA sequence from ocean beach sand"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -134,45 +134,41 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF298095                 688 bp    DNA     linear   UNA 23-NOV-2000
-#> DEFINITION  Unidentified clone B17 DNA sequence from ocean beach sand.
-#> ACCESSION   AF298095
-#> VERSION     AF298095.1
+#> LOCUS       AF298084                 441 bp    DNA     linear   UNA 23-NOV-2000
+#> DEFINITION  Unidentified clone A22 DNA sequence from ocean beach sand.
+#> ACCESSION   AF298084
+#> VERSION     AF298084.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 688)
+#> REFERENCE   1  (bases 1 to 441)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Sand DNA: a multigenomic library on the beach
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 688)
+#> REFERENCE   2  (bases 1 to 441)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Direct Submission
 #>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
 #>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
 #>             92103-8467, USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..688
+#>      source          1..441
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="B17"
+#>                      /clone="A22"
 #>                      /note="anonymous environmental sample sequence from ocean
 #>                      beach sand"
 #> ORIGIN      
-#>         1 gatccggcgc tcgcctcgtg acggcgccgg ctcatggcaa cgccgccagg gcgccgcgca
-#>        61 ggcccggttc ggggctcgcg ggcaccggcg gcgcccggtc acccgcctcc tcggcaagac
-#>       121 cgccgatggt ggagcaggtg cacagcacca catcctccag gcgcgcggct tcggcgacgg
-#>       181 ccgcgcccac cgccctgtgc acggcggtgt cctggatgcc ccgggtacgg gcgtcgtgca
-#>       241 ggagatccgc acgcaccagg tggcgcgcgc tgtttccggg tgccagctcc cgcagcaggg
-#>       301 cgtcgagcgc ctggacatgg acgggggccg tatgcacgaa aaccagctgt gacatatgcg
-#>       361 catgatgcct cagggcgtga cgccggagcc aggaatccct ggaagagcat ttacatagac
-#>       421 ataaagatat gttgatatcc ngccttccgc gattccaccg ggatgatcac catggccagc
-#>       481 accaccggta ccccctgcat ggactcaatc ttngangaca ccccccgccg cctggcagcc
-#>       541 gtctgccatg ccgttcacgc cgctgcggcc ctggactgtc ttnnanctgt tccgcggcan
-#>       601 tganggcagg gctggattca catgctggcg ncttgcccgt ngtnccgttt tttgggacta
-#>       661 cgggccgngg agaccggatc cacctgaa
+#>         1 gatccttccg atgtcttcgg cctggaagag atccggaaga gaacggggtt catggccgag
+#>        61 cccctcgtgg cgccgggtat gctcatcgac tgggctttgg agaagtatta tccggaaccg
+#>       121 gacaacggga gcagctcgga gaacgtggtt gccaccgccc ctcaggcctc tcctgccacc
+#>       181 caggaccaag ccgtccaggg cggccccgcg ccgacggagg tagagcctct ctcccctccc
+#>       241 gggcaacccg tggaaggagg cgtcttcgga gccgttcccg agatcgtggc gccccaaccc
+#>       301 ccgggagagg gagcgagtga catcaaggtg gccgatttcg aggactcgga ggctgagatc
+#>       361 gtggccggcg cancgccggc gcccgttcaa cctgaagtcc ccgcggccac ggagatcccg
+#>       421 gccttcgagg agtatgacgg a
 #> //
 ```
 
@@ -182,34 +178,28 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF298095.1 Unidentified clone B17 DNA sequence from ocean beach sand
-#> GATCCGGCGCTCGCCTCGTGACGGCGCCGGCTCATGGCAACGCCGCCAGGGCGCCGCGCAGGCCCGGTTC
-#> GGGGCTCGCGGGCACCGGCGGCGCCCGGTCACCCGCCTCCTCGGCAAGACCGCCGATGGTGGAGCAGGTG
-#> CACAGCACCACATCCTCCAGGCGCGCGGCTTCGGCGACGGCCGCGCCCACCGCCCTGTGCACGGCGGTGT
-#> CCTGGATGCCCCGGGTACGGGCGTCGTGCAGGAGATCCGCACGCACCAGGTGGCGCGCGCTGTTTCCGGG
-#> TGCCAGCTCCCGCAGCAGGGCGTCGAGCGCCTGGACATGGACGGGGGCCGTATGCACGAAAACCAGCTGT
-#> GACATATGCGCATGATGCCTCAGGGCGTGACGCCGGAGCCAGGAATCCCTGGAAGAGCATTTACATAGAC
-#> ATAAAGATATGTTGATATCCNGCCTTCCGCGATTCCACCGGGATGATCACCATGGCCAGCACCACCGGTA
-#> CCCCCTGCATGGACTCAATCTTNGANGACACCCCCCGCCGCCTGGCAGCCGTCTGCCATGCCGTTCACGC
-#> CGCTGCGGCCCTGGACTGTCTTNNANCTGTTCCGCGGCANTGANGGCAGGGCTGGATTCACATGCTGGCG
-#> NCTTGCCCGTNGTNCCGTTTTTTGGGACTACGGGCCGNGGAGACCGGATCCACCTGAA
+#> >AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand
+#> GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG
+#> CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA
+#> GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG
+#> CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG
+#> AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA
+#> GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG
+#> GCCTTCGAGGAGTATGACGGA
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF298095.1 Unidentified clone B17 DNA sequence from ocean beach sand
-#> GATCCGGCGCTCGCCTCGTGACGGCGCCGGCTCATGGCAACGCCGCCAGGGCGCCGCGCAGGCCCGGTTC
-#> GGGGCTCGCGGGCACCGGCGGCGCCCGGTCACCCGCCTCCTCGGCAAGACCGCCGATGGTGGAGCAGGTG
-#> CACAGCACCACATCCTCCAGGCGCGCGGCTTCGGCGACGGCCGCGCCCACCGCCCTGTGCACGGCGGTGT
-#> CCTGGATGCCCCGGGTACGGGCGTCGTGCAGGAGATCCGCACGCACCAGGTGGCGCGCGCTGTTTCCGGG
-#> TGCCAGCTCCCGCAGCAGGGCGTCGAGCGCCTGGACATGGACGGGGGCCGTATGCACGAAAACCAGCTGT
-#> GACATATGCGCATGATGCCTCAGGGCGTGACGCCGGAGCCAGGAATCCCTGGAAGAGCATTTACATAGAC
-#> ATAAAGATATGTTGATATCCNGCCTTCCGCGATTCCACCGGGATGATCACCATGGCCAGCACCACCGGTA
-#> CCCCCTGCATGGACTCAATCTTNGANGACACCCCCCGCCGCCTGGCAGCCGTCTGCCATGCCGTTCACGC
-#> CGCTGCGGCCCTGGACTGTCTTNNANCTGTTCCGCGGCANTGANGGCAGGGCTGGATTCACATGCTGGCG
-#> NCTTGCCCGTNGTNCCGTTTTTTGGGACTACGGGCCGNGGAGACCGGATCCACCTGAA
+#> >AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand
+#> GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG
+#> CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA
+#> GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG
+#> CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG
+#> AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA
+#> GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG
+#> GCCTTCGAGGAGTATGACGGA
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT

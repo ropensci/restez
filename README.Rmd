@@ -33,7 +33,7 @@ This package aims to make sequence retrieval more efficient by allowing a user t
 
 <img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"/>
 
-**For more detailed information on the pacakge's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
+**For more detailed information on the package's functions and detailed guides on downloading, constructing and querying a database, visit the [restez website](https://antonellilab.github.io/restez/index.html).**
 
 ## Installation
 
