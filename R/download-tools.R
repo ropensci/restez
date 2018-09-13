@@ -20,8 +20,8 @@ predict_datasizes <- function(uncompressed_filesize) {
   cat_line('Leading to a total of ',
            stat(signif(x = total_size, digits = 3), 'GB'))
   caveat <- paste0('\nPlease note, the real sizes of the database and its ',
-                   'downloads cannot be accurately predicted beforehand. ',
-                   'These are just estimates, actual sizes may differ up ',
+                   'downloads cannot be\naccurately predicted beforehand.\n',
+                   'These are just estimates, actual sizes may differ by up ',
                    'to 0-5GB.\n')
   cat_line(crayon::italic(caveat))
 }

@@ -73,7 +73,7 @@ id <- sample(list_db_ids(), 1)
 # you can extract:
 # sequences
 seq <- gb_sequence_get(id)[[1]]
-print(seq)
+str(seq)
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)

@@ -23,22 +23,26 @@ without_restez <- system.time(expr = {
 })
 # user  system elapsed
 # 121.104  32.604 467.001
+# user  system elapsed 
+# 63.128   0.883 438.626 
 
 # SET-UP RESTEZ ----
 restez_path_set(filepath = restez_path)
-db_download()  # select 15 for rodents
+db_download(preselection = '15')  # select 15 for rodents
 restez_connect()
-on.exit(restez_disconnect())
 db_create()
+restez_disconnect()
 restez_status()
 
 # RESET PHYLOTAR ----
 reset(wd = wd, stage = 'download', hard = TRUE)
 
 # SPEED TEST 2
+restez_connect()
 with_restez <- system.time(expr = {
   download_run(wd = wd)
 })
+restez_disconnect()
 # user  system elapsed
 #  97.205  31.017 303.477
 

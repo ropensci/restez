@@ -39,8 +39,11 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   for (i in seq_along(types)) {
     typ_nm <- names(types)[[i]]
     ngbs <- signif(typesizes[[typ_nm]], digits = 3)
-    cli::cat_bullet(i, '  -  ', char(typ_nm), ' (', stat(types[[i]]),
-                    ' files and ', stat(ngbs, 'GB'), ')')
+    spacer <- paste0(i, paste0(rep(' ', 3 - nchar(i)), collapse = ''), '- ')
+    lowerspacer <- paste0(rep('  ', nchar(spacer) - 1), collapse = '')
+    gbdomain <- sub(pattern = ',$', replacement = '', x = types[[i]])
+    cli::cat_bullet(spacer, char(typ_nm), '\n', lowerspacer, stat(gbdomain),
+                    ' files and ', stat(ngbs, 'GB'))
   }
   cat_line('Provide one or more numbers separated by spaces.')
   cat_line('e.g. to download all Mammal sequences type:',
@@ -61,7 +64,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   nfiles <- sum(types[selected_types])
   ngbs <- signif(sum(typesizes[selected_types]), digits = 3)
   cat_line("You've selected a total of ", stat(nfiles), " file(s) and ",
-           stat(ngbs, 'GB'), " of uncompressed data.", " These represent: ")
+           stat(ngbs, 'GB'), " of uncompressed data.", "\nThese represent: ")
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }

@@ -48,8 +48,8 @@ library(restez)
 #> Remember to restez_path_set() and, then, restez_connect()
 # choose a location to store GenBank files
 restez_path_set(tempdir())
-#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpk2tcxZ/restez'
-#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpk2tcxZ/restez/downloads'
+#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpcuQynQ/restez'
+#> ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpcuQynQ/restez/downloads'
 # Running the download function ....
 # interactively choose GenBank files to download
 # e.g. Unannotated sequences, 20, is the smallest
@@ -61,31 +61,52 @@ db_download(preselection = '20')
 #> ───────────────────────────────────────────────────────────────────────────────────────────────
 #> Which sequence file types would you like to download?
 #> Choose from those listed below:
-#> ● 1  -  'Bacterial' (520 files and 118 GB)
-#> ● 2  -  'EST (expressed sequence tag)' (485 files and 242 GB)
-#> ● 3  -  'Constructed' (369 files and 84 GB)
-#> ● 4  -  'Patent' (337 files and 77.3 GB)
-#> ● 5  -  'GSS (genome survey sequence)' (308 files and 117 GB)
-#> ● 6  -  'TSA (transcriptome shotgun assembly)' (234 files and 53.9 GB)
-#> ● 7  -  'Plant sequence entries (including fungi and algae),' (198 files and 42.6 GB)
-#> ● 8  -  'HTGS (high throughput genomic sequencing)' (155 files and 36.7 GB)
-#> ● 9  -  'Invertebrate' (108 files and 23.8 GB)
-#> ● 10  -  'Environmental sampling' (103 files and 23.9 GB)
-#> ● 11  -  'Other vertebrate' (94 files and 19.3 GB)
-#> ● 12  -  'Primate' (59 files and 13.7 GB)
-#> ● 13  -  'Viral' (57 files and 12.9 GB)
-#> ● 14  -  'Other mammalian' (55 files and 9.41 GB)
-#> ● 15  -  'Rodent' (31 files and 7.3 GB)
-#> ● 16  -  'STS (sequence tagged site)' (20 files and 4.45 GB)
-#> ● 17  -  'HTC (high throughput cDNA sequencing)' (15 files and 3.42 GB)
-#> ● 18  -  'Synthetic and chimeric' (10 files and 2.41 GB)
-#> ● 19  -  'Phage' (5 files and 1.06 GB)
-#> ● 20  -  'Unannotated' (1 files and 0.00108 GB)
+#> ● 1  - 'Bacterial'
+#>         520 files and 118 GB
+#> ● 2  - 'EST (expressed sequence tag)'
+#>         485 files and 242 GB
+#> ● 3  - 'Constructed'
+#>         369 files and 84 GB
+#> ● 4  - 'Patent'
+#>         337 files and 77.3 GB
+#> ● 5  - 'GSS (genome survey sequence)'
+#>         308 files and 117 GB
+#> ● 6  - 'TSA (transcriptome shotgun assembly)'
+#>         234 files and 53.9 GB
+#> ● 7  - 'Plant sequence entries (including fungi and algae),'
+#>         198 files and 42.6 GB
+#> ● 8  - 'HTGS (high throughput genomic sequencing)'
+#>         155 files and 36.7 GB
+#> ● 9  - 'Invertebrate'
+#>         108 files and 23.8 GB
+#> ● 10 - 'Environmental sampling'
+#>         103 files and 23.9 GB
+#> ● 11 - 'Other vertebrate'
+#>         94 files and 19.3 GB
+#> ● 12 - 'Primate'
+#>         59 files and 13.7 GB
+#> ● 13 - 'Viral'
+#>         57 files and 12.9 GB
+#> ● 14 - 'Other mammalian'
+#>         55 files and 9.41 GB
+#> ● 15 - 'Rodent'
+#>         31 files and 7.3 GB
+#> ● 16 - 'STS (sequence tagged site)'
+#>         20 files and 4.45 GB
+#> ● 17 - 'HTC (high throughput cDNA sequencing)'
+#>         15 files and 3.42 GB
+#> ● 18 - 'Synthetic and chimeric'
+#>         10 files and 2.41 GB
+#> ● 19 - 'Phage'
+#>         5 files and 1.06 GB
+#> ● 20 - 'Unannotated'
+#>         1 files and 0.00108 GB
 #> Provide one or more numbers separated by spaces.
 #> e.g. to download all Mammal sequences type:"12 14 15" followed by Enter
 #> Which files would you like to download?
 #> ───────────────────────────────────────────────────────────────────────────────────────────────
-#> You've selected a total of 1 file(s) and 0.00108 GB of uncompressed data. These represent: 
+#> You've selected a total of 1 file(s) and 0.00108 GB of uncompressed data.
+#> These represent: 
 #> ● 'Unannotated'
 #> 
 #> Based on stated GenBank files sizes, we estimate ... 
@@ -93,7 +114,9 @@ db_download(preselection = '20')
 #> ... 0.00132 GB for the SQL database
 #> Leading to a total of 0.00153 GB
 #> 
-#> Please note, the real sizes of the database and its downloads cannot be accurately predicted beforehand. These are just estimates, actual sizes may differ up to 0-5GB.
+#> Please note, the real sizes of the database and its downloads cannot be
+#> accurately predicted beforehand.
+#> These are just estimates, actual sizes may differ by up to 0-5GB.
 #> 
 #> Is this OK?
 #> ───────────────────────────────────────────────────────────────────────────────────────────────
@@ -121,12 +144,12 @@ id <- sample(list_db_ids(), 1)
 # you can extract:
 # sequences
 seq <- gb_sequence_get(id)[[1]]
-print(seq)
-#> [1] "GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGGCGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGAGAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCGCCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCGAGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGAGGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCGGCCTTCGAGGAGTATGACGGA"
+str(seq)
+#>  chr "CGTGCGCCCGTGCCACCCAAGAAGCAGAAAGCTGAGGAGTGGGAAGAGATCTGAGCAACAAAAGAGAATTTGCAGAGCATCAGCTCTGGGTGTTGGATGTGCTGCTATGAA"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified clone A22 DNA sequence from ocean beach sand"
+#> [1] "PCR artifactual sequence for diagnosis of avian malaria"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -134,41 +157,50 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF298084                 441 bp    DNA     linear   UNA 23-NOV-2000
-#> DEFINITION  Unidentified clone A22 DNA sequence from ocean beach sand.
-#> ACCESSION   AF298084
-#> VERSION     AF298084.1
+#> LOCUS       AF148958                 599 bp    DNA     linear   UNA 18-JUL-1999
+#> DEFINITION  PCR artifactual sequence for diagnosis of avian malaria.
+#> ACCESSION   AF148958
+#> VERSION     AF148958.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 441)
-#>   AUTHORS   Naviaux,R.K.
-#>   TITLE     Sand DNA: a multigenomic library on the beach
+#> REFERENCE   1  (bases 1 to 599)
+#>   AUTHORS   Jarvi,S.I., Schultz,J.J. and Atkinson,C.T.
+#>   TITLE     Evaluation of a PCR test for avian malaria (Plasmodium relictum) in
+#>             Hawaiian forest birds
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 441)
-#>   AUTHORS   Naviaux,R.K.
+#> REFERENCE   2  (bases 1 to 599)
+#>   AUTHORS   Jarvi,S.I., Schultz,J.J. and Atkinson,C.T.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
-#>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
-#>             92103-8467, USA
+#>   JOURNAL   Submitted (06-MAY-1999) Wildlife Disease Laboratory, PIERC,
+#>             USGS-BRD, Building 343, Hawaii Vocanoes National Park, HI 96718,
+#>             USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..441
+#>      source          1..599
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="A22"
-#>                      /note="anonymous environmental sample sequence from ocean
-#>                      beach sand"
+#>                      /note="Originated from an Omao (Myadestes obscurus)(US
+#>                      Fish & Wildlife Service band no. 921-70002) captured on
+#>                      the slopes of Mauna Loa, Hawaii in 1996. DNA extracted
+#>                      from a sample of whole blood served a template in a PCR
+#>                      reaction in which primers 89 and 90 (Feldman RA, Freed LA
+#>                      and Cann RL, 1995, A PCR test for avian malaria in
+#>                      Hawaiian birds, Molecular Ecology 4:663-673) were present
+#>                      in equimolar amounts. Primer 89 served as both the 5' and
+#>                      3' primer in the production of this product."
 #> ORIGIN      
-#>         1 gatccttccg atgtcttcgg cctggaagag atccggaaga gaacggggtt catggccgag
-#>        61 cccctcgtgg cgccgggtat gctcatcgac tgggctttgg agaagtatta tccggaaccg
-#>       121 gacaacggga gcagctcgga gaacgtggtt gccaccgccc ctcaggcctc tcctgccacc
-#>       181 caggaccaag ccgtccaggg cggccccgcg ccgacggagg tagagcctct ctcccctccc
-#>       241 gggcaacccg tggaaggagg cgtcttcgga gccgttcccg agatcgtggc gccccaaccc
-#>       301 ccgggagagg gagcgagtga catcaaggtg gccgatttcg aggactcgga ggctgagatc
-#>       361 gtggccggcg cancgccggc gcccgttcaa cctgaagtcc ccgcggccac ggagatcccg
-#>       421 gccttcgagg agtatgacgg a
+#>         1 cgtgcgcccg tgccacccaa gaagcagaaa gctgaggagt gggaagagat ctgagcaaca
+#>        61 aaagagaatt tgcagagcat cagctctggg tgttggatgt gctgctatga aagcacgagt
+#>       121 gcgtggaggc gtgtgcagtg acaggcacga gctgtgtctg ttctcaaaga cgagaagaca
+#>       181 agcacagaaa atcagggttt ggtttttttt ttccctccat tggattcaaa ccttcagttt
+#>       241 accagtgctc acagaagaga attctcaatg cacctaacaa ctattgttta cactgcaaca
+#>       301 gaaacatcca ctaaagccat gtatatgacc tcagtagttg tattattttg cccatgcctc
+#>       361 actcacatgc atcctgactt ccacagcaag gatctctttc ctactttgtc attttgattg
+#>       421 gattagtcgt gagaactttt acatctcttc cactacatct ccctttttaa catgtcagat
+#>       481 actgtgtttt gattctactt tcaagactcc ctaagactct ttcttctcct ccctataaac
+#>       541 ttgttttcca gttctgagca atcacttttg ctccccagct ggtaagtaat gctatttgc
 #> //
 ```
 
@@ -178,28 +210,32 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand
-#> GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG
-#> CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA
-#> GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG
-#> CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG
-#> AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA
-#> GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG
-#> GCCTTCGAGGAGTATGACGGA
+#> >AF148958.1 PCR artifactual sequence for diagnosis of avian malaria
+#> CGTGCGCCCGTGCCACCCAAGAAGCAGAAAGCTGAGGAGTGGGAAGAGATCTGAGCAACAAAAGAGAATT
+#> TGCAGAGCATCAGCTCTGGGTGTTGGATGTGCTGCTATGAAAGCACGAGTGCGTGGAGGCGTGTGCAGTG
+#> ACAGGCACGAGCTGTGTCTGTTCTCAAAGACGAGAAGACAAGCACAGAAAATCAGGGTTTGGTTTTTTTT
+#> TTCCCTCCATTGGATTCAAACCTTCAGTTTACCAGTGCTCACAGAAGAGAATTCTCAATGCACCTAACAA
+#> CTATTGTTTACACTGCAACAGAAACATCCACTAAAGCCATGTATATGACCTCAGTAGTTGTATTATTTTG
+#> CCCATGCCTCACTCACATGCATCCTGACTTCCACAGCAAGGATCTCTTTCCTACTTTGTCATTTTGATTG
+#> GATTAGTCGTGAGAACTTTTACATCTCTTCCACTACATCTCCCTTTTTAACATGTCAGATACTGTGTTTT
+#> GATTCTACTTTCAAGACTCCCTAAGACTCTTTCTTCTCCTCCCTATAAACTTGTTTTCCAGTTCTGAGCA
+#> ATCACTTTTGCTCCCCAGCTGGTAAGTAATGCTATTTGC
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand
-#> GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG
-#> CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA
-#> GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG
-#> CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG
-#> AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA
-#> GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG
-#> GCCTTCGAGGAGTATGACGGA
+#> >AF148958.1 PCR artifactual sequence for diagnosis of avian malaria
+#> CGTGCGCCCGTGCCACCCAAGAAGCAGAAAGCTGAGGAGTGGGAAGAGATCTGAGCAACAAAAGAGAATT
+#> TGCAGAGCATCAGCTCTGGGTGTTGGATGTGCTGCTATGAAAGCACGAGTGCGTGGAGGCGTGTGCAGTG
+#> ACAGGCACGAGCTGTGTCTGTTCTCAAAGACGAGAAGACAAGCACAGAAAATCAGGGTTTGGTTTTTTTT
+#> TTCCCTCCATTGGATTCAAACCTTCAGTTTACCAGTGCTCACAGAAGAGAATTCTCAATGCACCTAACAA
+#> CTATTGTTTACACTGCAACAGAAACATCCACTAAAGCCATGTATATGACCTCAGTAGTTGTATTATTTTG
+#> CCCATGCCTCACTCACATGCATCCTGACTTCCACAGCAAGGATCTCTTTCCTACTTTGTCATTTTGATTG
+#> GATTAGTCGTGAGAACTTTTACATCTCTTCCACTACATCTCCCTTTTTAACATGTCAGATACTGTGTTTT
+#> GATTCTACTTTCAAGACTCCCTAAGACTCTTTCTTCTCCTCCCTATAAACTTGTTTTCCAGTTCTGAGCA
+#> ATCACTTTTGCTCCCCAGCTGGTAAGTAATGCTATTTGC
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
