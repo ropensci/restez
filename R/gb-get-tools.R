@@ -31,10 +31,10 @@ gb_sql_query <- function(nm, id) {
 #' @return named vector of fasta sequences, if no results found NULL
 #' @export
 #' @example examples/gb_fasta_get.R
-gb_fasta_get <- function(id, width=80) {
+gb_fasta_get <- function(id, width=70) {
   # TODO: separate the fasta conversion into a new function and
   #  share with phylotaR
-  res <- gb_sql_query(nm = 'raw_definition,raw_sequence', id = id)
+  res <- gb_sql_query(nm = 'raw_definition,raw_sequence,version', id = id)
   cnvrt <- function(i) {
     sq <- rawToChar(res[i, 'raw_sequence'][[1]])
     sq <- extract_clean_sequence(sq)
@@ -47,7 +47,7 @@ gb_fasta_get <- function(id, width=80) {
       }, character(1))
       sq <- paste0(sq, collapse = '\n')
     }
-    paste0('>', def, '\n', sq, '\n')
+    paste0('>', id[i], '.', res[i, 'version'], ' ', def, '\n', sq, '\n\n')
   }
   if (nrow(res) == 0) {
     return(NULL)

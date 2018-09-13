@@ -20,7 +20,7 @@ test_that('demo_db_create() works', {
   on.exit(restez:::cleanup())
   demo_db_create()
   sequence <- gb_sequence_get('demo_1')[[1]]
-  expect_true(grepl(pattern = '[atcg]', x = sequence))
+  expect_true(grepl(pattern = '[atcg]', x = sequence, ignore.case = TRUE))
 })
 test_that('db_create() works', {
   restez:::setup()

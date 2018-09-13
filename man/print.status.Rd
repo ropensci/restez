@@ -6,6 +6,9 @@
 \usage{
 \method{print}{status}(x)
 }
+\arguments{
+\item{x}{Status object}
+}
 \description{
 Prints to screen the three sections of the status class.
 }

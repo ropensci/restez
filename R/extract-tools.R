@@ -84,7 +84,9 @@ extract_seqrecpart <- function(record) {
 #' @return character
 #' @family private
 extract_clean_sequence <- function(seqrecpart) {
-  gsub(pattern = '([0-9]|\\s+|\n|/)', replacement = '', x = seqrecpart)
+  seq <- gsub(pattern = '([0-9]|\\s+|\n|/)', replacement = '', x = seqrecpart)
+  # upper case is recommended, at least it is what rentrez returns
+  toupper(seq)
 }
 
 # Foreground ----
@@ -156,8 +158,9 @@ extract_definition <- function(record) {
     return('')
   }
   # clean
-  definition <- gsub('\n', '', definition)
-  definition <- gsub('\\s{2,}', ' ', definition)
+  definition <- gsub(pattern = '\n', replacement = '', x = definition)
+  definition <- gsub(pattern = '\\s{2,}', replacement = ' ', x = definition)
+  definition <- sub(pattern = '\\.$', replacement = '', x = definition)
   definition
 }
 

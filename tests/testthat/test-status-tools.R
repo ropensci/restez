@@ -21,13 +21,13 @@ test_that('restez_status() works', {
   expect_true(status_obj$Database$`Does the database have data?`)
 })
 test_that('status_class() works', {
-  restez::cleanup()
+  restez:::cleanup()
   restez:::setup()
   expect_true(inherits(restez:::status_class(), 'status'))
 })
 test_that('print.status() works', {
-  restez::cleanup()
+  restez:::cleanup()
   restez:::setup()
-  print.status(restez:::status_class())
+  restez:::print.status(restez:::status_class())
 })
-restez::cleanup()
+restez:::cleanup()

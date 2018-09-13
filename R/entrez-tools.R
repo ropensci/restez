@@ -22,8 +22,7 @@ entrez_fasta_get <- function(id, ...) {
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   fastas <- gb_fasta_get(id = id)
   if (length(fastas) > 0) {
-    res <- paste(fastas, collapse = '\n\n')
-    res <- paste0(res, '\n\n')
+    res <- paste(fastas, collapse = '')
     mssng <- id[!id %in% names(fastas)]
   } else {
     mssng <- id
@@ -34,7 +33,7 @@ entrez_fasta_get <- function(id, ...) {
     rentrez_fastas <- rentrez::entrez_fetch(id = mssng, ...)
     res <- paste0(res, rentrez_fastas)
   }
-  paste0(res, '\n\n')
+  res
 }
 
 #' @name entrez_gb_get

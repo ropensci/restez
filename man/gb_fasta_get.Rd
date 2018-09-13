@@ -4,7 +4,7 @@
 \alias{gb_fasta_get}
 \title{Get fasta from GenBank}
 \usage{
-gb_fasta_get(id, width = 80)
+gb_fasta_get(id, width = 70)
 }
 \arguments{
 \item{id}{character, sequence accession ID(s)}
