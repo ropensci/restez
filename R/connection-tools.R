@@ -47,7 +47,7 @@ has_data <- function() {
 restez_connect <- function() {
   if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
                          dbname = sql_path_get())) {
-    stop('Unable to connect, is the restez path set?')
+    stop('Unable to connect to restez db. Did you run `restez_path_set`?')
   }
   message('Remember to run `restez_disconnect()`')
   connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
