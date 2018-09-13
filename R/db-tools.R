@@ -57,14 +57,16 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
     }, error = function(e) {
       stop('Invalid number or argument', call. = FALSE)
       })
+  cat_line(cli::rule())
   nfiles <- sum(types[selected_types])
   ngbs <- signif(sum(typesizes[selected_types]), digits = 3)
-  cat_line("You've selected a total of ", stat(nfiles),
-           " file type(s) and ", stat(ngbs, 'GB'), ". These represent: ")
+  cat_line("You've selected a total of ", stat(nfiles), " file(s) and ",
+           stat(ngbs, 'GB'), " of uncompressed data.", " These represent: ")
   for (ech in names(types)[selected_types]) {
     cli::cat_bullet(char(ech))
   }
-  cat_line('OK?')
+  predict_datasizes(uncompressed_filesize = ngbs)
+  cat_line('Is this OK?')
   if (is.null(preselection)) {
     msg <- 'Enter any key to continue or press Esc to quit '
     response <- restez_rl(prompt = msg)

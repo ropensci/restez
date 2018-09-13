@@ -16,7 +16,7 @@ if (to_download) {
   restez_path_set(wd)
 
   # Identify random seq files
-  identify_latest_genbank_release_notes()
+  latest_genbank_release_notes()
   downloadable_table <- identify_downloadable_files()
   colnames(downloadable_table)
   cats <- as.character(unique(downloadable_table[['descripts']]))
@@ -25,6 +25,10 @@ if (to_download) {
     rand_indxs <- sample(indxs, n)
     as.character(downloadable_table[rand_indxs, 'seq_files'])
   }))
+  #seq_files <- sample(seq_files, 3)
+  stated_size <- sum(as.numeric(downloadable_table[
+    downloadable_table[['seq_files']] %in% seq_files, 'filesizes']))
+  (stated_size <- stated_size/1E9)
 
   # Download them
   for (i in seq_along(seq_files)) {
@@ -62,6 +66,22 @@ if (to_build) {
     }
     add_rcrd_log(fl = seq_file)
   }
+}
+
+if (to_download) {
+  status_obj <- status_class()
+  cnvfctr1 <- 0.2374462
+  cnvfctr2 <- 6.066667
+  # cnvfctr1 <- status_obj$Download$`N. GBs` / stated_size
+  # cnvfctr2 <- status_obj$Database$`N. GBs` / status_obj$Download$`N. GBs`
+  cat_line('Expected:')
+  (estmd_downloads <- stated_size * cnvfctr1)
+  (estmd_database <- estmd_downloads * cnvfctr2)
+  (estmd_total <- estmd_downloads + estmd_database)
+  cat_line('Observed:')
+  (status_obj$Download$`N. GBs`)
+  (status_obj$Database$`N. GBs`)
+  (status_obj$Download$`N. GBs` + status_obj$Database$`N. GBs`)
 }
 
 # Query

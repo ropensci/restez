@@ -22,6 +22,9 @@ mock_releasenotes <- function(destfile, ...) {
 restez:::cleanup()
 on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
+test_that('predict_datasizes() works', {
+  expect_null(restez:::predict_datasizes(10))
+})
 test_that('latest_genbank_release() works', {
   res <- with_mock(
     `restez::custom_download2` = function(destfile, ...) write(x = '227',

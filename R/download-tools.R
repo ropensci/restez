@@ -1,3 +1,31 @@
+#' @name predict_datasizes
+#' @title Print file size predictions to screen
+#' @description Predicts the file sizes of the downloads and the database
+#' from the GenBank filesize information. Conversion factors are based on
+#' previous restez downloads.
+#' @param uncompressed_filesize GBs of the stated filesize, numeric
+#' @return NULL
+#' @family private
+predict_datasizes <- function(uncompressed_filesize) {
+  cnvfctr1 <- 0.2374462
+  cnvfctr2 <- 6.066667
+  compressed_filesize <- uncompressed_filesize * cnvfctr1
+  database_size <- compressed_filesize * cnvfctr2
+  total_size <- compressed_filesize + database_size
+  cat_line("\nBased on stated GenBank files sizes, we estimate ... ")
+  cat_line('... ', stat(signif(x = compressed_filesize, digits = 3), 'GB'),
+           ' for  compressed, downloaded files')
+  cat_line('... ', stat(signif(x = database_size, digits = 3), 'GB'),
+           ' for the SQL database')
+  cat_line('Leading to a total file size of ',
+           stat(signif(x = total_size, digits = 3), 'GB'))
+  caveat <- paste0('\nPlease note, the real sizes of the database and its ',
+                   'downloads cannot be accurately predicted beforehand. ',
+                   'These are just estimates, actual sizes may differ up ',
+                   'to 0-5GB.\n')
+  cat_line(crayon::italic(caveat))
+}
+
 #' @name latest_genbank_release_notes
 #' @title Download the latest GenBank Release Notes
 #' @description Downloads the latest GenBank release notes to a user's restez
