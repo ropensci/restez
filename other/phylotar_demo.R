@@ -1,20 +1,20 @@
 # SPEED TEST DOWNLOAD STAGE WITH AND WITHOUT RESTEZ
 # LIBS ----
-library(restez)
-library(phylotaR)
+devtools::load_all('~/Coding/restez')
+devtools::load_all('~/Coding/phylotaR')
 
 # VARS ----
 wd <- 'beavers'
 restez_path <- '~/Desktop'
 txid <- 1963757
-ncbi_dr <- '/usr/local/ncbi/blast/bin'
+ncbi_dr <- '/usr/bin'
 
 # RUN PHYLOTAR ----
 if (dir.exists(wd)) {
   unlink(x = wd, recursive = TRUE)
 }
 dir.create(wd)
-setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, v = TRUE, btchsz = 100)
+phylotaR::setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, v = TRUE, btchsz = 100)
 taxise_run(wd = wd)
 
 # SPEED TEST 1

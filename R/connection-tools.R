@@ -33,7 +33,10 @@ connected <- function() {
 #' @description Returns TRUE if a restez SQL database has data.
 #' @return Logical
 has_data <- function() {
-  tryCatch(expr = {list_db_ids(n = 1);TRUE}, error = function(e) FALSE)
+  tryCatch(expr = {
+    suppressWarnings(list_db_ids(n = 1))
+    TRUE
+    }, error = function(e) FALSE)
 }
 
 #' @name restez_connect
@@ -45,6 +48,7 @@ has_data <- function() {
 #' @example examples/restez_connect.R
 #' @export
 restez_connect <- function() {
+  restez_path_check()
   if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
                          dbname = sql_path_get())) {
     stop('Unable to connect to restez db. Did you run `restez_path_set`?')

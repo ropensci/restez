@@ -20,14 +20,19 @@ restez_status <- function(gb_check = FALSE) {
     cat_line('Checking latest GenBank release ...')
     latest <- gbrelease_check()
   }
+  is_connected <- status_obj$Database$`Is database connected?`
   with_database <- status_obj$Database$`Does path exist?` &&
     status_obj$Database$`Is database connected?` &&
     status_obj$Database$`Does the database have data?`
   if (!with_database & !with_downloads) {
     message('You need to run `db_download()` and `db_create()`')
   }
-  if (with_downloads & !with_database) {
-    message('You need to run `db_create()` and then run `restez_connect()`')
+  if (is_connected) {
+    if (with_downloads & !with_database) {
+      message('You need to run `db_create()` and then run `restez_connect()`')
+    }
+  } else {
+    message('You need to run `restez_connect()`')
   }
   if (gb_check && !latest) {
     msg <- paste0('Not the latest GenBank release. ',
