@@ -15,3 +15,5 @@ restez_path_set('~/Desktop/viral')
 restez_connect()
 id <- sample(list_db_ids(), 1)
 system.time(gb_definition_get(id))
+# user  system elapsed 
+# 0.048   0.000   0.024 

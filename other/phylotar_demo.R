@@ -5,7 +5,7 @@ devtools::load_all('~/Coding/phylotaR')
 
 # VARS ----
 wd <- 'beavers'
-restez_path <- '~/Desktop'
+restez_path <- '~/Desktop/beavers_restez'
 txid <- 1963757
 ncbi_dr <- '/usr/bin'
 
@@ -38,15 +38,16 @@ restez_status()
 reset(wd = wd, stage = 'download', hard = TRUE)
 
 # SPEED TEST 2
+restez_path_set(filepath = restez_path)
 restez_connect()
 with_restez <- system.time(expr = {
   download_run(wd = wd)
 })
 restez_disconnect()
-# user  system elapsed
-#  97.205  31.017 303.477
+# user  system elapsed 
+# 71.983  14.783 234.640
 
 # TAKE HOME STAT
-# ~35% faster
-pfaster <- round((467.001 - 303.477)*100/467.001)
-cat(pfaster, '% faster with restez\n', sep = '')
+# twice as faster
+pfaster <- signif((467.001/234.640), 3)
+cat(pfaster, 'x faster with restez\n', sep = '')
