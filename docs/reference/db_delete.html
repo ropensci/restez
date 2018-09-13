@@ -64,7 +64,7 @@ folder." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ folder." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Delete database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/filepath-tools.R'><code>R/filepath-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/db-tools.R'><code>R/db-tools.R</code></a></small>
     <div class="hidden name"><code>db_delete.Rd</code></div>
     </div>
 
@@ -148,6 +148,8 @@ folder.</p>
 
     <div class='dont-index'><p>Other setup: <code><a href='db_create.html'>db_create</a></code>,
   <code><a href='db_download.html'>db_download</a></code>, <code><a href='demo_db_create.html'>demo_db_create</a></code>,
+  <code><a href='restez_connect.html'>restez_connect</a></code>,
+  <code><a href='restez_disconnect.html'>restez_disconnect</a></code>,
   <code><a href='restez_path_get.html'>restez_path_get</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
@@ -157,11 +159,14 @@ folder.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Will not run: gb_sequence_get(id = 'demo_1')</span>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># Will not run: gb_sequence_get(id = 'demo_1')</span>
 <span class='co'># only the SQL database is deleted</span>
-<span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Now returns NULL</span>
+<span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
+<span class='fu'>db_delete</span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># Now returns NULL</span>
 (<span class='fu'><a href='restez_path_get.html'>restez_path_get</a></span>())</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

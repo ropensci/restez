@@ -25,7 +25,7 @@ mock_rec <- function(i, definition=NULL, accession=NULL,
                 'TITLE       [title]\n',
                 'JOURNAL     [journal]\n',
                 'FEATURES    [features]\n')
-  if (is.null(sequence)) {
+  if (!is.null(sequence)) {
     rec <- paste0(rec, 'ORIGIN\n        1 ', sequence, '\n//')
   }
   rec
@@ -41,7 +41,7 @@ mock_rec <- function(i, definition=NULL, accession=NULL,
 mock_seq <- function(i, sqlngth = 10) {
   sq <- paste0(sample(x = c('a', 't', 'c', 'g'), size = sqlngth,
                       replace = TRUE), collapse = '')
-  paste0('1 ', sq, '\n')
+  paste0(sq, '\n')
 }
 
 #' @name mock_def

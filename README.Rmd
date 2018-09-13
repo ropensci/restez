@@ -4,6 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- devtools::rmarkdown::render("README.Rmd") -->
+<!-- Rscript -e "library(knitr); knit('README.Rmd')" -->
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -46,54 +47,53 @@ devtools::install_github("AntonelliLab/restez")
 
 ### Setup
 
-```{r gb-download, eval = FALSE}
+```{r gb-download, echo=TRUE}
+# Warning: running this example will take a few minutes
 library(restez)
 # choose a location to store GB files
-restez_path_set('.')
+restez_path_set(tempdir())
 # run download function
 # interactively choose GenBank files to download
-gb_download()
+# e.g. 19 for phages
+db_download(preselection = '19')
+# connect, ensure safe disconnect after finishing
+restez_connect()
+on.exit(restez_disconnect())
 # create local database
 db_create()
 ```
 
 ### Query
 
-```{r query, eval=FALSE, message=TRUE, warning=TRUE, include=TRUE, paged.print=TRUE}
-library(restez)
-# set a restez path
-restez_path_set('.')
-# create a demo database
-demo_db_create(n = 10)
-# contains fake sequence data of 10 records
-(all_ids <- list_db_ids(db='nucleotide'))
+```{r query, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+# get a random accession ID from the database
+id <- sample(list_db_ids(), 1)
 # you can extract:
 # sequences
-seq <- gb_sequence_get('demo_1')[[1]]
+seq <- gb_sequence_get(id)[[1]]
 print(seq)
 # definitions
-def <- gb_definition_get('demo_1')[[1]]
+def <- gb_definition_get(id)[[1]]
 print(def)
 # organisms
-org <- gb_organism_get('demo_1')[[1]]
+org <- gb_organism_get(id)[[1]]
 print(org)
 # or whole records
-rec <- gb_record_get('demo_1')[[1]]
+rec <- gb_record_get(id)[[1]]
 cat(rec)
 ```
 
 ### Entrez wrappers
 
-```{r entrez, eval = FALSE}
-library(restez)
-# setup as above
-restez_path_set('.')
-demo_db_create()
+```{r entrez, echo=TRUE}
 # use the entrez_* wrappers to access GB data
-demo_record <- entrez_fetch(db='nucleotide', id='demo_1', rettype = 'fasta')
+res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
+cat(res)
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
-real_record <- entrez_fetch(db='nucleotide', id='S71333.1', rettype = 'fasta')
+res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
+                    rettype = 'fasta')
+cat(res)
 ```
 
 ## Contributing
@@ -110,9 +110,12 @@ MIT
 
 ## References
 
-Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell, J., & Sayers, E. W. (2012). GenBank. *Nucleic Acids Research*, 40(Database issue), D48–D53. http://doi.org/10.1093/nar/gkr1202
+Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell, J., &
+Sayers, E. W. (2012). GenBank. *Nucleic Acids Research*, 40(Database issue),
+D48–D53. http://doi.org/10.1093/nar/gkr1202
 
-Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. *PeerJ Preprints* 5:e3179v2 https://doi.org/10.7287/peerj.preprints.3179v2
+Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API.
+*PeerJ Preprints* 5:e3179v2 https://doi.org/10.7287/peerj.preprints.3179v2
 
 ## Author
 

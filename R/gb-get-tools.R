@@ -47,7 +47,8 @@ gb_fasta_get <- function(id, width=70) {
       }, character(1))
       sq <- paste0(sq, collapse = '\n')
     }
-    paste0('>', id[i], '.', res[i, 'version'], ' ', def, '\n', sq, '\n\n')
+    paste0('>', res[i, 'accession'], '.', res[i, 'version'], ' ',
+           def, '\n', sq, '\n\n')
   }
   if (nrow(res) == 0) {
     return(NULL)

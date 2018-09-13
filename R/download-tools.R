@@ -17,7 +17,7 @@ predict_datasizes <- function(uncompressed_filesize) {
            ' for  compressed, downloaded files')
   cat_line('... ', stat(signif(x = database_size, digits = 3), 'GB'),
            ' for the SQL database')
-  cat_line('Leading to a total file size of ',
+  cat_line('Leading to a total of ',
            stat(signif(x = total_size, digits = 3), 'GB'))
   caveat <- paste0('\nPlease note, the real sizes of the database and its ',
                    'downloads cannot be accurately predicted beforehand. ',

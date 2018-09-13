@@ -184,7 +184,7 @@ extract_sequence <- function(record) {
 #' @family private
 extract_locus <- function(record) {
   locus <- extract_by_patterns(record = record,
-                               start_pattern = '\nLOCUS\\s{2,}',
+                               start_pattern = 'LOCUS\\s{2,}',
                                end_pattern = '\nDEFINITION\\s{2,}')
   if (is.null(locus)) {
     return('')

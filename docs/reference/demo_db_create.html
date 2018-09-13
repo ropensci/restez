@@ -65,7 +65,7 @@ No internet connection required." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ No internet connection required." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create demo database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/setup.R'><code>R/setup.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/db-tools.R'><code>R/db-tools.R</code></a></small>
     <div class="hidden name"><code>demo_db_create.Rd</code></div>
     </div>
 
@@ -154,6 +154,8 @@ No internet connection required.</p>
 
     <div class='dont-index'><p>Other setup: <code><a href='db_create.html'>db_create</a></code>,
   <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='db_download.html'>db_download</a></code>,
+  <code><a href='restez_connect.html'>restez_connect</a></code>,
+  <code><a href='restez_disconnect.html'>restez_disconnect</a></code>,
   <code><a href='restez_path_get.html'>restez_path_get</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
@@ -163,22 +165,15 @@ No internet connection required.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='co'># set the restez path to a temporary dir</span>
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez/downloads'</div><div class='input'><span class='co'># create demo database</span>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='co'># create demo database</span>
 <span class='fu'>demo_db_create</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)
 <span class='co'># in the demo, IDs are 'demo_1', 'demo_2' ...</span>
 (<span class='fu'><a href='gb_sequence_get.html'>gb_sequence_get</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1 
-#&gt; "agtgtgcggg" </div><div class='input'>
-<span class='co'># Be careful with the database as it build cummulatively.</span>
-<span class='co'>#  if we running demo_db_create/db_create</span>
-<span class='co'>#  will append new entries to the preexisitng database</span>
-<span class='fu'>demo_db_create</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='co'># Leading to multiple entries if IDs are the same</span>
-(<span class='fu'><a href='gb_sequence_get.html'>gb_sequence_get</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1       demo_1 
-#&gt; "agtgtgcggg" "ggtcaacaga" </div><div class='input'>
-<span class='co'># To resovle this issue, always delete a demo database</span>
-<span class='co'>#  after an example</span>
-<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div><div class='output co'>#&gt; NULL</div></pre>
+#&gt; "AGTGTGCGGG" </div><div class='input'>
+<span class='co'># Delete a demo database after an example</span>
+<span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
+<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

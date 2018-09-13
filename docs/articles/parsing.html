@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -106,8 +106,10 @@
 <a href="#a-genbank-record" class="anchor"></a>A GenBank record</h1>
 <p>restez comes with an example GenBank record, AY952423, which can be viewed <a href="https://www.ncbi.nlm.nih.gov/nuccore/AY952423.1">online</a>. We can retrieve the record with <code>rentrez</code> or load it using the <code>data()</code>. We can visual the record as it appears online using <code>cat()</code> – like print but parses the newline spaces correctly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
-<span class="co">#&gt; restez 0.0.0</span>
-<span class="co">#&gt; Remember to restez_path_set()</span>
+<span class="co">#&gt; -------------</span>
+<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; -------------</span>
+<span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># record &lt;- rentrez::entrez_fetch(db = 'nucleotide', id = 'AY952423', rettype = 'gb', retmode = 'text')</span>
 <span class="kw">data</span>(record)
 <span class="kw">cat</span>(record)
@@ -217,7 +219,7 @@
 <span class="co">#&gt; [1] "Livistona chinensis"</span>
 <span class="co"># the sequence definition line</span>
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'definition'</span>))
-<span class="co">#&gt; [1] "Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast."</span>
+<span class="co">#&gt; [1] "Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast"</span>
 <span class="co"># the keywords (this record doesn't have any ....)</span>
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'keywords'</span>))
 <span class="co">#&gt; character(0)</span>
@@ -250,7 +252,7 @@ features &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb
 <span class="co"># and of coure the sequence itself</span>
 seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'sequence'</span>)
 <span class="kw">str</span>(seq)
-<span class="co">#&gt;  chr "attggggttgctaactcaacggtagagtactcggcttttaagtgcgactatcatcttttacacatttggatgaagtaaggaattcgtccagactattggtagagtctataa"| __truncated__</span></code></pre></div>
+<span class="co">#&gt;  chr "ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGATGAAGTAAGGAATTCGTCCAGACTATTGGTAGAGTCTATAA"| __truncated__</span></code></pre></div>
 </div>
 <div id="from-the-database" class="section level1">
 <h1 class="hasAnchor">

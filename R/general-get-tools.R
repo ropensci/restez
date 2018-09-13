@@ -19,6 +19,11 @@ list_db_ids <- function(db = 'nucleotide', n=100) {
     }
     res <- DBI::dbGetQuery(conn = connection, statement = sttmnt)
   }
+  if (!is.null(n)) {
+    msg <- paste0('Number of ids returned was limited to [', n, '].\n',
+                  'Set `n=NULL` to return all ids.')
+    warning(msg)
+  }
   res[[1]]
 }
 

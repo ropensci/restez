@@ -64,7 +64,7 @@ database is stored." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -144,6 +144,8 @@ database is stored.</p>
     <div class='dont-index'><p>Other setup: <code><a href='db_create.html'>db_create</a></code>,
   <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='db_download.html'>db_download</a></code>,
   <code><a href='demo_db_create.html'>demo_db_create</a></code>,
+  <code><a href='restez_connect.html'>restez_connect</a></code>,
+  <code><a href='restez_disconnect.html'>restez_disconnect</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
   <code><a href='restez_ready.html'>restez_ready</a></code>, <code><a href='restez_status.html'>restez_status</a></code></p></div>
@@ -152,9 +154,9 @@ database is stored.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='co'># set a restez path with a tempdir</span>
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez/downloads'</div><div class='input'><span class='co'># check what the set path is</span>
-(<span class='fu'>restez_path_get</span>())</div><div class='output co'>#&gt; [1] "/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb0eVeX/restez"</div></pre>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/downloads'</div><div class='input'><span class='co'># check what the set path is</span>
+(<span class='fu'>restez_path_get</span>())</div><div class='output co'>#&gt; [1] "/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -38,36 +38,77 @@ reference:
 - title: Internal functions
   desc: Private internal functions, documented here for openness
   contents:
+    - add_rcrd_log
+    - cat_line
+    - char
     - check_connection
     - cleanup
+    - connected
+    - connection_get
     - custom_download
+    - custom_download2
+    - db_nrows_get
+    - db_sqlngths_get
+    - db_sqlngths_log
+    - dir_size
+    - download_cmd_generate
     - dwnld_path_get
+    - dwnld_rcrd_log
     - entrez_fasta_get
     - entrez_gb_get
     - extract_accession
-    - extract_by_keyword
+    - extract_by_patterns
+    - extract_by_patterns
+    - extract_clean_sequence
     - extract_definition
     - extract_features
+    - extract_inforecpart
     - extract_keywords
     - extract_locus
     - extract_organism
+    - extract_seqrecpart
     - extract_sequence
     - extract_version
     - file_download
+    - filename_log
     - flatfile_read
     - gb_df_create
     - gb_df_generate
     - gb_sql_add
     - gb_sql_query
+    - gbrelease_check
+    - gbrelease_get
+    - gbrelease_log
+    - handle_run
+    - has_data
     - identify_downloadable_files
-    - identify_latest_genbank_release_notes
+    - last_add_get
+    - last_dwnld_get
+    - last_entry_get
+    - latest_genbank_release
+    - latest_genbank_release
+    - latest_genbank_release_notes
+    - latest_genbank_release_notes
+    - line_spinner
+    - message_missing
     - mock_def
     - mock_gb_df_generate
     - mock_org
     - mock_rec
     - mock_seq
+    - predict_datasizes
+    - print.status
+    - readme_log
+    - restez_connect
+    - restez_disconnect
     - restez_path_check
     - restez_rl
-    - save_download_details
+    - rhandle_generate
+    - seshinfo_log
+    - setup
+    - slctn_get
+    - slctn_log
     - sql_path_get
+    - stat
+    - status_class
     - testdatadir_get
