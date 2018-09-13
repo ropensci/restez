@@ -12,6 +12,9 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+# hide line spinner
+assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
+                  ns = 'restez')
 ```
 
 # Locally query GenBank <img src="logo.png" height="200" align="right"/>
@@ -48,18 +51,17 @@ devtools::install_github("AntonelliLab/restez")
 ### Setup
 
 ```{r gb-download, echo=TRUE}
-# Warning: running this example will take a few minutes
+# Warning: running these examples may take a few minutes
 library(restez)
-# choose a location to store GB files
+# choose a location to store GenBank files
 restez_path_set(tempdir())
-# run download function
+# Running the download function ....
 # interactively choose GenBank files to download
-# e.g. 19 for phages
-db_download(preselection = '19')
+# e.g. Unannotated sequences, 20, is the smallest
+db_download(preselection = '20')
 # connect, ensure safe disconnect after finishing
 restez_connect()
-on.exit(restez_disconnect())
-# create local database
+# after download, create the local database
 db_create()
 ```
 
@@ -94,6 +96,7 @@ cat(res)
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 cat(res)
+restez_disconnect()
 ```
 
 ## Contributing

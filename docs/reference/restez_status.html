@@ -168,16 +168,16 @@ this function. Set gb_check=TRUE to see if your downloads are up-to-date.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-<span class='fu'>restez_status</span>()</div><div class='output co'>#&gt; Checking setup status at  ...
-#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'>restez_status</span>()</div><div class='output co'>#&gt; Checking setup status at  ...</div><div class='output co'>#&gt; <span class='warning'>Warning: Number of ids returned was limited to [1].</span>
+#&gt; <span class='warning'>Set `n=NULL` to return all ids.</span></div><div class='output co'>#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Restez path ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Download ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/downloads'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez/downloads'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. files 0
 #&gt; ... N. GBs 0
@@ -186,7 +186,7 @@ this function. Set gb_check=TRUE to see if your downloads are up-to-date.</p>
 #&gt; ... Last updated ''
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Database ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpe21rpQ/restez/sql_db'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez/sql_db'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. GBs 0
 #&gt; ... Is database connected? 'Yes'

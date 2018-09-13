@@ -27,6 +27,8 @@ without_restez <- system.time(expr = {
 # SET-UP RESTEZ ----
 restez_path_set(filepath = restez_path)
 db_download()  # select 15 for rodents
+restez_connect()
+on.exit(restez_disconnect())
 db_create()
 restez_status()
 

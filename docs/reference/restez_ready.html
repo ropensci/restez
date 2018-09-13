@@ -157,7 +157,8 @@ and has data. Use restez_status() for more information.</p>
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
 <span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)
 <span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-(<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
+(<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: Number of ids returned was limited to [1].</span>
+#&gt; <span class='warning'>Set `n=NULL` to return all ids.</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
 <span class='fu'><a href='db_delete.html'>db_delete</a></span>()
 (<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>

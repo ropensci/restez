@@ -93,6 +93,7 @@
     
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- devtools::rmarkdown::render("README.Rmd") -->
+<!-- Rscript -e "library(knitr); knit('README.Rmd')" -->
 <div id="locally-query-genbank" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#locally-query-genbank" class="anchor"></a>Locally query GenBank <img src="logo.png" height="200" align="right">
@@ -124,51 +125,218 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
-<span class="co"># choose a location to store GB files</span>
-<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
-<span class="co"># run download function</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Warning: running these examples may take a few minutes</span>
+<span class="kw">library</span>(restez)
+<span class="co">#&gt; -------------</span>
+<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; -------------</span>
+<span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
+<span class="co"># choose a location to store GenBank files</span>
+<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="kw">tempdir</span>())
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpLXO4wC/restez'</span>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpLXO4wC/restez/downloads'</span>
+<span class="co"># Running the download function ....</span>
 <span class="co"># interactively choose GenBank files to download</span>
-<span class="kw">gb_download</span>()
-<span class="co"># create local database</span>
-<span class="kw"><a href="reference/db_create.html">db_create</a></span>()</code></pre></div>
+<span class="co"># e.g. Unannotated sequences, 20, is the smallest</span>
+<span class="kw"><a href="reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)
+<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; Looking up latest GenBank release ...</span>
+<span class="co">#&gt; ... release number 227</span>
+<span class="co">#&gt; ... found 3164 sequence files</span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; Which sequence file types would you like to download?</span>
+<span class="co">#&gt; Choose from those listed below:</span>
+<span class="co">#&gt; ● 1  -  'Bacterial' (520 files and 118 GB)</span>
+<span class="co">#&gt; ● 2  -  'EST (expressed sequence tag)' (485 files and 242 GB)</span>
+<span class="co">#&gt; ● 3  -  'Constructed' (369 files and 84 GB)</span>
+<span class="co">#&gt; ● 4  -  'Patent' (337 files and 77.3 GB)</span>
+<span class="co">#&gt; ● 5  -  'GSS (genome survey sequence)' (308 files and 117 GB)</span>
+<span class="co">#&gt; ● 6  -  'TSA (transcriptome shotgun assembly)' (234 files and 53.9 GB)</span>
+<span class="co">#&gt; ● 7  -  'Plant sequence entries (including fungi and algae),' (198 files and 42.6 GB)</span>
+<span class="co">#&gt; ● 8  -  'HTGS (high throughput genomic sequencing)' (155 files and 36.7 GB)</span>
+<span class="co">#&gt; ● 9  -  'Invertebrate' (108 files and 23.8 GB)</span>
+<span class="co">#&gt; ● 10  -  'Environmental sampling' (103 files and 23.9 GB)</span>
+<span class="co">#&gt; ● 11  -  'Other vertebrate' (94 files and 19.3 GB)</span>
+<span class="co">#&gt; ● 12  -  'Primate' (59 files and 13.7 GB)</span>
+<span class="co">#&gt; ● 13  -  'Viral' (57 files and 12.9 GB)</span>
+<span class="co">#&gt; ● 14  -  'Other mammalian' (55 files and 9.41 GB)</span>
+<span class="co">#&gt; ● 15  -  'Rodent' (31 files and 7.3 GB)</span>
+<span class="co">#&gt; ● 16  -  'STS (sequence tagged site)' (20 files and 4.45 GB)</span>
+<span class="co">#&gt; ● 17  -  'HTC (high throughput cDNA sequencing)' (15 files and 3.42 GB)</span>
+<span class="co">#&gt; ● 18  -  'Synthetic and chimeric' (10 files and 2.41 GB)</span>
+<span class="co">#&gt; ● 19  -  'Phage' (5 files and 1.06 GB)</span>
+<span class="co">#&gt; ● 20  -  'Unannotated' (1 files and 0.00108 GB)</span>
+<span class="co">#&gt; Provide one or more numbers separated by spaces.</span>
+<span class="co">#&gt; e.g. to download all Mammal sequences type:"12 14 15" followed by Enter</span>
+<span class="co">#&gt; Which files would you like to download?</span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; You've selected a total of 1 file(s) and 0.00108 GB of uncompressed data. These represent: </span>
+<span class="co">#&gt; ● 'Unannotated'</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Based on stated GenBank files sizes, we estimate ... </span>
+<span class="co">#&gt; ... 0.000216 GB for  compressed, downloaded files</span>
+<span class="co">#&gt; ... 0.00132 GB for the SQL database</span>
+<span class="co">#&gt; Leading to a total of 0.00153 GB</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Please note, the real sizes of the database and its downloads cannot be accurately predicted beforehand. These are just estimates, actual sizes may differ up to 0-5GB.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Is this OK?</span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; Downloading ...</span>
+<span class="co">#&gt; ... 'gbuna1.seq' (1/1)</span>
+<span class="co">#&gt; Done. Enjoy your day.</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co"># connect, ensure safe disconnect after finishing</span>
+<span class="kw"><a href="reference/restez_connect.html">restez_connect</a></span>()
+<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
+<span class="co"># after download, create the local database</span>
+<span class="kw"><a href="reference/db_create.html">db_create</a></span>()
+<span class="co">#&gt; Adding 1 file(s) to the database ...</span>
+<span class="co">#&gt; ... 'gbuna1.seq.gz'(1 / 1)</span>
+<span class="co">#&gt; Done.</span></code></pre></div>
 </div>
 <div id="query" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query" class="anchor"></a>Query</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
-<span class="co"># set a restez path</span>
-<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
-<span class="co"># create a demo database</span>
-<span class="kw"><a href="reference/demo_db_create.html">demo_db_create</a></span>(<span class="dt">n =</span> <span class="dv">10</span>)
-<span class="co"># contains fake sequence data of 10 records</span>
-(all_ids &lt;-<span class="st"> </span><span class="kw"><a href="reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get a random accession ID from the database</span>
+id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw"><a href="reference/list_db_ids.html">list_db_ids</a></span>(), <span class="dv">1</span>)
+<span class="co">#&gt; Warning in list_db_ids(): Number of ids returned was limited to [100].</span>
+<span class="co">#&gt; Set `n=NULL` to return all ids.</span>
 <span class="co"># you can extract:</span>
 <span class="co"># sequences</span>
-seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(seq)
+<span class="co">#&gt; [1] "ATGCATCAGAAAGGCCTGGAATATCTGGCGAACACCTGCAGCAGCATTAACAACCTGGCGAAACTGCTGCCGGGCAACATGATTCAGCTGCGCCCGACCGTGCTGAGCCGCAGCAGCCATCTGTATACCTATAGCCCGACCTATCCGAACTTTAACTGCCAGATTGTGGCGCGCAACAGCAGCAGCCCGTATGCGGTGGATGCGGTGCTGCTGCTGAGCAGCAACGAACTGAGCATTAAAAAAAAACTGAGCGAAGTGCCGCCGTTTGTGAGCCTGCTGGTGGATTATATGCATAAATTTCCGTTTGATACCTATGAATATGTGACCAGCAACCATCGCTGCACCACCAGCATTGGCCGCTGGGCGCTGCGCCGCCTGGTGATTATTTGCGCGCGCGAATATGCGGCGTTTACCCCGCTGCTGAACAACATTCATTTTAGCCTGAGCACCGATCGCCAGATTCCGAGCCCGCCGCATAGCTATATTCTGCCGCTGGCGGTGGAAGTGAGCGTGACCAGCATTCTGCGCCAGTGCTTTAACCAGGAAAGCATTAGCGCGAACAACTATAACAAAAGCCGCTTTGTGAACAGCATGCTGATTACCACCCTGACCAACCTGATTGTGGCGAACTTTCTGAGCAACAGCCTGGAAAGCCGCACCACCGTGTATCTGGTGCATTTTGTGCTGGTGTGGCATCTGCAGCCGAGCAACGTGCCGTTTTTTCGCTGGCCGCATCTGATTATTATTGCGTGCCTGTATGCGAGCTTTTATACCAACAGCCTGACCTTTCTGAGCGAAAGCCCGTATAAACTGCCGATTAACATGCTGCGCAGCAGCCTG"</span>
 <span class="co"># definitions</span>
-def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(def)
+<span class="co">#&gt; [1] "Unidentified isolate OLCuVEg hypothetical protein gene, partial cds"</span>
 <span class="co"># organisms</span>
-org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
+org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(org)
+<span class="co">#&gt; [1] "unidentified"</span>
 <span class="co"># or whole records</span>
-rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(<span class="st">'demo_1'</span>)[[<span class="dv">1</span>]]
-<span class="kw">cat</span>(rec)</code></pre></div>
+rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
+<span class="kw">cat</span>(rec)
+<span class="co">#&gt; LOCUS       EU515241                 840 bp    DNA     linear   UNA 26-JUL-2016</span>
+<span class="co">#&gt; DEFINITION  Unidentified isolate OLCuVEg hypothetical protein gene, partial</span>
+<span class="co">#&gt;             cds.</span>
+<span class="co">#&gt; ACCESSION   EU515241</span>
+<span class="co">#&gt; VERSION     EU515241.1</span>
+<span class="co">#&gt; KEYWORDS    .</span>
+<span class="co">#&gt; SOURCE      unidentified</span>
+<span class="co">#&gt;   ORGANISM  unidentified</span>
+<span class="co">#&gt;             unclassified sequences.</span>
+<span class="co">#&gt; REFERENCE   1  (bases 1 to 840)</span>
+<span class="co">#&gt;   AUTHORS   Assil,D.G., Makhoulf,A.M. and Hafez,E.E.</span>
+<span class="co">#&gt;   CONSRTM   Dalia Assil</span>
+<span class="co">#&gt;   TITLE     Isolation and identification of the Okra leaf curl virus (OLCuV) in</span>
+<span class="co">#&gt;             Egypt</span>
+<span class="co">#&gt;   JOURNAL   Unpublished</span>
+<span class="co">#&gt; REFERENCE   2  (bases 1 to 840)</span>
+<span class="co">#&gt;   AUTHORS   Assil,D.G., Makhoulf,A.M. and Hafez,E.E.</span>
+<span class="co">#&gt;   CONSRTM   Dalia Assil</span>
+<span class="co">#&gt;   TITLE     Direct Submission</span>
+<span class="co">#&gt;   JOURNAL   Submitted (19-FEB-2008) Nucleic Acids, Mubarak City for Scientific</span>
+<span class="co">#&gt;             Research and Technology Applications, New Borg El Arab City,</span>
+<span class="co">#&gt;             Alexandria 21934, Egypt</span>
+<span class="co">#&gt; FEATURES             Location/Qualifiers</span>
+<span class="co">#&gt;      source          1..840</span>
+<span class="co">#&gt;                      /organism="unidentified"</span>
+<span class="co">#&gt;                      /mol_type="genomic DNA"</span>
+<span class="co">#&gt;                      /isolate="OLCuVEg"</span>
+<span class="co">#&gt;                      /isolation_source="infected okra plant leaves"</span>
+<span class="co">#&gt;                      /host="Abelmoschus esculentus"</span>
+<span class="co">#&gt;                      /db_xref="taxon:32644"</span>
+<span class="co">#&gt;                      /country="Egypt: Alexandria"</span>
+<span class="co">#&gt;                      /PCR_primers="fwd_seq: gtcgcaggattattcaccg, rev_seq:</span>
+<span class="co">#&gt;                      gtatgtagatcaatattcaga"</span>
+<span class="co">#&gt;                      /note="submitted as Okra leaf curl virus"</span>
+<span class="co">#&gt;      CDS             1..&gt;840</span>
+<span class="co">#&gt;                      /codon_start=1</span>
+<span class="co">#&gt;                      /product="hypothetical protein"</span>
+<span class="co">#&gt;                      /protein_id="ACE62932.1"</span>
+<span class="co">#&gt;                      /translation="MHQKGLEYLANTCSSINNLAKLLPGNMIQLRPTVLSRSSHLYTY</span>
+<span class="co">#&gt;                      SPTYPNFNCQIVARNSSSPYAVDAVLLLSSNELSIKKKLSEVPPFVSLLVDYMHKFPF</span>
+<span class="co">#&gt;                      DTYEYVTSNHRCTTSIGRWALRRLVIICAREYAAFTPLLNNIHFSLSTDRQIPSPPHS</span>
+<span class="co">#&gt;                      YILPLAVEVSVTSILRQCFNQESISANNYNKSRFVNSMLITTLTNLIVANFLSNSLES</span>
+<span class="co">#&gt;                      RTTVYLVHFVLVWHLQPSNVPFFRWPHLIIIACLYASFYTNSLTFLSESPYKLPINML</span>
+<span class="co">#&gt;                      RSSL"</span>
+<span class="co">#&gt; ORIGIN      </span>
+<span class="co">#&gt;         1 atgcatcaga aaggcctgga atatctggcg aacacctgca gcagcattaa caacctggcg</span>
+<span class="co">#&gt;        61 aaactgctgc cgggcaacat gattcagctg cgcccgaccg tgctgagccg cagcagccat</span>
+<span class="co">#&gt;       121 ctgtatacct atagcccgac ctatccgaac tttaactgcc agattgtggc gcgcaacagc</span>
+<span class="co">#&gt;       181 agcagcccgt atgcggtgga tgcggtgctg ctgctgagca gcaacgaact gagcattaaa</span>
+<span class="co">#&gt;       241 aaaaaactga gcgaagtgcc gccgtttgtg agcctgctgg tggattatat gcataaattt</span>
+<span class="co">#&gt;       301 ccgtttgata cctatgaata tgtgaccagc aaccatcgct gcaccaccag cattggccgc</span>
+<span class="co">#&gt;       361 tgggcgctgc gccgcctggt gattatttgc gcgcgcgaat atgcggcgtt taccccgctg</span>
+<span class="co">#&gt;       421 ctgaacaaca ttcattttag cctgagcacc gatcgccaga ttccgagccc gccgcatagc</span>
+<span class="co">#&gt;       481 tatattctgc cgctggcggt ggaagtgagc gtgaccagca ttctgcgcca gtgctttaac</span>
+<span class="co">#&gt;       541 caggaaagca ttagcgcgaa caactataac aaaagccgct ttgtgaacag catgctgatt</span>
+<span class="co">#&gt;       601 accaccctga ccaacctgat tgtggcgaac tttctgagca acagcctgga aagccgcacc</span>
+<span class="co">#&gt;       661 accgtgtatc tggtgcattt tgtgctggtg tggcatctgc agccgagcaa cgtgccgttt</span>
+<span class="co">#&gt;       721 tttcgctggc cgcatctgat tattattgcg tgcctgtatg cgagctttta taccaacagc</span>
+<span class="co">#&gt;       781 ctgacctttc tgagcgaaag cccgtataaa ctgccgatta acatgctgcg cagcagcctg</span>
+<span class="co">#&gt; //</span></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#entrez-wrappers" class="anchor"></a>Entrez wrappers</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
-<span class="co"># setup as above</span>
-<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="st">'.'</span>)
-<span class="kw"><a href="reference/demo_db_create.html">demo_db_create</a></span>()
-<span class="co"># use the entrez_* wrappers to access GB data</span>
-demo_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'demo_1'</span>, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
+res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
+<span class="kw">cat</span>(res)
+<span class="co">#&gt; &gt;EU515241.1 Unidentified isolate OLCuVEg hypothetical protein gene, partial cds</span>
+<span class="co">#&gt; ATGCATCAGAAAGGCCTGGAATATCTGGCGAACACCTGCAGCAGCATTAACAACCTGGCGAAACTGCTGC</span>
+<span class="co">#&gt; CGGGCAACATGATTCAGCTGCGCCCGACCGTGCTGAGCCGCAGCAGCCATCTGTATACCTATAGCCCGAC</span>
+<span class="co">#&gt; CTATCCGAACTTTAACTGCCAGATTGTGGCGCGCAACAGCAGCAGCCCGTATGCGGTGGATGCGGTGCTG</span>
+<span class="co">#&gt; CTGCTGAGCAGCAACGAACTGAGCATTAAAAAAAAACTGAGCGAAGTGCCGCCGTTTGTGAGCCTGCTGG</span>
+<span class="co">#&gt; TGGATTATATGCATAAATTTCCGTTTGATACCTATGAATATGTGACCAGCAACCATCGCTGCACCACCAG</span>
+<span class="co">#&gt; CATTGGCCGCTGGGCGCTGCGCCGCCTGGTGATTATTTGCGCGCGCGAATATGCGGCGTTTACCCCGCTG</span>
+<span class="co">#&gt; CTGAACAACATTCATTTTAGCCTGAGCACCGATCGCCAGATTCCGAGCCCGCCGCATAGCTATATTCTGC</span>
+<span class="co">#&gt; CGCTGGCGGTGGAAGTGAGCGTGACCAGCATTCTGCGCCAGTGCTTTAACCAGGAAAGCATTAGCGCGAA</span>
+<span class="co">#&gt; CAACTATAACAAAAGCCGCTTTGTGAACAGCATGCTGATTACCACCCTGACCAACCTGATTGTGGCGAAC</span>
+<span class="co">#&gt; TTTCTGAGCAACAGCCTGGAAAGCCGCACCACCGTGTATCTGGTGCATTTTGTGCTGGTGTGGCATCTGC</span>
+<span class="co">#&gt; AGCCGAGCAACGTGCCGTTTTTTCGCTGGCCGCATCTGATTATTATTGCGTGCCTGTATGCGAGCTTTTA</span>
+<span class="co">#&gt; TACCAACAGCCTGACCTTTCTGAGCGAAAGCCCGTATAAACTGCCGATTAACATGCTGCGCAGCAGCCTG</span>
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
-real_record &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">'nucleotide'</span>, <span class="dt">id=</span><span class="st">'S71333.1'</span>, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</code></pre></div>
+res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">'S71333.1'</span>, id),
+                    <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
+<span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
+<span class="kw">cat</span>(res)
+<span class="co">#&gt; &gt;EU515241.1 Unidentified isolate OLCuVEg hypothetical protein gene, partial cds</span>
+<span class="co">#&gt; ATGCATCAGAAAGGCCTGGAATATCTGGCGAACACCTGCAGCAGCATTAACAACCTGGCGAAACTGCTGC</span>
+<span class="co">#&gt; CGGGCAACATGATTCAGCTGCGCCCGACCGTGCTGAGCCGCAGCAGCCATCTGTATACCTATAGCCCGAC</span>
+<span class="co">#&gt; CTATCCGAACTTTAACTGCCAGATTGTGGCGCGCAACAGCAGCAGCCCGTATGCGGTGGATGCGGTGCTG</span>
+<span class="co">#&gt; CTGCTGAGCAGCAACGAACTGAGCATTAAAAAAAAACTGAGCGAAGTGCCGCCGTTTGTGAGCCTGCTGG</span>
+<span class="co">#&gt; TGGATTATATGCATAAATTTCCGTTTGATACCTATGAATATGTGACCAGCAACCATCGCTGCACCACCAG</span>
+<span class="co">#&gt; CATTGGCCGCTGGGCGCTGCGCCGCCTGGTGATTATTTGCGCGCGCGAATATGCGGCGTTTACCCCGCTG</span>
+<span class="co">#&gt; CTGAACAACATTCATTTTAGCCTGAGCACCGATCGCCAGATTCCGAGCCCGCCGCATAGCTATATTCTGC</span>
+<span class="co">#&gt; CGCTGGCGGTGGAAGTGAGCGTGACCAGCATTCTGCGCCAGTGCTTTAACCAGGAAAGCATTAGCGCGAA</span>
+<span class="co">#&gt; CAACTATAACAAAAGCCGCTTTGTGAACAGCATGCTGATTACCACCCTGACCAACCTGATTGTGGCGAAC</span>
+<span class="co">#&gt; TTTCTGAGCAACAGCCTGGAAAGCCGCACCACCGTGTATCTGGTGCATTTTGTGCTGGTGTGGCATCTGC</span>
+<span class="co">#&gt; AGCCGAGCAACGTGCCGTTTTTTCGCTGGCCGCATCTGATTATTATTGCGTGCCTGTATGCGAGCTTTTA</span>
+<span class="co">#&gt; TACCAACAGCCTGACCTTTCTGAGCGAAAGCCCGTATAAACTGCCGATTAACATGCTGCGCAGCAGCCTG</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
+<span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>
+<span class="co">#&gt; ATATCAACAGCCCAGAAGGCTCTTTCTTGTGGATATATCACTCAAAGAACCCAGAAGTTGATGACAGCAG</span>
+<span class="co">#&gt; TGCTCAGAAGGACTGGTGGTTTCCTGGCTGGTTTAACAATGGGATCCACAATTATCAACAAGAGGAAGAA</span>
+<span class="co">#&gt; GACACAGACAAAGAAAAAGGAAGAGAGGAGGAACAAAAAAAGGAAGATGACACAACAGAGCTTCGGCTAT</span>
+<span class="co">#&gt; GGGACTGGTTTAATCCAAAGAAACGCCCAGAGGTTATGACAGTGACCCAATGGAAGGCGCCGGTTGTGTG</span>
+<span class="co">#&gt; GGAAGGCACTTACAACAAAGCCATCCTAGAAAATTATTATGCCAAACAGAAAATTACCGTGGGGTTGACG</span>
+<span class="co">#&gt; GTTTTTGCTATTGGAAGATATATTGAGCATTACTTGGAGGAGTTCGTAACATCTGCTAATAGGTACTTCA</span>
+<span class="co">#&gt; TGGTCGGCCACAAAGTCATATTTTATGTCATGGTGGATGATGTCTCCAAGGCGCCGTTTATAGAGCTGGG</span>
+<span class="co">#&gt; TCCTCTGCGTTCCTTCAAAGTGTTTGAGGTCAAGCCAGAGAAGAGGTGGCAAGACATCAGCATGATGCGT</span>
+<span class="co">#&gt; ATGAAGACCATCGGGGAGCACATCTTGGCCCACATCCAACACGAGGTTGACTTCCTCTTCTGCATGGATG</span>
+<span class="co">#&gt; TGGACCAGGTCTTCCAAGACCATTTTGGGGTAGAGACCCTGGGCCAGTCGGTGGCTCAGCTACAGGCCTG</span>
+<span class="co">#&gt; GTGGTACAAGGCAGATCCTGATGACTTTACCTATGAGAGGCGGAAAGAGTCGGCAGCATATATTCCATTT</span>
+<span class="co">#&gt; GGCCAGGGGGATTTTTATTACCATGCAGCCATTTTTGGAGGAACACCGATTCAGGTTCTCAACATCACCC</span>
+<span class="co">#&gt; AGGAGTGCTTTAAGGGAATCCTCCTGGACAAGAAAAATGACATAGAAGCCGAGTGGCATGATGAAAGCCA</span>
+<span class="co">#&gt; CCTAAACAAGTATTTCCTTCTCAACAAACCCTCTAAAATCTTATCTCCAGAATACTGCTGGGATTATCAT</span>
+<span class="co">#&gt; ATAGGCCTGCCTTCAGATATTAAAACTGTCAAGCTATCATGGCAAACAAAAGAGTATAATTTGGTTAGAA</span>
+<span class="co">#&gt; AGAATGTCTGA</span>
+<span class="kw"><a href="reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 </div>
 <div id="contributing" class="section level2">
