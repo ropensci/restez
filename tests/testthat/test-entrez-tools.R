@@ -11,7 +11,6 @@ records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # SETUP
 restez:::cleanup()
-on.exit(restez:::cleanup())
 restez:::setup()
 df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 df <- restez:::gb_df_generate(records = records)
@@ -70,3 +69,4 @@ test_that('entrez_gb_get() works', {
   mtch_obj <- gregexpr(pattern = 'LOCUS', text = res)[[1]]
   expect_true(length(mtch_obj) == 3)
 })
+restez:::cleanup()

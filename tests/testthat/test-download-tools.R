@@ -20,7 +20,6 @@ mock_releasenotes <- function(destfile, ...) {
 
 # RUNNING
 restez:::cleanup()
-on.exit(restez:::cleanup())
 context('Testing \'download-tools\'')
 test_that('predict_datasizes() works', {
   expect_null(restez:::predict_datasizes(10))

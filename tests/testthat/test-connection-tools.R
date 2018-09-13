@@ -4,7 +4,6 @@ library(testthat)
 
 # RUNNING
 restez:::cleanup()
-on.exit(restez:::cleanup())
 context('Testing \'connection-tools\'')
 test_that('restez_ready() works', {
   expect_false(restez_ready())
@@ -59,3 +58,4 @@ test_that('connection_get() works', {
   restez:::cleanup()
   expect_error(restez:::connection_get())
 })
+restez:::cleanup()

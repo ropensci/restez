@@ -14,7 +14,6 @@ mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq',
 # RUNNING
 context('Testing \'db-tools\'')
 restez:::cleanup()
-on.exit(restez:::cleanup())
 test_that('demo_db_create() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
@@ -61,3 +60,4 @@ test_that('db_delete() works', {
   expect_false(file.exists(file.path('test_db_fldr', 'restez')))
   expect_null(restez_path_get())
 })
+restez:::cleanup()

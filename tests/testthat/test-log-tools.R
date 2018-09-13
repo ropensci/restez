@@ -3,7 +3,7 @@ library(restez)
 library(testthat)
 
 # RUNNING
-on.exit(restez:::cleanup())
+restez:::cleanup()
 context('Testing \'log-tools\'')
 # log ----
 restez:::cleanup()
@@ -106,3 +106,4 @@ test_that('gbrelease_check() works', {
   )
   expect_true(res)
 })
+restez:::cleanup()

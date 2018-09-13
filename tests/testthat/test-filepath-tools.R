@@ -4,7 +4,6 @@ library(testthat)
 
 # RUNNING
 restez:::cleanup()
-on.exit(restez:::cleanup())
 context('Testing \'filepath-tools\'')
 test_that('restez_path_set() works', {
   restez:::setup()
@@ -40,3 +39,4 @@ test_that('restez_path_check() works', {
   unlink('test_db_fldr', recursive = TRUE)
   expect_error(restez:::restez_path_check())
 })
+restez:::cleanup()

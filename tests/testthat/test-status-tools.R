@@ -4,7 +4,6 @@ library(testthat)
 
 # RUNNING
 restez:::cleanup()
-on.exit(restez:::cleanup())
 context('Testing \'status-tools\'')
 test_that('restez_status() works', {
   expect_error(restez_status(gb_check = FALSE))
