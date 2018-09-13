@@ -5,6 +5,7 @@
 #' and has data. Use restez_status() for more information.
 #' @return Logical
 #' @export
+#' @example examples/restez_ready.R
 restez_ready <- function() {
   fp <- sql_path_get()
   inherits(fp, 'character') && length(fp) == 1 && dir.exists(fp) &&

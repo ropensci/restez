@@ -13,6 +13,17 @@ Logical
 Returns TRUE if a restez SQL database is available, connected
 and has data. Use restez_status() for more information.
 }
+\examples{
+library(restez)
+fp <- tempdir()
+restez_path_set(filepath = fp)
+restez_connect()
+demo_db_create()
+(restez_ready())
+restez_disconnect()
+db_delete()
+(restez_ready())
+}
 \seealso{
 Other setup: \code{\link{db_create}},
   \code{\link{db_delete}}, \code{\link{db_download}},

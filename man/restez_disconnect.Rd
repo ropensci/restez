@@ -19,7 +19,8 @@ restez_status()
 # always remember to disconnect from a database when you've finished
 restez_disconnect()
 db_delete()
-restez_status()
+# Errors
+# restez_status()
 }
 \seealso{
 Other setup: \code{\link{db_create}},

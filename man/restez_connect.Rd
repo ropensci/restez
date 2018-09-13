@@ -20,7 +20,8 @@ demo_db_create()
 restez_status()
 restez_disconnect()
 db_delete()
-restez_status()
+# Errors
+# restez_status()
 }
 \seealso{
 Other setup: \code{\link{db_create}},
