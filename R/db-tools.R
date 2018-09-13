@@ -57,8 +57,9 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   tryCatch(expr = {
     selected_types <- as.numeric(strsplit(x = response,
                                           split = '\\s')[[1]])
+    if (length(selected_types) == 0) stop()
     }, error = function(e) {
-      stop('Invalid number or argument', call. = FALSE)
+      stop('User provided invalid number or argument', call. = FALSE)
       })
   cat_line(cli::rule())
   nfiles <- sum(types[selected_types])
@@ -225,6 +226,7 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
 #' @export
 #' @example examples/db_delete.R
 db_delete <- function(everything = TRUE) {
+  restez_disconnect()
   if (length(sql_path_get()) > 0 && dir.exists(sql_path_get())) {
     unlink(sql_path_get(), recursive = TRUE)
   }
