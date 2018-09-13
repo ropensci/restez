@@ -1,4 +1,0 @@
-Filepath: /usr/local/ncbi/blast/bin/makeblastdb, version: 2.2.29
-
-Filepath: /usr/local/ncbi/blast/bin/blastn, version: 2.2.29
-

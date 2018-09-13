@@ -1,7 +1,0 @@
-Error : HTTP failure: 400
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE eEfetchResult PUBLIC "-//NLM//DTD efetch 20131226//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd">
-<eFetchResult>
-	<ERROR>Cannot retrieve history data: OUT OF RANGE. Parameter retstart=1 + 1 is greater than number of records available in history. History includes 1 IDs.</ERROR>
-</eFetchResult>
-
