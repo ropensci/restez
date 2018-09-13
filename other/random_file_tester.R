@@ -89,7 +89,10 @@ restez_connect()
 on.exit(restez_disconnect())
 ids <- list_db_ids(n = NULL)
 ids <- sample(ids, round(length(ids) * .1))
-for (id in ids) {
+index <- seq(1, length(ids), 1000)
+for (i in 2:length(index)) {
+  print(i)
+  id <- ids[index[i - 1]:index[i]]
   definition <- gb_definition_get(id)
   fasta <- gb_fasta_get(id)
   organism <- gb_organism_get(id)

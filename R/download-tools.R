@@ -7,8 +7,8 @@
 #' @return NULL
 #' @family private
 predict_datasizes <- function(uncompressed_filesize) {
-  cnvfctr1 <- 0.2374462
-  cnvfctr2 <- 6.066667
+  cnvfctr1 <- 0.2 # more likely to overestimate
+  cnvfctr2 <- 6.1
   compressed_filesize <- uncompressed_filesize * cnvfctr1
   database_size <- compressed_filesize * cnvfctr2
   total_size <- compressed_filesize + database_size
