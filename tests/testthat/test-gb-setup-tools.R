@@ -14,7 +14,7 @@ write_fake_records <- function(n=nrcrds) {
   records_text <- ''
   for (i in 1:n) {
     records_text <- paste0(records_text,
-                           restez:::mock_rec(i), '\n')
+                           restez:::mock_rec(i, sequence = 'atcg'), '\n')
   }
   cat(records_text, file = 'test_records.txt')
   NULL
