@@ -42,3 +42,4 @@ Other get: \code{\link{count_db_ids}},
   \code{\link{gb_sequence_get}},
   \code{\link{gb_version_get}}, \code{\link{list_db_ids}}
 }
+\concept{get}

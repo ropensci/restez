@@ -4,8 +4,8 @@
 \alias{gb_extract}
 \title{Extract elements of a GenBank record}
 \usage{
-gb_extract(record, what = c("accession", "version", "organism", "sequence",
-  "definition", "locus", "features", "keywords"))
+gb_extract(record, what = c("accession", "version", "organism",
+  "sequence", "definition", "locus", "features", "keywords"))
 }
 \arguments{
 \item{record}{GenBank record in text format, character}
@@ -37,3 +37,4 @@ library(restez)
 data('record')
 (gb_extract(record = record, what = 'locus'))
 }
+\concept{parse}

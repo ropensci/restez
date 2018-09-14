@@ -60,3 +60,4 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{status_class}}, \code{\link{stat}},
   \code{\link{testdatadir_get}}
 }
+\concept{private}

@@ -39,3 +39,4 @@ Other get: \code{\link{count_db_ids}},
   \code{\link{gb_version_get}}, \code{\link{is_in_db}},
   \code{\link{list_db_ids}}
 }
+\concept{get}

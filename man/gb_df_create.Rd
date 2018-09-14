@@ -4,7 +4,8 @@
 \alias{gb_df_create}
 \title{Create GenBank data.frame}
 \usage{
-gb_df_create(accessions, versions, organisms, definitions, sequences, records)
+gb_df_create(accessions, versions, organisms, definitions, sequences,
+  records)
 }
 \arguments{
 \item{accessions}{character, vector of accessions}
@@ -77,3 +78,4 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{sql_path_get}}, \code{\link{status_class}},
   \code{\link{stat}}, \code{\link{testdatadir_get}}
 }
+\concept{private}

@@ -19,3 +19,4 @@ Other setup: \code{\link{db_create}},
   \code{\link{restez_path_set}},
   \code{\link{restez_ready}}, \code{\link{restez_status}}
 }
+\concept{setup}

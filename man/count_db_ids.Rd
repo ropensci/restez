@@ -37,3 +37,4 @@ Other get: \code{\link{gb_definition_get}},
   \code{\link{gb_version_get}}, \code{\link{is_in_db}},
   \code{\link{list_db_ids}}
 }
+\concept{get}

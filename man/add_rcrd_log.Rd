@@ -66,3 +66,4 @@ Other private: \code{\link{cat_line}}, \code{\link{char}},
   \code{\link{sql_path_get}}, \code{\link{status_class}},
   \code{\link{stat}}, \code{\link{testdatadir_get}}
 }
+\concept{private}

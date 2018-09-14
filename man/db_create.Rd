@@ -57,3 +57,4 @@ Other setup: \code{\link{db_delete}},
   \code{\link{restez_path_unset}},
   \code{\link{restez_ready}}, \code{\link{restez_status}}
 }
+\concept{setup}

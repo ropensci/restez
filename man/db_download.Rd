@@ -4,7 +4,8 @@
 \alias{db_download}
 \title{Download database}
 \usage{
-db_download(db = "nucleotide", overwrite = FALSE, preselection = NULL)
+db_download(db = "nucleotide", overwrite = FALSE,
+  preselection = NULL)
 }
 \arguments{
 \item{db}{Database type, only 'nucleotide' currently available.}
@@ -41,3 +42,4 @@ Other setup: \code{\link{db_create}},
   \code{\link{restez_path_unset}},
   \code{\link{restez_ready}}, \code{\link{restez_status}}
 }
+\concept{setup}

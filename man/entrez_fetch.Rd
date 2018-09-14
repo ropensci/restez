@@ -72,3 +72,4 @@ db_delete(everything = TRUE)
 \seealso{
 \code{\link[rentrez]{entrez_fetch}}
 }
+\concept{entrez}
