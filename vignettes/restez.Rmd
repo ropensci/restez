@@ -12,156 +12,113 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+# hide line spinner
+assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
+                  ns = 'restez')
 ```
 
-#0. Contents
+#Contents
  
-1. **[Download GenBank](#download-genbank)**
-2. **[Query your local database](#query)**
-3. **[Use Entrez tools](#entrez)**
+1. [Download GenBank](#download-genbank)
+2. [Query your local database](#query)
+3. [Use Entrez tools](#entrez)
 
 #1. Download GenBank
 
 In the first section of this introduction to `restez` we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser,
 [FTP NCBI GenBank](ftp://ftp.ncbi.nlm.nih.gov/genbank/). GenBank is hosted at this portal as 1000s of compressed sequence files called flatfiles. New versions of these flatfiles are released once a month as new sequence information is uploaded. For information on the latest GenBank release, see the [NCBI statistics page](https://www.ncbi.nlm.nih.gov/genbank/statistics/).
 
-`restez` downloads a selection of these flatfiles, decompresses them and unpacks them into an SQLite database that can be searched using its functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, `restez` allows you to select the sets of flatfiles to download. For the most part these sets of flatfile types are determined by taxonomy: a user can download all primates or plant sequences, for example.
+`restez` downloads a selection of these flatfiles and unpacks them into an SQL-like database (specifically, [MonetDB](https://www.monetdb.org/)) that can be queried using `restez`'s functions. Because there are potentially huge amounts of sequence information, all of which is unlikely to be of interest to a user, `restez` allows you to select the sets of flatfiles to download based on GenBank's domains. For the most part these sets of flatfile types are determined by taxonomy, for example, a user can download all primate or plant sequences.
 
 Here, we will explain how to set up `restez`, download genbank and then create a database from the downloaded files.
 
 ##1.1 Setting up
 
-Before we can download, we need to tell `restez` where we would like to store the downloaded files and the eventual GenBank database. To do this we use the `restez_path_set` function. A user provides a system file path to a folder, and within that folder a new folder called 'restez' is created. In this example, I will create a `restez` folder in my desktop.
+Before we can download anything, we need to tell `restez` where we would like to store the downloaded files and the eventual GenBank database. To do this we use the `restez_path_set` function. With this function a user can provide a system file path to a folder within which the function will create a new folder called 'restez'. In this example, we will create a `restez` folder in a temporary folder.
 
-```{r setting up, eval=FALSE, include=TRUE}
+```{r presetup, include=FALSE}
+rstz_pth <- tempdir()
+restez::restez_path_set(filepath = rstz_pth)
+restez::db_delete(everything = TRUE)
+```
+```{r setting up, echo=TRUE}
 library(restez)
-# On my linux computer and I specify my desktop
-fp <- '~/Desktop'
-restez_path_set(filepath = fp)
-```
-```
-... Creating '~/Desktop/restez'
-... Creating '~/Desktop/restez/downloads'
+# rstz_pth <- tempdir()
+restez_path_set(filepath = rstz_pth)
 ```
 
-Messages are printed to console telling us that the path was created and that a downloads subfolder was created.
+A user must always set the `restez` path in order to use the `restez` library and we are reminded to do this whenever we load the package. (We are also reminded to run `restez_connect` but we'll come to that a bit later.) Additionally, by running `restez_path_set` on a new folder messages are printed to console telling us that the path was created and that a downloads subfolder was created.
 
 > **Note**, whenever you intend to use `restez` you will need to specify the `restez` path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.
 
 ##1.2 Download
 
-Next, we download genbank using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded.
+Now we can download GenBank files using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest avaiable domain which is 'Unannotated' and can be pre-specified with '20'. Normally, you would run this function without the `preselection` argument and just wait for the function to prompt you for a domain selection.
 
-```{r download, eval=FALSE, include=TRUE}
-db_download()
-```
-```
-──────────────────────────────────────────────────────────────────────────────────────────────────────
-Looking up latest GenBank release ...
-... found release 224
-Found 3057 sequence files
-──────────────────────────────────────────────────────────────────────────────────────────────────────
-Which sequence file types would you like to download?
-Choose from those listed below:
-● 1  -  'EST (expressed sequence tag)' (485 files available)
-● 2  -  'Bacterial' (450 files available)
-● 3  -  'Constructed' (362 files available)
-● 4  -  'Patent' (323 files available)
-● 5  -  'GSS (genome survey sequence)' (304 files available)
-● 6  -  'TSA (transcriptome shotgun assembly)' (234 files available)
-● 7  -  'Plant sequence entries (including fungi and algae),' (168 files available)
-● 8  -  'Invertebrate' (161 files available)
-● 9  -  'HTGS (high throughput genomic sequencing)' (154 files available)
-● 10  -  'Environmental sampling' (101 files available)
-● 11  -  'Other vertebrate' (85 files available)
-● 12  -  'Primate' (58 files available)
-● 13  -  'Viral' (53 files available)
-● 14  -  'Other mammalian' (39 files available)
-● 15  -  'Rodent' (30 files available)
-● 16  -  'STS (sequence tagged site)' (20 files available)
-● 17  -  'HTC (high throughput cDNA sequencing)' (15 files available)
-● 18  -  'Synthetic and chimeric' (10 files available)
-● 19  -  'Phage' (4 files available)
-● 20  -  'Unannotated' (1 files available)
-Provide one or more numbers separated by spaces.
-e.g. to download all Mammal sequences type: "12 14 15" followed by Enter
-Which files would you like to download?
-(Press Esc to quit) 
+After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either `Esc` or `Ctrl+c`. Please note that the diskspace estimates a preliminary. The package trys to be conservative in its estimates.
+
+```{r download, echo=TRUE}
+db_download(preselection = '20')
 ```
 
-We are prompted to provide a number indicating which set we would like to download. In the examples of these tutorials we make use of one of the smaller sets, the rodents, which is number 15 in this example.
-
-```
-(Press Esc to quit) 15
-You've selected a total of 30 file types. These represent:
-● 'Rodent'
-Each file contains about 250 MB of decompressed data.
-30 files amounts to about 7.5 GB
-Additionally, the resulting SQL database takes about 50 MB per file
-In total, the uncompressed files and SQL database should amount to 9 GB Is that OK?
-Enter any key to continue or press Esc to quit 
-──────────────────────────────────────────────────────────────────────────────────────────────────────
-Downloading ...
-... 'gbrod1.seq' (1 / 30)
-```
-
-Now the download has begun, we just need to wait for it to finish. This can take quite a while.
+Now the download has begun, we just need to wait for it to finish. For the largest domains, this can take quite a while and may be prone to server errors. If you ever encounter a failed downloaded file it is possible to re-run the `db_download` function again and -- so long as the same selection is made -- the function will only download the missing files.
 
 ##1.3 Create a database
 
-After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, decompresses any .seq.tar files, breaks these files up into separate GenBank records and adds them to an SQLite database. Again, this can take quite a while.
+After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, breaks these files up into separate GenBank records and adds them to the SQL-like database. Again, for very large collections of sequences this can take quite a while.
 
-```{r create database, eval=FALSE, include=TRUE}
+Before running the `db_create` function, however, we must first establish a connection to the database in the `restez` path using the `restez_connect` function. As with SQL databases we must always make sure to connect and then disconnect after we have interacted with a database.
+
+```{r create database, echo=TRUE}
+restez_connect()
 db_create()
-```
-```
-Decompressing and adding 30 files to database ...
-... 'gbrod10.seq.gz'(1 / 30)
-... ... decompressing
-... ... adding
-... 'gbrod11.seq.gz'(2 / 30)
-... ... decompressing
-... ... adding
+restez_disconnect()
 ```
 
-`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only intersted in certain lengths fo sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. The function will delete the old database and create a new one from the already downloaded files.
+`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only intersted in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. You will simply need to delete the oirignal database first with `db_delete`.
 
 ##1.4 Checking the setup
 
-After the download and the database creation steps are complete, we can confirm our setup with the following commands.
+After the download and the database creation steps are complete, we can confirm our setup using `restez_status`.
 
-```{r confirm setup, eval=FALSE, include=TRUE}
-(restez_path_get())
+```{r confirm setup, echo=TRUE}
+library(restez)
+restez_path_set(rstz_pth)
+restez_connect()
 restez_status()
-(restez_ready())
-```
-```
-[1] "~/Desktop/restez"
-Checking setup status at '~/Desktop/restez' ...
-... found 31 files in 'downloads/'
-... totalling 7.2 GB
-... found 'sql_db' of 1.31 GB
-[1] TRUE
+restez_disconnect()
 ```
 
-The above messages tell us that the `restez` path is set to the desktop and that the `restez` folder contains a database of 1.31 GB and that the downloads folder contains all of the rodent downloads, 7.2 GB.
+The status function allows a user to always touch base with their `restez` set-up. It can be run at any point, before and/or after download or database creation. It is also designed to provide useful messages to a user for what they need to do next in order for them to make queries to their database. If you ever get confused, run `restez_status` to see what is happening.
 
-If your status shows the same, then you are ready to move to the next section.
+Additionally, if you are developing your own functions that depend on `restez`, you can use `restez_ready` which will simply return TRUE or FALSE on whether the database can be queried.
+
+```{r confirm setup2, echo=TRUE}
+library(restez)
+restez_path_set(rstz_pth)
+restez_connect()
+if (restez_ready()) {
+  print('Database is ready to be queried!')
+} else {
+  print('Database cannot be queried :-(')
+}
+restez_disconnect()
+```
 
 #2. Query
 
-Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retreive specific coulmns in the database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://antonellilab.github.io/restez/articles/search_and_fetch.html).
+Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retreive specific coulmns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://antonellilab.github.io/restez/articles/search_and_fetch.html).
 
-```{r query, eval=FALSE, include=TRUE}
+> Always remember to disconnect after you have finished your querying!
+
+```{r query, echo=TRUE}
 library(restez)
-# tell restez where to look for the database
-# this must always be done whenever a new session is run
-restez_path_set('~/Desktop')
-# select the top 100 accession IDs in the database
-ids <- list_db_ids(db = 'nucleotide', n = 100)
-id <- sample(ids, 1)
+restez_path_set(rstz_pth)
+restez_connect()
+ids <- suppressWarnings(list_db_ids(db = 'nucleotide', n = 100))
+(id <- sample(ids, 1))
 # sequence
-(gb_sequence_get(id))
+str(gb_sequence_get(id))
 # definition
 (gb_definition_get(id))
 # version
@@ -173,6 +130,10 @@ cat(gb_fasta_get(id))
 # Note, for large databases these requests can take a long time to complete.
 # Always try and limit the size of the database by specifying min and max
 # sequence lengths with db_create()
+# Also note, if an id is not present in the database nothing is returned
+cat(gb_fasta_get(id = c(id, 'notanid')))
+# Always rememeber to disconnect
+restez_disconnect()
 ```
 
 Additionally, for more flexibility and options for extracting sequence record information see [GenBank record parsing](https://antonellilab.github.io/restez/articles/parsing.html).
@@ -181,25 +142,21 @@ Additionally, for more flexibility and options for extracting sequence record in
 
 Entrez wrappers are part of the `restez` package. These allow a user to make use of the local GenBank using functions that were built for [`rentrez`](https://github.com/ropensci/rentrez). This minimises the amount of coding changes required for any Entrez dependent code.
 
-Currently, only `entrez_fetch()` is available with restez and only text formatted rettypes are allowed.
+>Currently, only `entrez_fetch()` is available with restez and only text formatted rettypes are allowed.
 
-We can use `restez::entrez_fetch` with exactly the same arguments as `rentrez::entrez_fetch()` and if any of the IDs provided are not available locally, they are passed to `rentrez::entrez_fetch()` for searching online.
-
-In this example, we are interested in rodent cytB sequences between 250 and 2000 bp. We can perform a search with `rentrez::entrez_search()` and then call `restez::entrez_fetch()` to minimise the use of the internet. We can even make use of a web history object for any sequences not available locally.
-
-```{r entrez, eval=FALSE, include=TRUE}
+```{r entrez, echo=TRUE}
 library(restez)
-restez_path_set('~/Desktop')
-# search for relevant sequences
-search_term <- 'txid33553[Organism:exp] AND cytb [GENE] AND 250:2000[SLEN]'
-# it is best to call rentrez functions with :: to avoid confusion
-search_obj <- rentrez::entrez_search(db = 'nucleotide', term = search_term, use_history = TRUE)
-# retrieve accession IDs
-accessions <- rentrez::entrez_fetch(db = 'nucleotide',
-                                    web_history = search_obj$web_history,
-                                    rettype = 'acc')
-accessions <- strsplit(x = accessions, split = '\\n')[[1]]
-accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
-# get fasta sequences
-res <- restez::entrez_fetch(db = 'nucleotide', id = accessions, rettype = 'fasta')
+restez_path_set(rstz_pth)
+restez_connect()
+ids <- suppressWarnings(list_db_ids(db = 'nucleotide', n = 100))
+(id <- sample(ids, 1))
+# get fasta sequences with entrez
+res <- restez::entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
+cat(res)
+# entrez_fetch will also search via Entrez for any ids not in the db
+plant_sequence <- 'AY952423'
+res <- restez::entrez_fetch(db = 'nucleotide', id = c(id, plant_sequence),
+                            rettype = 'fasta')
+cat(res)
+restez_disconnect()
 ```
