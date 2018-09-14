@@ -65,10 +65,12 @@ status_class <- function() {
   # database
   flpth <- sql_path_get()
   sqlngths <- db_sqlngths_get()
+  nseqs <- suppressWarnings(count_db_ids())
   database_info <- list('Path' = flpth, 'Does path exist?' = dir.exists(flpth),
                         'N. GBs' = dir_size(flpth),
                         'Is database connected?' = connected(),
                         'Does the database have data?' = has_data(),
+                        'Number of sequences' = nseqs,
                         'Min. sequence length' = sqlngths[['min']],
                         'Max. sequence length' = sqlngths[['max']],
                         'Last_updated' = last_add_get())

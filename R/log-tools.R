@@ -214,24 +214,6 @@ last_add_get <- function() {
   last_entry_get(fp = fp)[[3]]
 }
 
-#' @name db_nrows_get
-#' @title Return the number of rows in a db
-#' @description Return the number of rows in the SQL database in the user's
-#' restez_path.
-#' @details Requires an open connection.
-#' @return integer
-#' @family private
-db_nrows_get <- function() {
-  qry <- "SELECT count(*) FROM nucleotide"
-  connection <- connection_get()
-  qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
-  on.exit(expr = {
-    DBI::dbClearResult(res = qry_res)
-  })
-  res <- DBI::dbFetch(res = qry_res)
-  res[[1]]
-}
-
 #' @name db_sqlngths_get
 #' @title Return the minimum and maximum sequence lengths in db
 #' @description Returns the maximum and minimum sequence lengths as set by the
@@ -242,10 +224,10 @@ db_nrows_get <- function() {
 db_sqlngths_get <- function() {
   fp <- file.path(restez_path_get(), 'seqlengths.tsv')
   if (!file.exists(fp)) {
-    return(c('min' = '', 'max' = 'max'))
+    return(c('min' = '0', 'max' = 'Inf'))
   }
   res <- utils::read.table(file = fp, header = TRUE, sep = '\t',
-                    stringsAsFactors = FALSE)[1, ]
+                           stringsAsFactors = FALSE)[1, ]
   res
 }
 

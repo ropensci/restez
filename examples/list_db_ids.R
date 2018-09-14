@@ -18,5 +18,4 @@ cat(fasta_file)
 
 
 # delete after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)

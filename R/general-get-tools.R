@@ -45,3 +45,27 @@ is_in_db <- function(id, db = 'nucleotide') {
   names(res) <- id
   res
 }
+
+#' @name count_db_ids
+#' @title Return the number of ids
+#' @description Return the number of ids in a user's restez database.
+#' @details Requires an open connection. If no connection or db 0 is returned.
+#' @param db character, database name
+#' @return integer
+#' @family get
+#' @export
+#' @example examples/count_db_ids.R
+count_db_ids <- function(db = 'nucleotide') {
+  if (!restez_ready()) {
+    warning('No database connection. Did you run `restez_connect`?')
+    return(0L)
+  }
+  connection <- connection_get()
+  qry <- "SELECT count(*) FROM nucleotide"
+  qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
+  on.exit(expr = {
+    DBI::dbClearResult(res = qry_res)
+  })
+  res <- DBI::dbFetch(res = qry_res)
+  as.integer(res[[1]])
+}

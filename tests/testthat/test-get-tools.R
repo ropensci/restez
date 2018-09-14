@@ -70,4 +70,8 @@ test_that('list_db_ids() works', {
   res <- restez:::list_db_ids(db = 'nucleotide')
   expect_true(all(ids %in% res))
 })
+test_that('count_db_ids() works', {
+  res <- count_db_ids()
+  expect_true(res == nrcrds)
+})
 restez:::cleanup()

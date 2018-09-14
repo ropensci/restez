@@ -22,5 +22,4 @@ cat(gb_res)
 #                        rettype = 'gb')
 
 # delete demo after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)

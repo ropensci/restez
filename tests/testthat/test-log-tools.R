@@ -73,10 +73,6 @@ test_that('last_add_get() works', {
   add_time <- restez:::last_add_get()
   expect_true(grepl(pattern = Sys.Date(), x = add_time))
 })
-test_that('db_nrows_get() works', {
-  demo_db_create()
-  expect_true(restez:::db_nrows_get() == 100)
-})
 test_that('db_sqlngths_get() works', {
   expect_true(restez:::db_sqlngths_get()[[1]] == '')
   restez:::db_sqlngths_log(min_lngth = 0, max_lngth = 100)

@@ -21,7 +21,7 @@ restez_connect()
 demo_db_create()
 (restez_ready())
 restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)
 (restez_ready())
 }
 \seealso{

@@ -64,8 +64,7 @@ cat(gb_res)
 #                        rettype = 'gb')
 
 # delete demo after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)
 }
 \seealso{
 \code{\link[rentrez]{entrez_fetch}}

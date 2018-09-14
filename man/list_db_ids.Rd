@@ -43,11 +43,11 @@ cat(fasta_file)
 
 
 # delete after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)
 }
 \seealso{
-Other get: \code{\link{gb_definition_get}},
+Other get: \code{\link{count_db_ids}},
+  \code{\link{gb_definition_get}},
   \code{\link{gb_fasta_get}},
   \code{\link{gb_organism_get}},
   \code{\link{gb_record_get}},

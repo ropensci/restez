@@ -219,13 +219,13 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
 #' @name db_delete
 #' @title Delete database
 #' @family setup
-#' @description Delete the local SQL database and/or restez
-#' folder.
+#' @description Delete the local SQL database and/or restez folder.
 #' @param everything T/F, delete the whole restez folder as well?
+#' @details Any connected database will be automatically disconnected.
 #' @return NULL
 #' @export
 #' @example examples/db_delete.R
-db_delete <- function(everything = TRUE) {
+db_delete <- function(everything = FALSE) {
   restez_disconnect()
   if (length(sql_path_get()) > 0 && dir.exists(sql_path_get())) {
     unlink(sql_path_get(), recursive = TRUE)

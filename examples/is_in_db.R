@@ -10,5 +10,4 @@ ids <- c('thisisnotanid', 'demo_1', 'demo_2')
 
 
 # delete demo after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)

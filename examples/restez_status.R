@@ -5,6 +5,6 @@ restez_connect()
 demo_db_create()
 restez_status()
 restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)
 # Errors:
 # restez_status()

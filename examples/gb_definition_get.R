@@ -7,5 +7,4 @@ demo_db_create()
 
 
 # delete demo after example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)

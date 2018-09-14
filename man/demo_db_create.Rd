@@ -27,8 +27,7 @@ demo_db_create(n = 100)
 (gb_sequence_get(id = 'demo_1'))
 
 # Delete a demo database after an example
-restez_disconnect()
-db_delete()
+db_delete(everything = TRUE)
 }
 \seealso{
 Other setup: \code{\link{db_create}},

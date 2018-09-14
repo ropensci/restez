@@ -4,14 +4,16 @@
 \alias{db_delete}
 \title{Delete database}
 \usage{
-db_delete(everything = TRUE)
+db_delete(everything = FALSE)
 }
 \arguments{
 \item{everything}{T/F, delete the whole restez folder as well?}
 }
 \description{
-Delete the local SQL database and/or restez
-folder.
+Delete the local SQL database and/or restez folder.
+}
+\details{
+Any connected database will be automatically disconnected.
 }
 \examples{
 library(restez)
@@ -22,7 +24,6 @@ demo_db_create(n = 10)
 db_delete(everything = FALSE)
 # Will not run: gb_sequence_get(id = 'demo_1')
 # only the SQL database is deleted
-restez_disconnect()
 db_delete(everything = TRUE)
 # Now returns NULL
 (restez_path_get())
