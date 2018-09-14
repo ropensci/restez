@@ -49,7 +49,7 @@ The `restez` package [@restez_z] aims to make sequence retrieval more efficient 
 
 ##Rentrez integration
 
-`rentrez` [@Winter2017] is a popular R package for querying NCBI’s databases via Entrez in R. To maximize the compatibility of `restez`, we implemented wrapper functions with the same names and arguments as the `rentrez` equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database a secondary call to Entrez is made via the internet. This allows for easy employment of `restez` in scripts and packages that are already using `rentrez`. At a minimum, a user currently using `rentrez` will only need to create a local subset of the GenBank database and call `restez` instead of `rentrez`.
+`rentrez` [@Winter2017] is a popular R package for querying NCBI’s databases via Entrez in R. To maximize the compatibility of `restez`, we implemented wrapper functions with the same names and arguments as the `rentrez` equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database a secondary call to Entrez is made via the internet. This allows for easy employment of `restez` in scripts and packages that are already using `rentrez`. At a minimum, a user currently using `rentrez` will only need to create a local subset of the GenBank database, call `restez` instead of `rentrez` and ensure the `restez` database is connected.
 
 ##A small example
 
@@ -58,8 +58,10 @@ After a restez database has been set-up, we can retrieve all the sequences from 
 ```{r}
 # Use rentrez to search for accession IDs of interest
 # Sequences in fasta format can then be retrieved with entrez_fetch
-res <- rentrez::entrez_fetch(db = 'nuccore', id = ids, rettype = 'fasta') # likely to raise an error if too many IDs
+res <- rentrez::entrez_fetch(db = 'nuccore', id = ids, rettype = 'fasta')
+# ^ likely to raise an error if too many IDs
 res <- restez::entrez_fetch(db = 'nuccore', id = ids, rettype = 'fasta')
+# ^ not likely to raise an error
 ```
 
 ##A large example
@@ -84,7 +86,9 @@ library(restez)
 # Make sure you have sufficient disk space!
 restez_path_set(filepath = 'restez_db')
 db_download(db = 'nucleotide') # Interactively download GenBank data
+restez_connect()
 db_create(db = 'nucleotide')
+restez_disconnect()
 ```
 Now when re-running the first `phylotaR` code block with the inclusion of the `restez` package, the procedure completes approximately eight times faster.
 
@@ -92,9 +96,12 @@ Now when re-running the first `phylotaR` code block with the inclusion of the `r
 # run phylotaR again
 library(phylotaR)
 library(restez)
+restez_path_set(filepath = 'restez_db')
+restez_connect()
 txid <- 9479
 setup(wd = 'nw_monkeys', txid = txid)
 run(wd = wd)
+restez_disconnect()
 # ^ takes around 5 minutes
 ```
 
