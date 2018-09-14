@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get sequence from GenBank — gb_sequence_get • restez</title>
+<title>Return the number of ids — count_db_ids • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Get sequence from GenBank — gb_sequence_get" />
+<meta property="og:title" content="Return the number of ids — count_db_ids" />
 
-<meta property="og:description" content="Return the sequence(s) for a record(s)
-from the accession ID(s)." />
+<meta property="og:description" content="Return the number of ids in a user's restez database." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -121,40 +120,43 @@ from the accession ID(s)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get sequence from GenBank</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/gb-get-tools.R'><code>R/gb-get-tools.R</code></a></small>
-    <div class="hidden name"><code>gb_sequence_get.Rd</code></div>
+    <h1>Return the number of ids</h1>
+    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/general-get-tools.R'><code>R/general-get-tools.R</code></a></small>
+    <div class="hidden name"><code>count_db_ids.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Return the sequence(s) for a record(s)
-from the accession ID(s).</p>
+    <p>Return the number of ids in a user's restez database.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gb_sequence_get</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>count_db_ids</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>character, sequence accession ID(s)</p></td>
+      <th>db</th>
+      <td><p>character, database name</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>named vector of sequences, if no results found NULL</p>
+    <p>integer</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Requires an open connection. If no connection or db 0 is returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='count_db_ids.html'>count_db_ids</a></code>,
-  <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
+    <div class='dont-index'><p>Other get: <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
   <code><a href='gb_fasta_get.html'>gb_fasta_get</a></code>,
   <code><a href='gb_organism_get.html'>gb_organism_get</a></code>,
   <code><a href='gb_record_get.html'>gb_record_get</a></code>,
+  <code><a href='gb_sequence_get.html'>gb_sequence_get</a></code>,
   <code><a href='gb_version_get.html'>gb_version_get</a></code>, <code><a href='is_in_db.html'>is_in_db</a></code>,
   <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
     
@@ -163,10 +165,7 @@ from the accession ID(s).</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp52vnt2/restez'
 #&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp52vnt2/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-(<span class='no'>seq</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_sequence_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1 
-#&gt; "CTAGGTATCC" </div><div class='input'>(<span class='no'>seqs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_sequence_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;       demo_1       demo_2 
-#&gt; "CTAGGTATCC" "TGAACACCCT" </div><div class='input'>
-
+(<span class='fu'>count_db_ids</span>())</div><div class='output co'>#&gt; [1] 100</div><div class='input'>
 <span class='co'># delete demo after example</span>
 <span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
@@ -176,6 +175,8 @@ from the accession ID(s).</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

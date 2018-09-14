@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Get record from GenBank — gb_record_get" />
 
-<meta property="og:description" content="Return the entire GenBank record
-for an accession ID." />
+<meta property="og:description" content="Return the entire GenBank record for an accession ID.
+Equivalent to rettype='gb' in entrez_fetch." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -128,8 +128,8 @@ for an accession ID." />
 
     <div class="ref-description">
     
-    <p>Return the entire GenBank record
-for an accession ID.</p>
+    <p>Return the entire GenBank record for an accession ID.
+Equivalent to <code>rettype='gb'</code> in <code><a href='http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch'>entrez_fetch</a></code>.</p>
     
     </div>
 
@@ -150,7 +150,8 @@ for an accession ID.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
+    <div class='dont-index'><p>Other get: <code><a href='count_db_ids.html'>count_db_ids</a></code>,
+  <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
   <code><a href='gb_fasta_get.html'>gb_fasta_get</a></code>,
   <code><a href='gb_organism_get.html'>gb_organism_get</a></code>,
   <code><a href='gb_sequence_get.html'>gb_sequence_get</a></code>,
@@ -160,17 +161,16 @@ for an accession ID.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpm0czRO/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp52vnt2/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp52vnt2/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 (<span class='no'>rec</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
-#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     4\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 acaggacgtc\n" </div><div class='input'>(<span class='no'>recs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
-#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     4\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 acaggacgtc\n" 
+#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     3\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 ttcagcccac\n" </div><div class='input'>(<span class='no'>recs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
+#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     3\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 ttcagcccac\n" 
 #&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_2 
-#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_2\nACCESSION   demo_2\nVERSION     2\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 2\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 tcggatggtt\n" </div><div class='input'>
+#&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_2\nACCESSION   demo_2\nVERSION     3\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 2\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 ggacccccac\n" </div><div class='input'>
 
 <span class='co'># delete demo after example</span>
-<span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
-<span class='fu'><a href='db_delete.html'>db_delete</a></span>()</div></pre>
+<span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

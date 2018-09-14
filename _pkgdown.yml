@@ -17,6 +17,7 @@ reference:
     - demo_db_create
     - is_in_db
     - list_db_ids
+    - count_db_ids
 - title: GenBank
   desc: Retrieve data from the local GenBank database
   contents:
@@ -47,7 +48,6 @@ reference:
     - connection_get
     - custom_download
     - custom_download2
-    - db_nrows_get
     - db_sqlngths_get
     - db_sqlngths_log
     - dir_size
