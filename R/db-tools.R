@@ -41,14 +41,16 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
     ngbs <- signif(typesizes[[typ_nm]], digits = 3)
     spacer <- paste0(i, paste0(rep(' ', 3 - nchar(i)), collapse = ''), '- ')
     lowerspacer <- paste0(rep('  ', nchar(spacer) - 1), collapse = '')
-    gbdomain <- sub(pattern = ',$', replacement = '', x = types[[i]])
-    cli::cat_bullet(spacer, char(typ_nm), '\n', lowerspacer, stat(gbdomain),
+    gbdomain <- sub(pattern = ',$', replacement = '', x = names(types)[[i]])
+    cli::cat_bullet(spacer, char(gbdomain), '\n', lowerspacer, stat(types[[i]]),
                     ' files and ', stat(ngbs, 'GB'))
   }
   cat_line('Provide one or more numbers separated by spaces.')
-  cat_line('e.g. to download all Mammal sequences type:',
-           '"12 14 15" followed by Enter')
-  cat_line('Which files would you like to download?')
+  mammal_indexs <- which(grepl(pattern = '(rodent|primate|mammal)',
+                               x = names(types), ignore.case = TRUE))
+  cat_line('e.g. to download all Mammalian sequences, type: ',
+           '"', paste0(mammal_indexs, collapse = ' '), '" followed by Enter')
+  cat_line('\nWhich files would you like to download?')
   if (is.null(preselection)) {
     response <- restez_rl(prompt = '(Press Esc to quit) ')
   } else {

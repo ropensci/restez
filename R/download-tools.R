@@ -35,7 +35,9 @@ predict_datasizes <- function(uncompressed_filesize) {
 latest_genbank_release_notes <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
   flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
-  custom_download2(url = url, destfile = flpth)
+  tryCatch(custom_download2(url = url, destfile = flpth),
+           interrupt = function(e) stop('User halted.', call. = FALSE))
+  
 }
 
 #' @name latest_genbank_release
@@ -46,7 +48,8 @@ latest_genbank_release_notes <- function() {
 latest_genbank_release <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/GB_Release_Number'
   flpth <- file.path(tempdir(), 'gb_release_number.txt')
-  custom_download2(url = url, destfile = flpth)
+  tryCatch(custom_download2(url = url, destfile = flpth),
+           interrupt = function(e) stop('User halted.', call. = FALSE))
   release <- readChar(con = flpth, nchars = 10)
   file.remove(flpth)
   gsub(pattern = '[^0-9]', replacement = '', x = release)
