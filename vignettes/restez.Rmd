@@ -17,12 +17,6 @@ assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
                   ns = 'restez')
 ```
 
-#Contents
- 
-1. [Download GenBank](#download-genbank)
-2. [Query your local database](#query)
-3. [Use Entrez tools](#entrez)
-
 #1. Download GenBank
 
 In the first section of this introduction to `restez` we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser,
