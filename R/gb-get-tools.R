@@ -24,8 +24,8 @@ gb_sql_query <- function(nm, id) {
 #' @name gb_fasta_get
 #' @title Get fasta from GenBank
 #' @family get
-#' @description Get sequence and definition data
-#' in FASTA format.
+#' @description Get sequence and definition data in FASTA format. Equivalent to
+#' \code{rettype='fasta'} in \code{\link[rentrez]{entrez_fetch}}.
 #' @param id character, sequence accession ID(s)
 #' @param width integer, maximum number of characters in a line
 #' @return named vector of fasta sequences, if no results found NULL
@@ -78,8 +78,8 @@ gb_sequence_get <- function(id) {
 #' @name gb_record_get
 #' @title Get record from GenBank
 #' @family get
-#' @description Return the entire GenBank record
-#' for an accession ID.
+#' @description Return the entire GenBank record for an accession ID.
+#' Equivalent to \code{rettype='gb'} in \code{\link[rentrez]{entrez_fetch}}.
 #' @param id character, sequence accession ID(s)
 #' @return named vector of records, if no results found NULL
 #' @export

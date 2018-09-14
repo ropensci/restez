@@ -13,8 +13,8 @@ gb_record_get(id)
 named vector of records, if no results found NULL
 }
 \description{
-Return the entire GenBank record
-for an accession ID.
+Return the entire GenBank record for an accession ID.
+Equivalent to \code{rettype='gb'} in \code{\link[rentrez]{entrez_fetch}}.
 }
 \examples{
 library(restez)

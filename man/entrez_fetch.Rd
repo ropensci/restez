@@ -27,6 +27,9 @@ Wrapper for rentrez::entrez_fetch.
 Attempts to first search local database with user-specified
 parameters, if the record is missing in the database, the function then
 calls rentrez::entrez_fetch to search GenBank remotely.
+
+\code{rettype='fasta'} and \code{rettype='gb'} are respectively equivalent to 
+\code{\link{gb_fasta_get}} and \code{\link{gb_record_get}}.
 }
 \note{
 It is advisable to call restez and rentrez functions with '::' notation

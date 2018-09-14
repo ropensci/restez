@@ -15,8 +15,8 @@ gb_fasta_get(id, width = 70)
 named vector of fasta sequences, if no results found NULL
 }
 \description{
-Get sequence and definition data
-in FASTA format.
+Get sequence and definition data in FASTA format. Equivalent to
+\code{rettype='fasta'} in \code{\link[rentrez]{entrez_fetch}}.
 }
 \examples{
 library(restez)
