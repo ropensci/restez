@@ -89,13 +89,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/parsing.html">GenBank record parsing</a>
+      <a href="../articles/1_rodents.html">1. Build a database of all rodents</a>
     </li>
     <li>
-      <a href="../articles/phylotar.html">phylotaR</a>
+      <a href="../articles/2_search_and_fetch.html">2. How to search for and fetch sequences</a>
     </li>
     <li>
-      <a href="../articles/search_and_fetch.html">Search and Fetch</a>
+      <a href="../articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
+    </li>
+    <li>
+      <a href="../articles/4_phylotar.html">4. Running phylotaR with restez</a>
+    </li>
+    <li>
+      <a href="../articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
     </li>
   </ul>
 </li>
@@ -168,16 +174,16 @@ this function. Set gb_check=TRUE to see if your downloads are up-to-date.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmphAlImQ/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmphAlImQ/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 <span class='fu'>restez_status</span>()</div><div class='output co'>#&gt; Checking setup status at  ...
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Restez path ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmphAlImQ/restez'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Download ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmphAlImQ/restez/downloads'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez/downloads'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. files 0
 #&gt; ... N. GBs 0
@@ -186,7 +192,7 @@ this function. Set gb_check=TRUE to see if your downloads are up-to-date.</p>
 #&gt; ... Last updated ''
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Database ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmphAlImQ/restez/sql_db'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez/sql_db'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. GBs 0
 #&gt; ... Is database connected? 'Yes'

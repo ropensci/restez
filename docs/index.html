@@ -58,13 +58,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/parsing.html">GenBank record parsing</a>
+      <a href="articles/1_rodents.html">1. Build a database of all rodents</a>
     </li>
     <li>
-      <a href="articles/phylotar.html">phylotaR</a>
+      <a href="articles/2_search_and_fetch.html">2. How to search for and fetch sequences</a>
     </li>
     <li>
-      <a href="articles/search_and_fetch.html">Search and Fetch</a>
+      <a href="articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
+    </li>
+    <li>
+      <a href="articles/4_phylotar.html">4. Running phylotaR with restez</a>
+    </li>
+    <li>
+      <a href="articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
     </li>
   </ul>
 </li>
@@ -99,7 +105,8 @@
 <a href="#locally-query-genbank" class="anchor"></a>Locally query GenBank <img src="logo.png" height="200" align="right">
 </h1></div>
 
-<p>Download parts of <a href="https://www.ncbi.nlm.nih.gov/nuccore">NCBI’s GenBank</a> to a local folder and create a simple SQLite database. Use ‘get’ tools to query the database by accession IDs. <a href="https://github.com/ropensci/rentrez">rentrez</a> wrappers are available, so that if sequences are not available locally they can be searched for online through <a href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">Entrez</a>. Visit the <a href="https://antonellilab.github.io/restez/index.html">website</a> to find out more.</p>
+<p>Download parts of <a href="https://www.ncbi.nlm.nih.gov/nuccore">NCBI’s GenBank</a> to a local folder and create a simple SQL-like database. Use ‘get’ tools to query the database by accession IDs. <a href="https://github.com/ropensci/rentrez">rentrez</a> wrappers are available, so that if sequences are not available locally they can be searched for online through <a href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">Entrez</a>.</p>
+<p>See the <a href="https://antonellilab.github.io/restez/articles/restez.html">detailed tutorials</a> for more information.</p>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
@@ -107,12 +114,11 @@
 <p>Downloading sequences and sequence information from GenBank and related NCBI taxonomic databases is often performed via the NCBI API, Entrez. Entrez, however, has a limit on the number of requests and downloading large amounts of sequence data in this way can be inefficient. For programmatic situations where multiple Entrez calls are made, downloading may take days, weeks or even months.</p>
 <p>This package aims to make sequence retrieval more efficient by allowing a user to download large sections of the GenBank database to their local machine and query this local database either through package specific functions or Entrez wrappers. This process is more efficient as GenBank downloads are made via NCBI’s FTP using compressed sequence files. With a good internet connection and a middle-of-the-road computer, a database comprising 20 GB of sequence information can be generated in less than 10 minutes.</p>
 <p><img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"></p>
-<p><strong>For more detailed information on the package’s functions and detailed guides on downloading, constructing and querying a database, visit the <a href="https://antonellilab.github.io/restez/index.html">restez website</a>.</strong></p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install restez from GitHub with:</p>
+<p>You can install <code>restez</code> from GitHub with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"AntonelliLab/restez"</span>)</code></pre></div>
 </div>
@@ -120,7 +126,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#quick-examples" class="anchor"></a>Quick Examples</h2>
 <blockquote>
-<p>For more detailed tutorials, visit the <a href="https://antonellilab.github.io/restez/index.html">restez website</a>.</p>
+<p>For more detailed information on the package’s functions and detailed guides on downloading, constructing and querying a database, see the <a href="https://antonellilab.github.io/restez/articles/restez.html">detailed tutorials</a>.</p>
 </blockquote>
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
@@ -132,92 +138,14 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co">#&gt; -------------</span>
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># choose a location to store GenBank files</span>
-<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(<span class="kw">tempdir</span>())
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpaisc5E/restez'</span>
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpaisc5E/restez/downloads'</span>
-<span class="co"># Running the download function ....</span>
-<span class="co"># interactively choose GenBank files to download</span>
-<span class="co"># e.g. Unannotated sequences, 20, is the smallest</span>
-<span class="kw"><a href="reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Looking up latest GenBank release ...</span>
-<span class="co">#&gt; ... release number 227</span>
-<span class="co">#&gt; ... found 3164 sequence files</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Which sequence file types would you like to download?</span>
-<span class="co">#&gt; Choose from those listed below:</span>
-<span class="co">#&gt; ● 1  - 'Bacterial'</span>
-<span class="co">#&gt;         520 files and 118 GB</span>
-<span class="co">#&gt; ● 2  - 'EST (expressed sequence tag)'</span>
-<span class="co">#&gt;         485 files and 242 GB</span>
-<span class="co">#&gt; ● 3  - 'Constructed'</span>
-<span class="co">#&gt;         369 files and 84 GB</span>
-<span class="co">#&gt; ● 4  - 'Patent'</span>
-<span class="co">#&gt;         337 files and 77.3 GB</span>
-<span class="co">#&gt; ● 5  - 'GSS (genome survey sequence)'</span>
-<span class="co">#&gt;         308 files and 117 GB</span>
-<span class="co">#&gt; ● 6  - 'TSA (transcriptome shotgun assembly)'</span>
-<span class="co">#&gt;         234 files and 53.9 GB</span>
-<span class="co">#&gt; ● 7  - 'Plant sequence entries (including fungi and algae)'</span>
-<span class="co">#&gt;         198 files and 42.6 GB</span>
-<span class="co">#&gt; ● 8  - 'HTGS (high throughput genomic sequencing)'</span>
-<span class="co">#&gt;         155 files and 36.7 GB</span>
-<span class="co">#&gt; ● 9  - 'Invertebrate'</span>
-<span class="co">#&gt;         108 files and 23.8 GB</span>
-<span class="co">#&gt; ● 10 - 'Environmental sampling'</span>
-<span class="co">#&gt;         103 files and 23.9 GB</span>
-<span class="co">#&gt; ● 11 - 'Other vertebrate'</span>
-<span class="co">#&gt;         94 files and 19.3 GB</span>
-<span class="co">#&gt; ● 12 - 'Primate'</span>
-<span class="co">#&gt;         59 files and 13.7 GB</span>
-<span class="co">#&gt; ● 13 - 'Viral'</span>
-<span class="co">#&gt;         57 files and 12.9 GB</span>
-<span class="co">#&gt; ● 14 - 'Other mammalian'</span>
-<span class="co">#&gt;         55 files and 9.41 GB</span>
-<span class="co">#&gt; ● 15 - 'Rodent'</span>
-<span class="co">#&gt;         31 files and 7.3 GB</span>
-<span class="co">#&gt; ● 16 - 'STS (sequence tagged site)'</span>
-<span class="co">#&gt;         20 files and 4.45 GB</span>
-<span class="co">#&gt; ● 17 - 'HTC (high throughput cDNA sequencing)'</span>
-<span class="co">#&gt;         15 files and 3.42 GB</span>
-<span class="co">#&gt; ● 18 - 'Synthetic and chimeric'</span>
-<span class="co">#&gt;         10 files and 2.41 GB</span>
-<span class="co">#&gt; ● 19 - 'Phage'</span>
-<span class="co">#&gt;         5 files and 1.06 GB</span>
-<span class="co">#&gt; ● 20 - 'Unannotated'</span>
-<span class="co">#&gt;         1 files and 0.00108 GB</span>
-<span class="co">#&gt; Provide one or more numbers separated by spaces.</span>
-<span class="co">#&gt; e.g. to download all Mammalian sequences, type: "12 14 15" followed by Enter</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Which files would you like to download?</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; You've selected a total of 1 file(s) and 0.00108 GB of uncompressed data.</span>
-<span class="co">#&gt; These represent: </span>
-<span class="co">#&gt; ● 'Unannotated'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Based on stated GenBank files sizes, we estimate ... </span>
-<span class="co">#&gt; ... 0.000216 GB for  compressed, downloaded files</span>
-<span class="co">#&gt; ... 0.00132 GB for the SQL database</span>
-<span class="co">#&gt; Leading to a total of 0.00153 GB</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Please note, the real sizes of the database and its downloads cannot be</span>
-<span class="co">#&gt; accurately predicted beforehand.</span>
-<span class="co">#&gt; These are just estimates, actual sizes may differ by up to 0-5GB.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Is this OK?</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Downloading ...</span>
-<span class="co">#&gt; ... 'gbuna1.seq' (1/1)</span>
-<span class="co">#&gt; Done. Enjoy your day.</span>
-<span class="co">#&gt; [1] TRUE</span>
+<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Run the download function</span>
+<span class="kw"><a href="reference/db_download.html">db_download</a></span>()
 <span class="co"># connect, ensure safe disconnect after finishing</span>
 <span class="kw"><a href="reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 <span class="co"># after download, create the local database</span>
-<span class="kw"><a href="reference/db_create.html">db_create</a></span>()
-<span class="co">#&gt; Adding 1 file(s) to the database ...</span>
-<span class="co">#&gt; ... 'gbuna1.seq.gz'(1 / 1)</span>
-<span class="co">#&gt; Done.</span></code></pre></div>
+<span class="kw"><a href="reference/db_create.html">db_create</a></span>()</code></pre></div>
 </div>
 <div id="query" class="section level3">
 <h3 class="hasAnchor">
@@ -230,11 +158,11 @@ id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw"
 <span class="co"># sequences</span>
 seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">str</span>(seq)
-<span class="co">#&gt;  chr "ACAAAGATAAAATGGAGACAAGCACATGACACCTTTCGAAGGTGATAAATATCTTCATTATCTGGATTATGGAGAAACTATAAATTTAGACTTAAAATGGATTTTGAATTTTGGAAA"</span>
+<span class="co">#&gt;  chr "GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACACTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGA"| __truncated__</span>
 <span class="co"># definitions</span>
 def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(def)
-<span class="co">#&gt; [1] "Unidentified RNA clone P10.1"</span>
+<span class="co">#&gt; [1] "Synthetic RNA ligase ribozyme H4028, complete sequence"</span>
 <span class="co"># organisms</span>
 org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(org)
@@ -242,35 +170,37 @@ org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organis
 <span class="co"># or whole records</span>
 rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">cat</span>(rec)
-<span class="co">#&gt; LOCUS       AF040891                 117 bp    RNA     linear   UNA 06-MAR-1998</span>
-<span class="co">#&gt; DEFINITION  Unidentified RNA clone P10.1.</span>
-<span class="co">#&gt; ACCESSION   AF040891</span>
-<span class="co">#&gt; VERSION     AF040891.1</span>
+<span class="co">#&gt; LOCUS       SCAF000127               331 bp    RNA     linear   UNA 15-MAY-1997</span>
+<span class="co">#&gt; DEFINITION  Synthetic RNA ligase ribozyme H4028, complete sequence.</span>
+<span class="co">#&gt; ACCESSION   AF000127</span>
+<span class="co">#&gt; VERSION     AF000127.1</span>
 <span class="co">#&gt; KEYWORDS    .</span>
 <span class="co">#&gt; SOURCE      unidentified</span>
 <span class="co">#&gt;   ORGANISM  unidentified</span>
 <span class="co">#&gt;             unclassified sequences.</span>
-<span class="co">#&gt; REFERENCE   1  (bases 1 to 117)</span>
-<span class="co">#&gt;   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.</span>
-<span class="co">#&gt;   TITLE     RNA from plasma of patient NO.10</span>
+<span class="co">#&gt; REFERENCE   1  (bases 1 to 331)</span>
+<span class="co">#&gt;   AUTHORS   Hager,A.J. and Szostak,J.W.</span>
+<span class="co">#&gt;   TITLE     Isolation of novel ribozymes that ligate AMP-activated RNA</span>
+<span class="co">#&gt;             substrates</span>
 <span class="co">#&gt;   JOURNAL   Unpublished</span>
-<span class="co">#&gt; REFERENCE   2  (bases 1 to 117)</span>
-<span class="co">#&gt;   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.</span>
+<span class="co">#&gt; REFERENCE   2  (bases 1 to 331)</span>
+<span class="co">#&gt;   AUTHORS   Hager,A.J. and Szostak,J.W.</span>
 <span class="co">#&gt;   TITLE     Direct Submission</span>
-<span class="co">#&gt;   JOURNAL   Submitted (31-DEC-1997) Department of Applied Molecular Biology,</span>
-<span class="co">#&gt;             Microbiology &amp; Epidemiology Institution, 20 Dongdajie Street,</span>
-<span class="co">#&gt;             Fengtai, Beijing 100071, China</span>
+<span class="co">#&gt;   JOURNAL   Submitted (17-APR-1997) Molecular Biology, MGH, Boston, MA 02114,</span>
+<span class="co">#&gt;             USA</span>
 <span class="co">#&gt; FEATURES             Location/Qualifiers</span>
-<span class="co">#&gt;      source          1..117</span>
+<span class="co">#&gt;      source          1..331</span>
 <span class="co">#&gt;                      /organism="unidentified"</span>
 <span class="co">#&gt;                      /mol_type="genomic RNA"</span>
 <span class="co">#&gt;                      /db_xref="taxon:32644"</span>
-<span class="co">#&gt;                      /clone="P10.1"</span>
-<span class="co">#&gt;                      /note="from the plasma of patient no.10, a person infected</span>
-<span class="co">#&gt;                      by an unknown hepatitis virus"</span>
+<span class="co">#&gt;                      /note="ligase ribozyme H4028"</span>
 <span class="co">#&gt; ORIGIN      </span>
-<span class="co">#&gt;         1 acaaagataa aatggagaca agcacatgac acctttcgaa ggtgataaat atcttcatta</span>
-<span class="co">#&gt;        61 tctggattat ggagaaacta taaatttaga cttaaaatgg attttgaatt ttggaaa</span>
+<span class="co">#&gt;         1 ggcaacgcgc gactaggata ggcacctata ttatttcaat agcctcctcc tgactgtgtt</span>
+<span class="co">#&gt;        61 ccgaagcaca ctagttgtgc tctcgttagt cgacctagtt tatgtacccg agcgccataa</span>
+<span class="co">#&gt;       121 caggcgcctc tagggcccct gccgccacac ctgccattat gcgagatcga ctgcgtgggt</span>
+<span class="co">#&gt;       181 aagaccctgt ggcacctttg gtacggctcg gaccaccaag gggtctccga acagttttgg</span>
+<span class="co">#&gt;       241 gtaagtaatt ccagactata tacccccttc gcctaaaccc gagaccgtat agcatgtcct</span>
+<span class="co">#&gt;       301 tagatacatc aggttcagca aatcaccagg c</span>
 <span class="co">#&gt; //</span></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
@@ -279,18 +209,24 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF040891.1 Unidentified RNA clone P10.1</span>
-<span class="co">#&gt; ACAAAGATAAAATGGAGACAAGCACATGACACCTTTCGAAGGTGATAAATATCTTCATTATCTGGATTAT</span>
-<span class="co">#&gt; GGAGAAACTATAAATTTAGACTTAAAATGGATTTTGAATTTTGGAAA</span>
+<span class="co">#&gt; &gt;AF000127.1 Synthetic RNA ligase ribozyme H4028, complete sequence</span>
+<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACA</span>
+<span class="co">#&gt; CTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGAGCGCCATAACAGGCGCCTCTAGGGCCCCT</span>
+<span class="co">#&gt; GCCGCCACACCTGCCATTATGCGAGATCGACTGCGTGGGTAAGACCCTGTGGCACCTTTGGTACGGCTCG</span>
+<span class="co">#&gt; GACCACCAAGGGGTCTCCGAACAGTTTTGGGTAAGTAATTCCAGACTATATACCCCCTTCGCCTAAACCC</span>
+<span class="co">#&gt; GAGACCGTATAGCATGTCCTTAGATACATCAGGTTCAGCAAATCACCAGGC</span>
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">'S71333.1'</span>, id),
                     <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF040891.1 Unidentified RNA clone P10.1</span>
-<span class="co">#&gt; ACAAAGATAAAATGGAGACAAGCACATGACACCTTTCGAAGGTGATAAATATCTTCATTATCTGGATTAT</span>
-<span class="co">#&gt; GGAGAAACTATAAATTTAGACTTAAAATGGATTTTGAATTTTGGAAA</span>
+<span class="co">#&gt; &gt;AF000127.1 Synthetic RNA ligase ribozyme H4028, complete sequence</span>
+<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACA</span>
+<span class="co">#&gt; CTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGAGCGCCATAACAGGCGCCTCTAGGGCCCCT</span>
+<span class="co">#&gt; GCCGCCACACCTGCCATTATGCGAGATCGACTGCGTGGGTAAGACCCTGTGGCACCTTTGGTACGGCTCG</span>
+<span class="co">#&gt; GACCACCAAGGGGTCTCCGAACAGTTTTGGGTAAGTAATTCCAGACTATATACCCCCTTCGCCTAAACCC</span>
+<span class="co">#&gt; GAGACCGTATAGCATGTCCTTAGATACATCAGGTTCAGCAAATCACCAGGC</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
 <span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>
@@ -334,9 +270,9 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 <p>Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell, J., &amp; Sayers, E. W. (2012). GenBank. <em>Nucleic Acids Research</em>, 40(Database issue), D48–D53. <a href="http://doi.org/10.1093/nar/gkr1202" class="uri">http://doi.org/10.1093/nar/gkr1202</a></p>
 <p>Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. <em>PeerJ Preprints</em> 5:e3179v2 <a href="https://doi.org/10.7287/peerj.preprints.3179v2" class="uri">https://doi.org/10.7287/peerj.preprints.3179v2</a></p>
 </div>
-<div id="author" class="section level2">
+<div id="maintainer" class="section level2">
 <h2 class="hasAnchor">
-<a href="#author" class="anchor"></a>Author</h2>
+<a href="#maintainer" class="anchor"></a>Maintainer</h2>
 <p><a href="https://github.com/DomBennett">Dom Bennett</a></p>
 </div>
 </div>

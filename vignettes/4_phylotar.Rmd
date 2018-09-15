@@ -18,7 +18,7 @@ In this tutorial we will showcase how a `restez` database can be used to speed u
 
 By using `restez` in conjunction with `phylotaR`, we will not only being saving time, but also improving the chances of a successful `phylotaR` run -- often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using `restez` with `phylotaR` only make sense if you make use of the `restez` database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a `restez` database does not currently eliminate the need for an internet connection. `phylotaR` still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as `restez` develops).
 
-We will run a `phylotaR` run for the rodent genus, *Cavia*, the clade that contains guinea pigs. Because this clade is so small, it should not take too long to run it. We will, however, limit to showcasing only the download stage of the `phylotaR` pipeline, where `restez` is required.
+We will run a `phylotaR` run for the rodent subfamily, Dipodinae, the clade that contains jerboas. Because this clade is so small, it should not take too long to run it. We will, however, limit to showcasing only the download stage of the `phylotaR` pipeline, where `restez` is required.
 
 ##Install phylotaR
 
@@ -29,7 +29,7 @@ devtools::install_github(repo = 'ropensci/phylotaR', ref = 'restez')
 ```
 
 ##Setup
-Since we will be running the `phylotaR` pipeline for *Cavia*, we can use the rodents database we created [before](https://antonellilab.github.io/restez/articles/rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database. (Connections to the `restez` database will be made automatically, `restez_connect` or `restez_disconnect` do not need to be run.)
+Since we will be running the `phylotaR` pipeline for Dipodinae, we can use the rodents database we created [before](https://antonellilab.github.io/restez/articles/rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database. (Connections to the `restez` database will be made automatically, `restez_connect` or `restez_disconnect` do not need to be run.)
 
 ```r
 library(phylotaR)
@@ -38,9 +38,9 @@ library(phylotaR)
 restez::restez_path_set(filepath = rodents_path)
 
 # Vars
-wd <- 'guinea_pigs'
+wd <- 'dipodinae'
 dir.create(wd)
-txid <- 30650  # Cavia
+txid <- 35737  # Dipodinae
 mxsql <- 500
 ncbi_dr <- '[PATH/TO/BLAST]' # e.g. '/usr/local/ncbi/blast/bin'
 
@@ -69,9 +69,9 @@ restez:::restez_path_set(filepath = rodents_path)
 download_run(wd)
 ```
 
-Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. phylotaR may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database may not represent all of the sequences of a taxonomic group, e.g. we have downloaded just the sequences in the Rodentia domain but rodent DNA may exist in others.
+Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. phylotaR may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.
 
-> Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set `restez` path.
+> Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set the `restez` path.
 
 Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/AntonelliLab/restez/blob/master/other/phylotar_demo.R).
 

@@ -61,19 +61,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/parsing.html">3. Advanced parsing of a GenBank record</a>
+      <a href="../articles/1_rodents.html">1. Build a database of all rodents</a>
     </li>
     <li>
-      <a href="../articles/phylotar.html">4. Running phylotaR with restez</a>
+      <a href="../articles/2_search_and_fetch.html">2. How to search for and fetch sequences</a>
     </li>
     <li>
-      <a href="../articles/rodents.html">1. Build a database of all rodents</a>
+      <a href="../articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
     </li>
     <li>
-      <a href="../articles/search_and_fetch.html">2. How to search for and fetch sequences</a>
+      <a href="../articles/4_phylotar.html">4. Running phylotaR with restez</a>
     </li>
     <li>
-      <a href="../articles/tips_and_tricks.html">5. Tips and Tricks</a>
+      <a href="../articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
     </li>
   </ul>
 </li>
@@ -102,8 +102,8 @@
 </ol></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/phylotar.Rmd"><code>vignettes/phylotar.Rmd</code></a></small>
-      <div class="hidden name"><code>phylotar.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/4_phylotar.Rmd"><code>vignettes/4_phylotar.Rmd</code></a></small>
+      <div class="hidden name"><code>4_phylotar.Rmd</code></div>
 
     </div>
 
@@ -111,7 +111,7 @@
     
 <p>In this tutorial we will showcase how a <code>restez</code> database can be used to speed up a <a href="https://github.com/AntonelliLab/phylotaR">phylotaR</a> run. <code>phylotaR</code> runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on <code>phylotaR</code> see its <a href="https://doi.org/10.3390/life8020020">published article</a>.</p>
 <p>By using <code>restez</code> in conjunction with <code>phylotaR</code>, we will not only being saving time, but also improving the chances of a successful <code>phylotaR</code> run – often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using <code>restez</code> with <code>phylotaR</code> only make sense if you make use of the <code>restez</code> database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a <code>restez</code> database does not currently eliminate the need for an internet connection. <code>phylotaR</code> still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as <code>restez</code> develops).</p>
-<p>We will run a <code>phylotaR</code> run for the rodent genus, <em>Cavia</em>, the clade that contains guinea pigs. Because this clade is so small, it should not take too long to run it. We will, however, limit to showcasing only the download stage of the <code>phylotaR</code> pipeline, where <code>restez</code> is required.</p>
+<p>We will run a <code>phylotaR</code> run for the rodent subfamily, Dipodinae, the clade that contains jerboas. Because this clade is so small, it should not take too long to run it. We will, however, limit to showcasing only the download stage of the <code>phylotaR</code> pipeline, where <code>restez</code> is required.</p>
 <div id="install-phylotar" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-phylotar" class="anchor"></a>Install phylotaR</h2>
@@ -122,16 +122,16 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>Since we will be running the <code>phylotaR</code> pipeline for <em>Cavia</em>, we can use the rodents database we created <a href="https://antonellilab.github.io/restez/articles/rodents.html">before</a>. We do not need to set-up the <code>phylotaR</code> pipeline any differently with a <code>restez</code> database, except to ensure we have set the <code>restez</code> path to the rodent database. (Connections to the <code>restez</code> database will be made automatically, <code>restez_connect</code> or <code>restez_disconnect</code> do not need to be run.)</p>
+<p>Since we will be running the <code>phylotaR</code> pipeline for Dipodinae, we can use the rodents database we created <a href="https://antonellilab.github.io/restez/articles/rodents.html">before</a>. We do not need to set-up the <code>phylotaR</code> pipeline any differently with a <code>restez</code> database, except to ensure we have set the <code>restez</code> path to the rodent database. (Connections to the <code>restez</code> database will be made automatically, <code>restez_connect</code> or <code>restez_disconnect</code> do not need to be run.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phylotaR)
 
 <span class="co"># Restez (no need to call package)</span>
 restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/restez_path_set">restez_path_set</a></span>(<span class="dt">filepath =</span> rodents_path)
 
 <span class="co"># Vars</span>
-wd &lt;-<span class="st"> 'guinea_pigs'</span>
+wd &lt;-<span class="st"> 'dipodinae'</span>
 <span class="kw">dir.create</span>(wd)
-txid &lt;-<span class="st"> </span><span class="dv">30650</span>  <span class="co"># Cavia</span>
+txid &lt;-<span class="st"> </span><span class="dv">35737</span>  <span class="co"># Dipodinae</span>
 mxsql &lt;-<span class="st"> </span><span class="dv">500</span>
 ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. '/usr/local/ncbi/blast/bin'</span>
 
@@ -143,7 +143,7 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <a href="#run" class="anchor"></a>Run</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/phylotaR/topics/download_run">download_run</a></span>(wd)
 <span class="co">#&gt; ----------------------------------------------</span>
-<span class="co">#&gt; Starting stage DOWNLOAD: [2018-09-15 19:39:24]</span>
+<span class="co">#&gt; Starting stage DOWNLOAD: [2018-09-15 19:50:06]</span>
 <span class="co">#&gt; ----------------------------------------------</span>
 <span class="co">#&gt; Identifying suitable clades ...</span>
 <span class="co">#&gt; Identified [1] suitable clades.</span>
@@ -154,7 +154,7 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <span class="co">#&gt; . . Getting [100 sqs] from restez database...</span>
 <span class="co">#&gt; Successfully retrieved [100 sqs] in total.</span>
 <span class="co">#&gt; -----------------------------------------------</span>
-<span class="co">#&gt; Completed stage DOWNLOAD: [2018-09-15 19:39:31]</span>
+<span class="co">#&gt; Completed stage DOWNLOAD: [2018-09-15 19:50:12]</span>
 <span class="co">#&gt; -----------------------------------------------</span></code></pre></div>
 <p>Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. phylotaR may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.</p>
 <blockquote>

@@ -61,19 +61,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/parsing.html">3. Advanced parsing of a GenBank record</a>
+      <a href="../articles/1_rodents.html">1. Build a database of all rodents</a>
     </li>
     <li>
-      <a href="../articles/phylotar.html">4. Running phylotaR with restez</a>
+      <a href="../articles/2_search_and_fetch.html">2. How to search for and fetch sequences</a>
     </li>
     <li>
-      <a href="../articles/rodents.html">1. Build a database of all rodents</a>
+      <a href="../articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
     </li>
     <li>
-      <a href="../articles/search_and_fetch.html">2. How to search for and fetch sequences</a>
+      <a href="../articles/4_phylotar.html">4. Running phylotaR with restez</a>
     </li>
     <li>
-      <a href="../articles/tips_and_tricks.html">5. Tips and Tricks</a>
+      <a href="../articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
     </li>
   </ul>
 </li>
@@ -102,8 +102,8 @@
 </ol></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/parsing.Rmd"><code>vignettes/parsing.Rmd</code></a></small>
-      <div class="hidden name"><code>parsing.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/3_parsing.Rmd"><code>vignettes/3_parsing.Rmd</code></a></small>
+      <div class="hidden name"><code>3_parsing.Rmd</code></div>
 
     </div>
 
@@ -272,7 +272,7 @@ seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extr
 <span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 (rand_id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>()), <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AB001430"</span>
+<span class="co">#&gt; [1] "AB001382"</span>
 record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_record_get.html">gb_record_get</a></span>(rand_id)
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'features'</span>))
 <span class="co">#&gt; [[1]]</span>
@@ -280,34 +280,42 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "source"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$location</span>
-<span class="co">#&gt; [1] "1..480"</span>
+<span class="co">#&gt; [1] "1..954"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$organism</span>
-<span class="co">#&gt; [1] "Mus musculus"</span>
+<span class="co">#&gt; [1] "Rattus norvegicus"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$mol_type</span>
 <span class="co">#&gt; [1] "mRNA"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$strain</span>
-<span class="co">#&gt; [1] "ICR"</span>
+<span class="co">#&gt; [1] "Wistar"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$db_xref</span>
-<span class="co">#&gt; [1] "taxon:10090"</span>
+<span class="co">#&gt; [1] "taxon:10116"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$dev_stage</span>
-<span class="co">#&gt; [1] "4 weekCDS             &lt;1..&gt;480"</span>
+<span class="co">#&gt; [[1]]$cell_type</span>
+<span class="co">#&gt; [1] "bone marrow derived osteoblastic primary"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$codon_start</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [[2]]$type</span>
+<span class="co">#&gt; [1] "CDS"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]$location</span>
+<span class="co">#&gt; [1] "1..954"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]$codon_start</span>
 <span class="co">#&gt; [1] "1"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$product</span>
-<span class="co">#&gt; [1] "motor domain of KIF13B"</span>
+<span class="co">#&gt; [[2]]$product</span>
+<span class="co">#&gt; [1] "osteopontin"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$protein_id</span>
-<span class="co">#&gt; [1] "BAA22390.1"</span>
+<span class="co">#&gt; [[2]]$protein_id</span>
+<span class="co">#&gt; [1] "BAA19247.1"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$translation</span>
-<span class="co">#&gt; [1] "IFAYGQTGSGKSYTMMGTADQPGLIPRLCSGLFERTQKEENEEQSFKVEVSYMEIYNEKVRDLLDPKGSRQTLKVREHSVLGPYVDGLSKLAVTSYKDIESLMSEGNKSRTVAATNMNEESSRSHAVFKITLTHTLYDVKSGTSGEKVGKLSLVDLAGSE"</span>
+<span class="co">#&gt; [[2]]$translation</span>
+<span class="co">#&gt; [1] "MRLAVVCFCLFGLASCLPVKVAEFGSSEEKAHYSKHSDAVATWLKPDPSQKQNLLAPQNSVSSEETDDFKQETLPSNSNESHDHMDDDDDDDDDGDHAESEDSVNSDESDESHHSDESDESFTASTQADVLTPIAPTVDVPDGRGDSLAYGLRSKSRSFPVSDEQYPDATDEDLTSRMKSQESDEALKVIPVAQRLSVPSDQDSNGKTSHESSQLDEPSVETHSLEQSKEYKQRASHESTEQSDAIDSAEKPDAIDSAERSDAIDSQASSKASLEHQSHEFHSHEDKLVLDPKSKEDDRYLKFRISHELESSSSEVN"</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">

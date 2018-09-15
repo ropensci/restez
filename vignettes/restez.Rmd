@@ -159,8 +159,8 @@ restez_disconnect()
 
 For more information about `restez` see the other tutorials:
 
-1. [Build a database of all rodents](https://antonellilab.github.io/restez/articles/rodents.html)
-2. [How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/search_and_fetch.html)
-3. [Advanced parsing of a GenBank record](https://antonellilab.github.io/restez/articles/parsing.html)
-4. [Running phylotaR with restez](https://antonellilab.github.io/restez/articles/phylotar.html)
-5. [Tips and tricks](https://antonellilab.github.io/restez/articles/tips_and_tricks.html)
+1. [Build a database of all rodents](https://antonellilab.github.io/restez/articles/1_rodents.html)
+2. [How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/2_search_and_fetch.html)
+3. [Advanced parsing of a GenBank record](https://antonellilab.github.io/restez/articles/3_parsing.html)
+4. [Running phylotaR with restez](https://antonellilab.github.io/restez/articles/4_phylotar.html)
+5. [Tips and tricks](https://antonellilab.github.io/restez/articles/5_tips_and_tricks.html)
