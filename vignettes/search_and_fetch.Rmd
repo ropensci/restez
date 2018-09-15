@@ -3,7 +3,7 @@ title: "2. How to search for and fetch sequences"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Search and fetch}
+  %\VignetteIndexEntry{2. How to search for and fetch sequences}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,33 +15,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this tutorial we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using `restez`.
+A downside of the `restez` approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from `restez`. In this tutorial we will demonstrate how to peform online searches using the `rentrez` package and then use the search results to look up sequences in a `restez` database.
 
-## Setup
+To run all the code in this tutorial you will need to have already set up the rodents database, see [Build a database of all rodents](https://antonellilab.github.io/restez/articles/rodents.html).
 
-First, we need to download and setup the restez database. When we use `gb_download()` we are going to select 'rodents'. We are downloading rodents because they are the smallest available set of sequences, minismising the download time for this demonstration. If you have already downloaded the rodents flatfiles as explained in previous tutorials, then simply set your restez path to wherever you previously set your restez path.
+#Search NCBI
 
-```{r setup-database, eval=FALSE, include=TRUE}
-library(restez)
-fp <- file.path(getwd(), 'demo')
-dir.create(fp)
-restez_path_set(fp)
-gb_download()
-db_create()
-```
-
-## Search NCBI
-
-After setting up the database, we can then identify the sequences we are interested in. For this, we cannot use restez to perform a search,
-because the download just doesn't contain enough metadata for the full range of possible search arguments.
-
-Let's pretend we're intersted in COI sequences for a group of Rodents called the Sciuromorpha. We can create an NCBI search term,
-use `entrez_search` to perform the search and then retrieve the accession IDs using `entrez_fetch` and the `acc` rettype. `entrez_fetch`
-returns a single text that will need to be split up by the newline character. Finally, we should drop any version number after the downloaded
-accessions. This is not strictly necessary, but it makes it easier to check our results from restez later.
+Let's pretend we're interested in COI sequences for a group of rodents called the Sciuromorpha. We can create an NCBI search term; use `entrez_search` to perform the search; and then retrieve the accession IDs using `entrez_fetch` with the `acc` rettype. `entrez_fetch` returns a single text that will need to be split up by the newline character. Finally, we should drop any version number after the downloaded accessions. This is not strictly necessary, but it makes it easier to check our results from `restez` later.
 
 
-```{r search, eval=FALSE, include=TRUE}
+```{r search, include=TRUE}
 # 33553 - Sciuromorpha - squirrel-like things
 search_term <- 'txid33553[Organism:exp] AND COI [GENE]'
 search_object <- rentrez::entrez_search(db = 'nucleotide', term = search_term,
@@ -51,44 +34,57 @@ accessions <- rentrez::entrez_fetch(db = 'nucleotide',
                                     rettype = 'acc')
 accessions <- strsplit(x = accessions, split = '\\n')[[1]]
 accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
+print(accessions[1:10])
 ```
 
+#Retrieve sequences
 
-## Retrieve sequences
+To fetch the sequences from the rodents database, we can just use the `gb_fasta_get` function.
 
-To fetch the sequences from the database we set up, we can just use the `gb_fasta_get` function. This is a lot faster than using the Entrez API
-for very large requests, because NCBI limits the number of requests per user, often to as lower as 300 items per request with varying time
-delays.
-
-```{r retrieve, eval=FALSE, include=TRUE}
+```{r retrieve, include=TRUE}
+library(restez)
+restez_path_set(rodents_path)
+restez_connect()
 coi_sequences <- gb_fasta_get(id = accessions)
-# are all accessions in results?
+str(coi_sequences[[1]])
+```
+
+Can we not just use `rentrez` to do the fetching as well? Yes, but `restez` is a lot faster. NCBI limits the number of requests per user, often to as lower as 100 items per request with varying time delays. Additionally for any programmatic retrieval of sequences using an online server can never be as reliable as a local copy.
+
+```{r compare-retrieve, eval=FALSE, include=TRUE}
+# time for all the sequences
+system.time(expr = {
+  coi_sequences <- gb_fasta_get(id = accessions)
+  })
+# time for 100 via Entrez
+system.time(expr = {
+  part_sequences <- rentrez::entrez_fetch(db = 'nucleotide',
+                                          id = accessions[1:100],
+                                          rettype = 'fasta')
+  })
+```
+
+A user should know that if an ID cannot be found in the local database no error or warning is raised. This is why it can be good practice to test whether all the provided IDs are in the returned named vector. In this example, we can see that not all the accession IDs that were provided are in the returned `coi_sequences`. Why is that?
+
+```{r missing, eval=FALSE, include=TRUE}
+# Are all accessions in results?
 all(accessions %in% names(coi_sequences))
 # .... no
 ```
 
-When exploring the above results however we notice that not all the accession IDs that were provided are in the returned `coi_sequences`.
-This is because restez only downloads GenBank sequences, and these 'missing' sequence IDs are RefSeq sequences. Luckily, it seems all
-RefSeq sequences are also deposited in GenBank under a different ID, so no sequence information is missing from our results.
-We can look up the alternative ID and test whether it is in our `accesssions` vector.
+This is because `restez` only downloads GenBank sequences, and these 'missing' sequence IDs are RefSeq sequences. GenBank, however, acts as the source database for RefSeq -- which is the case for other NCBI databases too -- and all the missing RefSeq sequences can also be found in GenBank under a different ID.
+
+We can look up alternative IDs and test whether they are in our `accesssions` vector, so:
 
 ```{r parse, eval=FALSE, include=TRUE}
-# are all accessions in results?
-all(accessions %in% names(coi_sequences))
-# .... no
-accessions[!accessions %in% names(coi_sequences)]
-# NC* refers to RefSeq sequences and are not currently available through restez
-# The sequence however exists in GB under a different id which we can find like so
+(accessions[!accessions %in% names(coi_sequences)])
+# NC* refers to RefSeq sequences and are not available through restez
+# The sequence exists in GB under a different id which we can find like so
 smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 # This ID does exist in our results.
-smmry$assemblyacc %in% accessions
+(smmry$assemblyacc %in% accessions)
 ```
 
-## Take down
+#Next up
 
-Finally, because this is only a demonstration. It might be a good idea to delete the database we built to free up hard disk space.
-
-```{r delete, eval=FALSE, include=TRUE}
-db_delete()
-restez_path_check()  # confirm it is deleted
-```
+**[Advanced parsing of a GenBank record](https://antonellilab.github.io/restez/articles/parsing.html)**

@@ -19,12 +19,13 @@ In this first tutorial we are going to build a database for all rodents. The rod
 
 The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
 
-Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with download speed of 13 MBPS. Building the rodent database with this setup took 1 hour and 32 minutes.
+Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 1 hour and 44 minutes.
 
 #Build the database
 
 ##Download
 ```{r setpath, include=FALSE}
+# reminder to self: other/rodent_db.R
 rodents_path <- file.path(getwd(), 'rodents')
 if (!dir.exists(rodents_path)) {
   dir.create(rodents_path)
