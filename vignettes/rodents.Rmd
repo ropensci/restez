@@ -13,20 +13,29 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+# hide my wd
+original_status_class <- getFromNamespace(x = 'status_class', ns = 'restez')
+status_class2 <- function() {
+  res <- original_status_class()
+  res$`Restez path`$`Path` <- '[RODENTS PATH]/restez'
+  res$`Download`$`Path` <- '[RODENTS PATH]/restez/downloads'
+  res$`Database`$`Path` <- '[RODENTS PATH]/restez/sql_db'
+  res
+}
+assignInNamespace(x = 'status_class', value = status_class2, ns = 'restez')
 ```
 
 In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand.
 
 The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
 
-Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 1 hour and 44 minutes.
-
-#Build the database
+Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 59 minutes.
 
 ##Download
-```{r setpath, include=FALSE}
+```{r setpath, include=FALSE, eval=TRUE}
 # reminder to self: other/rodent_db.R
-rodents_path <- file.path(getwd(), 'rodents')
+pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
+rodents_path <- file.path(pkgwd, 'rodents')
 if (!dir.exists(rodents_path)) {
   dir.create(rodents_path)
 }
@@ -41,6 +50,8 @@ db_download(preselection = '15')
 
 ##Build
 ```{r build, eval=FALSE, include=TRUE}
+library(restez)
+restez_path_set(rodents_path)
 # always connect
 restez_connect()
 db_create()
@@ -48,8 +59,8 @@ db_create()
 restez_disconnect()
 ```
 
-#Check status
-```{r build, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+##Check status
+```{r status, echo=TRUE}
 library(restez)
 restez_path_set(rodents_path)
 restez_connect()
@@ -57,6 +68,6 @@ restez_status()
 restez_disconnect()
 ```
 
-#Next up
+##Next up
 
 **[How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/search_and_fetch.html)**
