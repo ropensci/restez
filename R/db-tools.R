@@ -146,6 +146,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 # db_type: a nod to the future,
 db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
                       alt_restez_path = NULL) {
+  # LT548182 did not appear in rodent database with size limits, why?
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }

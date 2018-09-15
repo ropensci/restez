@@ -52,11 +52,13 @@ restez_path_set(rodents_path)
 restez_connect()
 coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])
+# Are all accessions in results?
+all(accessions %in% names(coi_sequences))
 ```
 
-##Retrieve sequences
+##Comparing to Entrez
 
-Can we not just use `rentrez` to do the fetching as well? Yes, but `restez` is a lot faster. NCBI limits the number of requests per user, often to as lower as 100 items per request with varying time delays. Additionally for any programmatic retrieval of sequences using an online server can never be as reliable as a local copy.
+Can we not just use `rentrez` to do the fetching as well? Yes, but `restez` can be a lot faster. NCBI limits the number of requests per user, often to as little as 100 items per request with varying time delays. Additionally for any programmatic retrieval of sequences using an online server can never be as reliable as a local copy.
 
 ```{r compare-retrieve, include=TRUE}
 # time for ALL the sequences
@@ -72,7 +74,7 @@ system.time(expr = {
 # always disconnect
 restez_disconnect()
 ```
-
+<!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ##Missing
 
 A user should know that if an ID cannot be found in the local database no error or warning is raised. This is why it can be good practice to test whether all the provided IDs are in the returned named vector. In this example, we can see that not all the accession IDs that were provided are in the returned `coi_sequences`. Why is that?
@@ -95,7 +97,7 @@ smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 # This ID does exist in our results.
 (smmry$assemblyacc %in% accessions)
 ```
-
+-->
 ##Next up
 
 **[Advanced parsing of a GenBank record](https://antonellilab.github.io/restez/articles/parsing.html)**

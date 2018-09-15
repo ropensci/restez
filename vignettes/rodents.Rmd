@@ -25,7 +25,7 @@ status_class2 <- function() {
 assignInNamespace(x = 'status_class', value = status_class2, ns = 'restez')
 ```
 
-In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand.
+In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand. To keep things extra fast, we will also limit the number of sequences in the database by limiting the sequence sizes between 100 and 1000.
 
 The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
 
@@ -54,7 +54,7 @@ library(restez)
 restez_path_set(rodents_path)
 # always connect
 restez_connect()
-db_create(min_length = 100, max_length = 1500)
+db_create(min_length = 100, max_length = 1000)
 # always disconnect
 restez_disconnect()
 ```

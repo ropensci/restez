@@ -49,7 +49,7 @@ A user must always set the `restez` path in order to use the `restez` library an
 
 Now we can download GenBank files using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest avaiable domain which is 'Unannotated' and can be pre-specified with '20'. Normally, you would run this function without the `preselection` argument and just wait for the function to prompt you for a domain selection.
 
-After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either `Esc` or `Ctrl+c`. Please note that the diskspace estimates a preliminary. The package trys to be conservative in its estimates.
+After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either `Esc` or `Ctrl+c`. Please note that the diskspace estimates are preliminary. The package trys to be conservative in its estimates.
 
 ```{r download, echo=TRUE}
 db_download(preselection = '20')
