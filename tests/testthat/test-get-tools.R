@@ -67,7 +67,8 @@ test_that('is_in_db() works', {
   expect_true(all(res == c(FALSE, TRUE, TRUE, TRUE)))
 })
 test_that('list_db_ids() works', {
-  res <- restez:::list_db_ids(db = 'nucleotide')
+  expect_warning(restez:::list_db_ids(db = 'nucleotide'))
+  res <- suppressWarnings(restez:::list_db_ids(db = 'nucleotide'))
   expect_true(all(ids %in% res))
 })
 test_that('count_db_ids() works', {

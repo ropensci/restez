@@ -20,14 +20,14 @@ test_that('extract_by_patterns() works', {
 test_that('extract_version() works', {
   record <- sample(records, 1)[[1]]
   accession_version <- restez:::extract_version(record = record)
-  print(accession_version)
+  # print(accession_version)
   expect_true(grepl('^[a-z0-9_]+\\.[0-9]+$', accession_version,
                     ignore.case = TRUE))
 })
 test_that('extract_organism() works', {
   record <- sample(records, 1)[[1]]
   organism <- restez:::extract_organism(record = record)
-  print(organism)
+  # print(organism)
   expect_false(grepl('\\s{2,}', organism,
                     ignore.case = TRUE))
   expect_false(grepl('\n', organism, ignore.case = TRUE))
@@ -35,7 +35,7 @@ test_that('extract_organism() works', {
 test_that('extract_definition() works', {
   record <- sample(records, 1)[[1]]
   definition <- restez:::extract_definition(record = record)
-  print(definition)
+  #print(definition)
   expect_false(grepl('\\s{2,}', definition,
                      ignore.case = TRUE))
   expect_false(grepl('\n', definition, ignore.case = TRUE))
@@ -49,19 +49,19 @@ test_that('extract_sequence() works', {
 test_that('extract_features() works', {
   record <- sample(records, 1)[[1]]
   features <- restez:::extract_features(record = record)
-  print(features)
+  # print(features)
   expect_true(inherits(features, 'list'))
 })
 test_that('extract_locus() works', {
   record <- sample(records, 1)[[1]]
   locus <- restez:::extract_locus(record = record)
-  print(locus)
+  # print(locus)
   expect_true(inherits(locus, 'character'))
 })
 test_that('extract_keywords() works', {
   record <- sample(records, 1)[[1]]
   keywords <- restez:::extract_keywords(record = record)
-  print(keywords)
+  # print(keywords)
   expect_true(inherits(keywords, 'character'))
 })
 test_that('gb_extract() works', {

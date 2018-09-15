@@ -19,7 +19,12 @@ test_that('custom_download2() works', {
 test_that('rhandle_generate() works', {
   handle <- restez:::rhandle_generate()
   expect_true(subprocess::process_state(handle = handle) == 'running')
-  subprocess::process_kill(handle = handle)
+  if (subprocess::process_exists(handle)) {
+    subprocess::process_kill(handle = handle)
+  } else {
+    id <- as.character(handle$c_handle)
+    stop(id)
+  }
   expect_true(subprocess::process_state(handle = handle) == 'terminated')
 })
 test_that('download_cmd_generate() works', {
