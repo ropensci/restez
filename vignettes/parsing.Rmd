@@ -1,5 +1,5 @@
 ---
-title: "GenBank record parsing"
+title: "3. Advanced parsing of a GenBank record"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{parsing}

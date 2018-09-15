@@ -1,5 +1,5 @@
 ---
-title: "phylotaR"
+title: "4. Running phylotaR with restez"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{phylotaR}

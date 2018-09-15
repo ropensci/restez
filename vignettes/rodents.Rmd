@@ -1,0 +1,61 @@
+---
+title: "1. Build a database of all rodents"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{1. Build a database of all rodents}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand.
+
+The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
+
+Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with download speed of 13 MBPS. Building the rodent database with this setup took 1 hour and 32 minutes.
+
+#Build the database
+
+##Download
+```{r setpath, include=FALSE}
+rodents_path <- file.path(getwd(), 'rodents')
+if (!dir.exists(rodents_path)) {
+  dir.create(rodents_path)
+}
+```
+```{r download, eval=FALSE, include=TRUE}
+library(restez)
+# set the restez path to a memorable location
+restez_path_set(rodents_path)
+# download for domain 15
+db_download(preselection = '15')
+```
+
+##Build
+```{r build, eval=FALSE, include=TRUE}
+# always connect
+restez_connect()
+db_create()
+# always disconnect
+restez_disconnect()
+```
+
+#Check status
+```{r build, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+library(restez)
+restez_path_set(rodents_path)
+restez_connect()
+restez_status()
+restez_disconnect()
+```
+
+#Next up
+
+**[How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/search_and_fetch.html)**

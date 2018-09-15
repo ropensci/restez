@@ -154,3 +154,13 @@ res <- restez::entrez_fetch(db = 'nucleotide', id = c(id, plant_sequence),
 cat(res)
 restez_disconnect()
 ```
+
+#4. More information
+
+For more information about `restez` see the other tutorials:
+
+1. [Build a database of all rodents](https://antonellilab.github.io/restez/articles/rodents.html)
+2. [How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/search_and_fetch.html)
+3. [Advanced parsing of a GenBank record](https://antonellilab.github.io/restez/articles/parsing.html)
+4. [Running phylotaR with restez](https://antonellilab.github.io/restez/articles/phylotar.html)
+5. [Tips and tricks](https://antonellilab.github.io/restez/articles/tips_and_tricks.html)

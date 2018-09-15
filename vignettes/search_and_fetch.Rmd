@@ -1,5 +1,5 @@
 ---
-title: "Search and Fetch"
+title: "2. How to search for and fetch sequences"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -15,8 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this demonstration we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using
-`restez`.
+In this tutorial we are going to search NCBI with a custom search term, download accession IDs, and retrieve fasta sequences using `restez`.
 
 ## Setup
 
