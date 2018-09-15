@@ -54,7 +54,7 @@ library(restez)
 restez_path_set(rodents_path)
 # always connect
 restez_connect()
-db_create()
+db_create(min_length = 100, max_length = 1500)
 # always disconnect
 restez_disconnect()
 ```

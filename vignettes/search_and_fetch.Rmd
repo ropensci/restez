@@ -26,7 +26,7 @@ Let's pretend we're interested in COI sequences for a group of rodents called th
 
 ```{r search, include=TRUE}
 # 33553 - Sciuromorpha - squirrel-like things
-search_term <- 'txid33553[Organism:exp] AND COI [GENE]'
+search_term <- 'txid33553[Organism:exp] AND COI [GENE] AND 100:1000[SLEN]'
 search_object <- rentrez::entrez_search(db = 'nucleotide', term = search_term,
                                         use_history = TRUE, retmax = 0)
 accessions <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -34,6 +34,7 @@ accessions <- rentrez::entrez_fetch(db = 'nucleotide',
                                     rettype = 'acc')
 accessions <- strsplit(x = accessions, split = '\\n')[[1]]
 accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
+print(length(accessions))
 print(accessions[1:10])
 ```
 
@@ -49,15 +50,16 @@ rodents_path <- file.path(pkgwd, 'rodents')
 library(restez)
 restez_path_set(rodents_path)
 restez_connect()
-coi_sequences <- gb_fasta_get(id = accessions[[1]])
-gb_definition_get(id = accessions[[1]])
+coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])
 ```
+
+##Retrieve sequences
 
 Can we not just use `rentrez` to do the fetching as well? Yes, but `restez` is a lot faster. NCBI limits the number of requests per user, often to as lower as 100 items per request with varying time delays. Additionally for any programmatic retrieval of sequences using an online server can never be as reliable as a local copy.
 
 ```{r compare-retrieve, include=TRUE}
-# time for all the sequences
+# time for ALL the sequences
 system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
@@ -67,7 +69,11 @@ system.time(expr = {
                                           id = accessions[1:100],
                                           rettype = 'fasta')
   })
+# always disconnect
+restez_disconnect()
 ```
+
+##Missing
 
 A user should know that if an ID cannot be found in the local database no error or warning is raised. This is why it can be good practice to test whether all the provided IDs are in the returned named vector. In this example, we can see that not all the accession IDs that were provided are in the returned `coi_sequences`. Why is that?
 
