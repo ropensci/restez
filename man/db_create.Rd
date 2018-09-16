@@ -33,7 +33,7 @@ just the sequences with lengths below 100 bp. Instead of having to download
 all environmental sequences twice, you can generate multiple restez databases
 using the same downloaded files from a single restez path.
 
-This function will not overwrite a pre-exisitng database. Old databases must
+This function will not overwrite a pre-existing database. Old databases must
 be deleted before a new one can be created. Use \code{\link{db_delete}} with
 everything=FALSE to delete an SQL database.
 }

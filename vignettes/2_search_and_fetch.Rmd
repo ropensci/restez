@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-A downside of the `restez` approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from `restez`. In this tutorial we will demonstrate how to peform online searches using the `rentrez` package and then use the search results to look up sequences in a `restez` database.
+A downside of the `restez` approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from `restez`. In this tutorial we will demonstrate how to perform online searches using the `rentrez` package and then use the search results to look up sequences in a `restez` database.
 
 To run all the code in this tutorial you will need to have already set up the rodents database, see [Build a database of all rodents](https://antonellilab.github.io/restez/articles/rodents.html).
 

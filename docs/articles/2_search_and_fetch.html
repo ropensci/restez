@@ -110,7 +110,7 @@
 
     
     
-<p>A downside of the <code>restez</code> approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from <code>restez</code>. In this tutorial we will demonstrate how to peform online searches using the <code>rentrez</code> package and then use the search results to look up sequences in a <code>restez</code> database.</p>
+<p>A downside of the <code>restez</code> approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from <code>restez</code>. In this tutorial we will demonstrate how to perform online searches using the <code>rentrez</code> package and then use the search results to look up sequences in a <code>restez</code> database.</p>
 <p>To run all the code in this tutorial you will need to have already set up the rodents database, see <a href="https://antonellilab.github.io/restez/articles/rodents.html">Build a database of all rodents</a>.</p>
 <div id="search-ncbi" class="section level2">
 <h2 class="hasAnchor">
@@ -159,7 +159,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
   coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> accessions)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   1.011   2.006   4.570</span>
+<span class="co">#&gt;   0.974   1.613   3.717</span>
 <span class="co"># time via Entrez</span>
 <span class="kw">system.time</span>(<span class="dt">expr =</span> {
   coi_sequences_p1 &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>,
@@ -179,7 +179,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
                                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.131   0.014   4.978</span>
+<span class="co">#&gt;   0.191   0.017   5.554</span>
 <span class="co"># always disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.

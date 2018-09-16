@@ -266,13 +266,13 @@ seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extr
 <div id="from-the-database" class="section level2">
 <h2 class="hasAnchor">
 <a href="#from-the-database" class="anchor"></a>From the database</h2>
-<p>You can try out the above functions yourself on any sequence record by downloading them through the <a href="https://github.com/ropensci/rentrez"><code>rentrez</code> package</a> using <code><a href="../reference/entrez_fetch.html">entrez_fetch(db='nucelotide', rettype='gb')</a></code>. Or why not test them out using any of the records from the rodents database?</p>
+<p>You can try out the above functions yourself on any sequence record by downloading them through the <a href="https://github.com/ropensci/rentrez"><code>rentrez</code> package</a> using <code><a href="../reference/entrez_fetch.html">entrez_fetch(db='nucleotide', rettype='gb')</a></code>. Or why not test them out using any of the records from the rodents database?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
 <span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 (rand_id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>()), <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AB007599"</span>
+<span class="co">#&gt; [1] "AB001075"</span>
 record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_record_get.html">gb_record_get</a></span>(rand_id)
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'features'</span>))
 <span class="co">#&gt; [[1]]</span>
@@ -280,22 +280,16 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "source"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$location</span>
-<span class="co">#&gt; [1] "1..903"</span>
+<span class="co">#&gt; [1] "1..624"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$organism</span>
-<span class="co">#&gt; [1] "Mus musculus"</span>
+<span class="co">#&gt; [1] "Rattus norvegicus"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$mol_type</span>
 <span class="co">#&gt; [1] "mRNA"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$db_xref</span>
-<span class="co">#&gt; [1] "taxon:10090"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$cell_line</span>
-<span class="co">#&gt; [1] "BCL1"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$cell_type</span>
-<span class="co">#&gt; [1] "B lymphocyte"</span>
+<span class="co">#&gt; [1] "taxon:10116"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -303,38 +297,19 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "CDS"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$location</span>
-<span class="co">#&gt; [1] "95..583"</span>
+<span class="co">#&gt; [1] "37..429"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$codon_start</span>
 <span class="co">#&gt; [1] "1"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$product</span>
-<span class="co">#&gt; [1] "MD-1"</span>
+<span class="co">#&gt; [1] "galectin-2 related protein"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$protein_id</span>
-<span class="co">#&gt; [1] "BAA32399.1"</span>
+<span class="co">#&gt; [1] "BAA74954.1"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$translation</span>
-<span class="co">#&gt; [1] "MNGVAAALLVWILTSPSSSDHGSENGWPKHTACNSGGLEVVYQSCDPLQDFGLSIDQCSKQIQSNLNIRFGIILRQDIRKLFLDITLMAKGSSILNYSYPLCEEDQPKFSFCGRRKGEQIYYAGPVNNPGLDVPQGEYQLLLELYNENRATVACANATVTSS"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [[3]]$type</span>
-<span class="co">#&gt; [1] "sig_peptide"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$location</span>
-<span class="co">#&gt; [1] "95..151"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; [[4]]$type</span>
-<span class="co">#&gt; [1] "mat_peptide"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]$location</span>
-<span class="co">#&gt; [1] "152..580"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]$product</span>
-<span class="co">#&gt; [1] "MD-1"</span>
+<span class="co">#&gt; [1] "MSEKFEVTNLNMKSGMSLKIKGKIHNDVNSFTINLGQGKETLNLHFNPRFNESTIVCNTLDGSSWGQEQRENHSCFSPGSEVKLTLTFQDKDFKVTLPDGHSLTFPNRLGHNHLRYLSMDGLQISSFKLE"</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">

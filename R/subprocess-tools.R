@@ -40,7 +40,7 @@ download_cmd_generate <- function(url, destfile) {
 #' @title Generate a subprocess handle for R
 #' @description Returns an independent, running subprocess handle to R.
 #' @details The R process will not store or restore any saved data.
-#' @return subrocess handle
+#' @return subprocess handle
 #' @family private
 rhandle_generate <- function() {
   # framework below copied from intro to subprocess

@@ -10,7 +10,7 @@ char(x)
 \item{x}{Text to print, character}
 }
 \value{
-coloured chracter encoding, character
+coloured character encoding, character
 }
 \description{
 Print to console green text to indicate a name/filepath/text

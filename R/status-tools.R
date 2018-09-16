@@ -43,7 +43,7 @@ restez_status <- function(gb_check = FALSE) {
 }
 
 #' @name status_class
-#' @title Geneate a list class for storing status information
+#' @title Generate a list class for storing status information
 #' @family private
 #' @description Creates a three-part list for holding information on the
 #' status of the restez file path.

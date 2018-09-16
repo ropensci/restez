@@ -36,7 +36,7 @@ local database, if it fails it will then call rentrez's
 \code{\link[rentrez]{entrez_fetch}} with the same arguments.
 }
 
-\section{Private/interal functions}{
+\section{Private/internal functions}{
 
 These functions work behind the scenes to make everything work. If you're
 curious you can read their documentation using the form

@@ -13,7 +13,7 @@ dwnld_rcrd_log(fl)
 This function is called whenever a file is successfully
 downloaded. A row entry is added to the 'download_log.tsv' in the user's
 restez path containing the file name, the GB release number and the time of
-successfuly download. The log is to help users keep track of when they
+successfully download. The log is to help users keep track of when they
 downloaded files and to determine if the downloaded files are out of date.
 }
 \seealso{

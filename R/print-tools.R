@@ -3,7 +3,7 @@
 #' @title Print blue
 #' @description Print to console blue text to indicate a number/statistic.
 #' @param ... Any number of text arguments to print, character
-#' @return coloured chracter encoding, character
+#' @return coloured character encoding, character
 #' @family private
 stat <- function(...) {
   crayon::blue(...)
@@ -13,7 +13,7 @@ stat <- function(...) {
 #' @title Print green
 #' @description Print to console green text to indicate a name/filepath/text
 #' @param x Text to print, character
-#' @return coloured chracter encoding, character
+#' @return coloured character encoding, character
 #' @family private
 char <- function(x) {
   crayon::green(encodeString(x, quote = "'"))

@@ -10,7 +10,7 @@ stat(...)
 \item{...}{Any number of text arguments to print, character}
 }
 \value{
-coloured chracter encoding, character
+coloured character encoding, character
 }
 \description{
 Print to console blue text to indicate a number/statistic.

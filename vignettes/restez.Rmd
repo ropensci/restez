@@ -47,7 +47,7 @@ A user must always set the `restez` path in order to use the `restez` library an
 
 ##1.2 Download
 
-Now we can download GenBank files using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest avaiable domain which is 'Unannotated' and can be pre-specified with '20'. Normally, you would run this function without the `preselection` argument and just wait for the function to prompt you for a domain selection.
+Now we can download GenBank files using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest available domain which is 'Unannotated' and can be pre-specified with '20'. Normally, you would run this function without the `preselection` argument and just wait for the function to prompt you for a domain selection.
 
 After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either `Esc` or `Ctrl+c`. Please note that the diskspace estimates are preliminary. The package trys to be conservative in its estimates.
 
@@ -69,7 +69,7 @@ db_create()
 restez_disconnect()
 ```
 
-`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only intersted in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. You will simply need to delete the oirignal database first with `db_delete`.
+`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. You will simply need to delete the original database first with `db_delete`.
 
 ##1.4 Checking the setup
 
@@ -101,7 +101,7 @@ restez_disconnect()
 
 #2. Query
 
-Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retreive specific coulmns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://antonellilab.github.io/restez/articles/search_and_fetch.html).
+Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retrieve specific columns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://antonellilab.github.io/restez/articles/search_and_fetch.html).
 
 > Always remember to disconnect after you have finished your querying!
 
@@ -126,7 +126,7 @@ cat(gb_fasta_get(id))
 # sequence lengths with db_create()
 # Also note, if an id is not present in the database nothing is returned
 cat(gb_fasta_get(id = c(id, 'notanid')))
-# Always rememeber to disconnect
+# Always remember to disconnect
 restez_disconnect()
 ```
 

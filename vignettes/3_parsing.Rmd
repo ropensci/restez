@@ -54,7 +54,7 @@ str(seq)
 
 ##From the database
 
-You can try out the above functions yourself on any sequence record by downloading them through the [`rentrez` package](https://github.com/ropensci/rentrez) using `entrez_fetch(db='nucelotide', rettype='gb')`. Or why not test them out using any of the records from the rodents database?
+You can try out the above functions yourself on any sequence record by downloading them through the [`rentrez` package](https://github.com/ropensci/rentrez) using `entrez_fetch(db='nucleotide', rettype='gb')`. Or why not test them out using any of the records from the rodents database?
 
 ```{r pathset, include=FALSE}
 pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())

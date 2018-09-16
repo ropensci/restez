@@ -7,7 +7,7 @@
 rhandle_generate()
 }
 \value{
-subrocess handle
+subprocess handle
 }
 \description{
 Returns an independent, running subprocess handle to R.

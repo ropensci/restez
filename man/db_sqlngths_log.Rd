@@ -12,7 +12,7 @@ db_sqlngths_log(min_lngth, max_lngth)
 \item{max_lngth}{Maximum length}
 }
 \description{
-Log the min and maximum sequnece length used in the created db.
+Log the min and maximum sequence length used in the created db.
 }
 \seealso{
 Other private: \code{\link{add_rcrd_log}},

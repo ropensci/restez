@@ -2,7 +2,7 @@
 % Please edit documentation in R/status-tools.R
 \name{status_class}
 \alias{status_class}
-\title{Geneate a list class for storing status information}
+\title{Generate a list class for storing status information}
 \usage{
 status_class()
 }
