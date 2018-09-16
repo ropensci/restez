@@ -272,7 +272,7 @@ seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extr
 <span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 (rand_id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>()), <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AB001075"</span>
+<span class="co">#&gt; [1] "AB008118"</span>
 record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_record_get.html">gb_record_get</a></span>(rand_id)
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'features'</span>))
 <span class="co">#&gt; [[1]]</span>
@@ -280,36 +280,44 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "source"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$location</span>
-<span class="co">#&gt; [1] "1..624"</span>
+<span class="co">#&gt; [1] "1..714"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$organism</span>
-<span class="co">#&gt; [1] "Rattus norvegicus"</span>
+<span class="co">#&gt; [1] "Mus musculus"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$mol_type</span>
-<span class="co">#&gt; [1] "mRNA"</span>
+<span class="co">#&gt; [1] "genomic DNA"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$strain</span>
+<span class="co">#&gt; [1] "129"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$db_xref</span>
-<span class="co">#&gt; [1] "taxon:10116"</span>
+<span class="co">#&gt; [1] "taxon:10090"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; [[2]]$type</span>
-<span class="co">#&gt; [1] "CDS"</span>
+<span class="co">#&gt; [1] "gene"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$location</span>
-<span class="co">#&gt; [1] "37..429"</span>
+<span class="co">#&gt; [1] "complement(380..510)"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$codon_start</span>
-<span class="co">#&gt; [1] "1"</span>
+<span class="co">#&gt; [[2]]$gene</span>
+<span class="co">#&gt; [1] "Limk-2"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$product</span>
-<span class="co">#&gt; [1] "galectin-2 related protein"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$protein_id</span>
-<span class="co">#&gt; [1] "BAA74954.1"</span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [[3]]$type</span>
+<span class="co">#&gt; [1] "exon"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$translation</span>
-<span class="co">#&gt; [1] "MSEKFEVTNLNMKSGMSLKIKGKIHNDVNSFTINLGQGKETLNLHFNPRFNESTIVCNTLDGSSWGQEQRENHSCFSPGSEVKLTLTFQDKDFKVTLPDGHSLTFPNRLGHNHLRYLSMDGLQISSFKLE"</span>
+<span class="co">#&gt; [[3]]$location</span>
+<span class="co">#&gt; [1] "complement(380..510)"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]$gene</span>
+<span class="co">#&gt; [1] "Limk-2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]$note</span>
+<span class="co">#&gt; [1] "1a"</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">
