@@ -61,15 +61,27 @@ all(accessions %in% names(coi_sequences))
 Can we not just use `rentrez` to do the fetching as well? Yes, but `restez` can be a lot faster. NCBI limits the number of requests per user, often to as little as 100 items per request with varying time delays. Additionally for any programmatic retrieval of sequences using an online server can never be as reliable as a local copy.
 
 ```{r compare-retrieve, include=TRUE}
-# time for ALL the sequences
+# time via restez
 system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
-# time for 100 via Entrez
+# time via Entrez
 system.time(expr = {
-  part_sequences <- rentrez::entrez_fetch(db = 'nucleotide',
-                                          id = accessions[1:100],
-                                          rettype = 'fasta')
+  coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
+                                            id = accessions[1:100],
+                                            rettype = 'fasta')
+  coi_sequences_p2 <- rentrez::entrez_fetch(db = 'nucleotide',
+                                            id = accessions[101:200],
+                                            rettype = 'fasta')
+  coi_sequences_p3 <- rentrez::entrez_fetch(db = 'nucleotide',
+                                            id = accessions[201:300],
+                                            rettype = 'fasta')
+  coi_sequences_p4 <- rentrez::entrez_fetch(db = 'nucleotide',
+                                            id = accessions[301:400],
+                                            rettype = 'fasta')
+  coi_sequences_p5 <- rentrez::entrez_fetch(db = 'nucleotide',
+                                            id = accessions[401:456],
+                                            rettype = 'fasta')
   })
 # always disconnect
 restez_disconnect()

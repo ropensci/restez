@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="restez: Create and Query a Local Copy of GenBank in R — restez" />
 
-<meta property="og:description" content="The restez package comes with three sets of functions:
-setup, get and entrez." />
+<meta property="og:description" content="The restez package comes with five families of functions:
+setup, database, get, entrez and internal/private." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -134,8 +134,8 @@ setup, get and entrez." />
 
     <div class="ref-description">
     
-    <p>The restez package comes with three sets of functions:
-setup, get and entrez.</p>
+    <p>The restez package comes with five families of functions:
+setup, database, get, entrez and internal/private.</p>
     
     </div>
 
@@ -144,18 +144,18 @@ setup, get and entrez.</p>
 
     
     <p>These functions allow a user to set the filepath for where the GenBank files
-should be stored and verify the filepaths.</p>
+should be stored, create connections and verify these settings.</p>
     
     <h2 class="hasAnchor" id="database-functions"><a class="anchor" href="#database-functions"></a>database functions</h2>
 
     
-    <p>These functions to download specific parts of GenBank and to create a local
-SQLite database.</p>
+    <p>These functions download specific parts of GenBank and create the local
+SQL-like database.</p>
     
     <h2 class="hasAnchor" id="genbank-functions"><a class="anchor" href="#genbank-functions"></a>GenBank functions</h2>
 
     
-    <p>These functions allow a user to query the local SQLite GenBank database. A
+    <p>These functions allow a user to query the local SQL-like database. A
 user can use an NCBI accession ID to retrieve sequences or whole GenBank
 records.</p>
     
@@ -166,6 +166,13 @@ records.</p>
 rentrez package. e.g the restez's entrez_fetch will first try to search the
 local database, if it fails it will then call rentrez's
 <code><a href='http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch'>entrez_fetch</a></code> with the same arguments.</p>
+    
+    <h2 class="hasAnchor" id="private-interal-functions"><a class="anchor" href="#private-interal-functions"></a>Private/interal functions</h2>
+
+    
+    <p>These functions work behind the scenes to make everything work. If you're
+curious you can read their documentation using the form
+<code>?restez:::functionname</code>.</p>
     
 
   </div>
@@ -180,6 +187,8 @@ local database, if it fails it will then call rentrez's
       <li><a href="#genbank-functions">GenBank functions</a></li>
 
       <li><a href="#entrez-functions">Entrez functions</a></li>
+
+      <li><a href="#private-interal-functions">Private/interal functions</a></li>
           </ul>
 
   </div>

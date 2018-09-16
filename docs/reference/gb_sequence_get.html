@@ -156,19 +156,16 @@ from the accession ID(s).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='count_db_ids.html'>count_db_ids</a></code>,
-  <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
+    <div class='dont-index'><p>Other get: <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
   <code><a href='gb_fasta_get.html'>gb_fasta_get</a></code>,
   <code><a href='gb_organism_get.html'>gb_organism_get</a></code>,
-  <code><a href='gb_record_get.html'>gb_record_get</a></code>,
-  <code><a href='gb_version_get.html'>gb_version_get</a></code>, <code><a href='is_in_db.html'>is_in_db</a></code>,
-  <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
+  <code><a href='gb_record_get.html'>gb_record_get</a></code>, <code><a href='gb_version_get.html'>gb_version_get</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 (<span class='no'>seq</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_sequence_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;       demo_1 
 #&gt; "CTAGGTATCC" </div><div class='input'>(<span class='no'>seqs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_sequence_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;       demo_1       demo_2 
 #&gt; "CTAGGTATCC" "TGAACACCCT" </div><div class='input'>

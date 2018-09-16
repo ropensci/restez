@@ -158,11 +158,11 @@ id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw"
 <span class="co"># sequences</span>
 seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">str</span>(seq)
-<span class="co">#&gt;  chr "GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACACTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGA"| __truncated__</span>
+<span class="co">#&gt;  chr "GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCAATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGG"| __truncated__</span>
 <span class="co"># definitions</span>
 def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(def)
-<span class="co">#&gt; [1] "Synthetic RNA ligase ribozyme H4028, complete sequence"</span>
+<span class="co">#&gt; [1] "Unidentified clone B25 DNA sequence from ocean beach sand"</span>
 <span class="co"># organisms</span>
 org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(org)
@@ -170,37 +170,45 @@ org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organis
 <span class="co"># or whole records</span>
 rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">cat</span>(rec)
-<span class="co">#&gt; LOCUS       SCAF000127               331 bp    RNA     linear   UNA 15-MAY-1997</span>
-<span class="co">#&gt; DEFINITION  Synthetic RNA ligase ribozyme H4028, complete sequence.</span>
-<span class="co">#&gt; ACCESSION   AF000127</span>
-<span class="co">#&gt; VERSION     AF000127.1</span>
+<span class="co">#&gt; LOCUS       AF298101                 699 bp    DNA     linear   UNA 23-NOV-2000</span>
+<span class="co">#&gt; DEFINITION  Unidentified clone B25 DNA sequence from ocean beach sand.</span>
+<span class="co">#&gt; ACCESSION   AF298101</span>
+<span class="co">#&gt; VERSION     AF298101.1</span>
 <span class="co">#&gt; KEYWORDS    .</span>
 <span class="co">#&gt; SOURCE      unidentified</span>
 <span class="co">#&gt;   ORGANISM  unidentified</span>
 <span class="co">#&gt;             unclassified sequences.</span>
-<span class="co">#&gt; REFERENCE   1  (bases 1 to 331)</span>
-<span class="co">#&gt;   AUTHORS   Hager,A.J. and Szostak,J.W.</span>
-<span class="co">#&gt;   TITLE     Isolation of novel ribozymes that ligate AMP-activated RNA</span>
-<span class="co">#&gt;             substrates</span>
+<span class="co">#&gt; REFERENCE   1  (bases 1 to 699)</span>
+<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
+<span class="co">#&gt;   TITLE     Sand DNA: a multigenomic library on the beach</span>
 <span class="co">#&gt;   JOURNAL   Unpublished</span>
-<span class="co">#&gt; REFERENCE   2  (bases 1 to 331)</span>
-<span class="co">#&gt;   AUTHORS   Hager,A.J. and Szostak,J.W.</span>
+<span class="co">#&gt; REFERENCE   2  (bases 1 to 699)</span>
+<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
 <span class="co">#&gt;   TITLE     Direct Submission</span>
-<span class="co">#&gt;   JOURNAL   Submitted (17-APR-1997) Molecular Biology, MGH, Boston, MA 02114,</span>
-<span class="co">#&gt;             USA</span>
+<span class="co">#&gt;   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San</span>
+<span class="co">#&gt;             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA</span>
+<span class="co">#&gt;             92103-8467, USA</span>
 <span class="co">#&gt; FEATURES             Location/Qualifiers</span>
-<span class="co">#&gt;      source          1..331</span>
+<span class="co">#&gt;      source          1..699</span>
 <span class="co">#&gt;                      /organism="unidentified"</span>
-<span class="co">#&gt;                      /mol_type="genomic RNA"</span>
+<span class="co">#&gt;                      /mol_type="genomic DNA"</span>
 <span class="co">#&gt;                      /db_xref="taxon:32644"</span>
-<span class="co">#&gt;                      /note="ligase ribozyme H4028"</span>
+<span class="co">#&gt;                      /clone="B25"</span>
+<span class="co">#&gt;                      /note="anonymous environmental sample sequence from ocean</span>
+<span class="co">#&gt;                      beach sand"</span>
 <span class="co">#&gt; ORIGIN      </span>
-<span class="co">#&gt;         1 ggcaacgcgc gactaggata ggcacctata ttatttcaat agcctcctcc tgactgtgtt</span>
-<span class="co">#&gt;        61 ccgaagcaca ctagttgtgc tctcgttagt cgacctagtt tatgtacccg agcgccataa</span>
-<span class="co">#&gt;       121 caggcgcctc tagggcccct gccgccacac ctgccattat gcgagatcga ctgcgtgggt</span>
-<span class="co">#&gt;       181 aagaccctgt ggcacctttg gtacggctcg gaccaccaag gggtctccga acagttttgg</span>
-<span class="co">#&gt;       241 gtaagtaatt ccagactata tacccccttc gcctaaaccc gagaccgtat agcatgtcct</span>
-<span class="co">#&gt;       301 tagatacatc aggttcagca aatcaccagg c</span>
+<span class="co">#&gt;         1 gatccgttta aggtctggaa aatcgccgat ctccgcaagc atgagcagtt tttgttcgag</span>
+<span class="co">#&gt;        61 ctcgctctca atgcggtcgt aatacactcc gctgaactga tggtgattcg gtgagtccgt</span>
+<span class="co">#&gt;       121 cctgatgacg gtcacggggc tgctgcctcg attcaggcga gatccggtcg cgggttgcag</span>
+<span class="co">#&gt;       181 gtcacgatgt ttgcgtttta tgtcctcgag caagacgacc aggtcgctga attgacgccg</span>
+<span class="co">#&gt;       241 taattgaaga tagtagtcat ccgagcgacg ccgctcgtcg gcactcagat catgcatcaa</span>
+<span class="co">#&gt;       301 ctggttgctg accgcgacga actcgggcat gccgcgttcg gccgcaagcc gataccatgc</span>
+<span class="co">#&gt;       361 ggacgctgcg acggggtcct cttcggttcc cgtccccatc aggtgcatat agcccaccat</span>
+<span class="co">#&gt;       421 gtactgagca tacttgtcgc caataggcgc gagttcattg cgatagataa aataggcgcg</span>
+<span class="co">#&gt;       481 atcgaattcc cgccctcgta cagttgctcc accttgcgtt gcacgctaat agtccgtgaa</span>
+<span class="co">#&gt;       541 tcaggactgg ccgctagcgc nggtgcacgc tgcgcctnta cagctgtggc cgccagcgcg</span>
+<span class="co">#&gt;       601 atcaacaccc acagacnaat ttgaaaactt ttnaaatcta accctgaggc ccccnaaacn</span>
+<span class="co">#&gt;       661 acaataggtt gagtacgtgc tgacccaagt tcacttact</span>
 <span class="co">#&gt; //</span></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
@@ -209,24 +217,34 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF000127.1 Synthetic RNA ligase ribozyme H4028, complete sequence</span>
-<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACA</span>
-<span class="co">#&gt; CTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGAGCGCCATAACAGGCGCCTCTAGGGCCCCT</span>
-<span class="co">#&gt; GCCGCCACACCTGCCATTATGCGAGATCGACTGCGTGGGTAAGACCCTGTGGCACCTTTGGTACGGCTCG</span>
-<span class="co">#&gt; GACCACCAAGGGGTCTCCGAACAGTTTTGGGTAAGTAATTCCAGACTATATACCCCCTTCGCCTAAACCC</span>
-<span class="co">#&gt; GAGACCGTATAGCATGTCCTTAGATACATCAGGTTCAGCAAATCACCAGGC</span>
+<span class="co">#&gt; &gt;AF298101.1 Unidentified clone B25 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCA</span>
+<span class="co">#&gt; ATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGGTGAGTCCGTCCTGATGACGGTCACGGGGC</span>
+<span class="co">#&gt; TGCTGCCTCGATTCAGGCGAGATCCGGTCGCGGGTTGCAGGTCACGATGTTTGCGTTTTATGTCCTCGAG</span>
+<span class="co">#&gt; CAAGACGACCAGGTCGCTGAATTGACGCCGTAATTGAAGATAGTAGTCATCCGAGCGACGCCGCTCGTCG</span>
+<span class="co">#&gt; GCACTCAGATCATGCATCAACTGGTTGCTGACCGCGACGAACTCGGGCATGCCGCGTTCGGCCGCAAGCC</span>
+<span class="co">#&gt; GATACCATGCGGACGCTGCGACGGGGTCCTCTTCGGTTCCCGTCCCCATCAGGTGCATATAGCCCACCAT</span>
+<span class="co">#&gt; GTACTGAGCATACTTGTCGCCAATAGGCGCGAGTTCATTGCGATAGATAAAATAGGCGCGATCGAATTCC</span>
+<span class="co">#&gt; CGCCCTCGTACAGTTGCTCCACCTTGCGTTGCACGCTAATAGTCCGTGAATCAGGACTGGCCGCTAGCGC</span>
+<span class="co">#&gt; NGGTGCACGCTGCGCCTNTACAGCTGTGGCCGCCAGCGCGATCAACACCCACAGACNAATTTGAAAACTT</span>
+<span class="co">#&gt; TTNAAATCTAACCCTGAGGCCCCCNAAACNACAATAGGTTGAGTACGTGCTGACCCAAGTTCACTTACT</span>
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">'S71333.1'</span>, id),
                     <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF000127.1 Synthetic RNA ligase ribozyme H4028, complete sequence</span>
-<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTATATTATTTCAATAGCCTCCTCCTGACTGTGTTCCGAAGCACA</span>
-<span class="co">#&gt; CTAGTTGTGCTCTCGTTAGTCGACCTAGTTTATGTACCCGAGCGCCATAACAGGCGCCTCTAGGGCCCCT</span>
-<span class="co">#&gt; GCCGCCACACCTGCCATTATGCGAGATCGACTGCGTGGGTAAGACCCTGTGGCACCTTTGGTACGGCTCG</span>
-<span class="co">#&gt; GACCACCAAGGGGTCTCCGAACAGTTTTGGGTAAGTAATTCCAGACTATATACCCCCTTCGCCTAAACCC</span>
-<span class="co">#&gt; GAGACCGTATAGCATGTCCTTAGATACATCAGGTTCAGCAAATCACCAGGC</span>
+<span class="co">#&gt; &gt;AF298101.1 Unidentified clone B25 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCA</span>
+<span class="co">#&gt; ATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGGTGAGTCCGTCCTGATGACGGTCACGGGGC</span>
+<span class="co">#&gt; TGCTGCCTCGATTCAGGCGAGATCCGGTCGCGGGTTGCAGGTCACGATGTTTGCGTTTTATGTCCTCGAG</span>
+<span class="co">#&gt; CAAGACGACCAGGTCGCTGAATTGACGCCGTAATTGAAGATAGTAGTCATCCGAGCGACGCCGCTCGTCG</span>
+<span class="co">#&gt; GCACTCAGATCATGCATCAACTGGTTGCTGACCGCGACGAACTCGGGCATGCCGCGTTCGGCCGCAAGCC</span>
+<span class="co">#&gt; GATACCATGCGGACGCTGCGACGGGGTCCTCTTCGGTTCCCGTCCCCATCAGGTGCATATAGCCCACCAT</span>
+<span class="co">#&gt; GTACTGAGCATACTTGTCGCCAATAGGCGCGAGTTCATTGCGATAGATAAAATAGGCGCGATCGAATTCC</span>
+<span class="co">#&gt; CGCCCTCGTACAGTTGCTCCACCTTGCGTTGCACGCTAATAGTCCGTGAATCAGGACTGGCCGCTAGCGC</span>
+<span class="co">#&gt; NGGTGCACGCTGCGCCTNTACAGCTGTGGCCGCCAGCGCGATCAACACCCACAGACNAATTTGAAAACTT</span>
+<span class="co">#&gt; TTNAAATCTAACCCTGAGGCCCCCNAAACNACAATAGGTTGAGTACGTGCTGACCCAAGTTCACTTACT</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
 <span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>

@@ -127,7 +127,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Return the number of ids</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/general-get-tools.R'><code>R/general-get-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/db-get-tools.R'><code>R/db-get-tools.R</code></a></small>
     <div class="hidden name"><code>count_db_ids.Rd</code></div>
     </div>
 
@@ -158,19 +158,13 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get: <code><a href='gb_definition_get.html'>gb_definition_get</a></code>,
-  <code><a href='gb_fasta_get.html'>gb_fasta_get</a></code>,
-  <code><a href='gb_organism_get.html'>gb_organism_get</a></code>,
-  <code><a href='gb_record_get.html'>gb_record_get</a></code>,
-  <code><a href='gb_sequence_get.html'>gb_sequence_get</a></code>,
-  <code><a href='gb_version_get.html'>gb_version_get</a></code>, <code><a href='is_in_db.html'>is_in_db</a></code>,
-  <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
+    <div class='dont-index'><p>Other db: <code><a href='is_in_db.html'>is_in_db</a></code>, <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp01z7Kd/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 (<span class='fu'>count_db_ids</span>())</div><div class='output co'>#&gt; [1] 100</div><div class='input'>
 <span class='co'># delete demo after example</span>
 <span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>

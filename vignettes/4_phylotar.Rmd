@@ -62,14 +62,15 @@ if (dir.exists(wd)) {
 dir.create(wd)
 phylotaR::setup(wd = file.path(rodents_path, 'phylotaR'), txid = 35737,
                 ncbi_dr = ncbi_dr, v = TRUE, btchsz = 100, mxsql = 500)
-taxise_run(wd)
 restez:::restez_path_set(filepath = rodents_path)
 ```
 ``` {r download-stage}
+# run just the first two stages for this demonstration
+taxise_run(wd)
 download_run(wd)
 ```
 
-Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. phylotaR may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.
+Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. `phylotaR` may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.
 
 > Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set the `restez` path.
 
