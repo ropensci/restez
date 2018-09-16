@@ -29,12 +29,10 @@ demo_db_create()
 db_delete(everything = TRUE)
 }
 \seealso{
-Other get: \code{\link{count_db_ids}},
-  \code{\link{gb_fasta_get}},
+Other get: \code{\link{gb_fasta_get}},
   \code{\link{gb_organism_get}},
   \code{\link{gb_record_get}},
   \code{\link{gb_sequence_get}},
-  \code{\link{gb_version_get}}, \code{\link{is_in_db}},
-  \code{\link{list_db_ids}}
+  \code{\link{gb_version_get}}
 }
 \concept{get}

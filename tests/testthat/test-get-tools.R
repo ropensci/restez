@@ -60,6 +60,7 @@ test_that('gb_organism_get() works', {
   organism <- gb_organism_get(id = id)
   expect_true(is.character(organism))
 })
+context('Testing \'db-get-tools\'')
 test_that('is_in_db() works', {
   id <- sample(ids, 3)
   id <- c('notanid', id)

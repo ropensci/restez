@@ -1,6 +1,7 @@
 restez/
 paper/
 other/
+rodents/
 examples/
 .travis.yml
 ^.*\.Rproj$

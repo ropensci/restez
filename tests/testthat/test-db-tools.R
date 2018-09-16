@@ -12,7 +12,7 @@ mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq',
                           filesizes = '100')
 
 # RUNNING
-context('Testing \'db-tools\'')
+context('Testing \'db-setup-tools\'')
 restez:::cleanup()
 test_that('demo_db_create() works', {
   restez:::setup()

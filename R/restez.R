@@ -1,18 +1,18 @@
 #' restez: Create and Query a Local Copy of GenBank in R
 #'
-#' The restez package comes with three sets of functions:
-#' setup, get and entrez.
+#' The restez package comes with five families of functions:
+#' setup, database, get, entrez and internal/private.
 #'
 #' @section setup functions:
 #' These functions allow a user to set the filepath for where the GenBank files
-#' should be stored and verify the filepaths.
+#' should be stored, create connections and verify these settings.
 #'
 #' @section database functions:
-#' These functions to download specific parts of GenBank and to create a local
-#' SQLite database.
+#' These functions download specific parts of GenBank and create the local
+#' SQL-like database.
 #'
 #' @section GenBank functions:
-#' These functions allow a user to query the local SQLite GenBank database. A
+#' These functions allow a user to query the local SQL-like database. A
 #' user can use an NCBI accession ID to retrieve sequences or whole GenBank
 #' records.
 #'
@@ -21,6 +21,11 @@
 #' rentrez package. e.g the restez's entrez_fetch will first try to search the
 #' local database, if it fails it will then call rentrez's
 #' \code{\link[rentrez]{entrez_fetch}} with the same arguments.
+#' 
+#' @section Private/interal functions:
+#' These functions work behind the scenes to make everything work. If you're
+#' curious you can read their documentation using the form
+#' \code{?restez:::functionname}.
 #'
 #' @docType package
 #' @name restez

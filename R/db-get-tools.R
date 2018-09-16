@@ -1,6 +1,6 @@
 #' @name list_db_ids
 #' @title List database IDs
-#' @family get
+#' @family db
 #' @description Return a vector of all IDs in
 #' a database.
 #' @details Warning: can return very large vectors
@@ -29,7 +29,7 @@ list_db_ids <- function(db = 'nucleotide', n=100) {
 
 #' @name is_in_db
 #' @title Is in db
-#' @family get
+#' @family db
 #' @description Determine whether an id(s)
 #' is/are present in a database.
 #' @param id character, sequence accession ID(s)
@@ -52,7 +52,7 @@ is_in_db <- function(id, db = 'nucleotide') {
 #' @details Requires an open connection. If no connection or db 0 is returned.
 #' @param db character, database name
 #' @return integer
-#' @family get
+#' @family db
 #' @export
 #' @example examples/count_db_ids.R
 count_db_ids <- function(db = 'nucleotide') {
