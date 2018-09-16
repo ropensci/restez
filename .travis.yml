@@ -1,6 +1,7 @@
 language: r
 
 warnings_are_errors: true
+r_check_args: --as-cran
 sudo: required
 
 r_binary_packages:

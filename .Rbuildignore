@@ -2,6 +2,7 @@ restez/
 paper/
 other/
 rodents/
+vignettes/
 examples/
 .travis.yml
 ^.*\.Rproj$
