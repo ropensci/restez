@@ -159,7 +159,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
   coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> accessions)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   1.047   1.743   4.260</span>
+<span class="co">#&gt;   1.011   2.006   4.570</span>
 <span class="co"># time via Entrez</span>
 <span class="kw">system.time</span>(<span class="dt">expr =</span> {
   coi_sequences_p1 &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>,
@@ -179,7 +179,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
                                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.179   0.018   5.801</span>
+<span class="co">#&gt;   0.131   0.014   4.978</span>
 <span class="co"># always disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.

@@ -34,7 +34,9 @@ ids <- c('thisisnotanid', 'demo_1', 'demo_2')
 db_delete(everything = TRUE)
 }
 \seealso{
-Other db: \code{\link{count_db_ids}},
+Other database: \code{\link{count_db_ids}},
+  \code{\link{db_create}}, \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{list_db_ids}}
 }
-\concept{db}
+\concept{database}

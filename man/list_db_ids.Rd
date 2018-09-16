@@ -46,7 +46,9 @@ cat(fasta_file)
 db_delete(everything = TRUE)
 }
 \seealso{
-Other db: \code{\link{count_db_ids}},
+Other database: \code{\link{count_db_ids}},
+  \code{\link{db_create}}, \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{demo_db_create}},
   \code{\link{is_in_db}}
 }
-\concept{db}
+\concept{database}

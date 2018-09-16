@@ -3,11 +3,11 @@
 #' The restez package comes with five families of functions:
 #' setup, database, get, entrez and internal/private.
 #'
-#' @section setup functions:
+#' @section Setup functions:
 #' These functions allow a user to set the filepath for where the GenBank files
 #' should be stored, create connections and verify these settings.
 #'
-#' @section database functions:
+#' @section Database functions:
 #' These functions download specific parts of GenBank and create the local
 #' SQL-like database.
 #'

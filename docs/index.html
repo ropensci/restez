@@ -158,57 +158,131 @@ id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw"
 <span class="co"># sequences</span>
 seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">str</span>(seq)
-<span class="co">#&gt;  chr "GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCAATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGG"| __truncated__</span>
+<span class="co">#&gt;  chr "CTGATGAATCCCCTAATGATTTTTATCAAAATCATTAAGTTAAGGTAGATACACATCTTGTCATATGATCAAATGGTTTCGCCAAAAATCAATAATCAGACAACAAAATGT"| __truncated__</span>
 <span class="co"># definitions</span>
 def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(def)
-<span class="co">#&gt; [1] "Unidentified clone B25 DNA sequence from ocean beach sand"</span>
+<span class="co">#&gt; [1] "Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown protein genes, partial cds, and unknown protein gene, complete cds"</span>
 <span class="co"># organisms</span>
 org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">print</span>(org)
-<span class="co">#&gt; [1] "unidentified"</span>
+<span class="co">#&gt; [1] "Transposon Tn10"</span>
 <span class="co"># or whole records</span>
 rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw">cat</span>(rec)
-<span class="co">#&gt; LOCUS       AF298101                 699 bp    DNA     linear   UNA 23-NOV-2000</span>
-<span class="co">#&gt; DEFINITION  Unidentified clone B25 DNA sequence from ocean beach sand.</span>
-<span class="co">#&gt; ACCESSION   AF298101</span>
-<span class="co">#&gt; VERSION     AF298101.1</span>
-<span class="co">#&gt; KEYWORDS    .</span>
-<span class="co">#&gt; SOURCE      unidentified</span>
-<span class="co">#&gt;   ORGANISM  unidentified</span>
-<span class="co">#&gt;             unclassified sequences.</span>
-<span class="co">#&gt; REFERENCE   1  (bases 1 to 699)</span>
-<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
-<span class="co">#&gt;   TITLE     Sand DNA: a multigenomic library on the beach</span>
+<span class="co">#&gt; LOCUS       AH003348                2195 bp    DNA     linear   UNA 28-JUL-2016</span>
+<span class="co">#&gt; DEFINITION  Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown</span>
+<span class="co">#&gt;             protein genes, partial cds, and unknown protein gene, complete cds.</span>
+<span class="co">#&gt; ACCESSION   AH003348 J01827 J01828 J01829</span>
+<span class="co">#&gt; VERSION     AH003348.2</span>
+<span class="co">#&gt; KEYWORDS    insertion sequence; transposon.</span>
+<span class="co">#&gt; SOURCE      Transposon Tn10</span>
+<span class="co">#&gt;   ORGANISM  Transposon Tn10</span>
+<span class="co">#&gt;             other sequences; transposons.</span>
+<span class="co">#&gt; REFERENCE   1  (bases 1 to 2195)</span>
+<span class="co">#&gt;   AUTHORS   Halling,S.M., Simons,R.W., Way,J.C., Walsh,R.B. and Kleckner,N.</span>
+<span class="co">#&gt;   TITLE     DNA sequence organization of IS10-right of Tn10 and comparison with</span>
+<span class="co">#&gt;             IS10-left</span>
+<span class="co">#&gt;   JOURNAL   Proc. Natl. Acad. Sci. U.S.A. 79 (8), 2608-2612 (1982)</span>
+<span class="co">#&gt;    PUBMED   6283536</span>
+<span class="co">#&gt; REFERENCE   2  (bases 369 to 369; 1235 to 1235; 1767 to 1767)</span>
+<span class="co">#&gt;   AUTHORS   Errade,P.</span>
 <span class="co">#&gt;   JOURNAL   Unpublished</span>
-<span class="co">#&gt; REFERENCE   2  (bases 1 to 699)</span>
-<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
-<span class="co">#&gt;   TITLE     Direct Submission</span>
-<span class="co">#&gt;   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San</span>
-<span class="co">#&gt;             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA</span>
-<span class="co">#&gt;             92103-8467, USA</span>
+<span class="co">#&gt; COMMENT     On or before Apr 6, 2016 this sequence version replaced J01827.1,</span>
+<span class="co">#&gt;             J01828.1, J01829.1, AH003348.1.</span>
 <span class="co">#&gt; FEATURES             Location/Qualifiers</span>
-<span class="co">#&gt;      source          1..699</span>
-<span class="co">#&gt;                      /organism="unidentified"</span>
+<span class="co">#&gt;      source          1..2195</span>
+<span class="co">#&gt;                      /organism="Transposon Tn10"</span>
 <span class="co">#&gt;                      /mol_type="genomic DNA"</span>
-<span class="co">#&gt;                      /db_xref="taxon:32644"</span>
-<span class="co">#&gt;                      /clone="B25"</span>
-<span class="co">#&gt;                      /note="anonymous environmental sample sequence from ocean</span>
-<span class="co">#&gt;                      beach sand"</span>
+<span class="co">#&gt;                      /db_xref="taxon:2389"</span>
+<span class="co">#&gt;                      /clone="pNK[82,83,296,297]."</span>
+<span class="co">#&gt;      mobile_element  order(1..515,616..766,867..2195)</span>
+<span class="co">#&gt;                      /mobile_element_type="transposon:Tn10"</span>
+<span class="co">#&gt;      repeat_region   1..23</span>
+<span class="co">#&gt;                      /note="5' inverted terminal repeat"</span>
+<span class="co">#&gt;      CDS             108..&gt;515</span>
+<span class="co">#&gt;                      /note="ORF1; putative"</span>
+<span class="co">#&gt;                      /codon_start=1</span>
+<span class="co">#&gt;                      /transl_table=11</span>
+<span class="co">#&gt;                      /product="unknown protein"</span>
+<span class="co">#&gt;                      /protein_id="AAA88658.1"</span>
+<span class="co">#&gt;                      /translation="MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTEL</span>
+<span class="co">#&gt;                      GRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDSSDIR</span>
+<span class="co">#&gt;                      EQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSK"</span>
+<span class="co">#&gt;      gap             516..615</span>
+<span class="co">#&gt;                      /estimated_length=unknown</span>
+<span class="co">#&gt;      CDS             &lt;616..753</span>
+<span class="co">#&gt;                      /note="ORF1; putative"</span>
+<span class="co">#&gt;                      /codon_start=1</span>
+<span class="co">#&gt;                      /transl_table=11</span>
+<span class="co">#&gt;                      /product="unknown protein"</span>
+<span class="co">#&gt;                      /protein_id="AAA88659.1"</span>
+<span class="co">#&gt;                      /translation="VLSTVRLRMEVLRHSGYTITREDSLVAATLLAQNLFTHGYVLGK</span>
+<span class="co">#&gt;                      L"</span>
+<span class="co">#&gt;      repeat_region   731..753</span>
+<span class="co">#&gt;                      /note="3' inverted terminal repeat"</span>
+<span class="co">#&gt;      gap             767..866</span>
+<span class="co">#&gt;                      /estimated_length=unknown</span>
+<span class="co">#&gt;      repeat_region   867..889</span>
+<span class="co">#&gt;                      /note="5' inverted terminal repeat"</span>
+<span class="co">#&gt;      CDS             974..2182</span>
+<span class="co">#&gt;                      /note="ORF; putative"</span>
+<span class="co">#&gt;                      /codon_start=1</span>
+<span class="co">#&gt;                      /transl_table=11</span>
+<span class="co">#&gt;                      /product="unknown protein"</span>
+<span class="co">#&gt;                      /protein_id="AAA88660.1"</span>
+<span class="co">#&gt;                      /translation="MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTEL</span>
+<span class="co">#&gt;                      GRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIR</span>
+<span class="co">#&gt;                      EQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVS</span>
+<span class="co">#&gt;                      DAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKR</span>
+<span class="co">#&gt;                      LTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWVLATNLPVEIR</span>
+<span class="co">#&gt;                      TPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWL</span>
+<span class="co">#&gt;                      AGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDLLVAATLLAQNL</span>
+<span class="co">#&gt;                      FTHGYALGKL"</span>
+<span class="co">#&gt;      old_sequence    1235</span>
+<span class="co">#&gt;                      /citation=[1]</span>
+<span class="co">#&gt;      old_sequence    1767</span>
+<span class="co">#&gt;                      /citation=[1]</span>
+<span class="co">#&gt;      repeat_region   2173..2195</span>
+<span class="co">#&gt;                      /note="3' inverted terminal repeat"</span>
 <span class="co">#&gt; ORIGIN      </span>
-<span class="co">#&gt;         1 gatccgttta aggtctggaa aatcgccgat ctccgcaagc atgagcagtt tttgttcgag</span>
-<span class="co">#&gt;        61 ctcgctctca atgcggtcgt aatacactcc gctgaactga tggtgattcg gtgagtccgt</span>
-<span class="co">#&gt;       121 cctgatgacg gtcacggggc tgctgcctcg attcaggcga gatccggtcg cgggttgcag</span>
-<span class="co">#&gt;       181 gtcacgatgt ttgcgtttta tgtcctcgag caagacgacc aggtcgctga attgacgccg</span>
-<span class="co">#&gt;       241 taattgaaga tagtagtcat ccgagcgacg ccgctcgtcg gcactcagat catgcatcaa</span>
-<span class="co">#&gt;       301 ctggttgctg accgcgacga actcgggcat gccgcgttcg gccgcaagcc gataccatgc</span>
-<span class="co">#&gt;       361 ggacgctgcg acggggtcct cttcggttcc cgtccccatc aggtgcatat agcccaccat</span>
-<span class="co">#&gt;       421 gtactgagca tacttgtcgc caataggcgc gagttcattg cgatagataa aataggcgcg</span>
-<span class="co">#&gt;       481 atcgaattcc cgccctcgta cagttgctcc accttgcgtt gcacgctaat agtccgtgaa</span>
-<span class="co">#&gt;       541 tcaggactgg ccgctagcgc nggtgcacgc tgcgcctnta cagctgtggc cgccagcgcg</span>
-<span class="co">#&gt;       601 atcaacaccc acagacnaat ttgaaaactt ttnaaatcta accctgaggc ccccnaaacn</span>
-<span class="co">#&gt;       661 acaataggtt gagtacgtgc tgacccaagt tcacttact</span>
+<span class="co">#&gt;         1 ctgatgaatc ccctaatgat ttttatcaaa atcattaagt taaggtagat acacatcttg</span>
+<span class="co">#&gt;        61 tcatatgatc aaatggtttc gccaaaaatc aataatcaga caacaaaatg tgcgaactcg</span>
+<span class="co">#&gt;       121 atattttaca cgactctctt taccaattct gccccgaatt acacttaaaa cgactcaaca</span>
+<span class="co">#&gt;       181 gcttaacgtt ggcttgccac gccttacttg actgtaaaac tctcactctt accgaacttg</span>
+<span class="co">#&gt;       241 gccgtaacct gccaaccaaa gcgagaacaa aacataacat caaacgaatc gaccgattgt</span>
+<span class="co">#&gt;       301 taggtaatcg tcacctccac aaagagcgac tcgctgtata ccgttggcat gctagcttta</span>
+<span class="co">#&gt;       361 tctgttcggg caatacgatg cccattgtac ttgttgactc gtctgatatc cgtgagcaaa</span>
+<span class="co">#&gt;       421 aacggcttat ggtattgcga gcttcagtcg cactacacgg tcgttctgtt actctttatg</span>
+<span class="co">#&gt;       481 agaaagcgtt cccgctttca gagcaatgtt caaagnnnnn nnnnnnnnnn nnnnnnnnnn</span>
+<span class="co">#&gt;       541 nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn</span>
+<span class="co">#&gt;       601 nnnnnnnnnn nnnnngtact ctcaacagtt cgcttacgca tggaagtttt gcggcattct</span>
+<span class="co">#&gt;       661 ggctacacaa taacaaggga agactcactc gtggctgcaa ccctgctagc tcaaaatcta</span>
+<span class="co">#&gt;       721 ttcacacatg gttacgtttt ggggaaatta tgaggggatc tctcagnnnn nnnnnnnnnn</span>
+<span class="co">#&gt;       781 nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn nnnnnnnnnn</span>
+<span class="co">#&gt;       841 nnnnnnnnnn nnnnnnnnnn nnnnnnctga tgaatcccct aatgattttg gtaaaaatca</span>
+<span class="co">#&gt;       901 ttaagttaag gtggatacac atcttgtcat atgatcaaat ggtttcgcga aaaatcaata</span>
+<span class="co">#&gt;       961 atcagacaac aagatgtgcg aactcgatat tttacacgac tctctttacc aattctgccc</span>
+<span class="co">#&gt;      1021 cgaattacac ttaaaacgac tcaacagctt aacgttggct tgccacgcat tacttgactg</span>
+<span class="co">#&gt;      1081 taaaactctc actcttaccg aacttggccg taacctgcca accaaagcga gaacaaaaca</span>
+<span class="co">#&gt;      1141 taacatcaaa cgaatcgacc gattgttagg taatcgtcac ctccacaaag agcgactcgc</span>
+<span class="co">#&gt;      1201 tgtataccgt tggcatgcta gctttatctg ttcgggcaat acgatgccca ttgtacttgt</span>
+<span class="co">#&gt;      1261 tgactggtct gatattcgtg agcaaaaacg acttatggta ttgcgagctt cagtcgcact</span>
+<span class="co">#&gt;      1321 acacggtcgt tctgttactc tttatgagaa agcgttcccg ctttcagagc aatgttcaaa</span>
+<span class="co">#&gt;      1381 gaaagctcat gaccaatttc tagccgacct tgcgagcatt ctaccgagta acaccacacc</span>
+<span class="co">#&gt;      1441 gctcattgtc agtgatgctg gctttaaagt gccatggtat aaatccgttg agaagctggg</span>
+<span class="co">#&gt;      1501 ttggtactgg ttaagtcgag taagaggaaa agtacaatat gcagacctag gagcggaaaa</span>
+<span class="co">#&gt;      1561 ctggaaacct atcagcaact tacatgatat gtcatctagt cactcaaaga ctttaggcta</span>
+<span class="co">#&gt;      1621 taagaggctg actaaaagca atccaatctc atgccaaatt ctattgtata aatctcgctc</span>
+<span class="co">#&gt;      1681 taaaggccga aaaaatcagc gctcgacacg gactcattgt caccacccgt cacctaaaat</span>
+<span class="co">#&gt;      1741 ctactcagcg tcggcaaagg agccatgggt tctagcaact aacttacctg ttgaaattcg</span>
+<span class="co">#&gt;      1801 aacacccaaa caacttgtta atatctattc gaagcgaatg cagattgaag aaaccttccg</span>
+<span class="co">#&gt;      1861 agacttgaaa agtcctgcct acggactagg cctacgccat agccgaacga gcagctcaga</span>
+<span class="co">#&gt;      1921 gcgttttgat atcatgctgc taatcgccct gatgcttcaa ctaacatgtt ggcttgcggg</span>
+<span class="co">#&gt;      1981 cgttcatgct cagaaacaag gttgggacaa gcacttccag gctaacacag tcagaaatcg</span>
+<span class="co">#&gt;      2041 aaacgtactc tcaacagttc gcttaggcat ggaagttttg cggcattctg gctacacaat</span>
+<span class="co">#&gt;      2101 aacaagggaa gacttactcg tggctgcaac cctactagct caaaatttat tcacacatgg</span>
+<span class="co">#&gt;      2161 ttacgctttg gggaaattat gaggggatct ctcag</span>
 <span class="co">#&gt; //</span></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
@@ -217,34 +291,78 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298101.1 Unidentified clone B25 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCA</span>
-<span class="co">#&gt; ATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGGTGAGTCCGTCCTGATGACGGTCACGGGGC</span>
-<span class="co">#&gt; TGCTGCCTCGATTCAGGCGAGATCCGGTCGCGGGTTGCAGGTCACGATGTTTGCGTTTTATGTCCTCGAG</span>
-<span class="co">#&gt; CAAGACGACCAGGTCGCTGAATTGACGCCGTAATTGAAGATAGTAGTCATCCGAGCGACGCCGCTCGTCG</span>
-<span class="co">#&gt; GCACTCAGATCATGCATCAACTGGTTGCTGACCGCGACGAACTCGGGCATGCCGCGTTCGGCCGCAAGCC</span>
-<span class="co">#&gt; GATACCATGCGGACGCTGCGACGGGGTCCTCTTCGGTTCCCGTCCCCATCAGGTGCATATAGCCCACCAT</span>
-<span class="co">#&gt; GTACTGAGCATACTTGTCGCCAATAGGCGCGAGTTCATTGCGATAGATAAAATAGGCGCGATCGAATTCC</span>
-<span class="co">#&gt; CGCCCTCGTACAGTTGCTCCACCTTGCGTTGCACGCTAATAGTCCGTGAATCAGGACTGGCCGCTAGCGC</span>
-<span class="co">#&gt; NGGTGCACGCTGCGCCTNTACAGCTGTGGCCGCCAGCGCGATCAACACCCACAGACNAATTTGAAAACTT</span>
-<span class="co">#&gt; TTNAAATCTAACCCTGAGGCCCCCNAAACNACAATAGGTTGAGTACGTGCTGACCCAAGTTCACTTACT</span>
+<span class="co">#&gt; &gt;AH003348.2 Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown protein genes, partial cds, and unknown protein gene, complete cds</span>
+<span class="co">#&gt; CTGATGAATCCCCTAATGATTTTTATCAAAATCATTAAGTTAAGGTAGATACACATCTTGTCATATGATC</span>
+<span class="co">#&gt; AAATGGTTTCGCCAAAAATCAATAATCAGACAACAAAATGTGCGAACTCGATATTTTACACGACTCTCTT</span>
+<span class="co">#&gt; TACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTTAACGTTGGCTTGCCACGCCTTACTTG</span>
+<span class="co">#&gt; ACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCAACCAAAGCGAGAACAAAACATAACAT</span>
+<span class="co">#&gt; CAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAGAGCGACTCGCTGTATACCGTTGGCAT</span>
+<span class="co">#&gt; GCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGTTGACTCGTCTGATATCCGTGAGCAAA</span>
+<span class="co">#&gt; AACGGCTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGTTCTGTTACTCTTTATGAGAAAGCGTT</span>
+<span class="co">#&gt; CCCGCTTTCAGAGCAATGTTCAAAGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGTACTCTCAACAGTT</span>
+<span class="co">#&gt; CGCTTACGCATGGAAGTTTTGCGGCATTCTGGCTACACAATAACAAGGGAAGACTCACTCGTGGCTGCAA</span>
+<span class="co">#&gt; CCCTGCTAGCTCAAAATCTATTCACACATGGTTACGTTTTGGGGAAATTATGAGGGGATCTCTCAGNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNCTGATGAATCCCCTAATGATTTTGGTAAAAATCATTAAGTTAAG</span>
+<span class="co">#&gt; GTGGATACACATCTTGTCATATGATCAAATGGTTTCGCGAAAAATCAATAATCAGACAACAAGATGTGCG</span>
+<span class="co">#&gt; AACTCGATATTTTACACGACTCTCTTTACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTT</span>
+<span class="co">#&gt; AACGTTGGCTTGCCACGCATTACTTGACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCA</span>
+<span class="co">#&gt; ACCAAAGCGAGAACAAAACATAACATCAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAG</span>
+<span class="co">#&gt; AGCGACTCGCTGTATACCGTTGGCATGCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGT</span>
+<span class="co">#&gt; TGACTGGTCTGATATTCGTGAGCAAAAACGACTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGT</span>
+<span class="co">#&gt; TCTGTTACTCTTTATGAGAAAGCGTTCCCGCTTTCAGAGCAATGTTCAAAGAAAGCTCATGACCAATTTC</span>
+<span class="co">#&gt; TAGCCGACCTTGCGAGCATTCTACCGAGTAACACCACACCGCTCATTGTCAGTGATGCTGGCTTTAAAGT</span>
+<span class="co">#&gt; GCCATGGTATAAATCCGTTGAGAAGCTGGGTTGGTACTGGTTAAGTCGAGTAAGAGGAAAAGTACAATAT</span>
+<span class="co">#&gt; GCAGACCTAGGAGCGGAAAACTGGAAACCTATCAGCAACTTACATGATATGTCATCTAGTCACTCAAAGA</span>
+<span class="co">#&gt; CTTTAGGCTATAAGAGGCTGACTAAAAGCAATCCAATCTCATGCCAAATTCTATTGTATAAATCTCGCTC</span>
+<span class="co">#&gt; TAAAGGCCGAAAAAATCAGCGCTCGACACGGACTCATTGTCACCACCCGTCACCTAAAATCTACTCAGCG</span>
+<span class="co">#&gt; TCGGCAAAGGAGCCATGGGTTCTAGCAACTAACTTACCTGTTGAAATTCGAACACCCAAACAACTTGTTA</span>
+<span class="co">#&gt; ATATCTATTCGAAGCGAATGCAGATTGAAGAAACCTTCCGAGACTTGAAAAGTCCTGCCTACGGACTAGG</span>
+<span class="co">#&gt; CCTACGCCATAGCCGAACGAGCAGCTCAGAGCGTTTTGATATCATGCTGCTAATCGCCCTGATGCTTCAA</span>
+<span class="co">#&gt; CTAACATGTTGGCTTGCGGGCGTTCATGCTCAGAAACAAGGTTGGGACAAGCACTTCCAGGCTAACACAG</span>
+<span class="co">#&gt; TCAGAAATCGAAACGTACTCTCAACAGTTCGCTTAGGCATGGAAGTTTTGCGGCATTCTGGCTACACAAT</span>
+<span class="co">#&gt; AACAAGGGAAGACTTACTCGTGGCTGCAACCCTACTAGCTCAAAATTTATTCACACATGGTTACGCTTTG</span>
+<span class="co">#&gt; GGGAAATTATGAGGGGATCTCTCAG</span>
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">'S71333.1'</span>, id),
                     <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298101.1 Unidentified clone B25 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCGTTTAAGGTCTGGAAAATCGCCGATCTCCGCAAGCATGAGCAGTTTTTGTTCGAGCTCGCTCTCA</span>
-<span class="co">#&gt; ATGCGGTCGTAATACACTCCGCTGAACTGATGGTGATTCGGTGAGTCCGTCCTGATGACGGTCACGGGGC</span>
-<span class="co">#&gt; TGCTGCCTCGATTCAGGCGAGATCCGGTCGCGGGTTGCAGGTCACGATGTTTGCGTTTTATGTCCTCGAG</span>
-<span class="co">#&gt; CAAGACGACCAGGTCGCTGAATTGACGCCGTAATTGAAGATAGTAGTCATCCGAGCGACGCCGCTCGTCG</span>
-<span class="co">#&gt; GCACTCAGATCATGCATCAACTGGTTGCTGACCGCGACGAACTCGGGCATGCCGCGTTCGGCCGCAAGCC</span>
-<span class="co">#&gt; GATACCATGCGGACGCTGCGACGGGGTCCTCTTCGGTTCCCGTCCCCATCAGGTGCATATAGCCCACCAT</span>
-<span class="co">#&gt; GTACTGAGCATACTTGTCGCCAATAGGCGCGAGTTCATTGCGATAGATAAAATAGGCGCGATCGAATTCC</span>
-<span class="co">#&gt; CGCCCTCGTACAGTTGCTCCACCTTGCGTTGCACGCTAATAGTCCGTGAATCAGGACTGGCCGCTAGCGC</span>
-<span class="co">#&gt; NGGTGCACGCTGCGCCTNTACAGCTGTGGCCGCCAGCGCGATCAACACCCACAGACNAATTTGAAAACTT</span>
-<span class="co">#&gt; TTNAAATCTAACCCTGAGGCCCCCNAAACNACAATAGGTTGAGTACGTGCTGACCCAAGTTCACTTACT</span>
+<span class="co">#&gt; &gt;AH003348.2 Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown protein genes, partial cds, and unknown protein gene, complete cds</span>
+<span class="co">#&gt; CTGATGAATCCCCTAATGATTTTTATCAAAATCATTAAGTTAAGGTAGATACACATCTTGTCATATGATC</span>
+<span class="co">#&gt; AAATGGTTTCGCCAAAAATCAATAATCAGACAACAAAATGTGCGAACTCGATATTTTACACGACTCTCTT</span>
+<span class="co">#&gt; TACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTTAACGTTGGCTTGCCACGCCTTACTTG</span>
+<span class="co">#&gt; ACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCAACCAAAGCGAGAACAAAACATAACAT</span>
+<span class="co">#&gt; CAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAGAGCGACTCGCTGTATACCGTTGGCAT</span>
+<span class="co">#&gt; GCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGTTGACTCGTCTGATATCCGTGAGCAAA</span>
+<span class="co">#&gt; AACGGCTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGTTCTGTTACTCTTTATGAGAAAGCGTT</span>
+<span class="co">#&gt; CCCGCTTTCAGAGCAATGTTCAAAGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGTACTCTCAACAGTT</span>
+<span class="co">#&gt; CGCTTACGCATGGAAGTTTTGCGGCATTCTGGCTACACAATAACAAGGGAAGACTCACTCGTGGCTGCAA</span>
+<span class="co">#&gt; CCCTGCTAGCTCAAAATCTATTCACACATGGTTACGTTTTGGGGAAATTATGAGGGGATCTCTCAGNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span>
+<span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNCTGATGAATCCCCTAATGATTTTGGTAAAAATCATTAAGTTAAG</span>
+<span class="co">#&gt; GTGGATACACATCTTGTCATATGATCAAATGGTTTCGCGAAAAATCAATAATCAGACAACAAGATGTGCG</span>
+<span class="co">#&gt; AACTCGATATTTTACACGACTCTCTTTACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTT</span>
+<span class="co">#&gt; AACGTTGGCTTGCCACGCATTACTTGACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCA</span>
+<span class="co">#&gt; ACCAAAGCGAGAACAAAACATAACATCAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAG</span>
+<span class="co">#&gt; AGCGACTCGCTGTATACCGTTGGCATGCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGT</span>
+<span class="co">#&gt; TGACTGGTCTGATATTCGTGAGCAAAAACGACTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGT</span>
+<span class="co">#&gt; TCTGTTACTCTTTATGAGAAAGCGTTCCCGCTTTCAGAGCAATGTTCAAAGAAAGCTCATGACCAATTTC</span>
+<span class="co">#&gt; TAGCCGACCTTGCGAGCATTCTACCGAGTAACACCACACCGCTCATTGTCAGTGATGCTGGCTTTAAAGT</span>
+<span class="co">#&gt; GCCATGGTATAAATCCGTTGAGAAGCTGGGTTGGTACTGGTTAAGTCGAGTAAGAGGAAAAGTACAATAT</span>
+<span class="co">#&gt; GCAGACCTAGGAGCGGAAAACTGGAAACCTATCAGCAACTTACATGATATGTCATCTAGTCACTCAAAGA</span>
+<span class="co">#&gt; CTTTAGGCTATAAGAGGCTGACTAAAAGCAATCCAATCTCATGCCAAATTCTATTGTATAAATCTCGCTC</span>
+<span class="co">#&gt; TAAAGGCCGAAAAAATCAGCGCTCGACACGGACTCATTGTCACCACCCGTCACCTAAAATCTACTCAGCG</span>
+<span class="co">#&gt; TCGGCAAAGGAGCCATGGGTTCTAGCAACTAACTTACCTGTTGAAATTCGAACACCCAAACAACTTGTTA</span>
+<span class="co">#&gt; ATATCTATTCGAAGCGAATGCAGATTGAAGAAACCTTCCGAGACTTGAAAAGTCCTGCCTACGGACTAGG</span>
+<span class="co">#&gt; CCTACGCCATAGCCGAACGAGCAGCTCAGAGCGTTTTGATATCATGCTGCTAATCGCCCTGATGCTTCAA</span>
+<span class="co">#&gt; CTAACATGTTGGCTTGCGGGCGTTCATGCTCAGAAACAAGGTTGGGACAAGCACTTCCAGGCTAACACAG</span>
+<span class="co">#&gt; TCAGAAATCGAAACGTACTCTCAACAGTTCGCTTAGGCATGGAAGTTTTGCGGCATTCTGGCTACACAAT</span>
+<span class="co">#&gt; AACAAGGGAAGACTTACTCGTGGCTGCAACCCTACTAGCTCAAAATTTATTCACACATGGTTACGCTTTG</span>
+<span class="co">#&gt; GGGAAATTATGAGGGGATCTCTCAG</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
 <span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>
@@ -326,6 +444,7 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/AntonelliLab/restez"><img src="https://travis-ci.org/AntonelliLab/restez.svg?branch=master" alt="Build Status"></a></li>
 <li><a href="https://coveralls.io/github/AntonelliLab/restez?branch=master"><img src="https://coveralls.io/repos/github/AntonelliLab/restez/badge.svg?branch=master" alt="Coverage Status"></a></li>
+<li><a href="https://github.com/ropensci/onboarding/issues/232"><img src="https://badges.ropensci.org/232_status.svg" alt="ROpenSci status"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/129107980"><img src="https://zenodo.org/badge/129107980.svg" alt="DOI"></a></li>
 </ul>
 </div>

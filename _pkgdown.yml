@@ -6,6 +6,8 @@ reference:
     - restez_path_set
     - restez_path_get
     - restez_path_unset
+    - restez_connect
+    - restez_disconnect
     - restez_status
     - restez_ready
 - title: Database
@@ -99,8 +101,6 @@ reference:
     - predict_datasizes
     - print.status
     - readme_log
-    - restez_connect
-    - restez_disconnect
     - restez_path_check
     - restez_rl
     - rhandle_generate

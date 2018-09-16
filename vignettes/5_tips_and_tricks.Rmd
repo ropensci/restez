@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 It is not advisable to download the entire GenBank database to your machine. Equally, it is best to limit the size of a database. Databases that are too large will be slow to query and are more likely to cause memory issues. For example, you may actually make a query that demands more memory than is available on your machine. One solution to instead set multiple `restez` paths on your machine.
 
-You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the `alt_restez_path` argument.
+You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the `alt_restez_path` argument. Do also make use of `restez_path_unset` to disconnect and unset the `restez` path.
 
 ```{r, eval=FALSE}
 # a larger database from the same download files in rodents_path

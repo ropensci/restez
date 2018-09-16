@@ -113,7 +113,7 @@
 <h2 class="hasAnchor">
 <a href="#multiple-restez-paths" class="anchor"></a>Multiple restez paths</h2>
 <p>It is not advisable to download the entire GenBank database to your machine. Equally, it is best to limit the size of a database. Databases that are too large will be slow to query and are more likely to cause memory issues. For example, you may actually make a query that demands more memory than is available on your machine. One solution to instead set multiple <code>restez</code> paths on your machine.</p>
-<p>You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the <code>alt_restez_path</code> argument.</p>
+<p>You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the <code>alt_restez_path</code> argument. Do also make use of <code>restez_path_unset</code> to disconnect and unset the <code>restez</code> path.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a larger database from the same download files in rodents_path</span>
 <span class="kw"><a href="../reference/db_create.html">db_create</a></span>(<span class="dt">alt_restez_path =</span> rodents_path, <span class="dt">max_length =</span> <span class="dv">2000</span>)</code></pre></div>
 </div>
@@ -133,8 +133,8 @@ random_definition &lt;-<span class="st"> </span><span class="cf">function</span>
 }
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
 (definition &lt;-<span class="st"> </span><span class="kw">random_definition</span>())</code></pre></div>
-<pre><code>##                                                                                                                                AY009194 
-## "Peromyscus eremicus clone 4729 cytochrome oxidase subunit III (COIII) gene, partial cds; mitochondrial gene for mitochondrial product"</code></pre>
+<pre><code>##                                                          GU992758 
+## "Mus musculus strain CAST/EiJ JAX00518420 locus genomic sequence"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># not connected outside of function!</span>
 (<span class="kw"><a href="../reference/restez_ready.html">restez_ready</a></span>())</code></pre></div>
 <pre><code>## [1] FALSE</code></pre>

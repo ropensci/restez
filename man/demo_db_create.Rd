@@ -30,13 +30,9 @@ demo_db_create(n = 100)
 db_delete(everything = TRUE)
 }
 \seealso{
-Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
-  \code{\link{restez_connect}},
-  \code{\link{restez_disconnect}},
-  \code{\link{restez_path_get}},
-  \code{\link{restez_path_set}},
-  \code{\link{restez_path_unset}},
-  \code{\link{restez_ready}}, \code{\link{restez_status}}
+Other database: \code{\link{count_db_ids}},
+  \code{\link{db_create}}, \code{\link{db_delete}},
+  \code{\link{db_download}}, \code{\link{is_in_db}},
+  \code{\link{list_db_ids}}
 }
-\concept{setup}
+\concept{database}

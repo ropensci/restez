@@ -2,9 +2,11 @@
 #' @title Unset restez path
 #' @family setup
 #' @description Set the restez path to NULL
+#' @details Any connected database will be automatically disconnected.
 #' @return NULL
 #' @export
 restez_path_unset <- function() {
+  restez_disconnect()
   options(restez_path = NULL)
 }
 

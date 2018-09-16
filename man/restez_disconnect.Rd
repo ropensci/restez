@@ -23,10 +23,7 @@ db_delete(everything = TRUE)
 # restez_status()
 }
 \seealso{
-Other setup: \code{\link{db_create}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}},
-  \code{\link{restez_connect}},
+Other setup: \code{\link{restez_connect}},
   \code{\link{restez_path_get}},
   \code{\link{restez_path_set}},
   \code{\link{restez_path_unset}},

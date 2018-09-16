@@ -143,10 +143,7 @@ connection cannot be made, an error is returned.</p>
         
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other setup: <code><a href='db_create.html'>db_create</a></code>,
-  <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='db_download.html'>db_download</a></code>,
-  <code><a href='demo_db_create.html'>demo_db_create</a></code>,
-  <code><a href='restez_disconnect.html'>restez_disconnect</a></code>,
+    <div class='dont-index'><p>Other setup: <code><a href='restez_disconnect.html'>restez_disconnect</a></code>,
   <code><a href='restez_path_get.html'>restez_path_get</a></code>,
   <code><a href='restez_path_set.html'>restez_path_set</a></code>,
   <code><a href='restez_path_unset.html'>restez_path_unset</a></code>,
@@ -156,17 +153,17 @@ connection cannot be made, an error is returned.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez/downloads'</div><div class='input'><span class='co'># always run connect before creating or querying a database</span>
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp0hBkIj/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp0hBkIj/restez/downloads'</div><div class='input'><span class='co'># always run connect before creating or querying a database</span>
 <span class='fu'>restez_connect</span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
 <span class='fu'><a href='restez_status.html'>restez_status</a></span>()</div><div class='output co'>#&gt; Checking setup status at  ...
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Restez path ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp0hBkIj/restez'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Download ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez/downloads'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp0hBkIj/restez/downloads'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. files 0
 #&gt; ... N. GBs 0
@@ -175,7 +172,7 @@ connection cannot be made, an error is returned.</p>
 #&gt; ... Last updated ''
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Database ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmponKiWR/restez/sql_db'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp0hBkIj/restez/sql_db'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. GBs 0
 #&gt; ... Is database connected? 'Yes'

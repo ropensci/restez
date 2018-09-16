@@ -1,5 +1,5 @@
 #' @name db_download
-#' @family setup
+#' @family database
 #' @title Download database
 #' @description Download .seq.tar files from the latest GenBank release. The
 #' user interactively selects the parts of GenBank to download (e.g. primates,
@@ -108,7 +108,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 
 #' @name db_create
 #' @title Create new NCBI database
-#' @family setup
+#' @family database
 #' @description Create a new local SQL database from downloaded files.
 #' Currently only GenBank/nucleotide/nuccore database is supported.
 #' @details
@@ -196,7 +196,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
 
 #' @name demo_db_create
 #' @title Create demo database
-#' @family setup
+#' @family database
 #' @description Creates a local mock SQL database
 #' from package test data for demonstration purposes.
 #' No internet connection required.
@@ -221,7 +221,7 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
 
 #' @name db_delete
 #' @title Delete database
-#' @family setup
+#' @family database
 #' @description Delete the local SQL database and/or restez folder.
 #' @param everything T/F, delete the whole restez folder as well?
 #' @details Any connected database will be automatically disconnected.
