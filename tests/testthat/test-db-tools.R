@@ -11,12 +11,6 @@ records <- readRDS(file = file.path(data_d, 'records.RData'))
 mck_dwnldbl <- data.frame(descripts = 'type1', seq_files = 'file1.seq',
                           filesizes = '100')
 
-# Missing dep
-if (!'R.utils' %in% installed.packages()) {
-  print('Must install R.utils')
-  install.packages('R.utils')
-}
-
 # RUNNING
 context('Testing \'db-setup-tools\'')
 restez:::cleanup()
