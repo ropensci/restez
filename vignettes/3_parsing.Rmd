@@ -1,10 +1,6 @@
 ---
 title: "3. Advanced parsing of a GenBank record"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{3. Advanced parsing of a GenBank record}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

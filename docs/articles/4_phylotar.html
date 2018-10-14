@@ -144,18 +144,18 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run just the first two stages for this demonstration</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/phylotaR/topics/taxise_run">taxise_run</a></span>(wd)
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; Starting stage TAXISE: [2018-09-16 14:21:52]</span>
+<span class="co">#&gt; Starting stage TAXISE: [2018-10-14 13:02:24]</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; Searching taxonomic IDs ...</span>
 <span class="co">#&gt; Downloading taxonomic records ...</span>
 <span class="co">#&gt; . [1-25]</span>
 <span class="co">#&gt; Generating taxonomic dictionary ...</span>
 <span class="co">#&gt; ---------------------------------------------</span>
-<span class="co">#&gt; Completed stage TAXISE: [2018-09-16 14:21:56]</span>
+<span class="co">#&gt; Completed stage TAXISE: [2018-10-14 13:02:27]</span>
 <span class="co">#&gt; ---------------------------------------------</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/phylotaR/topics/download_run">download_run</a></span>(wd)
 <span class="co">#&gt; ----------------------------------------------</span>
-<span class="co">#&gt; Starting stage DOWNLOAD: [2018-09-16 14:21:56]</span>
+<span class="co">#&gt; Starting stage DOWNLOAD: [2018-10-14 13:02:27]</span>
 <span class="co">#&gt; ----------------------------------------------</span>
 <span class="co">#&gt; Identifying suitable clades ...</span>
 <span class="co">#&gt; Identified [1] suitable clades.</span>
@@ -166,7 +166,7 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <span class="co">#&gt; . . Getting [100 sqs] from restez database...</span>
 <span class="co">#&gt; Successfully retrieved [100 sqs] in total.</span>
 <span class="co">#&gt; -----------------------------------------------</span>
-<span class="co">#&gt; Completed stage DOWNLOAD: [2018-09-16 14:22:03]</span>
+<span class="co">#&gt; Completed stage DOWNLOAD: [2018-10-14 13:02:34]</span>
 <span class="co">#&gt; -----------------------------------------------</span></code></pre></div>
 <p>Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. <code>phylotaR</code> may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.</p>
 <blockquote>

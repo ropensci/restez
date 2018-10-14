@@ -2,10 +2,6 @@
 title: "2. How to search for and fetch sequences"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{2. How to search for and fetch sequences}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

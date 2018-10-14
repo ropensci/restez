@@ -1,10 +1,6 @@
 ---
 title: "4. Running phylotaR with restez"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{phylotaR}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

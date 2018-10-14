@@ -101,7 +101,7 @@
 <li>How to search for and fetch sequences</li>
 </ol></h1>
             
-            <h4 class="date">2018-09-16</h4>
+            <h4 class="date">2018-10-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/2_search_and_fetch.Rmd"><code>vignettes/2_search_and_fetch.Rmd</code></a></small>
       <div class="hidden name"><code>2_search_and_fetch.Rmd</code></div>
@@ -159,7 +159,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
   coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> accessions)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   1.027   1.520   4.816</span>
+<span class="co">#&gt;   0.872   1.920   4.397</span>
 <span class="co"># time via Entrez</span>
 <span class="kw">system.time</span>(<span class="dt">expr =</span> {
   coi_sequences_p1 &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>,
@@ -179,7 +179,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
                                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.099   0.012   4.666</span>
+<span class="co">#&gt;   0.107   0.014   4.693</span>
 <span class="co"># always disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.

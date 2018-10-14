@@ -2,10 +2,6 @@
 title: "1. Build a database of all rodents"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{1. Build a database of all rodents}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
@@ -35,9 +31,9 @@ Setting up the rodents database will likely take a long time. The exact time wil
 ```{r setpath, include=FALSE, eval=TRUE}
 # reminder to self: other/rodent_db.R
 pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
-rodents_path <- file.path(pkgwd, 'rodents')
+rodents_path <- paste0(pkgwd, 'rodents')
 if (!dir.exists(rodents_path)) {
-  dir.create(rodents_path)
+  stop('other/rodent_db.R must be run first!', call. = FALSE)
 }
 ```
 ```{r download, eval=FALSE, include=TRUE}

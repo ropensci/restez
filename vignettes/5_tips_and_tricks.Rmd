@@ -1,10 +1,6 @@
 ---
 title: "5. Tips and Tricks"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{5. Tips and Tricks}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

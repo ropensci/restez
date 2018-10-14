@@ -119,8 +119,8 @@
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># rstz_pth &lt;- tempdir()</span>
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> rstz_pth)
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb08VXt/restez'</span>
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb08VXt/restez/downloads'</span></code></pre></div>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez'</span>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/downloads'</span></code></pre></div>
 <p>A user must always set the <code>restez</code> path in order to use the <code>restez</code> library and we are reminded to do this whenever we load the package. (We are also reminded to run <code>restez_connect</code> but we’ll come to that a bit later.) Additionally, by running <code>restez_path_set</code> on a new folder messages are printed to console telling us that the path was created and that a downloads subfolder was created.</p>
 <blockquote>
 <p><strong>Note</strong>, whenever you intend to use <code>restez</code> you will need to specify the <code>restez</code> path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
@@ -231,20 +231,20 @@
 <span class="co">#&gt; Checking setup status at  ...</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Restez path ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb08VXt/restez'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Download ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb08VXt/restez/downloads'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/downloads'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. files 2</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... GenBank division selections 'Unannotated'</span>
 <span class="co">#&gt; ... GenBank Release 227</span>
-<span class="co">#&gt; ... Last updated '2018-09-16 14:22:25'</span>
+<span class="co">#&gt; ... Last updated '2018-10-14 13:02:48'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Database ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmpb08VXt/restez/sql_db'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/sql_db'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... Is database connected? 'Yes'</span>
@@ -252,7 +252,7 @@
 <span class="co">#&gt; ... Number of sequences 440</span>
 <span class="co">#&gt; ... Min. sequence length 0</span>
 <span class="co">#&gt; ... Max. sequence length Inf</span>
-<span class="co">#&gt; ... Last_updated '2018-09-16 14:22:27'</span>
+<span class="co">#&gt; ... Last_updated '2018-10-14 13:02:49'</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p>The status function allows a user to always touch base with their <code>restez</code> set-up. It can be run at any point, before and/or after download or database creation. It is also designed to provide useful messages to a user for what they need to do next in order for them to make queries to their database. If you ever get confused, run <code>restez_status</code> to see what is happening.</p>
 <p>Additionally, if you are developing your own functions that depend on <code>restez</code>, you can use <code>restez_ready</code> which will simply return TRUE or FALSE on whether the database can be queried.</p>
@@ -282,42 +282,52 @@
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw">sample</span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF000131"</span>
+<span class="co">#&gt; [1] "AF298107"</span>
 <span class="co"># sequence</span>
 <span class="kw">str</span>(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))
-<span class="co">#&gt;  Named chr "GGCAACGCGCGACTAGGATAGGCACCTCTATCGTAACACCTTTTTACAATATCTGCGTGCCCCAAGGGTCTCGGTGGATATGAGCGTCACGTTGGCCATAATGTCTGCCCG"| __truncated__</span>
-<span class="co">#&gt;  - attr(*, "names")= chr "AF000131"</span>
+<span class="co">#&gt;  Named chr "GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGGCGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCA"| __truncated__</span>
+<span class="co">#&gt;  - attr(*, "names")= chr "AF298107"</span>
 <span class="co"># definition</span>
 (<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))
-<span class="co">#&gt;                                               AF000131 </span>
-<span class="co">#&gt; "Synthetic RNA ligase ribozyme CM3, complete sequence"</span>
+<span class="co">#&gt;                                                    AF298107 </span>
+<span class="co">#&gt; "Unidentified clone B33 DNA sequence from ocean beach sand"</span>
 <span class="co"># version</span>
 (<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))
-<span class="co">#&gt;     AF000131 </span>
-<span class="co">#&gt; "AF000131.1"</span>
+<span class="co">#&gt;     AF298107 </span>
+<span class="co">#&gt; "AF298107.1"</span>
 <span class="co"># organism</span>
 (<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))
-<span class="co">#&gt;       AF000131 </span>
+<span class="co">#&gt;       AF298107 </span>
 <span class="co">#&gt; "unidentified"</span>
 <span class="co"># fasta</span>
 <span class="kw">cat</span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))
-<span class="co">#&gt; &gt;AF000131.1 Synthetic RNA ligase ribozyme CM3, complete sequence</span>
-<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTCTATCGTAACACCTTTTTACAATATCTGCGTGCCCCAAGGGTC</span>
-<span class="co">#&gt; TCGGTGGATATGAGCGTCACGTTGGCCATAATGTCTGCCCGAGTCCCACAACACGTCCAGAAGCATTCTC</span>
-<span class="co">#&gt; CAGAGGCGATTCGGACTCCACGGGACTCGTTAACCGCGCTGGCAACAAACTGTGGCACCCTCCAAATTTC</span>
-<span class="co">#&gt; GAACACCGCTACCGCGTCCCCGATGCCCAAACCTACTTCCCTAGCTCTAGAAGCTCAGGGAAGGCCGACT</span>
-<span class="co">#&gt; AG</span>
+<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
+<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
+<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
+<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
+<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
+<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
+<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
+<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
+<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
+<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
 <span class="co"># Note, for large databases these requests can take a long time to complete.</span>
 <span class="co"># Always try and limit the size of the database by specifying min and max</span>
 <span class="co"># sequence lengths with db_create()</span>
 <span class="co"># Also note, if an id is not present in the database nothing is returned</span>
 <span class="kw">cat</span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> <span class="kw">c</span>(id, <span class="st">'notanid'</span>)))
-<span class="co">#&gt; &gt;AF000131.1 Synthetic RNA ligase ribozyme CM3, complete sequence</span>
-<span class="co">#&gt; GGCAACGCGCGACTAGGATAGGCACCTCTATCGTAACACCTTTTTACAATATCTGCGTGCCCCAAGGGTC</span>
-<span class="co">#&gt; TCGGTGGATATGAGCGTCACGTTGGCCATAATGTCTGCCCGAGTCCCACAACACGTCCAGAAGCATTCTC</span>
-<span class="co">#&gt; CAGAGGCGATTCGGACTCCACGGGACTCGTTAACCGCGCTGGCAACAAACTGTGGCACCCTCCAAATTTC</span>
-<span class="co">#&gt; GAACACCGCTACCGCGTCCCCGATGCCCAAACCTACTTCCCTAGCTCTAGAAGCTCAGGGAAGGCCGACT</span>
-<span class="co">#&gt; AG</span>
+<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
+<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
+<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
+<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
+<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
+<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
+<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
+<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
+<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
+<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
 <span class="co"># Always remember to disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://antonellilab.github.io/restez/articles/parsing.html">GenBank record parsing</a>.</p>
@@ -335,36 +345,36 @@ ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw">sample</span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF298105"</span>
+<span class="co">#&gt; [1] "AF298102"</span>
 <span class="co"># get fasta sequences with entrez</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298105.1 Unidentified clone B31 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTTTCAGCCTCTGAACGAAGCCTTGCAGGAGTATGCCGGGGCCAAGAATAAAAAGGCCCTGATCCG</span>
-<span class="co">#&gt; CCTGCTCTCCCCTGTCCATCTCGCCTCCGAGTCCAGTCCTTTGATTCAGGAACTGGTCGAGACGGGCGAT</span>
-<span class="co">#&gt; TTGTACCACCCGCTGGCATGGACCCCCACCGAAGCCTATGAATTCCTGAAGCAGATACCGCTGTACGAGC</span>
-<span class="co">#&gt; AGTGCGGCGTAGTGGTACGGGTACCGGACTGGTGGAAGAAGCGTAGCCGGCCGCGGGTCGGCGTCACCAT</span>
-<span class="co">#&gt; TGGCAACCGCGCACAGAAGAACTTCGGTGCGGACTCACTGCTGGATTTCAAACTGGAGATTGCCCTCGGT</span>
-<span class="co">#&gt; GACGAGCCCTTGAGCCANGCCGAGTGGCAGACGTTGCTCCAGGCTGGAGACGGCCTGGCCTTCCTCAAGG</span>
-<span class="co">#&gt; GTCAATGGGTCGAGGTGGACCANGAAAAACTGGCCCANGCCCTGGCGCACTGGAAGACCGTTGAAACCGA</span>
-<span class="co">#&gt; ANCCGCCGAAGGCGGGCTCTTCTTCGTGGAANGTATGCNGCTGCTACCCNGGGCACCGGCCGATCTGCGT</span>
-<span class="co">#&gt; GATGCCANCGCCCAAAAAGCGGGGCGGGAGTGGTCTTT</span>
+<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
+<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
+<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
+<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
+<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
+<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
+<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
+<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
+<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
 <span class="co"># entrez_fetch will also search via Entrez for any ids not in the db</span>
 plant_sequence &lt;-<span class="st"> 'AY952423'</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(id, plant_sequence),
                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298105.1 Unidentified clone B31 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTTTCAGCCTCTGAACGAAGCCTTGCAGGAGTATGCCGGGGCCAAGAATAAAAAGGCCCTGATCCG</span>
-<span class="co">#&gt; CCTGCTCTCCCCTGTCCATCTCGCCTCCGAGTCCAGTCCTTTGATTCAGGAACTGGTCGAGACGGGCGAT</span>
-<span class="co">#&gt; TTGTACCACCCGCTGGCATGGACCCCCACCGAAGCCTATGAATTCCTGAAGCAGATACCGCTGTACGAGC</span>
-<span class="co">#&gt; AGTGCGGCGTAGTGGTACGGGTACCGGACTGGTGGAAGAAGCGTAGCCGGCCGCGGGTCGGCGTCACCAT</span>
-<span class="co">#&gt; TGGCAACCGCGCACAGAAGAACTTCGGTGCGGACTCACTGCTGGATTTCAAACTGGAGATTGCCCTCGGT</span>
-<span class="co">#&gt; GACGAGCCCTTGAGCCANGCCGAGTGGCAGACGTTGCTCCAGGCTGGAGACGGCCTGGCCTTCCTCAAGG</span>
-<span class="co">#&gt; GTCAATGGGTCGAGGTGGACCANGAAAAACTGGCCCANGCCCTGGCGCACTGGAAGACCGTTGAAACCGA</span>
-<span class="co">#&gt; ANCCGCCGAAGGCGGGCTCTTCTTCGTGGAANGTATGCNGCTGCTACCCNGGGCACCGGCCGATCTGCGT</span>
-<span class="co">#&gt; GATGCCANCGCCCAAAAAGCGGGGCGGGAGTGGTCTTT</span>
+<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
+<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
+<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
+<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
+<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
+<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
+<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
+<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
+<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;AY952423.1 Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast</span>
 <span class="co">#&gt; ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGA</span>

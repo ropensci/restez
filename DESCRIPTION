@@ -23,7 +23,7 @@ Imports:
     RCurl,
     cli,
     crayon,
-    subprocess,
+    subprocess (>= 0.8.3),
     devtools
 Suggests:
     testthat,
@@ -31,4 +31,3 @@ Suggests:
     R.utils,
     rmarkdown
 RoxygenNote: 6.1.0
-VignetteBuilder: knitr
