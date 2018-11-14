@@ -203,3 +203,5 @@ Maintainer
 ----------
 
 [Dom Bennett](https://github.com/DomBennett)
+
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
