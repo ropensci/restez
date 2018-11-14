@@ -79,12 +79,13 @@ identify_downloadable_files <- function() {
       filesize_section <- TRUE
       next
     }
-    if (grepl(pattern = '^[0-9\\.]', x = line)) {
+    if (grepl(pattern = '^[0-9]+\\.\\s', x = line)) {
       descript <- TRUE
     } else {
       descript <- FALSE
     }
-    if (grepl(pattern = '^\\s+[0-9]+\\s+gb', x = line)) {
+    if (grepl(pattern = '^(\\s+)?[0-9]+\\s+gb[a-z]{1,4}[0-9]{1,4}\\.seq$',
+              x = line)) {
       filesize <- TRUE
     } else {
       filesize <- FALSE
@@ -96,7 +97,8 @@ identify_downloadable_files <- function() {
       filesize_lines <- c(filesize_lines, line)
       kill_switch <- TRUE
     }
-    if (kill_switch & !filesize) {
+    if (kill_switch & line == '') {
+      print(line)
       break
     }
   }
@@ -104,8 +106,8 @@ identify_downloadable_files <- function() {
   pull <- grepl(pattern = '\\.seq', x = descript_lines)
   seq_files_descripts <- sub('^[0-9]+\\.\\s', '', descript_lines[pull])
   seq_files_descripts <- strsplit(x = seq_files_descripts, split = ' - ')
-  seq_files <- unlist(lapply(seq_files_descripts, '[[', 1))
-  descripts <- unlist(lapply(seq_files_descripts, '[[', 2))
+  seq_files <- unlist(lapply(seq_files_descripts, '[', 1))
+  descripts <- unlist(lapply(seq_files_descripts, '[', 2))
   descripts <- sub(pattern = ' sequence entries,', replacement = '',
                    x = descripts)
   descripts <- sub(pattern = ' part [0-9]+\\.', replacement = '',
@@ -116,8 +118,12 @@ identify_downloadable_files <- function() {
                                  FUN.VALUE = character(1)))
   names(filesizes) <- vapply(X = filesize_info, FUN = '[[', i = 2,
                              FUN.VALUE = character(1))
-  data.frame(seq_files = seq_files, descripts = descripts,
+  res <- data.frame(seq_files = seq_files, descripts = descripts,
              filesizes = filesizes[seq_files])
+  if (any(is.na(res))) {
+    warning('Not all file information could be ascertained.')
+  }
+  res
 }
 
 #' @name file_download
