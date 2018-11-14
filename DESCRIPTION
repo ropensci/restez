@@ -23,7 +23,7 @@ Imports:
     RCurl,
     cli,
     crayon,
-    subprocess (>= 0.8.3),
+    callr (>= 3.0.0),
     devtools
 Suggests:
     testthat,

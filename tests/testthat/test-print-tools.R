@@ -18,7 +18,7 @@ test_that('cat_line() works', {
   nores <- restez:::cat_line('example text')
   expect_null(nores)
 })
-test_that('line_spinner() works', {
-  nores <- restez:::line_spinner()
-  expect_null(nores)
-})
+# test_that('line_spinner() works', {
+#   nores <- restez:::line_spinner()
+#   expect_null(nores)
+# })
