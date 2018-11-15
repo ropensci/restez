@@ -7,6 +7,7 @@ tags:
   - DNA
   - sequence
   - NCBI
+  - rstats
 authors:
  - name: Dominic J. Bennett
    orcid: 0000-0003-2722-1359
@@ -43,7 +44,7 @@ Downloading sequences and sequence information from GenBank [@Benson2013] and re
 
 The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a computer with currently standard capabilities, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
 
-<img src="https://raw.githubusercontent.com/AntonelliLab/restez/master/paper/outline.png" height="500" align="center"/>
+<img src="https://raw.githubusercontent.com/ropensci/restez/master/paper/outline.png" height="500" align="center"/>
 
 **Figure 1. The functions and file structure for downloading, setting up and querying a local copy of GenBank.**
 
@@ -86,9 +87,7 @@ library(restez)
 # Make sure you have sufficient disk space!
 restez_path_set(filepath = 'restez_db')
 db_download(db = 'nucleotide') # Interactively download GenBank data
-restez_connect()
 db_create(db = 'nucleotide')
-restez_disconnect()
 ```
 Now when re-running the first `phylotaR` code block with the inclusion of the `restez` package, the procedure completes approximately eight times faster.
 
@@ -97,11 +96,9 @@ Now when re-running the first `phylotaR` code block with the inclusion of the `r
 library(phylotaR)
 library(restez)
 restez_path_set(filepath = 'restez_db')
-restez_connect()
 txid <- 9479
 setup(wd = 'nw_monkeys', txid = txid)
 run(wd = wd)
-restez_disconnect()
 # ^ takes around 5 minutes
 ```
 
@@ -109,7 +106,7 @@ restez_disconnect()
 
 #Availability
 
-`restez` is open source software made available under the MIT license. At time of writing, it can be installed from its GitHub source code repository using the `devtools` package, e.g. as follows: `devtools::install_github("AntonelliLab/restez")`
+`restez` is open source software made available under the MIT license. At time of writing, it can be installed from its GitHub source code repository using the `devtools` package, e.g. as follows: `devtools::install_github("ropensci/restez")`
 
 #Funding
 
