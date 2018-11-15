@@ -3,6 +3,7 @@ restez/
 paper/
 other/
 rodents_copy/
+rodents/
 vignettes/
 examples/
 .travis.yml
@@ -13,5 +14,6 @@ examples/
 docs/
 README.html
 CONTRIBUTING.md
+NEWS.md
 logo.png
 _pkgdown.yml
