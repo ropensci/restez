@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -77,10 +77,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -101,9 +104,9 @@
 <li>Build a database of all rodents</li>
 </ol></h1>
             
-            <h4 class="date">2018-10-14</h4>
+            <h4 class="date">2018-11-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/1_rodents.Rmd"><code>vignettes/1_rodents.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez#readme/blob/master/vignettes/1_rodents.Rmd"><code>vignettes/1_rodents.Rmd</code></a></small>
       <div class="hidden name"><code>1_rodents.Rmd</code></div>
 
     </div>
@@ -127,18 +130,14 @@
 <a href="#build" class="anchor"></a>Build</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
-<span class="co"># always connect</span>
-<span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="kw"><a href="../reference/db_create.html">db_create</a></span>(<span class="dt">min_length =</span> <span class="dv">100</span>, <span class="dt">max_length =</span> <span class="dv">1000</span>)
-<span class="co"># always disconnect</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<span class="kw"><a href="../reference/db_create.html">db_create</a></span>(<span class="dt">min_length =</span> <span class="dv">100</span>, <span class="dt">max_length =</span> <span class="dv">1000</span>)</code></pre></div>
 </div>
 <div id="check-status" class="section level2">
 <h2 class="hasAnchor">
 <a href="#check-status" class="anchor"></a>Check status</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; restez v1.0.0</span>
 <span class="co">#&gt; -------------</span>
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
@@ -157,25 +156,25 @@
 <span class="co">#&gt; ... N. files 32</span>
 <span class="co">#&gt; ... N. GBs 2.04</span>
 <span class="co">#&gt; ... GenBank division selections 'Rodent'</span>
-<span class="co">#&gt; ... GenBank Release 227</span>
-<span class="co">#&gt; ... Last updated '2018-09-15 12:11:50'</span>
+<span class="co">#&gt; ... GenBank Release 228</span>
+<span class="co">#&gt; ... Last updated '2018-11-15 10:42:40'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Database ...</span>
 <span class="co">#&gt; ... Path '[RODENTS PATH]/restez/sql_db'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
-<span class="co">#&gt; ... N. GBs 0.59</span>
+<span class="co">#&gt; ... N. GBs 0.6</span>
 <span class="co">#&gt; ... Is database connected? 'Yes'</span>
 <span class="co">#&gt; ... Does the database have data? 'Yes'</span>
-<span class="co">#&gt; ... Number of sequences 193870</span>
+<span class="co">#&gt; ... Number of sequences 197553</span>
 <span class="co">#&gt; ... Min. sequence length 100</span>
 <span class="co">#&gt; ... Max. sequence length 1000</span>
-<span class="co">#&gt; ... Last_updated '2018-09-15 17:03:45'</span>
+<span class="co">#&gt; ... Last_updated '2018-11-15 13:50:11'</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">
 <h2 class="hasAnchor">
 <a href="#next-up" class="anchor"></a>Next up</h2>
-<p><strong><a href="https://antonellilab.github.io/restez/articles/search_and_fetch.html">How to search for and fetch sequences</a></strong></p>
+<p><strong><a href="https://ropensci.github.io/restez/articles/2_search_and_fetch.html">How to search for and fetch sequences</a></strong></p>
 </div>
   </div>
 

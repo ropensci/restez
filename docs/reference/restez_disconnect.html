@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -105,11 +105,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -127,7 +130,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Disconnect from restez database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
     <div class="hidden name"><code>restez_disconnect.Rd</code></div>
     </div>
 
@@ -151,16 +154,16 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-<span class='fu'><a href='restez_status.html'>restez_status</a></span>()</div><div class='output co'>#&gt; Checking setup status at  ...
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='restez_status.html'>restez_status</a></span>()</div><div class='output co'>#&gt; Checking setup status at  ...
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Restez path ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Download ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/downloads'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. files 0
 #&gt; ... N. GBs 0
@@ -169,7 +172,7 @@
 #&gt; ... Last updated ''
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Database ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/sql_db'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/sql_db'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. GBs 0
 #&gt; ... Is database connected? 'Yes'

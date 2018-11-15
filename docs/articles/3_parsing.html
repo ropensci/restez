@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -77,10 +77,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -102,7 +105,7 @@
 </ol></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/3_parsing.Rmd"><code>vignettes/3_parsing.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez#readme/blob/master/vignettes/3_parsing.Rmd"><code>vignettes/3_parsing.Rmd</code></a></small>
       <div class="hidden name"><code>3_parsing.Rmd</code></div>
 
     </div>
@@ -116,7 +119,7 @@
 <p>restez comes with an example GenBank record, AY952423, which can be viewed <a href="https://www.ncbi.nlm.nih.gov/nuccore/AY952423.1">online</a>. We can retrieve the record with <code>rentrez</code> or load it using the <code>data()</code>. We can visualise the record in R as it appears online using <code>cat()</code> – like print but with newline spaces parsed correctly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; restez v1.0.0</span>
 <span class="co">#&gt; -------------</span>
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># record &lt;- rentrez::entrez_fetch(db = 'nucleotide', id = 'AY952423', rettype = 'gb', retmode = 'text')</span>
@@ -272,7 +275,7 @@ seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extr
 <span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 (rand_id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>()), <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AB006817"</span>
+<span class="co">#&gt; [1] "AB005143"</span>
 record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_record_get.html">gb_record_get</a></span>(rand_id)
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'features'</span>))
 <span class="co">#&gt; [[1]]</span>
@@ -280,7 +283,7 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "source"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$location</span>
-<span class="co">#&gt; [1] "1..906"</span>
+<span class="co">#&gt; [1] "1..930"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$organism</span>
 <span class="co">#&gt; [1] "Rattus norvegicus"</span>
@@ -288,8 +291,20 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [[1]]$mol_type</span>
 <span class="co">#&gt; [1] "mRNA"</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$strain</span>
+<span class="co">#&gt; [1] "Wistar King A"</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$db_xref</span>
 <span class="co">#&gt; [1] "taxon:10116"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$sex</span>
+<span class="co">#&gt; [1] "male"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$tissue_type</span>
+<span class="co">#&gt; [1] "Brain"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$dev_stage</span>
+<span class="co">#&gt; [1] "12 week old"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -297,10 +312,10 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "gene"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$location</span>
-<span class="co">#&gt; [1] "1..906"</span>
+<span class="co">#&gt; [1] "1..930"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]$gene</span>
-<span class="co">#&gt; [1] "hnRNP"</span>
+<span class="co">#&gt; [1] "UCP2"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
@@ -308,31 +323,28 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "CDS"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$location</span>
-<span class="co">#&gt; [1] "1..906"</span>
+<span class="co">#&gt; [1] "1..930"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$gene</span>
-<span class="co">#&gt; [1] "hnRNP"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$standard_name</span>
-<span class="co">#&gt; [1] "hnRNP B0a"</span>
+<span class="co">#&gt; [1] "UCP2"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$codon_start</span>
 <span class="co">#&gt; [1] "1"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$product</span>
-<span class="co">#&gt; [1] "heterogeneous nuclear ribonucleoprotein B0a"</span>
+<span class="co">#&gt; [1] "uncoupling protein 2"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$protein_id</span>
-<span class="co">#&gt; [1] "BAF79677.1"</span>
+<span class="co">#&gt; [1] "BAA28832.1"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]$translation</span>
-<span class="co">#&gt; [1] "MEREKEQFRKLFIGGLSFETTEESLRNYYEQWGKLTDCVVMRDPASKRSRGFGFVTFSSMAEVDAAMAARPHSIDGRVVEPKRAVAREESGKPGAHVTVKKLFVGGIKEDTEEHHLRDYFEEYGKIDTIEIITDRQSGKKRGFGFVTFDDHDPVDKIFLQKYHTINGHNAEVRKALSRQEMQEVQSSRSGRGGNFGFGDSRGGGGNFGPGPGSNFRGGSDGYGSGRGFGDGYNGYGGGPGGNYGSGNYNDFGNYNQQPSNYGPMKSGNFGGSRNMGGPYGGGNYGPGGSGGSGGYGGRSRY"</span>
+<span class="co">#&gt; [1] "MVGFKATDLPPTATVKFLGAGTAACIADLITFPLDTAKVRLQIQGESQGLARTAASAQYRGVLGTILTMVRTEGPRSLYNGLVAGLQRQMSFASVRIGLYDSVKQFYTKGSEHAGIGSRLLAGSTTGALAVAVAQPTDVVKVRFQAQARAGGGRRYQSTVEAYKTIAREEGIRGLWKGTSPNVARNAIVNCTELVTYDLIKDTLLKANLMTDDLPCHFTSAFGAGFCTTVIASPVDVVKTRYMNSALGQYHSAGHCALTMLRKEGPRAFYKGFMPSFLRLGSWNVVMFVTYEQLKRALMAAYESREAPF"</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">
 <h2 class="hasAnchor">
 <a href="#next-up" class="anchor"></a>Next up</h2>
-<p><strong><a href="https://antonellilab.github.io/restez/articles/phylotar.html">Running phylotaR with restez</a></strong></p>
+<p><strong><a href="https://ropensci.github.io/restez/articles/4_phylotar.html">Running phylotaR with restez</a></strong></p>
 </div>
   </div>
 

@@ -64,7 +64,7 @@ Equivalent to rettype='gb' in entrez_fetch." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -106,11 +106,14 @@ Equivalent to rettype='gb' in entrez_fetch." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -128,7 +131,7 @@ Equivalent to rettype='gb' in entrez_fetch." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get record from GenBank</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/gb-get-tools.R'><code>R/gb-get-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/gb-get-tools.R'><code>R/gb-get-tools.R</code></a></small>
     <div class="hidden name"><code>gb_record_get.Rd</code></div>
     </div>
 
@@ -165,9 +168,9 @@ Equivalent to <code>rettype='gb'</code> in <code><a href='http://www.rdocumentat
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/downloads'</div><div class='input'><span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-(<span class='no'>rec</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'>(<span class='no'>rec</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
 #&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     3\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 ttcagcccac\n" </div><div class='input'>(<span class='no'>recs</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_record_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_1 
 #&gt; "LOCUS       [This is a mock GenBank data record]\nDEFINITION  A demonstration sequence | id demo_1\nACCESSION   demo_1\nVERSION     3\nKEYWORDS    [keyword]\nSOURCE      [tissue, organism]\nORGANISM    Unreal organism 1\nREFERENCE   [reference data]\nAUTHORS     [all the authors]\nTITLE       [title]\nJOURNAL     [journal]\nFEATURES    [features]\n\nORIGIN      \n        1 ttcagcccac\n" 
 #&gt;                                                                                                                                                                                                                                                                                                                                                                                                 demo_2 

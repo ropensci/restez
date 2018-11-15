@@ -64,7 +64,7 @@ Currently only GenBank/nucleotide/nuccore database is supported." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -106,11 +106,14 @@ Currently only GenBank/nucleotide/nuccore database is supported." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -128,7 +131,7 @@ Currently only GenBank/nucleotide/nuccore database is supported." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create new NCBI database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/db-setup-tools.R'><code>R/db-setup-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/db-setup-tools.R'><code>R/db-setup-tools.R</code></a></small>
     <div class="hidden name"><code>db_create.Rd</code></div>
     </div>
 
@@ -178,6 +181,7 @@ using the same downloaded files from a single restez path.</p>
 <p>This function will not overwrite a pre-existing database. Old databases must
 be deleted before a new one can be created. Use <code><a href='db_delete.html'>db_delete</a></code> with
 everything=FALSE to delete an SQL database.</p>
+<p>Connections/disconnections to the database are made automatically.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -192,9 +196,7 @@ everything=FALSE to delete an SQL database.</p>
 <span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='st'>'path/for/downloads/and/database'</span>)
 <span class='fu'><a href='db_download.html'>db_download</a></span>()
-<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()
 <span class='fu'>db_create</span>()
-<span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

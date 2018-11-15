@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract organism — extract_organism • restez</title>
+<title>Read and add .seq files to database — gb_build • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Extract organism — extract_organism" />
+<meta property="og:title" content="Read and add .seq files to database — gb_build" />
 
-<meta property="og:description" content="Return organism name from GenBank record" />
+<meta property="og:description" content="Given a list of seq_files, read and add the contents of the
+files to a SQL-like database. If any errors during the process, FALSE is
+returned." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,35 +131,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract organism</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/extract-tools.R'><code>R/extract-tools.R</code></a></small>
-    <div class="hidden name"><code>extract_organism.Rd</code></div>
+    <h1>Read and add .seq files to database</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/gb-setup-tools.R'><code>R/gb-setup-tools.R</code></a></small>
+    <div class="hidden name"><code>gb_build.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Return organism name from GenBank record</p>
+    <p>Given a list of seq_files, read and add the contents of the
+files to a SQL-like database. If any errors during the process, FALSE is
+returned.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_organism</span>(<span class='no'>record</span>)</pre>
+    <pre class="usage"><span class='fu'>gb_build</span>(<span class='no'>dpth</span>, <span class='no'>seq_files</span>, <span class='no'>max_length</span>, <span class='no'>min_length</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>record</th>
-      <td><p>GenBank record in text format, character</p></td>
+      <th>dpth</th>
+      <td><p>Download path (where seq_files are stored)</p></td>
+    </tr>
+    <tr>
+      <th>seq_files</th>
+      <td><p>.seq.tar seq file names</p></td>
+    </tr>
+    <tr>
+      <th>max_length</th>
+      <td><p>Maximum sequence length</p></td>
+    </tr>
+    <tr>
+      <th>min_length</th>
+      <td><p>Minimum sequence length</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>character</p>
+    <p>Logical</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If element is not found, '' returned.</p>
+    <p>This function will automatically connect to the restez database.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -181,14 +197,14 @@
   <code><a href='extract_inforecpart.html'>extract_inforecpart</a></code>,
   <code><a href='extract_keywords.html'>extract_keywords</a></code>,
   <code><a href='extract_locus.html'>extract_locus</a></code>,
+  <code><a href='extract_organism.html'>extract_organism</a></code>,
   <code><a href='extract_seqrecpart.html'>extract_seqrecpart</a></code>,
   <code><a href='extract_sequence.html'>extract_sequence</a></code>,
   <code><a href='extract_version.html'>extract_version</a></code>,
   <code><a href='file_download.html'>file_download</a></code>, <code><a href='filename_log.html'>filename_log</a></code>,
   <code><a href='flatfile_read.html'>flatfile_read</a></code>, <code><a href='gb_build2.html'>gb_build2</a></code>,
-  <code><a href='gb_build.html'>gb_build</a></code>, <code><a href='gb_df_create.html'>gb_df_create</a></code>,
-  <code><a href='gb_df_generate.html'>gb_df_generate</a></code>, <code><a href='gb_sql_add.html'>gb_sql_add</a></code>,
-  <code><a href='gb_sql_query.html'>gb_sql_query</a></code>,
+  <code><a href='gb_df_create.html'>gb_df_create</a></code>, <code><a href='gb_df_generate.html'>gb_df_generate</a></code>,
+  <code><a href='gb_sql_add.html'>gb_sql_add</a></code>, <code><a href='gb_sql_query.html'>gb_sql_query</a></code>,
   <code><a href='gbrelease_check.html'>gbrelease_check</a></code>,
   <code><a href='gbrelease_get.html'>gbrelease_get</a></code>, <code><a href='gbrelease_log.html'>gbrelease_log</a></code>,
   <code><a href='has_data.html'>has_data</a></code>,

@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -77,10 +77,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -101,9 +104,9 @@
 <li>How to search for and fetch sequences</li>
 </ol></h1>
             
-            <h4 class="date">2018-10-14</h4>
+            <h4 class="date">2018-11-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/2_search_and_fetch.Rmd"><code>vignettes/2_search_and_fetch.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez#readme/blob/master/vignettes/2_search_and_fetch.Rmd"><code>vignettes/2_search_and_fetch.Rmd</code></a></small>
       <div class="hidden name"><code>2_search_and_fetch.Rmd</code></div>
 
     </div>
@@ -111,7 +114,7 @@
     
     
 <p>A downside of the <code>restez</code> approach is we are unable to then search the local database for sequences of interest as the database cannot possibly contain sufficient metadata (most notably taxonomic information) to perform as rich a search as online via NCBI. As a result we must perform the sequence discovery process independently from <code>restez</code>. In this tutorial we will demonstrate how to perform online searches using the <code>rentrez</code> package and then use the search results to look up sequences in a <code>restez</code> database.</p>
-<p>To run all the code in this tutorial you will need to have already set up the rodents database, see <a href="https://antonellilab.github.io/restez/articles/rodents.html">Build a database of all rodents</a>.</p>
+<p>To run all the code in this tutorial you will need to have already set up the rodents database, see <a href="https://ropensci.github.io/restez/articles/1_rodents.html">Build a database of all rodents</a>.</p>
 <div id="search-ncbi" class="section level2">
 <h2 class="hasAnchor">
 <a href="#search-ncbi" class="anchor"></a>Search NCBI</h2>
@@ -126,10 +129,10 @@ accessions &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span 
 accessions &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="dt">x =</span> accessions, <span class="dt">split =</span> <span class="st">'</span><span class="ch">\\</span><span class="st">n'</span>)[[<span class="dv">1</span>]]
 accessions &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="dt">pattern =</span> <span class="st">'</span><span class="ch">\\</span><span class="st">.[0-9]+'</span>, <span class="dt">replacement =</span> <span class="st">''</span>, <span class="dt">x =</span> accessions)
 <span class="kw">print</span>(<span class="kw">length</span>(accessions))
-<span class="co">#&gt; [1] 456</span>
+<span class="co">#&gt; [1] 455</span>
 <span class="kw">print</span>(accessions[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
-<span class="co">#&gt;  [1] "JF457164" "JF457162" "JF457161" "JF457159" "JF457156" "JF457155"</span>
-<span class="co">#&gt;  [7] "JF457154" "JF457153" "JF457152" "JF457151"</span></code></pre></div>
+<span class="co">#&gt;  [1] "KX859270" "KX859268" "KX859266" "KX859265" "KX859257" "KX859256"</span>
+<span class="co">#&gt;  [7] "KX859255" "KX859254" "JF457164" "JF457162"</span></code></pre></div>
 </div>
 <div id="retrieve-sequences" class="section level2">
 <h2 class="hasAnchor">
@@ -137,7 +140,7 @@ accessions &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class
 <p>To fetch the sequences from the rodents database, we can just use the <code>gb_fasta_get</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; restez v1.0.0</span>
 <span class="co">#&gt; -------------</span>
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
@@ -159,7 +162,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
   coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> accessions)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.872   1.920   4.397</span>
+<span class="co">#&gt;   0.894   1.822   4.096</span>
 <span class="co"># time via Entrez</span>
 <span class="kw">system.time</span>(<span class="dt">expr =</span> {
   coi_sequences_p1 &lt;-<span class="st"> </span>rentrez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>,
@@ -179,7 +182,7 @@ coi_sequences &lt;-<span class="st"> </span><span class="kw"><a href="../referen
                                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
   })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.107   0.014   4.693</span>
+<span class="co">#&gt;   0.188   0.019   6.052</span>
 <span class="co"># always disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
@@ -215,7 +218,7 @@ smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 <div id="next-up" class="section level2">
 <h2 class="hasAnchor">
 <a href="#next-up" class="anchor"></a>Next up</h2>
-<p><strong><a href="https://antonellilab.github.io/restez/articles/parsing.html">Advanced parsing of a GenBank record</a></strong></p>
+<p><strong><a href="https://ropensci.github.io/restez/articles/3_parsing.html">Advanced parsing of a GenBank record</a></strong></p>
 </div>
   </div>
 

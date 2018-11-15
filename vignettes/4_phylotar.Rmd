@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this tutorial we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/AntonelliLab/phylotaR) run. `phylotaR` runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on `phylotaR` see its [published article](https://doi.org/10.3390/life8020020).
+In this tutorial we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/ropensci/phylotaR) run. `phylotaR` runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on `phylotaR` see its [published article](https://doi.org/10.3390/life8020020).
 
 By using `restez` in conjunction with `phylotaR`, we will not only being saving time, but also improving the chances of a successful `phylotaR` run -- often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using `restez` with `phylotaR` only make sense if you make use of the `restez` database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a `restez` database does not currently eliminate the need for an internet connection. `phylotaR` still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as `restez` develops).
 
@@ -25,7 +25,7 @@ devtools::install_github(repo = 'ropensci/phylotaR', ref = 'restez')
 ```
 
 ##Setup
-Since we will be running the `phylotaR` pipeline for Dipodinae, we can use the rodents database we created [before](https://antonellilab.github.io/restez/articles/rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database. (Connections to the `restez` database will be made automatically, `restez_connect` or `restez_disconnect` do not need to be run.)
+Since we will be running the `phylotaR` pipeline for Dipodinae, we can use the rodents database we created [before](https://ropensci.github.io/restez/articles/1_rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database. (Connections to the `restez` database will be made automatically, `restez_connect` or `restez_disconnect` do not need to be run.)
 
 ```r
 library(phylotaR)
@@ -70,8 +70,8 @@ Sequences that cannot be found locally will be downloaded via Entrez. Sequences 
 
 > Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set the `restez` path.
 
-Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/AntonelliLab/restez/blob/master/other/phylotar_demo.R).
+Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/ropensci/restez/blob/master/other/phylotar_demo.R).
 
 ##Next up
 
-**[Tips and tricks](https://antonellilab.github.io/restez/articles/tips_and_tricks.html)**
+**[Tips and tricks](https://ropensci.github.io/restez/articles/5_tips_and_tricks.html)**

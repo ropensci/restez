@@ -48,11 +48,7 @@ db_download(preselection = '15')
 ```{r build, eval=FALSE, include=TRUE}
 library(restez)
 restez_path_set(rodents_path)
-# always connect
-restez_connect()
 db_create(min_length = 100, max_length = 1000)
-# always disconnect
-restez_disconnect()
 ```
 
 ##Check status
@@ -66,4 +62,4 @@ restez_disconnect()
 
 ##Next up
 
-**[How to search for and fetch sequences](https://antonellilab.github.io/restez/articles/search_and_fetch.html)**
+**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**

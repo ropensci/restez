@@ -64,7 +64,7 @@ and has data. Use restez_status() for more information." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -106,11 +106,14 @@ and has data. Use restez_status() for more information." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -128,7 +131,7 @@ and has data. Use restez_status() for more information." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Is restez ready?</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
     <div class="hidden name"><code>restez_ready.Rd</code></div>
     </div>
 
@@ -159,8 +162,8 @@ and has data. Use restez_status() for more information.</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
 <span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)
-<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-(<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
+<span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'>(<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='restez_disconnect.html'>restez_disconnect</a></span>()
 <span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 (<span class='fu'>restez_ready</span>())</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>

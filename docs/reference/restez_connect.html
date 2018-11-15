@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Connect to the restez database — restez_connect" />
 
-<meta property="og:description" content="Returns a connection to the local database. If database
+<meta property="og:description" content="Sets a connection to the local database. If database
 connection cannot be made, an error is returned." />
 
 <meta property="og:image" content="/logo.png" />
@@ -64,7 +64,7 @@ connection cannot be made, an error is returned." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -106,11 +106,14 @@ connection cannot be made, an error is returned." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -128,13 +131,13 @@ connection cannot be made, an error is returned." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Connect to the restez database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/AntonelliLab/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/connection-tools.R'><code>R/connection-tools.R</code></a></small>
     <div class="hidden name"><code>restez_connect.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns a connection to the local database. If database
+    <p>Sets a connection to the local database. If database
 connection cannot be made, an error is returned.</p>
     
     </div>
@@ -153,17 +156,16 @@ connection cannot be made, an error is returned.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
 <span class='no'>fp</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/downloads'</div><div class='input'><span class='co'># always run connect before creating or querying a database</span>
-<span class='fu'>restez_connect</span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-<span class='fu'><a href='restez_status.html'>restez_status</a></span>()</div><div class='output co'>#&gt; Checking setup status at  ...
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='no'>fp</span>)</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'>restez_connect</span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'><span class='fu'><a href='restez_status.html'>restez_status</a></span>()</div><div class='output co'>#&gt; Checking setup status at  ...
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Restez path ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Download ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/downloads'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. files 0
 #&gt; ... N. GBs 0
@@ -172,7 +174,7 @@ connection cannot be made, an error is returned.</p>
 #&gt; ... Last updated ''
 #&gt; ───────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Database ...
-#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpZG5xSI/restez/sql_db'
+#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/sql_db'
 #&gt; ... Does path exist? 'Yes'
 #&gt; ... N. GBs 0
 #&gt; ... Is database connected? 'Yes'

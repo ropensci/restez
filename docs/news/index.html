@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the number of ids — count_db_ids • restez</title>
+<title>Changelog • restez</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,7 @@
 
 
 
-<meta property="og:title" content="Return the number of ids — count_db_ids" />
-
-<meta property="og:description" content="Return the number of ids in a user's restez database." />
+<meta property="og:title" content="Changelog" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -51,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -129,67 +127,32 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the number of ids</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/restez#readme/blob/master/R/db-get-tools.R'><code>R/db-get-tools.R</code></a></small>
-    <div class="hidden name"><code>count_db_ids.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/ropensci/restez#readme/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Return the number of ids in a user's restez database.</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>count_db_ids</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='st'>"nucleotide"</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>db</th>
-      <td><p>character, database name</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>integer</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Requires an open connection. If no connection or db 0 is returned.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other database: <code><a href='db_create.html'>db_create</a></code>,
-  <code><a href='db_delete.html'>db_delete</a></code>, <code><a href='db_download.html'>db_download</a></code>,
-  <code><a href='demo_db_create.html'>demo_db_create</a></code>, <code><a href='is_in_db.html'>is_in_db</a></code>,
-  <code><a href='list_db_ids.html'>list_db_ids</a></code></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
-<span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'>(<span class='fu'>count_db_ids</span>())</div><div class='output co'>#&gt; [1] 100</div><div class='input'>
-<span class='co'># delete demo after example</span>
-<span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+    <div id="outsider-1-0-0" class="section level1">
+<h1 class="page-header">
+<a href="#outsider-1-0-0" class="anchor"></a>outsider 1.0.0</h1>
+<div id="post-review-version-of-restez-released-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#post-review-version-of-restez-released-" class="anchor"></a>Post-review version of <code>restez</code> released.</h2>
+<ul>
+<li>Download and query parts of GenBank from within R</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#outsider-1-0-0">1.0.0</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

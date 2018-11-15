@@ -68,4 +68,4 @@ restez_disconnect()
 
 ##Next up
 
-**[Running phylotaR with restez](https://antonellilab.github.io/restez/articles/phylotar.html)**
+**[Running phylotaR with restez](https://ropensci.github.io/restez/articles/4_phylotar.html)**

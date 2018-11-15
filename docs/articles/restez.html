@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -72,10 +72,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/AntonelliLab/restez#readme">
+  <a href="https://github.com/ropensci/restez#readme">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -95,7 +98,7 @@
       <h1>Create and Query a Local Copy of GenBank in R</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/AntonelliLab/restez#readme/blob/master/vignettes/restez.Rmd"><code>vignettes/restez.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez#readme/blob/master/vignettes/restez.Rmd"><code>vignettes/restez.Rmd</code></a></small>
       <div class="hidden name"><code>restez.Rmd</code></div>
 
     </div>
@@ -114,13 +117,13 @@
 <p>Before we can download anything, we need to tell <code>restez</code> where we would like to store the downloaded files and the eventual GenBank database. To do this we use the <code>restez_path_set</code> function. With this function a user can provide a system file path to a folder within which the function will create a new folder called ‘restez’. In this example, we will create a <code>restez</code> folder in a temporary folder.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(restez)
 <span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v0.1.0</span>
+<span class="co">#&gt; restez v1.0.0</span>
 <span class="co">#&gt; -------------</span>
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># rstz_pth &lt;- tempdir()</span>
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> rstz_pth)
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez'</span>
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/downloads'</span></code></pre></div>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpWv9WyX/restez'</span>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpWv9WyX/restez/downloads'</span></code></pre></div>
 <p>A user must always set the <code>restez</code> path in order to use the <code>restez</code> library and we are reminded to do this whenever we load the package. (We are also reminded to run <code>restez_connect</code> but we’ll come to that a bit later.) Additionally, by running <code>restez_path_set</code> on a new folder messages are printed to console telling us that the path was created and that a downloads subfolder was created.</p>
 <blockquote>
 <p><strong>Note</strong>, whenever you intend to use <code>restez</code> you will need to specify the <code>restez</code> path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
@@ -134,64 +137,65 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Looking up latest GenBank release ...</span>
-<span class="co">#&gt; ... release number 227</span>
-<span class="co">#&gt; ... found 3164 sequence files</span>
+<span class="co">#&gt; ... release number 228</span>
+<span class="co">#&gt; [1] ""</span>
+<span class="co">#&gt; ... found 3232 sequence files</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Which sequence file types would you like to download?</span>
 <span class="co">#&gt; Choose from those listed below:</span>
 <span class="co">#&gt; ● 1  - 'Bacterial'</span>
-<span class="co">#&gt;         520 files and 118 GB</span>
+<span class="co">#&gt;         542 files and 123 GB</span>
 <span class="co">#&gt; ● 2  - 'EST (expressed sequence tag)'</span>
-<span class="co">#&gt;         485 files and 242 GB</span>
+<span class="co">#&gt;         486 files and 243 GB</span>
 <span class="co">#&gt; ● 3  - 'Constructed'</span>
-<span class="co">#&gt;         369 files and 84 GB</span>
+<span class="co">#&gt;         372 files and 84.6 GB</span>
 <span class="co">#&gt; ● 4  - 'Patent'</span>
-<span class="co">#&gt;         337 files and 77.3 GB</span>
+<span class="co">#&gt;         340 files and 77.9 GB</span>
 <span class="co">#&gt; ● 5  - 'GSS (genome survey sequence)'</span>
 <span class="co">#&gt;         308 files and 117 GB</span>
 <span class="co">#&gt; ● 6  - 'TSA (transcriptome shotgun assembly)'</span>
 <span class="co">#&gt;         234 files and 53.9 GB</span>
 <span class="co">#&gt; ● 7  - 'Plant sequence entries (including fungi and algae)'</span>
-<span class="co">#&gt;         198 files and 42.6 GB</span>
+<span class="co">#&gt;         232 files and 62.8 GB</span>
 <span class="co">#&gt; ● 8  - 'HTGS (high throughput genomic sequencing)'</span>
 <span class="co">#&gt;         155 files and 36.7 GB</span>
 <span class="co">#&gt; ● 9  - 'Invertebrate'</span>
-<span class="co">#&gt;         108 files and 23.8 GB</span>
+<span class="co">#&gt;         112 files and 24.8 GB</span>
 <span class="co">#&gt; ● 10 - 'Environmental sampling'</span>
-<span class="co">#&gt;         103 files and 23.9 GB</span>
+<span class="co">#&gt;         103 files and 24.1 GB</span>
 <span class="co">#&gt; ● 11 - 'Other vertebrate'</span>
-<span class="co">#&gt;         94 files and 19.3 GB</span>
+<span class="co">#&gt;         94 files and 19.4 GB</span>
 <span class="co">#&gt; ● 12 - 'Primate'</span>
 <span class="co">#&gt;         59 files and 13.7 GB</span>
 <span class="co">#&gt; ● 13 - 'Viral'</span>
-<span class="co">#&gt;         57 files and 12.9 GB</span>
+<span class="co">#&gt;         58 files and 13.1 GB</span>
 <span class="co">#&gt; ● 14 - 'Other mammalian'</span>
-<span class="co">#&gt;         55 files and 9.41 GB</span>
+<span class="co">#&gt;         55 files and 9.44 GB</span>
 <span class="co">#&gt; ● 15 - 'Rodent'</span>
-<span class="co">#&gt;         31 files and 7.3 GB</span>
+<span class="co">#&gt;         31 files and 7.32 GB</span>
 <span class="co">#&gt; ● 16 - 'STS (sequence tagged site)'</span>
 <span class="co">#&gt;         20 files and 4.45 GB</span>
 <span class="co">#&gt; ● 17 - 'HTC (high throughput cDNA sequencing)'</span>
-<span class="co">#&gt;         15 files and 3.42 GB</span>
+<span class="co">#&gt;         15 files and 3.43 GB</span>
 <span class="co">#&gt; ● 18 - 'Synthetic and chimeric'</span>
-<span class="co">#&gt;         10 files and 2.41 GB</span>
+<span class="co">#&gt;         10 files and 2.42 GB</span>
 <span class="co">#&gt; ● 19 - 'Phage'</span>
-<span class="co">#&gt;         5 files and 1.06 GB</span>
+<span class="co">#&gt;         5 files and 1.12 GB</span>
 <span class="co">#&gt; ● 20 - 'Unannotated'</span>
-<span class="co">#&gt;         1 files and 0.00108 GB</span>
+<span class="co">#&gt;         1 files and 0.00111 GB</span>
 <span class="co">#&gt; Provide one or more numbers separated by spaces.</span>
 <span class="co">#&gt; e.g. to download all Mammalian sequences, type: "12 14 15" followed by Enter</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Which files would you like to download?</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; You've selected a total of 1 file(s) and 0.00108 GB of uncompressed data.</span>
+<span class="co">#&gt; You've selected a total of 1 file(s) and 0.00111 GB of uncompressed data.</span>
 <span class="co">#&gt; These represent: </span>
 <span class="co">#&gt; ● 'Unannotated'</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Based on stated GenBank files sizes, we estimate ... </span>
-<span class="co">#&gt; ... 0.000216 GB for  compressed, downloaded files</span>
-<span class="co">#&gt; ... 0.00132 GB for the SQL database</span>
-<span class="co">#&gt; Leading to a total of 0.00153 GB</span>
+<span class="co">#&gt; ... 0.000222 GB for  compressed, downloaded files</span>
+<span class="co">#&gt; ... 0.00135 GB for the SQL database</span>
+<span class="co">#&gt; Leading to a total of 0.00158 GB</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Please note, the real sizes of the database and its downloads cannot be</span>
 <span class="co">#&gt; accurately predicted beforehand.</span>
@@ -214,7 +218,7 @@
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 <span class="kw"><a href="../reference/db_create.html">db_create</a></span>()
 <span class="co">#&gt; Adding 1 file(s) to the database ...</span>
-<span class="co">#&gt; ... 'gbuna1.seq.gz'(1 / 1)</span>
+<span class="co">#&gt; ... [32m'gbuna1.seq.gz'[39m([34m1 / 1[39m)</span>
 <span class="co">#&gt; Done.</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p><code><a href="../reference/db_create.html">db_create()</a></code> allows a user to specify minimum and maximum sequence lengths. It’s always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run <code><a href="../reference/db_create.html">db_create()</a></code> again to change the limits. You will simply need to delete the original database first with <code>db_delete</code>.</p>
@@ -231,28 +235,28 @@
 <span class="co">#&gt; Checking setup status at  ...</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Restez path ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpWv9WyX/restez'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Download ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/downloads'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpWv9WyX/restez/downloads'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. files 2</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... GenBank division selections 'Unannotated'</span>
-<span class="co">#&gt; ... GenBank Release 227</span>
-<span class="co">#&gt; ... Last updated '2018-10-14 13:02:48'</span>
+<span class="co">#&gt; ... GenBank Release 228</span>
+<span class="co">#&gt; ... Last updated '2018-11-15 14:05:40'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Database ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpB3FxRq/restez/sql_db'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpWv9WyX/restez/sql_db'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... Is database connected? 'Yes'</span>
 <span class="co">#&gt; ... Does the database have data? 'Yes'</span>
-<span class="co">#&gt; ... Number of sequences 440</span>
+<span class="co">#&gt; ... Number of sequences 448</span>
 <span class="co">#&gt; ... Min. sequence length 0</span>
 <span class="co">#&gt; ... Max. sequence length Inf</span>
-<span class="co">#&gt; ... Last_updated '2018-10-14 13:02:49'</span>
+<span class="co">#&gt; ... Last_updated '2018-11-15 14:05:44'</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p>The status function allows a user to always touch base with their <code>restez</code> set-up. It can be run at any point, before and/or after download or database creation. It is also designed to provide useful messages to a user for what they need to do next in order for them to make queries to their database. If you ever get confused, run <code>restez_status</code> to see what is happening.</p>
 <p>Additionally, if you are developing your own functions that depend on <code>restez</code>, you can use <code>restez_ready</code> which will simply return TRUE or FALSE on whether the database can be queried.</p>
@@ -272,7 +276,7 @@
 <div id="query" class="section level1">
 <h1 class="hasAnchor">
 <a href="#query" class="anchor"></a>2. Query</h1>
-<p>Once a restez database has been set up we can query the database using the <code>gb_*_get()</code> functions. These functions allow us to retrieve specific columns in the SQL-like database: ‘sequence’, ‘definition’, ‘accession’, ‘version’ and ‘organism’. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use <code><a href="../reference/list_db_ids.html">list_db_ids()</a></code> to identify accession numbers in the database. We could also use <code>entrez_search()</code> provided the database contains sequences of interest to us, see <a href="https://antonellilab.github.io/restez/articles/search_and_fetch.html">‘search and fetch’</a>.</p>
+<p>Once a restez database has been set up we can query the database using the <code>gb_*_get()</code> functions. These functions allow us to retrieve specific columns in the SQL-like database: ‘sequence’, ‘definition’, ‘accession’, ‘version’ and ‘organism’. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use <code><a href="../reference/list_db_ids.html">list_db_ids()</a></code> to identify accession numbers in the database. We could also use <code>entrez_search()</code> provided the database contains sequences of interest to us, see <a href="https://ropensci.github.io/restez/articles/2_search_and_fetch.html">‘search and fetch’</a>.</p>
 <blockquote>
 <p>Always remember to disconnect after you have finished your querying!</p>
 </blockquote>
@@ -282,55 +286,39 @@
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw">sample</span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF298107"</span>
+<span class="co">#&gt; [1] "AF040893"</span>
 <span class="co"># sequence</span>
 <span class="kw">str</span>(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))
-<span class="co">#&gt;  Named chr "GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGGCGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCA"| __truncated__</span>
-<span class="co">#&gt;  - attr(*, "names")= chr "AF298107"</span>
+<span class="co">#&gt;  Named chr "CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAGCAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG"</span>
+<span class="co">#&gt;  - attr(*, "names")= chr "AF040893"</span>
 <span class="co"># definition</span>
 (<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))
-<span class="co">#&gt;                                                    AF298107 </span>
-<span class="co">#&gt; "Unidentified clone B33 DNA sequence from ocean beach sand"</span>
+<span class="co">#&gt;                        AF040893 </span>
+<span class="co">#&gt; "Unidentified RNA clone P10.11"</span>
 <span class="co"># version</span>
 (<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))
-<span class="co">#&gt;     AF298107 </span>
-<span class="co">#&gt; "AF298107.1"</span>
+<span class="co">#&gt;     AF040893 </span>
+<span class="co">#&gt; "AF040893.1"</span>
 <span class="co"># organism</span>
 (<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))
-<span class="co">#&gt;       AF298107 </span>
+<span class="co">#&gt;       AF040893 </span>
 <span class="co">#&gt; "unidentified"</span>
 <span class="co"># fasta</span>
 <span class="kw">cat</span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))
-<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
-<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
-<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
-<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
-<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
-<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
-<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
-<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
-<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
-<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
+<span class="co">#&gt; &gt;AF040893.1 Unidentified RNA clone P10.11</span>
+<span class="co">#&gt; CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG</span>
+<span class="co">#&gt; CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG</span>
 <span class="co"># Note, for large databases these requests can take a long time to complete.</span>
 <span class="co"># Always try and limit the size of the database by specifying min and max</span>
 <span class="co"># sequence lengths with db_create()</span>
 <span class="co"># Also note, if an id is not present in the database nothing is returned</span>
 <span class="kw">cat</span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> <span class="kw">c</span>(id, <span class="st">'notanid'</span>)))
-<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
-<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
-<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
-<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
-<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
-<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
-<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
-<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
-<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
-<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
+<span class="co">#&gt; &gt;AF040893.1 Unidentified RNA clone P10.11</span>
+<span class="co">#&gt; CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG</span>
+<span class="co">#&gt; CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG</span>
 <span class="co"># Always remember to disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
-<p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://antonellilab.github.io/restez/articles/parsing.html">GenBank record parsing</a>.</p>
+<p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://ropensci.github.io/restez/articles/3_parsing.html">GenBank record parsing</a>.</p>
 </div>
 <div id="entrez" class="section level1">
 <h1 class="hasAnchor">
@@ -345,36 +333,38 @@ ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw">sample</span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF298102"</span>
+<span class="co">#&gt; [1] "AF298107"</span>
 <span class="co"># get fasta sequences with entrez</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
-<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
-<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
-<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
-<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
-<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
-<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
-<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
-<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
+<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
+<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
+<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
+<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
+<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
+<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
+<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
+<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
+<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
+<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
 <span class="co"># entrez_fetch will also search via Entrez for any ids not in the db</span>
 plant_sequence &lt;-<span class="st"> 'AY952423'</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw">c</span>(id, plant_sequence),
                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw">cat</span>(res)
-<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
-<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
-<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
-<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
-<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
-<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
-<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
-<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
-<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
+<span class="co">#&gt; &gt;AF298107.1 Unidentified clone B33 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAACTACGGCGCCGCGGCGACCCGGGCCCAAGATCGCCTCAACGAGGCGCTCCGGCCCCACGG</span>
+<span class="co">#&gt; CGTCGTCGTGACCCAGATGGTCACGCCGCGACCCAAATTCAACGCCGACTACGAGCACCTGATCGAGGAG</span>
+<span class="co">#&gt; CGCAACCGCCTCCGCAACGAGCTCGAGGTCATCAAGTCCAACCTCGAGCGGGCCGAGACCGACCGCCAGC</span>
+<span class="co">#&gt; GTACGCTGTCCGAGGTCGACCGCGACGAGAACAAGAAGATCCAGGAGCGCCGCGCCGAGCTCGAGTCTGA</span>
+<span class="co">#&gt; GCTCGCGACCGCGGTCGCAGATCGCGAGAACGCCATCCGCGCGGCCGACACCTACCGAATCGAGACGATC</span>
+<span class="co">#&gt; GGCGTCGGCCAGGCCAAGCTCGCCGCGGCCCGGCGCAAGGCCGAGGAGCTCCAGGGCCAGCTCGAGGCCG</span>
+<span class="co">#&gt; ACTACCGGGCCAAGAAGGCCGAGGTCGAGGCGTTTCGGACCCAACCCGTCGAGCGCGTGATGGAGCGCCT</span>
+<span class="co">#&gt; CGGCGAGAGCCTCGAGGACGTGACGATCAACATTGAGCCGTGGGCCAACGACGCCNACCCTTACGCGTGG</span>
+<span class="co">#&gt; TCTNGACCAATAGGAGACGGACCATGGAAAACTCACCACTGCTGCAATGGTTCTGATCGCTTCTTCCNAT</span>
+<span class="co">#&gt; CTTGGNCTTCCCGGATGATGGTCACAACTCNACTCGGC</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;AY952423.1 Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast</span>
 <span class="co">#&gt; ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGA</span>
@@ -422,11 +412,11 @@ res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="k
 <a href="#more-information" class="anchor"></a>4. More information</h1>
 <p>For more information about <code>restez</code> see the other tutorials:</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://antonellilab.github.io/restez/articles/1_rodents.html">Build a database of all rodents</a></li>
-<li><a href="https://antonellilab.github.io/restez/articles/2_search_and_fetch.html">How to search for and fetch sequences</a></li>
-<li><a href="https://antonellilab.github.io/restez/articles/3_parsing.html">Advanced parsing of a GenBank record</a></li>
-<li><a href="https://antonellilab.github.io/restez/articles/4_phylotar.html">Running phylotaR with restez</a></li>
-<li><a href="https://antonellilab.github.io/restez/articles/5_tips_and_tricks.html">Tips and tricks</a></li>
+<li><a href="https://ropensci.github.io/restez/articles/1_rodents.html">Build a database of all rodents</a></li>
+<li><a href="https://ropensci.github.io/restez/articles/2_search_and_fetch.html">How to search for and fetch sequences</a></li>
+<li><a href="https://ropensci.github.io/restez/articles/3_parsing.html">Advanced parsing of a GenBank record</a></li>
+<li><a href="https://ropensci.github.io/restez/articles/4_phylotar.html">Running phylotaR with restez</a></li>
+<li><a href="https://ropensci.github.io/restez/articles/5_tips_and_tricks.html">Tips and tricks</a></li>
 </ol>
 </div>
   </div>
