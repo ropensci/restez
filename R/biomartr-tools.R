@@ -41,4 +41,5 @@ custom_download <- function(...) {
     downloader::download(..., method = "internal", cacheOK = FALSE,
                          quiet = TRUE, mode = 'wb')
   }
+  invisible(NULL)
 }

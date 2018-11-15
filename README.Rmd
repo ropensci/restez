@@ -19,7 +19,7 @@ assignInNamespace(x = 'gb_build2', value = restez:::gb_build,
                   ns = 'restez')
 ```
 
-# Locally query GenBank <img src="logo.png" height="200" align="right"/>
+# Locally query GenBank <img src="https://raw.githubusercontent.com/ropensci/restez/master/logo.png" height="200" align="right"/>
 
 [![Build Status](https://travis-ci.org/ropensci/restez.svg?branch=master)](https://travis-ci.org/ropensci/restez) [![Coverage Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master)](https://coveralls.io/github/ropensci/restez?branch=master) [![ROpenSci status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/onboarding/issues/232) <!--[![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez)--> [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
 
