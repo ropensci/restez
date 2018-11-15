@@ -143,7 +143,8 @@ gb_build <- function(dpth, seq_files, max_length, min_length) {
   read_errors <- FALSE
   for (i in seq_along(seq_files)) {
     seq_file <- seq_files[[i]]
-    cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
+    stat_i <- paste0(i, '/', length(seq_files))
+    cat_line('... ', char(seq_file), ' (', stat(stat_i), ')')
     flpth <- file.path(dpth, seq_file)
     records <- flatfile_read(flpth = flpth)
     if (length(records) > 0) {

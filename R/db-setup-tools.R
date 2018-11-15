@@ -103,7 +103,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   } else {
     cat_line('Done. Enjoy your day.')
   }
-  !any_fails
+  invisible(!any_fails)
 }
 
 #' @name db_create
