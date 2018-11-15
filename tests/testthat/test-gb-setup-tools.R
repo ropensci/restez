@@ -23,6 +23,28 @@ write_fake_records <- function(n=nrcrds) {
 # RUNNING
 context('Testing \'setup-tools\'')
 restez:::cleanup()
+test_that('gb_build() works', {
+  res <- with_mock(
+    `restez::quiet_connect` = function() NULL,
+    `restez::flatfile_read` = function(...) NULL,
+    `restez::gb_df_generate` = function() NULL,
+    `restez::gb_sql_add` = function() NULL,
+    `restez::add_rcrd_log` = function() NULL,
+    restez:::gb_build(dpth = NULL, seq_files = 1:10, max_length = NULL,
+                      min_length = NULL)
+  )
+  expect_true(res)
+  res <- with_mock(
+    `restez::quiet_connect` = function() NULL,
+    `restez::flatfile_read` = function(...) NULL,
+    `restez::gb_df_generate` = function() NULL,
+    `restez::gb_sql_add` = function() NULL,
+    `restez::add_rcrd_log` = function() NULL,
+    restez:::gb_build(dpth = NULL, seq_files = NULL, max_length = NULL,
+                      min_length = NULL)
+  )
+  expect_false(res)
+})
 test_that('flatfile_read() works', {
   write_fake_records(n = nrcrds)
   records <- restez:::flatfile_read(flpth = 'test_records.txt')
