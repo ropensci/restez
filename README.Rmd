@@ -12,8 +12,10 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-# hide line spinner
+# don't run callr
 assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
+                  ns = 'restez')
+assignInNamespace(x = 'gb_build2', value = restez:::gb_build,
                   ns = 'restez')
 ```
 
@@ -69,8 +71,6 @@ db_download <- function() {
 ```{r gb-download, echo=TRUE, eval=TRUE, results='hide'}
 # Run the download function
 db_download()
-# connect, ensure safe disconnect after finishing
-restez_connect()
 # after download, create the local database
 db_create()
 ```
@@ -78,6 +78,8 @@ db_create()
 ### Query
 
 ```{r query, echo=TRUE, eval=TRUE}
+# connect, ensure safe disconnect after finishing
+restez_connect()
 # get a random accession ID from the database
 id <- sample(list_db_ids(), 1)
 # you can extract:

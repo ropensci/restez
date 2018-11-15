@@ -45,6 +45,7 @@ test_that('gb_df_generate() works', {
 })
 test_that('gb_sql_add() works', {
   restez:::setup()
+  restez::restez_connect()
   on.exit(restez:::cleanup())
   df <- restez:::gb_df_generate(records = sample(records, size = 3))
   restez:::gb_sql_add(df = df)

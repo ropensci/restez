@@ -126,6 +126,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' This function will not overwrite a pre-existing database. Old databases must
 #' be deleted before a new one can be created. Use \code{\link{db_delete}} with
 #' everything=FALSE to delete an SQL database.
+#' 
+#' Connections/disconnections to the database are made automatically.
 #'
 #' @param db_type character, database type
 #' @param min_length Minimum sequence length, default 0.
@@ -139,9 +141,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' library(restez)
 #' restez_path_set(filepath = 'path/for/downloads/and/database')
 #' db_download()
-#' restez_connect()
 #' db_create()
-#' restez_disconnect()
 #' }
 # db_type: a nod to the future,
 db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
@@ -150,13 +150,12 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
-  read_errors <- FALSE
   # checks
   restez_path_check()
-  if (!connected()) {
-    stop('Database not connected. Did you run `restez_connect()`?')
-  }
-  if (has_data()) {
+  quiet_connect()
+  with_data <- has_data()
+  restez_disconnect()
+  if (with_data) {
     stop('Database already exists. Use `db_delete()`.')
   }
   # alternative downloads
@@ -173,21 +172,9 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
   # log min and max
   db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
-  for (i in seq_along(seq_files)) {
-    seq_file <- seq_files[[i]]
-    cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
-    flpth <- file.path(dpth, seq_file)
-    records <- flatfile_read(flpth = flpth)
-    if (length(records) > 0) {
-      df <- gb_df_generate(records = records, min_length = min_length,
-                           max_length = max_length)
-      gb_sql_add(df = df)
-    } else {
-      read_errors <- TRUE
-      cat_line('... ... Hmmmm... no records found in that file.')
-    }
-    add_rcrd_log(fl = seq_file)
-  }
+  # Note, avoid callr with gb_build()
+  read_errors <- gb_build2(dpth = dpth, seq_files = seq_files,
+                           max_length = max_length, min_length = min_length)
   cat_line('Done.')
   if (read_errors) {
     message('Some files failed to be read. Try running db_download() again.')
@@ -214,6 +201,8 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
   }
   # checks
   restez_path_check()
+  quiet_connect()
+  on.exit(restez_disconnect())
   # create
   df <- mock_gb_df_generate(n = n)
   gb_sql_add(df = df)

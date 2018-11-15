@@ -12,6 +12,7 @@ records <- readRDS(file = file.path(data_d, 'records.RData'))
 # SETUP
 restez:::cleanup()
 restez:::setup()
+restez_connect()
 df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
 df <- restez:::gb_df_generate(records = records)
 ids <- as.character(df[['accession']])

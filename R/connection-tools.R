@@ -42,7 +42,7 @@ has_data <- function() {
 #' @name restez_connect
 #' @title Connect to the restez database
 #' @family setup
-#' @description Returns a connection to the local database. If database
+#' @description Sets a connection to the local database. If database
 #' connection cannot be made, an error is returned.
 #' @return NULL
 #' @example examples/restez_connect.R
@@ -58,6 +58,16 @@ restez_connect <- function() {
                                dbname = sql_path_get())
   options('restez_connection' = connection)
   invisible(NULL)
+}
+
+#' @name quiet_connect
+#' @title Quiely connect to the restez database
+#' @family private
+#' @description Quiet version of restez_connect for automatic connections.
+#' @return NULL
+quiet_connect <- function() {
+  restez_disconnect()
+  suppressMessages(restez_connect())
 }
 
 #' @name restez_disconnect

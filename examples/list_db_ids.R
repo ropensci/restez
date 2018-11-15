@@ -1,9 +1,9 @@
 library(restez)
 restez_path_set(filepath = tempdir())
-restez_connect()
 demo_db_create(n = 10)
 # Warning: not recommended for real databases
 #  with potentially millions of IDs
+restez_connect()
 all_ids <- list_db_ids()
 
 

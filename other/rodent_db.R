@@ -7,7 +7,5 @@ library(restez)
 restez_path_set(rodents_path)
 # download for domain 15
 dwntm <- system.time(db_download(preselection = '15'))
-restez_connect()
 crttm <- system.time(db_create(min_length = 100, max_length = 1000))
- # always disconnect
-restez_disconnect()
+# always disconnect

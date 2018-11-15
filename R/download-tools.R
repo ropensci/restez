@@ -157,7 +157,7 @@ file_download <- function(fl, overwrite=FALSE) {
     return(TRUE)
   }
   success <- tryCatch({
-    # can switch to custom_download() to avoid subprocess
+    # can switch to custom_download() to avoid callr
     custom_download2(url = gzurl, destfile = gzdest)
     TRUE
   }, error = function(e) {

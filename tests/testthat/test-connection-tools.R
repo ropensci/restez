@@ -8,16 +8,16 @@ context('Testing \'connection-tools\'')
 test_that('restez_ready() works', {
   expect_false(restez_ready())
   restez:::setup()
+  restez_connect()
   on.exit(restez:::cleanup())
   expect_false(restez_ready())
   demo_db_create()
+  restez_connect()
   expect_true(restez_ready())
 })
 test_that('restez_connect() works', {
   expect_error(restez_connect())
   restez:::setup()
-  # must disconnect because setup connects automatically
-  restez_disconnect()
   on.exit(restez:::cleanup())
   restez_connect()
   expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
@@ -25,8 +25,6 @@ test_that('restez_connect() works', {
 test_that('restez_disconnect() works', {
   expect_null(restez_disconnect())
   restez:::setup()
-  # must disconnect because setup connects automatically
-  restez_disconnect()
   on.exit(restez:::cleanup())
   restez_connect()
   expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
@@ -36,8 +34,6 @@ test_that('restez_disconnect() works', {
 test_that('connected() works', {
   expect_false(restez:::connected())
   restez:::setup()
-  # must disconnect because setup connects automatically
-  restez_disconnect()
   on.exit(restez:::cleanup())
   expect_false(restez:::connected())
   restez_connect()
@@ -46,13 +42,16 @@ test_that('connected() works', {
 test_that('has_data() works', {
   expect_false(restez:::has_data())
   restez:::setup()
+  restez_connect()
   on.exit(restez:::cleanup())
   expect_false(restez:::has_data())
   demo_db_create(n = 10)
+  restez_connect()
   expect_true(restez:::has_data())
 })
 test_that('connection_get() works', {
   restez:::setup()
+  restez_connect()
   on.exit(restez:::cleanup())
   expect_true(is(restez:::connection_get(), 'MonetDBEmbeddedConnection'))
   restez:::cleanup()

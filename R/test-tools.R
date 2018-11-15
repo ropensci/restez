@@ -22,7 +22,6 @@ cleanup <- function() {
 setup <- function() {
   dir.create('test_db_fldr')
   restez_path_set(filepath = 'test_db_fldr')
-  restez_connect()
 }
 
 #' @name testdatadir_get

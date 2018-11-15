@@ -45,8 +45,8 @@ are also not supported.
 \examples{
 library(restez)
 restez_path_set(tempdir())
-restez_connect()
 demo_db_create()
+restez_connect()
 # return fasta record
 fasta_res <- entrez_fetch(db = 'nucleotide',
                           id = c('demo_1', 'demo_2'),

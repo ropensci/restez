@@ -53,16 +53,17 @@ restez_path_set(rstz_pth)
 ``` r
 # Run the download function
 db_download()
-# connect, ensure safe disconnect after finishing
-restez_connect()
-#> Remember to run `restez_disconnect()`
 # after download, create the local database
 db_create()
+#> Remember to run `restez_disconnect()`
 ```
 
 ### Query
 
 ``` r
+# connect, ensure safe disconnect after finishing
+restez_connect()
+#> Remember to run `restez_disconnect()`
 # get a random accession ID from the database
 id <- sample(list_db_ids(), 1)
 #> Warning in list_db_ids(): Number of ids returned was limited to [100].
@@ -71,47 +72,68 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "ACTCTGACTTTTTACTGTATATAAAAACAGCTTTTTGGTTTATACTTGAATTCAGGAATAACCAAGCAGGTGTAAATA"
+#>  chr "ATCAGAGACTTAGGACAGAACAGTCAGCGACAAACGCAAGGAAATTCTTTCTCTCCTTCCTTTCTTTCTGATTGTTTCTTCGTTCGCGGTAAAACTCACAAGTTTGCGTAA"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified RNA clone P10.12"
+#> [1] "Unidentified Cotton leaf curl Rajasthan virus-associated DNA clone pNDM1.5, partial sequence"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
-#> [1] "unidentified"
+#> [1] "unidentified Cotton leaf curl Rajasthan virus-associated DNA"
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF040894                  78 bp    RNA     linear   UNA 06-MAR-1998
-#> DEFINITION  Unidentified RNA clone P10.12.
-#> ACCESSION   AF040894
-#> VERSION     AF040894.1
+#> LOCUS       DQ415960                1129 bp    DNA     linear   UNA 07-MAY-2006
+#> DEFINITION  Unidentified Cotton leaf curl Rajasthan virus-associated DNA clone
+#>             pNDM1.5, partial sequence.
+#> ACCESSION   DQ415960
+#> VERSION     DQ415960.1
 #> KEYWORDS    .
-#> SOURCE      unidentified
-#>   ORGANISM  unidentified
+#> SOURCE      unidentified Cotton leaf curl Rajasthan virus-associated DNA
+#>   ORGANISM  unidentified Cotton leaf curl Rajasthan virus-associated DNA
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 78)
-#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.
-#>   TITLE     RNA from plasma of patient NO.10
+#> REFERENCE   1  (bases 1 to 1129)
+#>   AUTHORS   Radhakrishnan,G., Malathi,V.G. and Varma,A.
+#>   TITLE     Cotton leaf curl Rajasthan virus associated novel DNA molecules
+#>             (NDMs)
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 78)
-#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.
+#> REFERENCE   2  (bases 1 to 1129)
+#>   AUTHORS   Radhakrishnan,G., Malathi,V.G. and Varma,A.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (31-DEC-1997) Department of Applied Molecular Biology,
-#>             Microbiology & Epidemiology Institution, 20 Dongdajie Street,
-#>             Fengtai, Beijing 100071, China
+#>   JOURNAL   Submitted (20-FEB-2006) Advanced Center for Plant Virology,
+#>             Division of Plant Pathology, Indian Agricultural Research
+#>             Institute, Pusa Road, New Delhi, Delhi 110012, India
 #> FEATURES             Location/Qualifiers
-#>      source          1..78
-#>                      /organism="unidentified"
-#>                      /mol_type="genomic RNA"
-#>                      /db_xref="taxon:32644"
-#>                      /clone="P10.12"
-#>                      /note="from the plasma of patient no.10, a person infected
-#>                      by an unknown hepatitis virus"
+#>      source          1..1129
+#>                      /organism="unidentified Cotton leaf curl Rajasthan
+#>                      virus-associated DNA"
+#>                      /mol_type="genomic DNA"
+#>                      /isolate="Rajasthan"
+#>                      /host="cotton"
+#>                      /db_xref="taxon:382345"
+#>                      /clone="pNDM1.5"
+#>                      /country="India"
 #> ORIGIN      
-#>         1 actctgactt tttactgtat ataaaaacag ctttttggtt tatacttgaa ttcaggaata
-#>        61 accaagcagg tgtaaata
+#>         1 atcagagact taggacagaa cagtcagcga caaacgcaag gaaattcttt ctctccttcc
+#>        61 tttctttctg attgtttctt cgttcgcggt aaaactcaca agtttgcgta aaggagtcga
+#>       121 gggacacatc gcatcgtgac aggttcgtcc ctctgtccat cttgtgtaat ttaaagtaaa
+#>       181 tgtagaagaa aactgccgtg gtaaggagta atgcctatga attttccaga gttgccaaat
+#>       241 ttcccttgat aaaacatgta tttttgacaa catttatgcg tatatttcct tgaaattttc
+#>       301 agatatttta gattaaattg cgtagaaaat tgtccgaaaa ttttggaaaa ttatattcac
+#>       361 gattttccca gtaaattcgg tttttatcga aggaaacttg gcaaactctg aaggcccata
+#>       421 cggcgttctt ccttagcacg gcagaaaagg cgcagaagaa ttctttcatc cgtacatact
+#>       481 gttttatctc attctttatt tccgtaagct ctcccggttt ccaactcatt tctgtttgtt
+#>       541 taactattta aagcagccat ccgtttaata ttaccggatg gccgcgcgat ttgaaagtgg
+#>       601 acgaaaaact catgtgagat aggaaacatg ctatagtcaa gaacatgcca cgttgaaatc
+#>       661 ttaaaatttt ctgttttgct tcggacaaga cgctgatagc aacatcatga gttataatgc
+#>       721 ggtaccccaa gtagcaatga ccttttaaaa catttttcaa aagctctcaa aaagatgtta
+#>       781 aaatgttcgt attaggaaac cctttttgta taatttctac aagtaaaatt caagggaaga
+#>       841 gtgttaagca aaactctaaa aatgcgagta tcaatgtaga ttttaacctt tttttcaaac
+#>       901 atttttagtg ttgacaaata cagatatttt ttacccatac attttattcc tcgtaaattt
+#>       961 tacttaaaaa atagccttaa aagagtttcc taaaactgac attgtaactt ttttttataa
+#>      1021 agttgtcttt ttgatatttc aagagctttt taaaagtttc tcttcaaagt cgttcttact
+#>      1081 agggagacat ttttctaaca acgactctat tgcacgtgaa ttttttcga
 #> //
 ```
 
@@ -121,18 +143,48 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF040894.1 Unidentified RNA clone P10.12
-#> ACTCTGACTTTTTACTGTATATAAAAACAGCTTTTTGGTTTATACTTGAATTCAGGAATAACCAAGCAGG
-#> TGTAAATA
+#> >DQ415960.1 Unidentified Cotton leaf curl Rajasthan virus-associated DNA clone pNDM1.5, partial sequence
+#> ATCAGAGACTTAGGACAGAACAGTCAGCGACAAACGCAAGGAAATTCTTTCTCTCCTTCCTTTCTTTCTG
+#> ATTGTTTCTTCGTTCGCGGTAAAACTCACAAGTTTGCGTAAAGGAGTCGAGGGACACATCGCATCGTGAC
+#> AGGTTCGTCCCTCTGTCCATCTTGTGTAATTTAAAGTAAATGTAGAAGAAAACTGCCGTGGTAAGGAGTA
+#> ATGCCTATGAATTTTCCAGAGTTGCCAAATTTCCCTTGATAAAACATGTATTTTTGACAACATTTATGCG
+#> TATATTTCCTTGAAATTTTCAGATATTTTAGATTAAATTGCGTAGAAAATTGTCCGAAAATTTTGGAAAA
+#> TTATATTCACGATTTTCCCAGTAAATTCGGTTTTTATCGAAGGAAACTTGGCAAACTCTGAAGGCCCATA
+#> CGGCGTTCTTCCTTAGCACGGCAGAAAAGGCGCAGAAGAATTCTTTCATCCGTACATACTGTTTTATCTC
+#> ATTCTTTATTTCCGTAAGCTCTCCCGGTTTCCAACTCATTTCTGTTTGTTTAACTATTTAAAGCAGCCAT
+#> CCGTTTAATATTACCGGATGGCCGCGCGATTTGAAAGTGGACGAAAAACTCATGTGAGATAGGAAACATG
+#> CTATAGTCAAGAACATGCCACGTTGAAATCTTAAAATTTTCTGTTTTGCTTCGGACAAGACGCTGATAGC
+#> AACATCATGAGTTATAATGCGGTACCCCAAGTAGCAATGACCTTTTAAAACATTTTTCAAAAGCTCTCAA
+#> AAAGATGTTAAAATGTTCGTATTAGGAAACCCTTTTTGTATAATTTCTACAAGTAAAATTCAAGGGAAGA
+#> GTGTTAAGCAAAACTCTAAAAATGCGAGTATCAATGTAGATTTTAACCTTTTTTTCAAACATTTTTAGTG
+#> TTGACAAATACAGATATTTTTTACCCATACATTTTATTCCTCGTAAATTTTACTTAAAAAATAGCCTTAA
+#> AAGAGTTTCCTAAAACTGACATTGTAACTTTTTTTTATAAAGTTGTCTTTTTGATATTTCAAGAGCTTTT
+#> TAAAAGTTTCTCTTCAAAGTCGTTCTTACTAGGGAGACATTTTTCTAACAACGACTCTATTGCACGTGAA
+#> TTTTTTCGA
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF040894.1 Unidentified RNA clone P10.12
-#> ACTCTGACTTTTTACTGTATATAAAAACAGCTTTTTGGTTTATACTTGAATTCAGGAATAACCAAGCAGG
-#> TGTAAATA
+#> >DQ415960.1 Unidentified Cotton leaf curl Rajasthan virus-associated DNA clone pNDM1.5, partial sequence
+#> ATCAGAGACTTAGGACAGAACAGTCAGCGACAAACGCAAGGAAATTCTTTCTCTCCTTCCTTTCTTTCTG
+#> ATTGTTTCTTCGTTCGCGGTAAAACTCACAAGTTTGCGTAAAGGAGTCGAGGGACACATCGCATCGTGAC
+#> AGGTTCGTCCCTCTGTCCATCTTGTGTAATTTAAAGTAAATGTAGAAGAAAACTGCCGTGGTAAGGAGTA
+#> ATGCCTATGAATTTTCCAGAGTTGCCAAATTTCCCTTGATAAAACATGTATTTTTGACAACATTTATGCG
+#> TATATTTCCTTGAAATTTTCAGATATTTTAGATTAAATTGCGTAGAAAATTGTCCGAAAATTTTGGAAAA
+#> TTATATTCACGATTTTCCCAGTAAATTCGGTTTTTATCGAAGGAAACTTGGCAAACTCTGAAGGCCCATA
+#> CGGCGTTCTTCCTTAGCACGGCAGAAAAGGCGCAGAAGAATTCTTTCATCCGTACATACTGTTTTATCTC
+#> ATTCTTTATTTCCGTAAGCTCTCCCGGTTTCCAACTCATTTCTGTTTGTTTAACTATTTAAAGCAGCCAT
+#> CCGTTTAATATTACCGGATGGCCGCGCGATTTGAAAGTGGACGAAAAACTCATGTGAGATAGGAAACATG
+#> CTATAGTCAAGAACATGCCACGTTGAAATCTTAAAATTTTCTGTTTTGCTTCGGACAAGACGCTGATAGC
+#> AACATCATGAGTTATAATGCGGTACCCCAAGTAGCAATGACCTTTTAAAACATTTTTCAAAAGCTCTCAA
+#> AAAGATGTTAAAATGTTCGTATTAGGAAACCCTTTTTGTATAATTTCTACAAGTAAAATTCAAGGGAAGA
+#> GTGTTAAGCAAAACTCTAAAAATGCGAGTATCAATGTAGATTTTAACCTTTTTTTCAAACATTTTTAGTG
+#> TTGACAAATACAGATATTTTTTACCCATACATTTTATTCCTCGTAAATTTTACTTAAAAAATAGCCTTAA
+#> AAGAGTTTCCTAAAACTGACATTGTAACTTTTTTTTATAAAGTTGTCTTTTTGATATTTCAAGAGCTTTT
+#> TAAAAGTTTCTCTTCAAAGTCGTTCTTACTAGGGAGACATTTTTCTAACAACGACTCTATTGCACGTGAA
+#> TTTTTTCGA
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
@@ -181,5 +233,3 @@ Maintainer
 ----------
 
 [Dom Bennett](https://github.com/DomBennett)
-
-[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

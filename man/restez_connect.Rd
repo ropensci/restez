@@ -7,16 +7,15 @@
 restez_connect()
 }
 \description{
-Returns a connection to the local database. If database
+Sets a connection to the local database. If database
 connection cannot be made, an error is returned.
 }
 \examples{
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
-# always run connect before creating or querying a database
-restez_connect()
 demo_db_create()
+restez_connect()
 restez_status()
 restez_disconnect()
 db_delete(everything = TRUE)

@@ -100,7 +100,7 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 
 #' @name gb_sql_add
 #' @title Add to GenBank SQL database
-#' @description Add records data.frame to SQLite database.
+#' @description Add records data.frame to SQL-like database.
 #' @param df Records data.frame
 #' @return NULL
 #' @family private
@@ -123,4 +123,38 @@ gb_sql_add <- function(df) {
   }
   DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
+}
+
+#' @name gb_build
+#' @title Read and add .seq files to database
+#' @description Given a list of seq_files, read and add the contents of the
+#' files to a SQL-like database. If any errors during the process, FALSE is
+#' returned.
+#' @details This function will automatically connect to the restez database.
+#' @param dpth Download path (where seq_files are stored)
+#' @param seq_files .seq.tar seq file names
+#' @param max_length Maximum sequence length
+#' @param min_length Minimum sequence length
+#' @return Logical
+#' @family private
+gb_build <- function(dpth, seq_files, max_length, min_length) {
+  quiet_connect()
+  on.exit(restez_disconnect())
+  read_errors <- FALSE
+  for (i in seq_along(seq_files)) {
+    seq_file <- seq_files[[i]]
+    cat_line('... ', char(seq_file), '(', stat(i, '/', length(seq_files)), ')')
+    flpth <- file.path(dpth, seq_file)
+    records <- flatfile_read(flpth = flpth)
+    if (length(records) > 0) {
+      df <- gb_df_generate(records = records, min_length = min_length,
+                           max_length = max_length)
+      gb_sql_add(df = df)
+      add_rcrd_log(fl = seq_file)
+    } else {
+      read_errors <- TRUE
+      cat_line('... ... Hmmmm... no records found in that file.')
+    }
+  }
+  read_errors
 }

@@ -10,7 +10,7 @@ gb_sql_add(df)
 \item{df}{Records data.frame}
 }
 \description{
-Add records data.frame to SQLite database.
+Add records data.frame to SQL-like database.
 }
 \seealso{
 Other private: \code{\link{add_rcrd_log}},
@@ -38,7 +38,8 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{extract_sequence}},
   \code{\link{extract_version}},
   \code{\link{file_download}}, \code{\link{filename_log}},
-  \code{\link{flatfile_read}}, \code{\link{gb_df_create}},
+  \code{\link{flatfile_read}}, \code{\link{gb_build2}},
+  \code{\link{gb_build}}, \code{\link{gb_df_create}},
   \code{\link{gb_df_generate}}, \code{\link{gb_sql_query}},
   \code{\link{gbrelease_check}},
   \code{\link{gbrelease_get}}, \code{\link{gbrelease_log}},
@@ -52,7 +53,8 @@ Other private: \code{\link{add_rcrd_log}},
   \code{\link{mock_gb_df_generate}},
   \code{\link{mock_org}}, \code{\link{mock_rec}},
   \code{\link{mock_seq}}, \code{\link{predict_datasizes}},
-  \code{\link{print.status}}, \code{\link{readme_log}},
+  \code{\link{print.status}}, \code{\link{quiet_connect}},
+  \code{\link{readme_log}},
   \code{\link{restez_path_check}}, \code{\link{restez_rl}},
   \code{\link{seshinfo_log}}, \code{\link{setup}},
   \code{\link{slctn_get}}, \code{\link{slctn_log}},

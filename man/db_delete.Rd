@@ -19,7 +19,6 @@ Any connected database will be automatically disconnected.
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
-restez_connect()
 demo_db_create(n = 10)
 db_delete(everything = FALSE)
 # Will not run: gb_sequence_get(id = 'demo_1')

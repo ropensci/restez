@@ -36,15 +36,15 @@ using the same downloaded files from a single restez path.
 This function will not overwrite a pre-existing database. Old databases must
 be deleted before a new one can be created. Use \code{\link{db_delete}} with
 everything=FALSE to delete an SQL database.
+
+Connections/disconnections to the database are made automatically.
 }
 \examples{
 \dontrun{
 library(restez)
 restez_path_set(filepath = 'path/for/downloads/and/database')
 db_download()
-restez_connect()
 db_create()
-restez_disconnect()
 }
 }
 \seealso{
