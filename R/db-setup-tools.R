@@ -54,7 +54,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
   if (is.null(preselection)) {
     response <- restez_rl(prompt = '(Press Esc to quit) ')
   } else {
-    response <- preselection
+    response <- as.character(preselection)
   }
   tryCatch(expr = {
     selected_types <- as.numeric(strsplit(x = response,

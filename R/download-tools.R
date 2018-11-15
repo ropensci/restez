@@ -98,7 +98,6 @@ identify_downloadable_files <- function() {
       kill_switch <- TRUE
     }
     if (kill_switch & line == '') {
-      print(line)
       break
     }
   }
