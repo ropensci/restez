@@ -14,7 +14,7 @@ connection cannot be made, an error is returned.
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 restez_status()
 restez_disconnect()

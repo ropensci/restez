@@ -24,7 +24,7 @@ this function. Set gb_check=TRUE to see if your downloads are up-to-date.
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 restez_status()
 restez_disconnect()

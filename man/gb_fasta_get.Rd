@@ -21,7 +21,7 @@ Get sequence and definition data in FASTA format. Equivalent to
 \examples{
 library(restez)
 restez_path_set(filepath = tempdir())
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 (fasta <- gb_fasta_get(id = 'demo_1'))
 (fastas <- gb_fasta_get(id = c('demo_1', 'demo_2')))

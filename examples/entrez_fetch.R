@@ -1,6 +1,6 @@
 library(restez)
 restez_path_set(tempdir())
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 # return fasta record
 fasta_res <- entrez_fetch(db = 'nucleotide',

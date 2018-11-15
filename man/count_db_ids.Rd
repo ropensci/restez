@@ -21,7 +21,7 @@ Requires an open connection. If no connection or db 0 is returned.
 \examples{
 library(restez)
 restez_path_set(filepath = tempdir())
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 (count_db_ids())
 

@@ -19,7 +19,7 @@ from the accession ID(s).
 \examples{
 library(restez)
 restez_path_set(filepath = tempdir())
-demo_db_create()
+demo_db_create(n = 5)
 restez_connect()
 (seq <- gb_sequence_get(id = 'demo_1'))
 (seqs <- gb_sequence_get(id = c('demo_1', 'demo_2')))

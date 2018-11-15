@@ -1,6 +1,6 @@
 library(restez)
 restez_path_set(filepath = tempdir())
-demo_db_create(n = 10)
+demo_db_create(n = 5)
 # Warning: not recommended for real databases
 #  with potentially millions of IDs
 restez_connect()
