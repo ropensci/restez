@@ -54,3 +54,20 @@ DEFINITION  TPA_inf: Cavia porcellus GLNH gene for globin H.
 ACCESSION   LT548182
 VERSION     LT548182.1
 ```
+
+##Database performance and behaviour
+
+The `restez` package database is built with [`MonetDBlite`](https://github.com/hannesmuehleisen/MonetDBLite-R). If you
+encounter any errors that include the phrase "Server says", then an issue is
+likely to have occurred within the database. Please raise such issues with
+[GitHub](https://github.com/ropensci/restez/issues). But keep the following
+factors in mind:
+
+* Is your request from the database likely to return an object too large for
+your computer's RAM? If the size of database is 5GB then it is likely that
+a request pulling all of the sequence data and information into an R session
+will be around 5GB as well.
+* Are you building and storing the database on a separate USB drive? It has
+been noted that database behaviour can be unusual on separate USB drives. When
+an issue, please provide information about your USB drive's format, size and USB
+connections.

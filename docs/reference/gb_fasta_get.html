@@ -172,13 +172,13 @@ rettype='fasta' in entrez_fetch." />
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>restez</span>)
-<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez'
-#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpogvV34/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>()
+<span class='fu'><a href='restez_path_set.html'>restez_path_set</a></span>(<span class='kw'>filepath</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>())</div><div class='output co'>#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpptigDt/restez'
+#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpptigDt/restez/downloads'</div><div class='input'><span class='fu'><a href='demo_db_create.html'>demo_db_create</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='fu'><a href='restez_connect.html'>restez_connect</a></span>()</div><div class='output co'>#&gt; <span class='message'>Remember to run `restez_disconnect()`</span></div><div class='input'>(<span class='no'>fasta</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_fasta_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'demo_1'</span>))</div><div class='output co'>#&gt;                                                           demo_1 
-#&gt; "&gt;demo_1.2 A demonstration sequence | id demo_1\nTTGCGAAATT\n\n" </div><div class='input'>(<span class='no'>fastas</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_fasta_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                                           demo_1 
-#&gt; "&gt;demo_1.2 A demonstration sequence | id demo_1\nTTGCGAAATT\n\n" 
+#&gt; "&gt;demo_1.1 A demonstration sequence | id demo_1\nTTCCGTCACG\n\n" </div><div class='input'>(<span class='no'>fastas</span> <span class='kw'>&lt;-</span> <span class='fu'>gb_fasta_get</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'demo_1'</span>, <span class='st'>'demo_2'</span>)))</div><div class='output co'>#&gt;                                                           demo_1 
+#&gt; "&gt;demo_1.1 A demonstration sequence | id demo_1\nTTCCGTCACG\n\n" 
 #&gt;                                                           demo_2 
-#&gt; "&gt;demo_2.1 A demonstration sequence | id demo_2\nGATGCATGAC\n\n" </div><div class='input'>
+#&gt; "&gt;demo_2.1 A demonstration sequence | id demo_2\nCGCGTGCTAA\n\n" </div><div class='input'>
 
 <span class='co'># delete demo after example</span>
 <span class='fu'><a href='db_delete.html'>db_delete</a></span>(<span class='kw'>everything</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>

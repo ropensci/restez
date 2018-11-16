@@ -136,8 +136,8 @@ random_definition &lt;-<span class="st"> </span><span class="cf">function</span>
 }
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rodents_path)
 (definition &lt;-<span class="st"> </span><span class="kw">random_definition</span>())</code></pre></div>
-<pre><code>##                                                                                       KT278785 
-## "Apodemus agrarius coreae isolate H9(GP) cytochrome b (cytb) gene, partial cds; mitochondrial"</code></pre>
+<pre><code>##                                                                                                                    MH199590 
+## "UNVERIFIED: Mus musculus clone Samhd141/41-SWhel+GFP_HOST-AT47B_SEQ-H06 immunoglobulin heavy chain gene, partial sequence"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># not connected outside of function!</span>
 (<span class="kw"><a href="../reference/restez_ready.html">restez_ready</a></span>())</code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -151,6 +151,15 @@ DEFINITION  TPA_inf: Cavia porcellus GLNH gene for globin H.
 ACCESSION   LT548182
 VERSION     LT548182.1</code></pre>
 </div>
+<div id="database-performance-and-behaviour" class="section level2">
+<h2 class="hasAnchor">
+<a href="#database-performance-and-behaviour" class="anchor"></a>Database performance and behaviour</h2>
+<p>The <code>restez</code> package database is built with <a href="https://github.com/hannesmuehleisen/MonetDBLite-R"><code>MonetDBlite</code></a>. If you encounter any errors that include the phrase “Server says”, then an issue is likely to have occurred within the database. Please raise such issues with <a href="https://github.com/ropensci/restez/issues">GitHub</a>. But keep the following factors in mind:</p>
+<ul>
+<li>Is your request from the database likely to return an object too large for your computer’s RAM? If the size of database is 5GB then it is likely that a request pulling all of the sequence data and information into an R session will be around 5GB as well.</li>
+<li>Are you building and storing the database on a separate USB drive? It has been noted that database behaviour can be unusual on separate USB drives. When an issue, please provide information about your USB drive’s format, size and USB connections.</li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -161,6 +170,7 @@ VERSION     LT548182.1</code></pre>
 <li><a href="#multiple-restez-paths">Multiple restez paths</a></li>
       <li><a href="#connecting-and-disconnecting">Connecting and disconnecting</a></li>
       <li><a href="#which-domain">Which domain?</a></li>
+      <li><a href="#database-performance-and-behaviour">Database performance and behaviour</a></li>
       </ul>
 </div>
       </div>

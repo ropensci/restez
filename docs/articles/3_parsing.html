@@ -275,7 +275,7 @@ seq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_extr
 <span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 (rand_id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">suppressWarnings</span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>()), <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AB005143"</span>
+<span class="co">#&gt; [1] "AB006450"</span>
 record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_record_get.html">gb_record_get</a></span>(rand_id)
 (<span class="kw"><a href="../reference/gb_extract.html">gb_extract</a></span>(<span class="dt">record =</span> record, <span class="dt">what =</span> <span class="st">'features'</span>))
 <span class="co">#&gt; [[1]]</span>
@@ -283,16 +283,13 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "source"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$location</span>
-<span class="co">#&gt; [1] "1..930"</span>
+<span class="co">#&gt; [1] "1..944"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$organism</span>
 <span class="co">#&gt; [1] "Rattus norvegicus"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$mol_type</span>
 <span class="co">#&gt; [1] "mRNA"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$strain</span>
-<span class="co">#&gt; [1] "Wistar King A"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$db_xref</span>
 <span class="co">#&gt; [1] "taxon:10116"</span>
@@ -301,44 +298,36 @@ record &lt;-<span class="st"> </span><span class="kw"><a href="../reference/gb_r
 <span class="co">#&gt; [1] "male"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$tissue_type</span>
-<span class="co">#&gt; [1] "Brain"</span>
+<span class="co">#&gt; [1] "liver"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$dev_stage</span>
-<span class="co">#&gt; [1] "12 week old"</span>
+<span class="co">#&gt; [1] "adult"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; [[2]]$type</span>
-<span class="co">#&gt; [1] "gene"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$location</span>
-<span class="co">#&gt; [1] "1..930"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$gene</span>
-<span class="co">#&gt; [1] "UCP2"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [[3]]$type</span>
 <span class="co">#&gt; [1] "CDS"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$location</span>
-<span class="co">#&gt; [1] "1..930"</span>
+<span class="co">#&gt; [[2]]$location</span>
+<span class="co">#&gt; [1] "5..520"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$gene</span>
-<span class="co">#&gt; [1] "UCP2"</span>
+<span class="co">#&gt; [[2]]$`function`</span>
+<span class="co">#&gt; [1] "mitochondrial precursor translocase"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$codon_start</span>
+<span class="co">#&gt; [[2]]$note</span>
+<span class="co">#&gt; [1] "rat homologue of yeast Tim17"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]$codon_start</span>
 <span class="co">#&gt; [1] "1"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$product</span>
-<span class="co">#&gt; [1] "uncoupling protein 2"</span>
+<span class="co">#&gt; [[2]]$product</span>
+<span class="co">#&gt; [1] "Tim17"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$protein_id</span>
-<span class="co">#&gt; [1] "BAA28832.1"</span>
+<span class="co">#&gt; [[2]]$protein_id</span>
+<span class="co">#&gt; [1] "BAA21818.1"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]$translation</span>
-<span class="co">#&gt; [1] "MVGFKATDLPPTATVKFLGAGTAACIADLITFPLDTAKVRLQIQGESQGLARTAASAQYRGVLGTILTMVRTEGPRSLYNGLVAGLQRQMSFASVRIGLYDSVKQFYTKGSEHAGIGSRLLAGSTTGALAVAVAQPTDVVKVRFQAQARAGGGRRYQSTVEAYKTIAREEGIRGLWKGTSPNVARNAIVNCTELVTYDLIKDTLLKANLMTDDLPCHFTSAFGAGFCTTVIASPVDVVKTRYMNSALGQYHSAGHCALTMLRKEGPRAFYKGFMPSFLRLGSWNVVMFVTYEQLKRALMAAYESREAPF"</span>
+<span class="co">#&gt; [[2]]$translation</span>
+<span class="co">#&gt; [1] "MEEYAREPCPWRIVDDCGGAFTMGTIGGGIFQAFKGFRNSPVGVNHRLRGSLTAIKTRAPQLGGSFAVWGGLFSTIDCGMVQIRGKEDPWNSITSGALTGAILAARNGPVAMVGSAAMGGILLALIEGAGILLTRFASAQFPNGPQFAEDHSQLPSSQLPSSPFGDYRQYQ"</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 </div>
 <div id="next-up" class="section level2">

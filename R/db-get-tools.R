@@ -15,7 +15,7 @@ list_db_ids <- function(db = 'nucleotide', n=100) {
   if (db == 'nucleotide') {
     sttmnt <- "SELECT accession from nucleotide"
     if (!is.null(n)) {
-      sttmnt <- paste0(sttmnt, '\nLIMIT ', n)
+      sttmnt <- paste0(sttmnt, '\nLIMIT ', as.integer(n))
     }
     res <- DBI::dbGetQuery(conn = connection, statement = sttmnt)
   }
