@@ -18,3 +18,4 @@ NEWS.md
 logo.png
 _pkgdown.yml
 .gitattributes
+pkgdown/
