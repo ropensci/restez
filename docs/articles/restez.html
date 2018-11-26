@@ -12,14 +12,14 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Create and Query a Local Copy of GenBank in R">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -105,7 +105,7 @@
       <h1>Create and Query a Local Copy of GenBank in R</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez/blob/master/vignettes/restez.Rmd"><code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">vignettes/restez.Rmd</a></code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/restez/blob/master/vignettes/restez.Rmd"><code>vignettes/restez.Rmd</code></a></small>
       <div class="hidden name"><code>restez.Rmd</code></div>
 
     </div>
@@ -129,8 +129,8 @@
 <span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
 <span class="co"># rstz_pth &lt;- tempdir()</span>
 <span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> rstz_pth)
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpbtAbMJ/restez'</span>
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpbtAbMJ/restez/downloads'</span></code></pre></div>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp991BSz/restez'</span>
+<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp991BSz/restez/downloads'</span></code></pre></div>
 <p>A user must always set the <code>restez</code> path in order to use the <code>restez</code> library and we are reminded to do this whenever we load the package. (We are also reminded to run <code>restez_connect</code> but we’ll come to that a bit later.) Additionally, by running <code>restez_path_set</code> on a new folder messages are printed to console telling us that the path was created and that a downloads subfolder was created.</p>
 <blockquote>
 <p><strong>Note</strong>, whenever you intend to use <code>restez</code> you will need to specify the <code>restez</code> path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
@@ -140,7 +140,7 @@
 <h2 class="hasAnchor">
 <a href="#download" class="anchor"></a>1.2 Download</h2>
 <p>Now we can download GenBank files using <code><a href="../reference/db_download.html">db_download()</a></code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest available domain which is ‘Unannotated’ and can be pre-specified with ‘20’. Normally, you would run this function without the <code>preselection</code> argument and just wait for the function to prompt you for a domain selection.</p>
-<p>After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either <code>Esc</code> or <code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">Ctrl+c</a></code>. Please note that the diskspace estimates are preliminary. The package trys to be conservative in its estimates.</p>
+<p>After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either <code>Esc</code> or <code>Ctrl+c</code>. Please note that the diskspace estimates are preliminary. The package trys to be conservative in its estimates.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Looking up latest GenBank release ...</span>
@@ -242,20 +242,20 @@
 <span class="co">#&gt; Checking setup status at  ...</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Restez path ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpbtAbMJ/restez'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp991BSz/restez'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Download ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpbtAbMJ/restez/downloads'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp991BSz/restez/downloads'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. files 2</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... GenBank division selections 'Unannotated'</span>
 <span class="co">#&gt; ... GenBank Release 228</span>
-<span class="co">#&gt; ... Last updated '2018-11-16 10:16:44'</span>
+<span class="co">#&gt; ... Last updated '2018-11-26 22:00:14'</span>
 <span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Database ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpbtAbMJ/restez/sql_db'</span>
+<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//Rtmp991BSz/restez/sql_db'</span>
 <span class="co">#&gt; ... Does path exist? 'Yes'</span>
 <span class="co">#&gt; ... N. GBs 0</span>
 <span class="co">#&gt; ... Is database connected? 'Yes'</span>
@@ -263,7 +263,7 @@
 <span class="co">#&gt; ... Number of sequences 448</span>
 <span class="co">#&gt; ... Min. sequence length 0</span>
 <span class="co">#&gt; ... Max. sequence length Inf</span>
-<span class="co">#&gt; ... Last_updated '2018-11-16 10:16:48'</span>
+<span class="co">#&gt; ... Last_updated '2018-11-26 22:00:18'</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p>The status function allows a user to always touch base with their <code>restez</code> set-up. It can be run at any point, before and/or after download or database creation. It is also designed to provide useful messages to a user for what they need to do next in order for them to make queries to their database. If you ever get confused, run <code>restez_status</code> to see what is happening.</p>
 <p>Additionally, if you are developing your own functions that depend on <code>restez</code>, you can use <code>restez_ready</code> which will simply return TRUE or FALSE on whether the database can be queried.</p>
@@ -293,38 +293,36 @@
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/warning">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "DQ317515"</span>
+<span class="co">#&gt; [1] "AF040764"</span>
 <span class="co"># sequence</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))
-<span class="co">#&gt;  Named chr "GCTTCATCCTATGGAATGATTTCCCAAAACTCCAATGTGAAAAGCGCGTCGGCATCCCGTAGGCCCCAAACGTGTAAATGAATCCGACGGACAAACCTCATAACGCATCGG"| __truncated__</span>
-<span class="co">#&gt;  - attr(*, "names")= chr "DQ317515"</span>
+<span class="co">#&gt;  Named chr "GCGTAACTAGTTAGCATGCCAGAGTCTCGTTCGTTATCGGAATTAACCAGACAAATCGCTCCACCAACTAAGAACGGCCATGCACCACCACCCACGGAATCGAGAAAGAGC"| __truncated__</span>
+<span class="co">#&gt;  - attr(*, "names")= chr "AF040764"</span>
 <span class="co"># definition</span>
 (<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))
-<span class="co">#&gt;                                    DQ317515 </span>
-<span class="co">#&gt; "Unidentified clone DP510 genomic sequence"</span>
+<span class="co">#&gt;                       AF040764 </span>
+<span class="co">#&gt; "Unidentified RNA clone M33.1"</span>
 <span class="co"># version</span>
 (<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))
-<span class="co">#&gt;     DQ317515 </span>
-<span class="co">#&gt; "DQ317515.1"</span>
+<span class="co">#&gt;     AF040764 </span>
+<span class="co">#&gt; "AF040764.1"</span>
 <span class="co"># organism</span>
 (<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))
-<span class="co">#&gt;       DQ317515 </span>
+<span class="co">#&gt;       AF040764 </span>
 <span class="co">#&gt; "unidentified"</span>
 <span class="co"># fasta</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))
-<span class="co">#&gt; &gt;DQ317515.1 Unidentified clone DP510 genomic sequence</span>
-<span class="co">#&gt; GCTTCATCCTATGGAATGATTTCCCAAAACTCCAATGTGAAAAGCGCGTCGGCATCCCGTAGGCCCCAAA</span>
-<span class="co">#&gt; CGTGTAAATGAATCCGACGGACAAACCTCATAACGCATCGGATAAAAATCGAGCCCGAAATTCCCCTGGC</span>
-<span class="co">#&gt; CAATTGTGTCGTCTCTTCAATACTTTGTTCAAGCGCGGCCATCTCTTCGT</span>
+<span class="co">#&gt; &gt;AF040764.1 Unidentified RNA clone M33.1</span>
+<span class="co">#&gt; GCGTAACTAGTTAGCATGCCAGAGTCTCGTTCGTTATCGGAATTAACCAGACAAATCGCTCCACCAACTA</span>
+<span class="co">#&gt; AGAACGGCCATGCACCACCACCCACGGAATCGAGAAAGAGCTATCAATCTGTCAATCCTGTC</span>
 <span class="co"># Note, for large databases these requests can take a long time to complete.</span>
 <span class="co"># Always try and limit the size of the database by specifying min and max</span>
 <span class="co"># sequence lengths with db_create()</span>
 <span class="co"># Also note, if an id is not present in the database nothing is returned</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(id, <span class="st">'notanid'</span>)))
-<span class="co">#&gt; &gt;DQ317515.1 Unidentified clone DP510 genomic sequence</span>
-<span class="co">#&gt; GCTTCATCCTATGGAATGATTTCCCAAAACTCCAATGTGAAAAGCGCGTCGGCATCCCGTAGGCCCCAAA</span>
-<span class="co">#&gt; CGTGTAAATGAATCCGACGGACAAACCTCATAACGCATCGGATAAAAATCGAGCCCGAAATTCCCCTGGC</span>
-<span class="co">#&gt; CAATTGTGTCGTCTCTTCAATACTTTGTTCAAGCGCGGCCATCTCTTCGT</span>
+<span class="co">#&gt; &gt;AF040764.1 Unidentified RNA clone M33.1</span>
+<span class="co">#&gt; GCGTAACTAGTTAGCATGCCAGAGTCTCGTTCGTTATCGGAATTAACCAGACAAATCGCTCCACCAACTA</span>
+<span class="co">#&gt; AGAACGGCCATGCACCACCACCCACGGAATCGAGAAAGAGCTATCAATCTGTCAATCCTGTC</span>
 <span class="co"># Always remember to disconnect</span>
 <span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
 <p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://ropensci.github.io/restez/articles/3_parsing.html">GenBank record parsing</a>.</p>
@@ -342,22 +340,36 @@ ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumen
 <span class="co">#&gt; Remember to run `restez_disconnect()`</span>
 ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/warning">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
 (id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF040898"</span>
+<span class="co">#&gt; [1] "AF298102"</span>
 <span class="co"># get fasta sequences with entrez</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF040898.1 Unidentified RNA clone P10.6</span>
-<span class="co">#&gt; ACCCCAGCGCGCTGTAACGGTCAGCGATACAGGTGGCTCGGTTTACGTCATCAGCCGCGATGGCCTTGCA</span>
-<span class="co">#&gt; GCGGTGCGCAGATCAAGCTTGGCTCGCTGGTCGAA</span>
+<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
+<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
+<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
+<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
+<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
+<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
+<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
+<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
+<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
 <span class="co"># entrez_fetch will also search via Entrez for any ids not in the db</span>
 plant_sequence &lt;-<span class="st"> 'AY952423'</span>
 res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(id, plant_sequence),
                             <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF040898.1 Unidentified RNA clone P10.6</span>
-<span class="co">#&gt; ACCCCAGCGCGCTGTAACGGTCAGCGATACAGGTGGCTCGGTTTACGTCATCAGCCGCGATGGCCTTGCA</span>
-<span class="co">#&gt; GCGGTGCGCAGATCAAGCTTGGCTCGCTGGTCGAA</span>
+<span class="co">#&gt; &gt;AF298102.1 Unidentified clone B26 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GGATCCCAGTGCCCCACGCGCCCTCGAATACTTGCTCTACCATTTCGTGCGCAAAGCTCTCGACATCGCG</span>
+<span class="co">#&gt; ATCGCGATTGGCCACGTCCTGGTACTCCTCGACGTAGTGTCCACAGCCCATGATCACATGCACATCGGCC</span>
+<span class="co">#&gt; TGCTCCGAAATCATGCGCAAGGTGTTCGGATCCCATCAGTGGGCTGAAATGGACCCACAAGACGACTGAG</span>
+<span class="co">#&gt; AGAATCGCCGCTGAACTGCGTTCACTGGGGATCGCTGTGAGTGCCCGGACCGTCGCGAAGCTGCTCAAGA</span>
+<span class="co">#&gt; AGATGGGCTTCTCCTTGCGCGTCAATCACAAAAAGCGCTCCAATGGCTCACCGGCGCAACGAGACGCACA</span>
+<span class="co">#&gt; GTTTGCCTACATCGCGGAGCTGCGTGAGCGCTTCGCCAATGAGGCGAATCCCGTGATCAGCGTCGATACC</span>
+<span class="co">#&gt; AAGAAGAAAGAGCTCGTGGGTCAATTCAAGAACTCCGGTACCGCCTGGCATCAACAACCCGTGCTGGTCA</span>
+<span class="co">#&gt; ACGACCACGACTTTNGCTCCGACGCCCTGGGGATCGCAATCCCGTACNGGATCTATGACCTTCGATGCAA</span>
+<span class="co">#&gt; CCGGGGTACNGNCTTCGTCGGTACCAGTCACGAACCCCGCANTTCGCCGTCATGCCGTC</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;AY952423.1 Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast</span>
 <span class="co">#&gt; ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGA</span>
@@ -442,9 +454,8 @@ res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="k
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
