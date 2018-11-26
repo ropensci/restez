@@ -19,9 +19,9 @@ We will run a `phylotaR` run for the rodent subfamily, Dipodinae, the clade that
 ##Install phylotaR
 
 ```r
-# Currently only a specific version of phylotaR can work with restez
-# It must be installed from GitHub using devtools, restez branch
-devtools::install_github(repo = 'ropensci/phylotaR', ref = 'restez')
+# Currently only the development version of phylotaR can work with restez
+# It must be installed from GitHub using devtools
+devtools::install_github(repo = 'ropensci/phylotaR')
 ```
 
 ##Setup

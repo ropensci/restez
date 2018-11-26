@@ -125,9 +125,9 @@
 <div id="install-phylotar" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-phylotar" class="anchor"></a>Install phylotaR</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Currently only a specific version of phylotaR can work with restez</span>
-<span class="co"># It must be installed from GitHub using devtools, restez branch</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">'ropensci/phylotaR'</span>, <span class="dt">ref =</span> <span class="st">'restez'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Currently only the development version of phylotaR can work with restez</span>
+<span class="co"># It must be installed from GitHub using devtools</span>
+devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">'ropensci/phylotaR'</span>)</code></pre></div>
 </div>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
@@ -154,18 +154,18 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run just the first two stages for this demonstration</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/phylotaR/topics/taxise_run">taxise_run</a></span>(wd)
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; Starting stage TAXISE: [2018-11-26 21:59:44]</span>
+<span class="co">#&gt; Starting stage TAXISE: [2018-11-26 22:08:39]</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; Searching taxonomic IDs ...</span>
 <span class="co">#&gt; Downloading taxonomic records ...</span>
 <span class="co">#&gt; . [1-25]</span>
 <span class="co">#&gt; Generating taxonomic dictionary ...</span>
 <span class="co">#&gt; ---------------------------------------------</span>
-<span class="co">#&gt; Completed stage TAXISE: [2018-11-26 21:59:48]</span>
+<span class="co">#&gt; Completed stage TAXISE: [2018-11-26 22:08:43]</span>
 <span class="co">#&gt; ---------------------------------------------</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/phylotaR/topics/download_run">download_run</a></span>(wd)
 <span class="co">#&gt; ----------------------------------------------</span>
-<span class="co">#&gt; Starting stage DOWNLOAD: [2018-11-26 21:59:48]</span>
+<span class="co">#&gt; Starting stage DOWNLOAD: [2018-11-26 22:08:43]</span>
 <span class="co">#&gt; ----------------------------------------------</span>
 <span class="co">#&gt; Identifying suitable clades ...</span>
 <span class="co">#&gt; Identified [1] suitable clades.</span>
@@ -176,7 +176,7 @@ ncbi_dr &lt;-<span class="st"> '[PATH/TO/BLAST]'</span> <span class="co"># e.g. 
 <span class="co">#&gt; . . . [1-100]</span>
 <span class="co">#&gt; Successfully downloaded [99 sqs] in total.</span>
 <span class="co">#&gt; -----------------------------------------------</span>
-<span class="co">#&gt; Completed stage DOWNLOAD: [2018-11-26 21:59:59]</span>
+<span class="co">#&gt; Completed stage DOWNLOAD: [2018-11-26 22:08:53]</span>
 <span class="co">#&gt; -----------------------------------------------</span></code></pre></div>
 <p>Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. <code>phylotaR</code> may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.</p>
 <blockquote>
