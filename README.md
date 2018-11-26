@@ -5,7 +5,7 @@
 Locally query GenBank <img src="https://raw.githubusercontent.com/ropensci/restez/master/logo.png" height="200" align="right"/>
 ===============================================================================================================================
 
-[![Build Status](https://travis-ci.org/ropensci/restez.svg?branch=master)](https://travis-ci.org/ropensci/restez) [![Coverage Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master)](https://coveralls.io/github/ropensci/restez?branch=master) [![ROpenSci status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/onboarding/issues/232) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez) [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
+[![Build Status](https://travis-ci.org/ropensci/restez.svg?branch=master)](https://travis-ci.org/ropensci/restez) [![Coverage Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master)](https://coveralls.io/github/ropensci/restez?branch=master) [![ROpenSci status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/onboarding/issues/232) [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez) [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980) [![JOSS](http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841/status.svg)](https://github.com/openjournals/joss-reviews/issues/)
 
 Download parts of [NCBI's GenBank](https://www.ncbi.nlm.nih.gov/nuccore) to a local folder and create a simple SQL-like database. Use 'get' tools to query the database by accession IDs. [rentrez](https://github.com/ropensci/rentrez) wrappers are available, so that if sequences are not available locally they can be searched for online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
@@ -77,11 +77,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAGCAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG"
+#>  chr "GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTCAAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGAT"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified RNA clone P10.11"
+#> [1] "Unidentified clone B18 DNA sequence from ocean beach sand"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -89,36 +89,44 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF040893                 126 bp    RNA     linear   UNA 06-MAR-1998
-#> DEFINITION  Unidentified RNA clone P10.11.
-#> ACCESSION   AF040893
-#> VERSION     AF040893.1
+#> LOCUS       AF298096                 638 bp    DNA     linear   UNA 23-NOV-2000
+#> DEFINITION  Unidentified clone B18 DNA sequence from ocean beach sand.
+#> ACCESSION   AF298096
+#> VERSION     AF298096.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 126)
-#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.
-#>   TITLE     RNA from plasma of patient NO.10
+#> REFERENCE   1  (bases 1 to 638)
+#>   AUTHORS   Naviaux,R.K.
+#>   TITLE     Sand DNA: a multigenomic library on the beach
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 126)
-#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T. and Zhong,Y.S.
+#> REFERENCE   2  (bases 1 to 638)
+#>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (31-DEC-1997) Department of Applied Molecular Biology,
-#>             Microbiology & Epidemiology Institution, 20 Dongdajie Street,
-#>             Fengtai, Beijing 100071, China
+#>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
+#>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
+#>             92103-8467, USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..126
+#>      source          1..638
 #>                      /organism="unidentified"
-#>                      /mol_type="genomic RNA"
+#>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="P10.11"
-#>                      /note="from the plasma of patient no.10, a person infected
-#>                      by an unknown hepatitis virus"
+#>                      /clone="B18"
+#>                      /note="anonymous environmental sample sequence from ocean
+#>                      beach sand"
 #> ORIGIN      
-#>         1 ccctcgaagc cctcatcgct gaggctgccc cggataccga ggttctttac aaagaccgga
-#>        61 tggactccag caacgacacc tcgctggtaa cagccctcat gacgacctat gacggcactc
-#>       121 ttgagg
+#>         1 gatcctcgaa aatgcgccag tcggccttga tctcccccaa gggctccttg gctgggaagc
+#>        61 ccaacgcctc aagcggcaag acctggggat aaacgatcaa ccagtcgaga tgttggtcag
+#>       121 actgtccatg atcgaacaag ccaaagatgt cgccggccct gaaatggacg ggaccgaatg
+#>       181 ggtagaaccc ccgccgggta cagcgaacct ggtagtgacg cttgacccgc tcgaaccaac
+#>       241 gaatggagaa ggcggcccga aagagcccca tctgtccgct ggccgaggga aagaggtccc
+#>       301 cttcttncag aggcagggcc atggaccatc gatcctctac tactagccag cccaagggca
+#>       361 gcagcttttc gttcgaaacg gtaagatcga gatccacgac ttcgcccgga aaggctcgcc
+#>       421 tctcgccgag ggtccgctcg tagacgatcc ggtccangct atggcggttc caccaccaag
+#>       481 ctatgggcag gacggtcana aaaaagccga nagaaccaac caggcattga ggccggcaac
+#>       541 caaggccanc acatgangaa cagggcgagg tanatccaac tttgttgaac atgatttcac
+#>       601 aacncttanc gcncatggcc ggattggttg attgactt
 #> //
 ```
 
@@ -128,18 +136,34 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF040893.1 Unidentified RNA clone P10.11
-#> CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG
-#> CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG
+#> >AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand
+#> GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC
+#> AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG
+#> CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT
+#> GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT
+#> GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG
+#> CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC
+#> TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG
+#> GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA
+#> CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG
+#> ATTGACTT
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF040893.1 Unidentified RNA clone P10.11
-#> CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG
-#> CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG
+#> >AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand
+#> GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC
+#> AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG
+#> CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT
+#> GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT
+#> GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG
+#> CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC
+#> TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG
+#> GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA
+#> CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG
+#> ATTGACTT
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
