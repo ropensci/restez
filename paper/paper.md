@@ -44,11 +44,13 @@ Downloading sequences and sequence information from GenBank [@Benson2013] and re
 
 The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a computer with currently standard capabilities, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
 
-![outline](https://raw.githubusercontent.com/ropensci/restez/master/paper/outline.png "The functions and file structure for downloading, setting up and querying a local copy of GenBank")
+![The functions and file structure for downloading, setting up and querying a local copy of GenBank](https://raw.githubusercontent.com/ropensci/restez/master/paper/outline.png)
 
 ## Rentrez integration
 
 `rentrez` [@Winter2017] is a popular R package for querying NCBI’s databases via Entrez in R. To maximize the compatibility of `restez`, we implemented wrapper functions with the same names and arguments as the `rentrez` equivalents. Whenever a wrapper function is called the local database copy is searched first. If IDs are missing in the local database a secondary call to Entrez is made via the internet. This allows for easy employment of `restez` in scripts and packages that are already using `rentrez`. At a minimum, a user currently using `rentrez` will only need to create a local subset of the GenBank database, call `restez` instead of `rentrez` and ensure the `restez` database is connected.
+
+# Examples
 
 ## A small example
 
@@ -104,7 +106,7 @@ run(wd = wd)
 
 # Availability
 
-`restez` is open source software made available under the MIT license. At time of writing, it can be installed from its GitHub source code repository using the `devtools` package, e.g. as follows: `devtools::install_github("ropensci/restez")`
+`restez` is open source software made available under the MIT license. It can be installed through CRAN [@restez_cran], `install.package("restez")`, or from its GitHub source code repository using the `devtools` package, e.g. as follows: `devtools::install_github("ropensci/restez")`
 
 # Funding
 
