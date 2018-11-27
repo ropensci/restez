@@ -22,7 +22,7 @@ authors:
    affiliation: "3"
  - name: Alexandre Antonelli
    orcid: 0000-0003-1842-9297
-   affiliation: "1, 2, 4, 5"
+   affiliation: "1, 2, 4"
 affiliations:
  - name: Gothenburg Global Biodiversity Centre, Box 461, SE-405 30 Gothenburg, Sweden
    index: 1
@@ -32,9 +32,7 @@ affiliations:
    index: 3
  - name: Gothenburg Botanical Garden, SE 41319 Gothenburg, Sweden
    index: 4
- - name: Harvard University, Department of Organismic and Evolutionary Biology, Cambridge, MA 02138 U.S.A.
-   index: 5
-date: 27 June 2018
+date: 27 November 2018
 bibliography: paper.bib
 ---
 
