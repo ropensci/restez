@@ -44,9 +44,7 @@ Downloading sequences and sequence information from GenBank [@Benson2013] and re
 
 The `restez` package [@restez_z] aims to make sequence retrieval more efficient by allowing a user to download the GenBank database, either in its entirety or in subsets, to their local machine and query this local database instead. This process is more time efficient as GenBank downloads are made via NCBI’s FTP server using compressed sequence files. With a good internet connection and a computer with currently standard capabilities, a database comprising 7 GB of sequence information (i.e. the total sequence data available for Rodentia as of 27 June 2018) can be generated in less than 10 minutes.
 
-![outline](https://raw.githubusercontent.com/ropensci/restez/master/paper/outline.png)
-
-**Figure 1. The functions and file structure for downloading, setting up and querying a local copy of GenBank.**
+![outline](https://raw.githubusercontent.com/ropensci/restez/master/paper/outline.png "The functions and file structure for downloading, setting up and querying a local copy of GenBank")
 
 ## Rentrez integration
 
@@ -56,7 +54,7 @@ The `restez` package [@restez_z] aims to make sequence retrieval more efficient 
 
 After a restez database has been set-up, we can retrieve all the sequences from an `rentrez::entrez_search()` with a single command.
 
-```{r}
+```r
 # Use rentrez to search for accession IDs of interest
 # Sequences in fasta format can then be retrieved with entrez_fetch
 res <- rentrez::entrez_fetch(db = 'nuccore', id = ids, rettype = 'fasta')
@@ -69,7 +67,7 @@ res <- restez::entrez_fetch(db = 'nuccore', id = ids, rettype = 'fasta')
 
 `phylotaR` is an R package for  retrieving and identifying orthologous sequence clusters from GenBank as a first step in a phylogenetic analysis [@Bennett2018]. Because the package runs an automated pipeline, multiple queries to GenBank via Entrez are made using the `rentrez` package. As a result, for large taxonomic groups containing well-sequenced organisms the pipeline can take a long time to complete.
 
-```{r}
+```r
 library(phylotaR)
 # run phylotaR pipeline for New World Monkeys
 txid <- 9479  # taxonomic ID
@@ -80,7 +78,7 @@ run(wd = wd)
 
 We can download and create a local copy of the primates GenBank locally and re-run the above code with a library call to `restez` for speed-up gains and increased code reliability.
 
-```{r}
+```r
 # setup database
 library(restez)
 # Specify path to a local directory in which database will be stored
@@ -91,7 +89,7 @@ db_create(db = 'nucleotide')
 ```
 Now when re-running the first `phylotaR` code block with the inclusion of the `restez` package, the procedure completes approximately eight times faster.
 
-```{r}
+```r
 # run phylotaR again
 library(phylotaR)
 library(restez)
