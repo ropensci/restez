@@ -168,11 +168,11 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocument
 <span class="co"># sequences</span>
 seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(seq)
-<span class="co">#&gt;  chr "GATCCTCTTCGACCCACGGAACGTAGGTCGACCCGGCGATGACTAGCAGGTTATCTGTCCCCAGAAGCCGGGCCGTACGGATCATCTTTCGCGTTAACTCGAATCCTTCCT"| __truncated__</span>
+<span class="co">#&gt;  chr "GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTCAAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGAT"| __truncated__</span>
 <span class="co"># definitions</span>
 def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(def)
-<span class="co">#&gt; [1] "Unidentified clone A20 DNA sequence from ocean beach sand"</span>
+<span class="co">#&gt; [1] "Unidentified clone B18 DNA sequence from ocean beach sand"</span>
 <span class="co"># organisms</span>
 org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(org)
@@ -180,44 +180,44 @@ org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organis
 <span class="co"># or whole records</span>
 rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(rec)
-<span class="co">#&gt; LOCUS       AF298082                 640 bp    DNA     linear   UNA 23-NOV-2000</span>
-<span class="co">#&gt; DEFINITION  Unidentified clone A20 DNA sequence from ocean beach sand.</span>
-<span class="co">#&gt; ACCESSION   AF298082</span>
-<span class="co">#&gt; VERSION     AF298082.1</span>
+<span class="co">#&gt; LOCUS       AF298096                 638 bp    DNA     linear   UNA 23-NOV-2000</span>
+<span class="co">#&gt; DEFINITION  Unidentified clone B18 DNA sequence from ocean beach sand.</span>
+<span class="co">#&gt; ACCESSION   AF298096</span>
+<span class="co">#&gt; VERSION     AF298096.1</span>
 <span class="co">#&gt; KEYWORDS    .</span>
 <span class="co">#&gt; SOURCE      unidentified</span>
 <span class="co">#&gt;   ORGANISM  unidentified</span>
 <span class="co">#&gt;             unclassified sequences.</span>
-<span class="co">#&gt; REFERENCE   1  (bases 1 to 640)</span>
+<span class="co">#&gt; REFERENCE   1  (bases 1 to 638)</span>
 <span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
 <span class="co">#&gt;   TITLE     Sand DNA: a multigenomic library on the beach</span>
 <span class="co">#&gt;   JOURNAL   Unpublished</span>
-<span class="co">#&gt; REFERENCE   2  (bases 1 to 640)</span>
+<span class="co">#&gt; REFERENCE   2  (bases 1 to 638)</span>
 <span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
 <span class="co">#&gt;   TITLE     Direct Submission</span>
 <span class="co">#&gt;   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San</span>
 <span class="co">#&gt;             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA</span>
 <span class="co">#&gt;             92103-8467, USA</span>
 <span class="co">#&gt; FEATURES             Location/Qualifiers</span>
-<span class="co">#&gt;      source          1..640</span>
+<span class="co">#&gt;      source          1..638</span>
 <span class="co">#&gt;                      /organism="unidentified"</span>
 <span class="co">#&gt;                      /mol_type="genomic DNA"</span>
 <span class="co">#&gt;                      /db_xref="taxon:32644"</span>
-<span class="co">#&gt;                      /clone="A20"</span>
+<span class="co">#&gt;                      /clone="B18"</span>
 <span class="co">#&gt;                      /note="anonymous environmental sample sequence from ocean</span>
 <span class="co">#&gt;                      beach sand"</span>
 <span class="co">#&gt; ORIGIN      </span>
-<span class="co">#&gt;         1 gatcctcttc gacccacgga acgtaggtcg acccggcgat gactagcagg ttatctgtcc</span>
-<span class="co">#&gt;        61 ccagaagccg ggccgtacgg atcatctttc gcgttaactc gaatccttcc tcccgtcgct</span>
-<span class="co">#&gt;       121 ccgggtcgtc gtgggtgagc gagtaaggcc agaagagaaa cgagcaaacg ccgctgatct</span>
-<span class="co">#&gt;       181 ctagtcccat cttgtgggcc atttgagcca cggcccgaat gtcggcctcg cttgtctcag</span>
-<span class="co">#&gt;       241 gtgtcaggtc gccgtcgagg gcgaagttga cctcgacccc atcgaagccg gcgctggcgc</span>
-<span class="co">#&gt;       301 aaatctcgaa gcactctttg agtgtcatct tgtccggata tggaagcgcc cagaggttga</span>
-<span class="co">#&gt;       361 tcgacttctt catgtcgtag cgttttggcg gcctgtcggg tgctttggac tttgcccgag</span>
-<span class="co">#&gt;       421 cggttgggcc cccgtacgat ccttcggccg ccaggccctg agcagccatg aatgtacttn</span>
-<span class="co">#&gt;       481 cgaacgtttg ccgtgtaggc caacgcctcg cgccgcgaca gttttccgga cctgggtgta</span>
-<span class="co">#&gt;       541 tcaggctgtt tgtctgattg tgtcatgaaa ancctctttg gatctccaca gcantcaaat</span>
-<span class="co">#&gt;       601 tttntattnn ccgcaaccng ganggagaaa accaccatcc</span>
+<span class="co">#&gt;         1 gatcctcgaa aatgcgccag tcggccttga tctcccccaa gggctccttg gctgggaagc</span>
+<span class="co">#&gt;        61 ccaacgcctc aagcggcaag acctggggat aaacgatcaa ccagtcgaga tgttggtcag</span>
+<span class="co">#&gt;       121 actgtccatg atcgaacaag ccaaagatgt cgccggccct gaaatggacg ggaccgaatg</span>
+<span class="co">#&gt;       181 ggtagaaccc ccgccgggta cagcgaacct ggtagtgacg cttgacccgc tcgaaccaac</span>
+<span class="co">#&gt;       241 gaatggagaa ggcggcccga aagagcccca tctgtccgct ggccgaggga aagaggtccc</span>
+<span class="co">#&gt;       301 cttcttncag aggcagggcc atggaccatc gatcctctac tactagccag cccaagggca</span>
+<span class="co">#&gt;       361 gcagcttttc gttcgaaacg gtaagatcga gatccacgac ttcgcccgga aaggctcgcc</span>
+<span class="co">#&gt;       421 tctcgccgag ggtccgctcg tagacgatcc ggtccangct atggcggttc caccaccaag</span>
+<span class="co">#&gt;       481 ctatgggcag gacggtcana aaaaagccga nagaaccaac caggcattga ggccggcaac</span>
+<span class="co">#&gt;       541 caaggccanc acatgangaa cagggcgagg tanatccaac tttgttgaac atgatttcac</span>
+<span class="co">#&gt;       601 aacncttanc gcncatggcc ggattggttg attgactt</span>
 <span class="co">#&gt; //</span></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
@@ -226,34 +226,34 @@ rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF298082.1 Unidentified clone A20 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCTTCGACCCACGGAACGTAGGTCGACCCGGCGATGACTAGCAGGTTATCTGTCCCCAGAAGCCG</span>
-<span class="co">#&gt; GGCCGTACGGATCATCTTTCGCGTTAACTCGAATCCTTCCTCCCGTCGCTCCGGGTCGTCGTGGGTGAGC</span>
-<span class="co">#&gt; GAGTAAGGCCAGAAGAGAAACGAGCAAACGCCGCTGATCTCTAGTCCCATCTTGTGGGCCATTTGAGCCA</span>
-<span class="co">#&gt; CGGCCCGAATGTCGGCCTCGCTTGTCTCAGGTGTCAGGTCGCCGTCGAGGGCGAAGTTGACCTCGACCCC</span>
-<span class="co">#&gt; ATCGAAGCCGGCGCTGGCGCAAATCTCGAAGCACTCTTTGAGTGTCATCTTGTCCGGATATGGAAGCGCC</span>
-<span class="co">#&gt; CAGAGGTTGATCGACTTCTTCATGTCGTAGCGTTTTGGCGGCCTGTCGGGTGCTTTGGACTTTGCCCGAG</span>
-<span class="co">#&gt; CGGTTGGGCCCCCGTACGATCCTTCGGCCGCCAGGCCCTGAGCAGCCATGAATGTACTTNCGAACGTTTG</span>
-<span class="co">#&gt; CCGTGTAGGCCAACGCCTCGCGCCGCGACAGTTTTCCGGACCTGGGTGTATCAGGCTGTTTGTCTGATTG</span>
-<span class="co">#&gt; TGTCATGAAAANCCTCTTTGGATCTCCACAGCANTCAAATTTTNTATTNNCCGCAACCNGGANGGAGAAA</span>
-<span class="co">#&gt; ACCACCATCC</span>
+<span class="co">#&gt; &gt;AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC</span>
+<span class="co">#&gt; AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG</span>
+<span class="co">#&gt; CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT</span>
+<span class="co">#&gt; GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT</span>
+<span class="co">#&gt; GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG</span>
+<span class="co">#&gt; CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC</span>
+<span class="co">#&gt; TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG</span>
+<span class="co">#&gt; GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA</span>
+<span class="co">#&gt; CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG</span>
+<span class="co">#&gt; ATTGACTT</span>
 <span class="co"># if the id is not in the local database</span>
 <span class="co"># these wrappers will search online via the rentrez package</span>
 res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'S71333.1'</span>, id),
                     <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
 <span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF298082.1 Unidentified clone A20 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCTTCGACCCACGGAACGTAGGTCGACCCGGCGATGACTAGCAGGTTATCTGTCCCCAGAAGCCG</span>
-<span class="co">#&gt; GGCCGTACGGATCATCTTTCGCGTTAACTCGAATCCTTCCTCCCGTCGCTCCGGGTCGTCGTGGGTGAGC</span>
-<span class="co">#&gt; GAGTAAGGCCAGAAGAGAAACGAGCAAACGCCGCTGATCTCTAGTCCCATCTTGTGGGCCATTTGAGCCA</span>
-<span class="co">#&gt; CGGCCCGAATGTCGGCCTCGCTTGTCTCAGGTGTCAGGTCGCCGTCGAGGGCGAAGTTGACCTCGACCCC</span>
-<span class="co">#&gt; ATCGAAGCCGGCGCTGGCGCAAATCTCGAAGCACTCTTTGAGTGTCATCTTGTCCGGATATGGAAGCGCC</span>
-<span class="co">#&gt; CAGAGGTTGATCGACTTCTTCATGTCGTAGCGTTTTGGCGGCCTGTCGGGTGCTTTGGACTTTGCCCGAG</span>
-<span class="co">#&gt; CGGTTGGGCCCCCGTACGATCCTTCGGCCGCCAGGCCCTGAGCAGCCATGAATGTACTTNCGAACGTTTG</span>
-<span class="co">#&gt; CCGTGTAGGCCAACGCCTCGCGCCGCGACAGTTTTCCGGACCTGGGTGTATCAGGCTGTTTGTCTGATTG</span>
-<span class="co">#&gt; TGTCATGAAAANCCTCTTTGGATCTCCACAGCANTCAAATTTTNTATTNNCCGCAACCNGGANGGAGAAA</span>
-<span class="co">#&gt; ACCACCATCC</span>
+<span class="co">#&gt; &gt;AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand</span>
+<span class="co">#&gt; GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC</span>
+<span class="co">#&gt; AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG</span>
+<span class="co">#&gt; CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT</span>
+<span class="co">#&gt; GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT</span>
+<span class="co">#&gt; GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG</span>
+<span class="co">#&gt; CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC</span>
+<span class="co">#&gt; TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG</span>
+<span class="co">#&gt; GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA</span>
+<span class="co">#&gt; CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG</span>
+<span class="co">#&gt; ATTGACTT</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
 <span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>
@@ -330,6 +330,12 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 <li>
 <a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
+</ul>
+</div>
+<div class="citation">
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing restez</a></li>
 </ul>
 </div>
 <div class="developers">

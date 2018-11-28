@@ -1,13 +1,16 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "restez",
-  "description": "Download large sections of GenBank and generate a local SQL-based\n    database. A user can then query this database using restez functions or\n    through rentrez wrappers.",
-  "name": "restez: Create and Query a Local Copy of GenBank in R",
-  "codeRepository": "https://github.com/AntonelliLab/restez#readme",
-  "issueTracker": "https://github.com/AntonelliLab/restez/issues",
+  "description": "Download large sections of\n    'GenBank' <https://www.ncbi.nlm.nih.gov/genbank/> and generate a local\n    SQL-based database. A user can then query this database using 'restez'\n    functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez>\n    wrappers.",
+  "name": "restez: Create and Query a Local Copy of 'GenBank' in R",
+  "codeRepository": "https://github.com/ropensci/restez#readme",
+  "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -20,7 +23,8 @@
       "@type": "Person",
       "givenName": "Dom",
       "familyName": "Bennett",
-      "email": "dominic.john.bennett@gmail.com"
+      "email": "dominic.john.bennett@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2722-1359"
     }
   ],
   "maintainer": [
@@ -28,7 +32,8 @@
       "@type": "Person",
       "givenName": "Dom",
       "familyName": "Bennett",
-      "email": "dominic.john.bennett@gmail.com"
+      "email": "dominic.john.bennett@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2722-1359"
     }
   ],
   "softwareSuggestions": [
@@ -109,6 +114,7 @@
       "@type": "SoftwareApplication",
       "identifier": "MonetDBLite",
       "name": "MonetDBLite",
+      "version": ">= 0.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -180,16 +186,16 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "subprocess",
-      "name": "subprocess",
-      "version": ">= 0.8.3",
+      "identifier": "callr",
+      "name": "callr",
+      "version": ">= 3.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=subprocess"
+      "sameAs": "https://CRAN.R-project.org/package=callr"
     },
     {
       "@type": "SoftwareApplication",
@@ -204,8 +210,95 @@
       "sameAs": "https://CRAN.R-project.org/package=devtools"
     }
   ],
-  "readme": "https://github.com/AntonelliLab/restez/blob/master/README.md",
-  "fileSize": "1400.022KB",
-  "contIntegration": ["https://travis-ci.org/AntonelliLab/restez", "https://coveralls.io/github/AntonelliLab/restez?branch=master"],
-  "keywords": ["genbank", "dna", "sequence", "entrez"]
+  "readme": "https://github.com/ropensci/restez/blob/master/README.md",
+  "fileSize": "1399.149KB",
+  "contIntegration": [
+    "https://travis-ci.org/AntonelliLab/restez",
+    "https://coveralls.io/github/AntonelliLab/restez?branch=master"
+  ],
+  "keywords": [
+    "genbank",
+    "dna",
+    "sequence",
+    "entrez",
+    "r",
+    "r-package",
+    "rstats"
+  ],
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "releaseNotes": "https://github.com/ropensci/restez/blob/master/NEWS.md",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/onboarding/issues/232",
+    "provider": "http://ropensci.org"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Organization",
+          "name": "Bennett"
+        },
+        {
+          "@type": "Organization",
+          "name": "D.J."
+        },
+        {
+          "@type": "Organization",
+          "name": "Hettling"
+        },
+        {
+          "@type": "Organization",
+          "name": "H."
+        },
+        {
+          "@type": "Organization",
+          "name": "Silvestro"
+        },
+        {
+          "@type": "Organization",
+          "name": "D."
+        },
+        {
+          "@type": "Organization",
+          "name": "Vos"
+        },
+        {
+          "@type": "Organization",
+          "name": "R."
+        },
+        {
+          "@type": "Organization",
+          "name": "Antonelli"
+        },
+        {
+          "@type": "Organization",
+          "name": "A."
+        }
+      ],
+      "name": "restez: Create and Query a Local Copy of GenBank in R",
+      "identifier": "10.21105/joss.01102",
+      "paginiation": "1102",
+      "@id": "https://doi.org/10.21105/joss.01102",
+      "sameAs": "https://doi.org/10.21105/joss.01102",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "31",
+        "datePublished": "2018",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "3",
+          "name": "The Journal of Open Source Software"
+        }
+      }
+    }
+  ],
+  "relatedLink": "https://CRAN.R-project.org/package=restez"
 }
