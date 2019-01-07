@@ -6,11 +6,11 @@ library(testthat)
 context('Testing \'biomartr-tools\'')
 test_that('check_connection() works', {
   with_mock(
-    `RCurl::getURL` = function(...) FALSE,
+    `RCurl::url.exists` = function(...) FALSE,
     expect_error(restez:::check_connection())
   )
   with_mock(
-    `RCurl::getURL` = function(...) '',
+    `RCurl::url.exists` = function(...) TRUE,
     expect_true(restez:::check_connection())
   )
 })

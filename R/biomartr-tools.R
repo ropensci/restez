@@ -7,14 +7,13 @@
 #' @family private
 # originally connected.to.internet
 check_connection <- function() {
-  if (is.character(RCurl::getURL("www.google.com"))) {
+  check_url <- "https://www.ncbi.nlm.nih.gov/"
+  if (RCurl::url.exists(check_url)) {
     TRUE
   } else {
-    stop(
-      "It seems that you are not connected to the internet.
-            Could you please check?",
-      call. = FALSE
-    )
+    msg <- paste0("Unable to connect to ", char(check_url),
+                  "Are you connected to the internet?")
+    stop(msg, call. = FALSE)
   }
 }
 

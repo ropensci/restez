@@ -1,12 +1,17 @@
 
 
-
 # TODO:
 
+problem_files <- c('gbinv17.seq', 'gbpln118.seq', 'gbpln12.seq')
+restez_path_set('.')
+for (problem_file in problem_files) {
+  file_download(problem_file)
+}
 
+db_create()
 
 devtools::load_all('.')
-restez_path_set('.')
+
 db_delete(everything = TRUE)
 restez_path_set('.')
 db_download()
