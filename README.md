@@ -25,18 +25,15 @@ This package aims to make sequence retrieval more efficient by allowing a user t
 Installation
 ------------
 
-`restez` is available via CRAN and can be installed:
-
-``` r
-install.packages("restez")
-```
-
-Or you can install the development version via GitHub with:
+The package can currently only be installed through GitHub:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("ropensci/restez")
 ```
+
+(It was previously available via CRAN but was archived due to a key dependency [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) being no longer available.)
+
 
 Quick Examples
 --------------
