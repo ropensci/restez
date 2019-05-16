@@ -30,7 +30,11 @@ Installation
 The package can currently only be installed through GitHub:
 
 ``` r
-# install.packages("devtools")
+# devtools required for installtion via GitHub
+install.packages("devtools")
+# install key dependency no longer available on CRAN
+devtools::install_github("hannesmuehleisen/MonetDBLite-R")
+# install restez
 devtools::install_github("ropensci/restez")
 ```
 
