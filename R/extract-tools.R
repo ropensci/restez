@@ -262,6 +262,10 @@ extract_keywords <- function(record) {
   keyword_text <- sub(pattern = '\\.\n$', replacement = '', x = keyword_text)
   # split up
   keyword_text <- strsplit(x = keyword_text, split = ';\\s+')[[1]]
+  # patch: prevent return of "character(0)"
+  if (length(keyword_text) == 0) {
+    keyword_text <- ''
+  }
   keyword_text
 }
 
