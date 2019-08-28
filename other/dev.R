@@ -1,7 +1,11 @@
+# Problem record
+devtools::load_all()
+record <- rentrez::entrez_fetch(db = 'nucleotide', id = 'AB467315',
+                                rettype = 'gb', retmode = 'text')
+extract_features(record)
 
 
 # TODO:
-
 problem_files <- c('gbinv17.seq', 'gbpln118.seq', 'gbpln12.seq')
 restez_path_set('.')
 for (problem_file in problem_files) {

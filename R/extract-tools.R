@@ -4,6 +4,7 @@
 # EP216306 -- contig, synthetic sequences, multiple accessions
 # AACY020000000 -- wgs
 # KBQR00000000 -- targeted locus study
+# AB467315 -- feature location information over more than one line
 
 # Background ----
 #' @name extract_by_patterns
@@ -215,15 +216,25 @@ extract_features <- function(record) {
   features <- list()
   i <- 0
   nm <- ''
+  # identify location information
+  common_pttrn <- '\\s(complement\\()?[0-9]+(\\.\\.[0-9]+)?\\)?$'
+  join_pttrn <- '\\sjoin\\([0-9]+\\.\\.[0-9]+,'
   for (ln in features_lines) {
-    pttrn <- '\\s(complement\\()?[0-9]+(\\.\\.[0-9]+)?\\)?$'
-    with_location <- grepl(pattern = pttrn, x = ln)
+    print(ln)
+    with_location <- grepl(pattern = common_pttrn, x = ln) |
+      grepl(pattern = join_pttrn, x = ln)
     if (with_location) {
-      i <- i + 1
-      features[[i]] <- list()
+      # if location information create a new features element
       typ_location <- strsplit(x = ln, split = '\\s+')[[1]][-1]
-      features[[i]][['type']] <- typ_location[[1]]
-      features[[i]][['location']] <- typ_location[[2]]
+      if (length(typ_location) > 1) {
+        i <- i + 1
+        features[[i]] <- list()
+        features[[i]][['type']] <- typ_location[[1]]
+        features[[i]][['location']] <- typ_location[[2]]
+      } else {
+        features[[i]][['location']] <- paste0(features[[i]][['location']],
+                                              typ_location[[1]])
+      }
     } else {
       nm_value <- strsplit(x = ln, split = '=')[[1]]
       if (length(nm_value) < 2) {
