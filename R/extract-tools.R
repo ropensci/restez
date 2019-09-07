@@ -220,7 +220,6 @@ extract_features <- function(record) {
   common_pttrn <- '\\s(complement\\()?[0-9]+(\\.\\.[0-9]+)?\\)?$'
   join_pttrn <- '\\sjoin\\([0-9]+\\.\\.[0-9]+,'
   for (ln in features_lines) {
-    print(ln)
     with_location <- grepl(pattern = common_pttrn, x = ln) |
       grepl(pattern = join_pttrn, x = ln)
     if (with_location) {
