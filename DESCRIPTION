@@ -21,15 +21,15 @@ Depends:
 Imports:
     utils,
     rentrez,
-    MonetDBLite (>= 0.6.0),
     DBI (>= 1.0.0),
     downloader,
     RCurl,
     cli,
     crayon,
-    callr (>= 3.0.0),
-    devtools
+    callr (>= 3.0.0)
 Suggests:
+    devtools,
+    MonetDBLite (>= 0.6.0),
     testthat,
     knitr,
     R.utils,
