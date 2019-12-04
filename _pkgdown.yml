@@ -121,3 +121,6 @@ articles:
   - '`3_parsing`'
   - '`4_phylotar`'
   - '`5_tips_and_tricks`'
+
+extra_packages:
+  - cran/MonetDBLite
