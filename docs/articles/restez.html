@@ -13,8 +13,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Create and Query a Local Copy of GenBank in R">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -37,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">restez</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -45,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -72,7 +73,7 @@
       <a href="../articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
     </li>
     <li>
-      <a href="../articles/4_phylotar.html">4. Running phylotaR with restez</a>
+      <a href="../articles/4_phylotaR.html">4. Running phylotaR with restez</a>
     </li>
     <li>
       <a href="../articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
@@ -86,7 +87,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ropensci/restez">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,6 +100,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -122,15 +124,15 @@
 <h2 class="hasAnchor">
 <a href="#setting-up" class="anchor"></a>1.1 Setting up</h2>
 <p>Before we can download anything, we need to tell <code>restez</code> where we would like to store the downloaded files and the eventual GenBank database. To do this we use the <code>restez_path_set</code> function. With this function a user can provide a system file path to a folder within which the function will create a new folder called ‘restez’. In this example, we will create a <code>restez</code> folder in a temporary folder.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v1.0.0</span>
-<span class="co">#&gt; -------------</span>
-<span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
-<span class="co"># rstz_pth &lt;- tempdir()</span>
-<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> rstz_pth)
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpPSdaDl/restez'</span>
-<span class="co">#&gt; ... Creating '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpPSdaDl/restez/downloads'</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; -------------</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; restez v1.0.2</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; -------------</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># rstz_pth &lt;- tempdir()</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(<span class="dt">filepath =</span> rstz_pth)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; ... Creating '/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmprgaXNH/restez'</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; ... Creating '/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmprgaXNH/restez/downloads'</span></a></code></pre></div>
 <p>A user must always set the <code>restez</code> path in order to use the <code>restez</code> library and we are reminded to do this whenever we load the package. (We are also reminded to run <code>restez_connect</code> but we’ll come to that a bit later.) Additionally, by running <code>restez_path_set</code> on a new folder messages are printed to console telling us that the path was created and that a downloads subfolder was created.</p>
 <blockquote>
 <p><strong>Note</strong>, whenever you intend to use <code>restez</code> you will need to specify the <code>restez</code> path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.</p>
@@ -141,79 +143,77 @@
 <a href="#download" class="anchor"></a>1.2 Download</h2>
 <p>Now we can download GenBank files using <code><a href="../reference/db_download.html">db_download()</a></code>. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest available domain which is ‘Unannotated’ and can be pre-specified with ‘20’. Normally, you would run this function without the <code>preselection</code> argument and just wait for the function to prompt you for a domain selection.</p>
 <p>After launching, the download function will ask you whether it is OK to download and set up a database for the selected sequence files. If the selection is likely to be large you can always quit the process using either <code>Esc</code> or <code>Ctrl+c</code>. Please note that the diskspace estimates are preliminary. The package trys to be conservative in its estimates.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Looking up latest GenBank release ...</span>
-<span class="co">#&gt; ... release number 228</span>
-<span class="co">#&gt; [1] ""</span>
-<span class="co">#&gt; ... found 3232 sequence files</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Which sequence file types would you like to download?</span>
-<span class="co">#&gt; Choose from those listed below:</span>
-<span class="co">#&gt; ● 1  - 'Bacterial'</span>
-<span class="co">#&gt;         542 files and 123 GB</span>
-<span class="co">#&gt; ● 2  - 'EST (expressed sequence tag)'</span>
-<span class="co">#&gt;         486 files and 243 GB</span>
-<span class="co">#&gt; ● 3  - 'Constructed'</span>
-<span class="co">#&gt;         372 files and 84.6 GB</span>
-<span class="co">#&gt; ● 4  - 'Patent'</span>
-<span class="co">#&gt;         340 files and 77.9 GB</span>
-<span class="co">#&gt; ● 5  - 'GSS (genome survey sequence)'</span>
-<span class="co">#&gt;         308 files and 117 GB</span>
-<span class="co">#&gt; ● 6  - 'TSA (transcriptome shotgun assembly)'</span>
-<span class="co">#&gt;         234 files and 53.9 GB</span>
-<span class="co">#&gt; ● 7  - 'Plant sequence entries (including fungi and algae)'</span>
-<span class="co">#&gt;         232 files and 62.8 GB</span>
-<span class="co">#&gt; ● 8  - 'HTGS (high throughput genomic sequencing)'</span>
-<span class="co">#&gt;         155 files and 36.7 GB</span>
-<span class="co">#&gt; ● 9  - 'Invertebrate'</span>
-<span class="co">#&gt;         112 files and 24.8 GB</span>
-<span class="co">#&gt; ● 10 - 'Environmental sampling'</span>
-<span class="co">#&gt;         103 files and 24.1 GB</span>
-<span class="co">#&gt; ● 11 - 'Other vertebrate'</span>
-<span class="co">#&gt;         94 files and 19.4 GB</span>
-<span class="co">#&gt; ● 12 - 'Primate'</span>
-<span class="co">#&gt;         59 files and 13.7 GB</span>
-<span class="co">#&gt; ● 13 - 'Viral'</span>
-<span class="co">#&gt;         58 files and 13.1 GB</span>
-<span class="co">#&gt; ● 14 - 'Other mammalian'</span>
-<span class="co">#&gt;         55 files and 9.44 GB</span>
-<span class="co">#&gt; ● 15 - 'Rodent'</span>
-<span class="co">#&gt;         31 files and 7.32 GB</span>
-<span class="co">#&gt; ● 16 - 'STS (sequence tagged site)'</span>
-<span class="co">#&gt;         20 files and 4.45 GB</span>
-<span class="co">#&gt; ● 17 - 'HTC (high throughput cDNA sequencing)'</span>
-<span class="co">#&gt;         15 files and 3.43 GB</span>
-<span class="co">#&gt; ● 18 - 'Synthetic and chimeric'</span>
-<span class="co">#&gt;         10 files and 2.42 GB</span>
-<span class="co">#&gt; ● 19 - 'Phage'</span>
-<span class="co">#&gt;         5 files and 1.12 GB</span>
-<span class="co">#&gt; ● 20 - 'Unannotated'</span>
-<span class="co">#&gt;         1 files and 0.00111 GB</span>
-<span class="co">#&gt; Provide one or more numbers separated by spaces.</span>
-<span class="co">#&gt; e.g. to download all Mammalian sequences, type: "12 14 15" followed by Enter</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Which files would you like to download?</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; You've selected a total of 1 file(s) and 0.00111 GB of uncompressed data.</span>
-<span class="co">#&gt; These represent: </span>
-<span class="co">#&gt; ● 'Unannotated'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Based on stated GenBank files sizes, we estimate ... </span>
-<span class="co">#&gt; ... 0.000222 GB for  compressed, downloaded files</span>
-<span class="co">#&gt; ... 0.00135 GB for the SQL database</span>
-<span class="co">#&gt; Leading to a total of 0.00158 GB</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Please note, the real sizes of the database and its downloads cannot be</span>
-<span class="co">#&gt; accurately predicted beforehand.</span>
-<span class="co">#&gt; These are just estimates, actual sizes may differ by up to a factor of two.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Is this OK?</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Downloading ...</span>
-<span class="co">#&gt; ... 'gbuna1.seq' (1/1)</span>
-<span class="co">#&gt; Done. Enjoy your day.</span>
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/db_download.html">db_download</a></span>(<span class="dt">preselection =</span> <span class="st">'20'</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Looking up latest GenBank release ...</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; ... release number 235</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; ... found 2549 sequence files</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; Which sequence file types would you like to download?</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Choose from those listed below:</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; ● 1  - 'EST (expressed sequence tag)'</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;         574 files and 243 GB</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; ● 2  - 'Bacterial'</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;         401 files and 175 GB</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; ● 3  - 'GSS (genome survey sequence)'</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;         268 files and 117 GB</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; ● 4  - 'Constructed'</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;         212 files and 89.3 GB</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; ● 5  - 'Patent'</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;         202 files and 84.8 GB</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; ● 6  - 'Plant sequence entries (including fungi and algae)'</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;         186 files and 92.9 GB</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; ● 7  - 'Other vertebrate'</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;         166 files and 69.1 GB</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; ● 8  - 'TSA (transcriptome shotgun assembly)'</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;         127 files and 53.9 GB</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; ● 9  - 'HTGS (high throughput genomic sequencing)'</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt;         82 files and 36.7 GB</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; ● 10 - 'Invertebrate'</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt;         80 files and 32.4 GB</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; ● 11 - 'Environmental sampling'</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt;         58 files and 24.9 GB</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt; ● 12 - 'Other mammalian'</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt;         39 files and 13.5 GB</span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt; ● 13 - 'Viral'</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt;         35 files and 15.2 GB</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; ● 14 - 'Primate'</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt;         34 files and 14.2 GB</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; ● 15 - 'Rodent'</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt;         34 files and 14 GB</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt; ● 16 - 'Synthetic and chimeric'</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt;         27 files and 10.7 GB</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; ● 17 - 'STS (sequence tagged site)'</span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt;         11 files and 4.45 GB</span></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; ● 18 - 'HTC (high throughput cDNA sequencing)'</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">#&gt;         8 files and 3.45 GB</span></a>
+<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co">#&gt; ● 19 - 'Phage'</span></a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt;         4 files and 1.58 GB</span></a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt; ● 20 - 'Unannotated'</span></a>
+<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt;         1 files and 0.00184 GB</span></a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; Provide one or more numbers separated by spaces.</span></a>
+<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="co">#&gt; e.g. to download all Mammalian sequences, type: "12 14 15" followed by Enter</span></a>
+<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="co">#&gt; Which files would you like to download?</span></a>
+<a class="sourceLine" id="cb2-53" data-line-number="53"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb2-54" data-line-number="54"><span class="co">#&gt; You've selected a total of 1 file(s) and 0.00184 GB of uncompressed data.</span></a>
+<a class="sourceLine" id="cb2-55" data-line-number="55"><span class="co">#&gt; These represent: </span></a>
+<a class="sourceLine" id="cb2-56" data-line-number="56"><span class="co">#&gt; ● 'Unannotated'</span></a>
+<a class="sourceLine" id="cb2-57" data-line-number="57"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-58" data-line-number="58"><span class="co">#&gt; Based on stated GenBank files sizes, we estimate ... </span></a>
+<a class="sourceLine" id="cb2-59" data-line-number="59"><span class="co">#&gt; ... 0.000368 GB for  compressed, downloaded files</span></a>
+<a class="sourceLine" id="cb2-60" data-line-number="60"><span class="co">#&gt; ... 0.00224 GB for the SQL database</span></a>
+<a class="sourceLine" id="cb2-61" data-line-number="61"><span class="co">#&gt; Leading to a total of 0.00261 GB</span></a>
+<a class="sourceLine" id="cb2-62" data-line-number="62"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-63" data-line-number="63"><span class="co">#&gt; Please note, the real sizes of the database and its downloads cannot be</span></a>
+<a class="sourceLine" id="cb2-64" data-line-number="64"><span class="co">#&gt; accurately predicted beforehand.</span></a>
+<a class="sourceLine" id="cb2-65" data-line-number="65"><span class="co">#&gt; These are just estimates, actual sizes may differ by up to a factor of two.</span></a>
+<a class="sourceLine" id="cb2-66" data-line-number="66"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-67" data-line-number="67"><span class="co">#&gt; Is this OK?</span></a>
+<a class="sourceLine" id="cb2-68" data-line-number="68"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb2-69" data-line-number="69"><span class="co">#&gt; Downloading ...</span></a>
+<a class="sourceLine" id="cb2-70" data-line-number="70"><span class="co">#&gt; ... 'gbuna1.seq' (1/1)</span></a>
+<a class="sourceLine" id="cb2-71" data-line-number="71"><span class="co">#&gt; Done. Enjoy your day.</span></a></code></pre></div>
 <p>Now the download has begun, we just need to wait for it to finish. For the largest domains, this can take quite a while and may be prone to server errors. If you ever encounter a failed downloaded file it is possible to re-run the <code>db_download</code> function again and – so long as the same selection is made – the function will only download the missing files.</p>
 </div>
 <div id="create-a-database" class="section level2">
@@ -221,63 +221,63 @@
 <a href="#create-a-database" class="anchor"></a>1.3 Create a database</h2>
 <p>After the download has completed, we need to use <code><a href="../reference/db_create.html">db_create()</a></code> to create our local database. This looks in the downloads folder of our <code>restez</code> path, breaks these files up into separate GenBank records and adds them to the SQL-like database. Again, for very large collections of sequences this can take quite a while.</p>
 <p>Before running the <code>db_create</code> function, however, we must first establish a connection to the database in the <code>restez</code> path using the <code>restez_connect</code> function. As with SQL databases we must always make sure to connect and then disconnect after we have interacted with a database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-<span class="kw"><a href="../reference/db_create.html">db_create</a></span>()
-<span class="co">#&gt; Adding 1 file(s) to the database ...</span>
-<span class="co">#&gt; ... [32m'gbuna1.seq.gz'[39m([34m1 / 1[39m)</span>
-<span class="co">#&gt; Done.</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="../reference/db_create.html">db_create</a></span>()</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Adding 1 file(s) to the database ...</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; ... [32m'gbuna1.seq.gz'[39m ([34m1/1[39m)</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; Done.</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 <p><code><a href="../reference/db_create.html">db_create()</a></code> allows a user to specify minimum and maximum sequence lengths. It’s always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run <code><a href="../reference/db_create.html">db_create()</a></code> again to change the limits. You will simply need to delete the original database first with <code>db_delete</code>.</p>
 </div>
 <div id="checking-the-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#checking-the-setup" class="anchor"></a>1.4 Checking the setup</h2>
 <p>After the download and the database creation steps are complete, we can confirm our setup using <code>restez_status</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)
-<span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-<span class="kw"><a href="../reference/restez_status.html">restez_status</a></span>()
-<span class="co">#&gt; Checking setup status at  ...</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Restez path ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpPSdaDl/restez'</span>
-<span class="co">#&gt; ... Does path exist? 'Yes'</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Download ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpPSdaDl/restez/downloads'</span>
-<span class="co">#&gt; ... Does path exist? 'Yes'</span>
-<span class="co">#&gt; ... N. files 2</span>
-<span class="co">#&gt; ... N. GBs 0</span>
-<span class="co">#&gt; ... GenBank division selections 'Unannotated'</span>
-<span class="co">#&gt; ... GenBank Release 228</span>
-<span class="co">#&gt; ... Last updated '2018-11-26 22:09:08'</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Database ...</span>
-<span class="co">#&gt; ... Path '/var/folders/ps/g89999v12490dmp0jnsfmykm0043m3/T//RtmpPSdaDl/restez/sql_db'</span>
-<span class="co">#&gt; ... Does path exist? 'Yes'</span>
-<span class="co">#&gt; ... N. GBs 0</span>
-<span class="co">#&gt; ... Is database connected? 'Yes'</span>
-<span class="co">#&gt; ... Does the database have data? 'Yes'</span>
-<span class="co">#&gt; ... Number of sequences 448</span>
-<span class="co">#&gt; ... Min. sequence length 0</span>
-<span class="co">#&gt; ... Max. sequence length Inf</span>
-<span class="co">#&gt; ... Last_updated '2018-11-26 22:09:11'</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="../reference/restez_status.html">restez_status</a></span>()</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Checking setup status at  ...</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; Restez path ...</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; ... Path '/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmprgaXNH/restez'</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; ... Does path exist? 'Yes'</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; Download ...</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; ... Path '/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmprgaXNH/restez/downloads'</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; ... Does path exist? 'Yes'</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; ... N. files 2</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; ... N. GBs 0</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; ... GenBank division selections 'Unannotated'</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; ... GenBank Release 235</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; ... Last updated '2020-01-03 14:59:03'</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; Database ...</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; ... Path '/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmprgaXNH/restez/sql_db'</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; ... Does path exist? 'Yes'</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; ... N. GBs 0</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; ... Is database connected? 'Yes'</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; ... Does the database have data? 'Yes'</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; ... Number of sequences 562</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; ... Min. sequence length 0</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; ... Max. sequence length Inf</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; ... Last_updated '2020-01-03 14:59:05'</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 <p>The status function allows a user to always touch base with their <code>restez</code> set-up. It can be run at any point, before and/or after download or database creation. It is also designed to provide useful messages to a user for what they need to do next in order for them to make queries to their database. If you ever get confused, run <code>restez_status</code> to see what is happening.</p>
 <p>Additionally, if you are developing your own functions that depend on <code>restez</code>, you can use <code>restez_ready</code> which will simply return TRUE or FALSE on whether the database can be queried.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)
-<span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-<span class="cf">if</span> (<span class="kw"><a href="../reference/restez_ready.html">restez_ready</a></span>()) {
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="st">'Database is ready to be queried!'</span>)
-} <span class="cf">else</span> {
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="st">'Database cannot be queried :-('</span>)
-}
-<span class="co">#&gt; [1] "Database is ready to be queried!"</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="cf">if</span> (<span class="kw"><a href="../reference/restez_ready.html">restez_ready</a></span>()) {</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">'Database is ready to be queried!'</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">'Database cannot be queried :-('</span>)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "Database is ready to be queried!"</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 </div>
 </div>
 <div id="query" class="section level1">
@@ -287,54 +287,44 @@
 <blockquote>
 <p>Always remember to disconnect after you have finished your querying!</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)
-<span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/warning">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
-(id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF298084"</span>
-<span class="co"># sequence</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))
-<span class="co">#&gt;  Named chr "GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGGCGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTAT"| __truncated__</span>
-<span class="co">#&gt;  - attr(*, "names")= chr "AF298084"</span>
-<span class="co"># definition</span>
-(<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))
-<span class="co">#&gt;                                                    AF298084 </span>
-<span class="co">#&gt; "Unidentified clone A22 DNA sequence from ocean beach sand"</span>
-<span class="co"># version</span>
-(<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))
-<span class="co">#&gt;     AF298084 </span>
-<span class="co">#&gt; "AF298084.1"</span>
-<span class="co"># organism</span>
-(<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))
-<span class="co">#&gt;       AF298084 </span>
-<span class="co">#&gt; "unidentified"</span>
-<span class="co"># fasta</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))
-<span class="co">#&gt; &gt;AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG</span>
-<span class="co">#&gt; CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA</span>
-<span class="co">#&gt; GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG</span>
-<span class="co">#&gt; CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG</span>
-<span class="co">#&gt; AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA</span>
-<span class="co">#&gt; GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG</span>
-<span class="co">#&gt; GCCTTCGAGGAGTATGACGGA</span>
-<span class="co"># Note, for large databases these requests can take a long time to complete.</span>
-<span class="co"># Always try and limit the size of the database by specifying min and max</span>
-<span class="co"># sequence lengths with db_create()</span>
-<span class="co"># Also note, if an id is not present in the database nothing is returned</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(id, <span class="st">'notanid'</span>)))
-<span class="co">#&gt; &gt;AF298084.1 Unidentified clone A22 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTTCCGATGTCTTCGGCCTGGAAGAGATCCGGAAGAGAACGGGGTTCATGGCCGAGCCCCTCGTGG</span>
-<span class="co">#&gt; CGCCGGGTATGCTCATCGACTGGGCTTTGGAGAAGTATTATCCGGAACCGGACAACGGGAGCAGCTCGGA</span>
-<span class="co">#&gt; GAACGTGGTTGCCACCGCCCCTCAGGCCTCTCCTGCCACCCAGGACCAAGCCGTCCAGGGCGGCCCCGCG</span>
-<span class="co">#&gt; CCGACGGAGGTAGAGCCTCTCTCCCCTCCCGGGCAACCCGTGGAAGGAGGCGTCTTCGGAGCCGTTCCCG</span>
-<span class="co">#&gt; AGATCGTGGCGCCCCAACCCCCGGGAGAGGGAGCGAGTGACATCAAGGTGGCCGATTTCGAGGACTCGGA</span>
-<span class="co">#&gt; GGCTGAGATCGTGGCCGGCGCANCGCCGGCGCCCGTTCAACCTGAAGTCCCCGCGGCCACGGAGATCCCG</span>
-<span class="co">#&gt; GCCTTCGAGGAGTATGACGGA</span>
-<span class="co"># Always remember to disconnect</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">ids &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">(id &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(ids, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; [1] "AF040893"</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co"># sequence</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw"><a href="../reference/gb_sequence_get.html">gb_sequence_get</a></span>(id))</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  Named chr "CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAGCAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG"</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  - attr(*, "names")= chr "AF040893"</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co"># definition</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">(<span class="kw"><a href="../reference/gb_definition_get.html">gb_definition_get</a></span>(id))</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;                        AF040893 </span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; "Unidentified RNA clone P10.11"</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co"># version</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">(<span class="kw"><a href="../reference/gb_version_get.html">gb_version_get</a></span>(id))</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;     AF040893 </span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt; "AF040893.1"</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co"># organism</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">(<span class="kw"><a href="../reference/gb_organism_get.html">gb_organism_get</a></span>(id))</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt;       AF040893 </span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; "unidentified"</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co"># fasta</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(id))</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; &gt;AF040893.1 Unidentified RNA clone P10.11</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt; CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co"># Note, for large databases these requests can take a long time to complete.</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co"># Always try and limit the size of the database by specifying min and max</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co"># sequence lengths with db_create()</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co"># Also note, if an id is not present in the database nothing is returned</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="kw"><a href="../reference/gb_fasta_get.html">gb_fasta_get</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(id, <span class="st">'notanid'</span>)))</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt; &gt;AF040893.1 Unidentified RNA clone P10.11</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt; CCCTCGAAGCCCTCATCGCTGAGGCTGCCCCGGATACCGAGGTTCTTTACAAAGACCGGATGGACTCCAG</span></a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt; CAACGACACCTCGCTGGTAACAGCCCTCATGACGACCTATGACGGCACTCTTGAGG</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co"># Always remember to disconnect</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 <p>Additionally, for more flexibility and options for extracting sequence record information see <a href="https://ropensci.github.io/restez/articles/3_parsing.html">GenBank record parsing</a>.</p>
 </div>
 <div id="entrez" class="section level1">
@@ -344,81 +334,129 @@ ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumen
 <blockquote>
 <p>Currently, only <code><a href="../reference/entrez_fetch.html">entrez_fetch()</a></code> is available with restez and only text formatted rettypes are allowed.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)
-<span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/warning">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))
-(id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(ids, <span class="dv">1</span>))
-<span class="co">#&gt; [1] "AF148959"</span>
-<span class="co"># get fasta sequences with entrez</span>
-res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF148959.1 PCR artifactual sequence for diagnosis of avian malaria</span>
-<span class="co">#&gt; CATGAATAAATCCTCGTATTCAGGTGAGCCTCCCTGTCCTCTCGCCTCCCCCTTTGTGTCTGTCTCTGGG</span>
-<span class="co">#&gt; AAAAGAAAAAGGTTGAAAAACCCCGGAGCACGAGGTGCGCAAGCCCTCCTGGCTGCGAGCGCTCTGCGGA</span>
-<span class="co">#&gt; GGAGTGAGCGGCTGGTTCGCTGTGTATAAACAAGTGGAAAAGGCTTAAAAAGCAAAGCAAACGCGGCGGG</span>
-<span class="co">#&gt; GCAGCTGGTTCCAGGCAGAGCCCGGCACTGGGGGCACGGAGCTTGTTATCTGAGGGCACCTGTGCCAGCA</span>
-<span class="co">#&gt; GGGGGTGAGATCCATCGCCAAGTGACAGCGTGGCATGGGAACAGGACCGTGGGGTGTGTGTCTGAGTGTG</span>
-<span class="co">#&gt; ACACTGGGCTGCAGGCATTTCCAAATCCCCTAATGCCGAGGGATTCTCTTCTGCCTTCTCCTGTCTGGCT</span>
-<span class="co">#&gt; TGCCAGTTTGGCCCTACCGGGTGAGGGCATTTGCCCTCTGCTCGGGCAGCTCCTCCTCCCCGGCTGGCAC</span>
-<span class="co">#&gt; AGAATGTGCAGCCACCCTG</span>
-<span class="co"># entrez_fetch will also search via Entrez for any ids not in the db</span>
-plant_sequence &lt;-<span class="st"> 'AY952423'</span>
-res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/restez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(id, plant_sequence),
-                            <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
-<span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF148959.1 PCR artifactual sequence for diagnosis of avian malaria</span>
-<span class="co">#&gt; CATGAATAAATCCTCGTATTCAGGTGAGCCTCCCTGTCCTCTCGCCTCCCCCTTTGTGTCTGTCTCTGGG</span>
-<span class="co">#&gt; AAAAGAAAAAGGTTGAAAAACCCCGGAGCACGAGGTGCGCAAGCCCTCCTGGCTGCGAGCGCTCTGCGGA</span>
-<span class="co">#&gt; GGAGTGAGCGGCTGGTTCGCTGTGTATAAACAAGTGGAAAAGGCTTAAAAAGCAAAGCAAACGCGGCGGG</span>
-<span class="co">#&gt; GCAGCTGGTTCCAGGCAGAGCCCGGCACTGGGGGCACGGAGCTTGTTATCTGAGGGCACCTGTGCCAGCA</span>
-<span class="co">#&gt; GGGGGTGAGATCCATCGCCAAGTGACAGCGTGGCATGGGAACAGGACCGTGGGGTGTGTGTCTGAGTGTG</span>
-<span class="co">#&gt; ACACTGGGCTGCAGGCATTTCCAAATCCCCTAATGCCGAGGGATTCTCTTCTGCCTTCTCCTGTCTGGCT</span>
-<span class="co">#&gt; TGCCAGTTTGGCCCTACCGGGTGAGGGCATTTGCCCTCTGCTCGGGCAGCTCCTCCTCCCCGGCTGGCAC</span>
-<span class="co">#&gt; AGAATGTGCAGCCACCCTG</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; &gt;AY952423.1 Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast</span>
-<span class="co">#&gt; ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGA</span>
-<span class="co">#&gt; TGAAGTAAGGAATTCGTCCAGACTATTGGTAGAGTCTATAAGACCACGACTGATCCTGAAAGGTAATGAA</span>
-<span class="co">#&gt; TGGAAAAAATAGCATGTCGTACGTAATACAATGAGAAACTTGTAATTTCTTATTGTAATTTTTTAAGTAG</span>
-<span class="co">#&gt; AACTTTGAGTTTATCCTTACTGGATCATTACAAAAATATTGTATTTTATTTTTGGAAGGGGACGAAAAAA</span>
-<span class="co">#&gt; AGGAAATTCCCAACATTTATTGTTTGGTCTAATGAATAAATGGATAGGGGCCTAGGGTAGGGCCCAATTT</span>
-<span class="co">#&gt; TTGTAAAACAAAAAGCAACGAGCTTATGTTCTTAATTTGAATAATTACCCGATCTAATTAGATGTTAAAA</span>
-<span class="co">#&gt; ATAAATTAGTGCCAGATGTGGTAAAGGGTTCTACTGTAAGTGGACCTTTTTTTTTTTTTTTTATGAATCC</span>
-<span class="co">#&gt; TACCTATTATCTATTATGGATTAAAGATGGATGTGTATAAGAAGAAGTATACTGATAAAGAGAATTTTTC</span>
-<span class="co">#&gt; CAAAGTCAAAAGAGCAATCGGGTTGCAAAAATAAAGGATTTTTACCTCCGAGAATTATAAATTAATTGGA</span>
-<span class="co">#&gt; TCAAAAGGAGAGGAAAAAGTCTGTGATTGGACTCCTTCTATCCGCGGGTATGGGTATATAGTAGGTATAT</span>
-<span class="co">#&gt; ATGTATATTTGTATACTATATAAATTACATGCCCTGTTCTGACCGTATTGCACTATGTATTATTTGATAA</span>
-<span class="co">#&gt; TCCAAGAAATGCCTCCTACTTCTGGTTCAAGTAGAAATGAAAATAGAAGAATTACAAGAATATTTAGAAA</span>
-<span class="co">#&gt; AAGATAGATCTCGGCAACAACACTTCCTATACCCACTTTTCTTTCAGGAGTATATTTATGCACTTGCTCA</span>
-<span class="co">#&gt; TGATTATGGGTTTAAAGGGTTCGATTTTTTACGAACCTATGGAAATTGGGGGTTATGATAATAAATCTAG</span>
-<span class="co">#&gt; TTCAGTACTTGTAAAACATTTAATTACTCGAATGTATCAACAGAATTATTTGATTTATTCTGTTAATGAA</span>
-<span class="co">#&gt; TCTAACCAAAATCGATTGATTGAGCATAACAATTCTTTTTATTCTCAAATGATATCTGAAGTTTTTGCGA</span>
-<span class="co">#&gt; TCATTGCAGAAATTCCATTCTCTCAGCAATTACTATTTTCTCTTCGAGGAAAAAAGAATACCAAAATCTC</span>
-<span class="co">#&gt; AGACTTTACGATCTATTCATTCAATATTTCCCTTTTTAGAAGACAAATTATCACATTTAAACTATGTGTC</span>
-<span class="co">#&gt; AGATATATTAATACCCTATCCCATCCATTTGGAAATCTTGGTGCAAATTCTTCAATGCTGGATCCAAGAT</span>
-<span class="co">#&gt; GTTTCTTCTTTGCATTTATTGCGATTCTTTCTCCACGAACATCATAATGGGAATAGTTTTTTTTTTCCAA</span>
-<span class="co">#&gt; AGAAATCCTTTTCAAAAGAAAATAAAAGACTCTTTCGATTCCTATATAATTCTTATGTATCTGAATGTGA</span>
-<span class="co">#&gt; ATTTGTCTTAGTGTTTCTTCGTAAACAATCCTCTTATTTACAATCAAAATCCTATGGAATCTTTCTTGAG</span>
-<span class="co">#&gt; CGAACACATTTCTATGGAAGAATGGAACATCTTATAGTAGTGTGTCATAATTATTGTCAGAAGGCCTTTT</span>
-<span class="co">#&gt; GGGTCTTCAAGGATCCTTTTATGCATTATGTTCGATATCAAGGAAAAGCAATTCTGGCATCAAAAGGATC</span>
-<span class="co">#&gt; TTATCTTTTGATGAAGAAATGGAGATGTCATCTTGTCAATTTCTGGCAATATTATTTTCATTTTTGGGCT</span>
-<span class="co">#&gt; CAGCCTTACAGAATTTCAATAAACCAATTAGGAAATCATTCCTTCTATTTTCTCGGTTATCTTTCAAGTG</span>
-<span class="co">#&gt; TATTAAAAAATACTTCGTCTGTAAGGAATCAAATGCTAGAGAATTCCTTTTTAATAGATACTATTACTAA</span>
-<span class="co">#&gt; TAAATTGGATACCATAGTCCCAGTTCTTCCTCTTATTGGATCTTTGTCTAAAGCTAAATTTTGTACCGTA</span>
-<span class="co">#&gt; TCCGGGCATCCTAGTAGTAAGCCAATCTGGACGGATTTATCGGATTCTGATATTATTGATAGATTTGGTC</span>
-<span class="co">#&gt; GGATATGTAGAAATCTTTCTCATTATTATAGTGGATCCTCAAAAAAACAGAGCTTATATCGAATAAGGTA</span>
-<span class="co">#&gt; TATACTTCGACTTTCTTGTGCTAGAACTTTAGCTCGTAAACATAAAAGTACAGTACGTGCTTTTTTGCAA</span>
-<span class="co">#&gt; AGATTAGGTTCGGAATTATTAGAAGAATTCTTTACAGAAGAAGAAGGAGTTGTTTTTTTGATTTCCCAAA</span>
-<span class="co">#&gt; AGAACAAAACCTCTTTTCCTCTCTATAGGTCACATAGAGAACGCATTTGGTATTTGGATATTATCCATAT</span>
-<span class="co">#&gt; TAATGAATTGGTGAATTCATTTATGATGGGGCGATAAGCCCCTATAAAATAAGAAATATAAATTTTTTCT</span>
-<span class="co">#&gt; AATGTCTAATAAATAGACGACAAATTCATTAATTTTCATTCTGAAATGCTCATCTAGTAGTGTAGTGATT</span>
-<span class="co">#&gt; GAATCAACTGAGTATTCAAAATTTTTAGACAAACTTCTAGGGATAGAAGTTTGTTTTATCTGTATACATA</span>
-<span class="co">#&gt; GGTAAAGTCGTGTGCAATGAAAAATGCAAGCACGATTTGGGGAGAGATAATTTTCTCTATTGTAACAAAT</span>
-<span class="co">#&gt; AAAAATTATCTACTCCATCCGACTAGTTAATCG</span>
-<span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="../reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw"><a href="../reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">ids &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span>(<span class="kw"><a href="../reference/list_db_ids.html">list_db_ids</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">n =</span> <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">(id &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(ids, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; [1] "AH003348"</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co"># get fasta sequences with entrez</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/restez/man/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(res)</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; &gt;AH003348.2 Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown protein genes, partial cds, and unknown protein gene, complete cds</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; CTGATGAATCCCCTAATGATTTTTATCAAAATCATTAAGTTAAGGTAGATACACATCTTGTCATATGATC</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; AAATGGTTTCGCCAAAAATCAATAATCAGACAACAAAATGTGCGAACTCGATATTTTACACGACTCTCTT</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; TACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTTAACGTTGGCTTGCCACGCCTTACTTG</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; ACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCAACCAAAGCGAGAACAAAACATAACAT</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; CAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAGAGCGACTCGCTGTATACCGTTGGCAT</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; GCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGTTGACTCGTCTGATATCCGTGAGCAAA</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; AACGGCTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGTTCTGTTACTCTTTATGAGAAAGCGTT</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; CCCGCTTTCAGAGCAATGTTCAAAGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGTACTCTCAACAGTT</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; CGCTTACGCATGGAAGTTTTGCGGCATTCTGGCTACACAATAACAAGGGAAGACTCACTCGTGGCTGCAA</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; CCCTGCTAGCTCAAAATCTATTCACACATGGTTACGTTTTGGGGAAATTATGAGGGGATCTCTCAGNNNN</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></a>
+<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNCTGATGAATCCCCTAATGATTTTGGTAAAAATCATTAAGTTAAG</span></a>
+<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; GTGGATACACATCTTGTCATATGATCAAATGGTTTCGCGAAAAATCAATAATCAGACAACAAGATGTGCG</span></a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; AACTCGATATTTTACACGACTCTCTTTACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTT</span></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; AACGTTGGCTTGCCACGCATTACTTGACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCA</span></a>
+<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; ACCAAAGCGAGAACAAAACATAACATCAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAG</span></a>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt; AGCGACTCGCTGTATACCGTTGGCATGCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGT</span></a>
+<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt; TGACTGGTCTGATATTCGTGAGCAAAAACGACTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGT</span></a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; TCTGTTACTCTTTATGAGAAAGCGTTCCCGCTTTCAGAGCAATGTTCAAAGAAAGCTCATGACCAATTTC</span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt; TAGCCGACCTTGCGAGCATTCTACCGAGTAACACCACACCGCTCATTGTCAGTGATGCTGGCTTTAAAGT</span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt; GCCATGGTATAAATCCGTTGAGAAGCTGGGTTGGTACTGGTTAAGTCGAGTAAGAGGAAAAGTACAATAT</span></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; GCAGACCTAGGAGCGGAAAACTGGAAACCTATCAGCAACTTACATGATATGTCATCTAGTCACTCAAAGA</span></a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; CTTTAGGCTATAAGAGGCTGACTAAAAGCAATCCAATCTCATGCCAAATTCTATTGTATAAATCTCGCTC</span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; TAAAGGCCGAAAAAATCAGCGCTCGACACGGACTCATTGTCACCACCCGTCACCTAAAATCTACTCAGCG</span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; TCGGCAAAGGAGCCATGGGTTCTAGCAACTAACTTACCTGTTGAAATTCGAACACCCAAACAACTTGTTA</span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; ATATCTATTCGAAGCGAATGCAGATTGAAGAAACCTTCCGAGACTTGAAAAGTCCTGCCTACGGACTAGG</span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; CCTACGCCATAGCCGAACGAGCAGCTCAGAGCGTTTTGATATCATGCTGCTAATCGCCCTGATGCTTCAA</span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; CTAACATGTTGGCTTGCGGGCGTTCATGCTCAGAAACAAGGTTGGGACAAGCACTTCCAGGCTAACACAG</span></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; TCAGAAATCGAAACGTACTCTCAACAGTTCGCTTAGGCATGGAAGTTTTGCGGCATTCTGGCTACACAAT</span></a>
+<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; AACAAGGGAAGACTTACTCGTGGCTGCAACCCTACTAGCTCAAAATTTATTCACACATGGTTACGCTTTG</span></a>
+<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; GGGAAATTATGAGGGGATCTCTCAG</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co"># entrez_fetch will also search via Entrez for any ids not in the db</span></a>
+<a class="sourceLine" id="cb7-45" data-line-number="45">plant_sequence &lt;-<span class="st"> 'AY952423'</span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46">res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/restez/man/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(id, plant_sequence),</a>
+<a class="sourceLine" id="cb7-47" data-line-number="47">                            <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</a>
+<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span></a>
+<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(res)</a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; &gt;AH003348.2 Transposon Tn10 clone pNK[82,83,296,297]. transposon Tn10 unknown protein genes, partial cds, and unknown protein gene, complete cds</span></a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt; CTGATGAATCCCCTAATGATTTTTATCAAAATCATTAAGTTAAGGTAGATACACATCTTGTCATATGATC</span></a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; AAATGGTTTCGCCAAAAATCAATAATCAGACAACAAAATGTGCGAACTCGATATTTTACACGACTCTCTT</span></a>
+<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; TACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTTAACGTTGGCTTGCCACGCCTTACTTG</span></a>
+<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="co">#&gt; ACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCAACCAAAGCGAGAACAAAACATAACAT</span></a>
+<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="co">#&gt; CAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAGAGCGACTCGCTGTATACCGTTGGCAT</span></a>
+<a class="sourceLine" id="cb7-56" data-line-number="56"><span class="co">#&gt; GCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGTTGACTCGTCTGATATCCGTGAGCAAA</span></a>
+<a class="sourceLine" id="cb7-57" data-line-number="57"><span class="co">#&gt; AACGGCTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGTTCTGTTACTCTTTATGAGAAAGCGTT</span></a>
+<a class="sourceLine" id="cb7-58" data-line-number="58"><span class="co">#&gt; CCCGCTTTCAGAGCAATGTTCAAAGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></a>
+<a class="sourceLine" id="cb7-59" data-line-number="59"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGTACTCTCAACAGTT</span></a>
+<a class="sourceLine" id="cb7-60" data-line-number="60"><span class="co">#&gt; CGCTTACGCATGGAAGTTTTGCGGCATTCTGGCTACACAATAACAAGGGAAGACTCACTCGTGGCTGCAA</span></a>
+<a class="sourceLine" id="cb7-61" data-line-number="61"><span class="co">#&gt; CCCTGCTAGCTCAAAATCTATTCACACATGGTTACGTTTTGGGGAAATTATGAGGGGATCTCTCAGNNNN</span></a>
+<a class="sourceLine" id="cb7-62" data-line-number="62"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></a>
+<a class="sourceLine" id="cb7-63" data-line-number="63"><span class="co">#&gt; NNNNNNNNNNNNNNNNNNNNNNNNNNCTGATGAATCCCCTAATGATTTTGGTAAAAATCATTAAGTTAAG</span></a>
+<a class="sourceLine" id="cb7-64" data-line-number="64"><span class="co">#&gt; GTGGATACACATCTTGTCATATGATCAAATGGTTTCGCGAAAAATCAATAATCAGACAACAAGATGTGCG</span></a>
+<a class="sourceLine" id="cb7-65" data-line-number="65"><span class="co">#&gt; AACTCGATATTTTACACGACTCTCTTTACCAATTCTGCCCCGAATTACACTTAAAACGACTCAACAGCTT</span></a>
+<a class="sourceLine" id="cb7-66" data-line-number="66"><span class="co">#&gt; AACGTTGGCTTGCCACGCATTACTTGACTGTAAAACTCTCACTCTTACCGAACTTGGCCGTAACCTGCCA</span></a>
+<a class="sourceLine" id="cb7-67" data-line-number="67"><span class="co">#&gt; ACCAAAGCGAGAACAAAACATAACATCAAACGAATCGACCGATTGTTAGGTAATCGTCACCTCCACAAAG</span></a>
+<a class="sourceLine" id="cb7-68" data-line-number="68"><span class="co">#&gt; AGCGACTCGCTGTATACCGTTGGCATGCTAGCTTTATCTGTTCGGGCAATACGATGCCCATTGTACTTGT</span></a>
+<a class="sourceLine" id="cb7-69" data-line-number="69"><span class="co">#&gt; TGACTGGTCTGATATTCGTGAGCAAAAACGACTTATGGTATTGCGAGCTTCAGTCGCACTACACGGTCGT</span></a>
+<a class="sourceLine" id="cb7-70" data-line-number="70"><span class="co">#&gt; TCTGTTACTCTTTATGAGAAAGCGTTCCCGCTTTCAGAGCAATGTTCAAAGAAAGCTCATGACCAATTTC</span></a>
+<a class="sourceLine" id="cb7-71" data-line-number="71"><span class="co">#&gt; TAGCCGACCTTGCGAGCATTCTACCGAGTAACACCACACCGCTCATTGTCAGTGATGCTGGCTTTAAAGT</span></a>
+<a class="sourceLine" id="cb7-72" data-line-number="72"><span class="co">#&gt; GCCATGGTATAAATCCGTTGAGAAGCTGGGTTGGTACTGGTTAAGTCGAGTAAGAGGAAAAGTACAATAT</span></a>
+<a class="sourceLine" id="cb7-73" data-line-number="73"><span class="co">#&gt; GCAGACCTAGGAGCGGAAAACTGGAAACCTATCAGCAACTTACATGATATGTCATCTAGTCACTCAAAGA</span></a>
+<a class="sourceLine" id="cb7-74" data-line-number="74"><span class="co">#&gt; CTTTAGGCTATAAGAGGCTGACTAAAAGCAATCCAATCTCATGCCAAATTCTATTGTATAAATCTCGCTC</span></a>
+<a class="sourceLine" id="cb7-75" data-line-number="75"><span class="co">#&gt; TAAAGGCCGAAAAAATCAGCGCTCGACACGGACTCATTGTCACCACCCGTCACCTAAAATCTACTCAGCG</span></a>
+<a class="sourceLine" id="cb7-76" data-line-number="76"><span class="co">#&gt; TCGGCAAAGGAGCCATGGGTTCTAGCAACTAACTTACCTGTTGAAATTCGAACACCCAAACAACTTGTTA</span></a>
+<a class="sourceLine" id="cb7-77" data-line-number="77"><span class="co">#&gt; ATATCTATTCGAAGCGAATGCAGATTGAAGAAACCTTCCGAGACTTGAAAAGTCCTGCCTACGGACTAGG</span></a>
+<a class="sourceLine" id="cb7-78" data-line-number="78"><span class="co">#&gt; CCTACGCCATAGCCGAACGAGCAGCTCAGAGCGTTTTGATATCATGCTGCTAATCGCCCTGATGCTTCAA</span></a>
+<a class="sourceLine" id="cb7-79" data-line-number="79"><span class="co">#&gt; CTAACATGTTGGCTTGCGGGCGTTCATGCTCAGAAACAAGGTTGGGACAAGCACTTCCAGGCTAACACAG</span></a>
+<a class="sourceLine" id="cb7-80" data-line-number="80"><span class="co">#&gt; TCAGAAATCGAAACGTACTCTCAACAGTTCGCTTAGGCATGGAAGTTTTGCGGCATTCTGGCTACACAAT</span></a>
+<a class="sourceLine" id="cb7-81" data-line-number="81"><span class="co">#&gt; AACAAGGGAAGACTTACTCGTGGCTGCAACCCTACTAGCTCAAAATTTATTCACACATGGTTACGCTTTG</span></a>
+<a class="sourceLine" id="cb7-82" data-line-number="82"><span class="co">#&gt; GGGAAATTATGAGGGGATCTCTCAG</span></a>
+<a class="sourceLine" id="cb7-83" data-line-number="83"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-84" data-line-number="84"><span class="co">#&gt; &gt;AY952423.1 Livistona chinensis tRNA-Lys (trnK) gene, partial sequence; and matK gene, complete sequence; chloroplast</span></a>
+<a class="sourceLine" id="cb7-85" data-line-number="85"><span class="co">#&gt; ATTGGGGTTGCTAACTCAACGGTAGAGTACTCGGCTTTTAAGTGCGACTATCATCTTTTACACATTTGGA</span></a>
+<a class="sourceLine" id="cb7-86" data-line-number="86"><span class="co">#&gt; TGAAGTAAGGAATTCGTCCAGACTATTGGTAGAGTCTATAAGACCACGACTGATCCTGAAAGGTAATGAA</span></a>
+<a class="sourceLine" id="cb7-87" data-line-number="87"><span class="co">#&gt; TGGAAAAAATAGCATGTCGTACGTAATACAATGAGAAACTTGTAATTTCTTATTGTAATTTTTTAAGTAG</span></a>
+<a class="sourceLine" id="cb7-88" data-line-number="88"><span class="co">#&gt; AACTTTGAGTTTATCCTTACTGGATCATTACAAAAATATTGTATTTTATTTTTGGAAGGGGACGAAAAAA</span></a>
+<a class="sourceLine" id="cb7-89" data-line-number="89"><span class="co">#&gt; AGGAAATTCCCAACATTTATTGTTTGGTCTAATGAATAAATGGATAGGGGCCTAGGGTAGGGCCCAATTT</span></a>
+<a class="sourceLine" id="cb7-90" data-line-number="90"><span class="co">#&gt; TTGTAAAACAAAAAGCAACGAGCTTATGTTCTTAATTTGAATAATTACCCGATCTAATTAGATGTTAAAA</span></a>
+<a class="sourceLine" id="cb7-91" data-line-number="91"><span class="co">#&gt; ATAAATTAGTGCCAGATGTGGTAAAGGGTTCTACTGTAAGTGGACCTTTTTTTTTTTTTTTTATGAATCC</span></a>
+<a class="sourceLine" id="cb7-92" data-line-number="92"><span class="co">#&gt; TACCTATTATCTATTATGGATTAAAGATGGATGTGTATAAGAAGAAGTATACTGATAAAGAGAATTTTTC</span></a>
+<a class="sourceLine" id="cb7-93" data-line-number="93"><span class="co">#&gt; CAAAGTCAAAAGAGCAATCGGGTTGCAAAAATAAAGGATTTTTACCTCCGAGAATTATAAATTAATTGGA</span></a>
+<a class="sourceLine" id="cb7-94" data-line-number="94"><span class="co">#&gt; TCAAAAGGAGAGGAAAAAGTCTGTGATTGGACTCCTTCTATCCGCGGGTATGGGTATATAGTAGGTATAT</span></a>
+<a class="sourceLine" id="cb7-95" data-line-number="95"><span class="co">#&gt; ATGTATATTTGTATACTATATAAATTACATGCCCTGTTCTGACCGTATTGCACTATGTATTATTTGATAA</span></a>
+<a class="sourceLine" id="cb7-96" data-line-number="96"><span class="co">#&gt; TCCAAGAAATGCCTCCTACTTCTGGTTCAAGTAGAAATGAAAATAGAAGAATTACAAGAATATTTAGAAA</span></a>
+<a class="sourceLine" id="cb7-97" data-line-number="97"><span class="co">#&gt; AAGATAGATCTCGGCAACAACACTTCCTATACCCACTTTTCTTTCAGGAGTATATTTATGCACTTGCTCA</span></a>
+<a class="sourceLine" id="cb7-98" data-line-number="98"><span class="co">#&gt; TGATTATGGGTTTAAAGGGTTCGATTTTTTACGAACCTATGGAAATTGGGGGTTATGATAATAAATCTAG</span></a>
+<a class="sourceLine" id="cb7-99" data-line-number="99"><span class="co">#&gt; TTCAGTACTTGTAAAACATTTAATTACTCGAATGTATCAACAGAATTATTTGATTTATTCTGTTAATGAA</span></a>
+<a class="sourceLine" id="cb7-100" data-line-number="100"><span class="co">#&gt; TCTAACCAAAATCGATTGATTGAGCATAACAATTCTTTTTATTCTCAAATGATATCTGAAGTTTTTGCGA</span></a>
+<a class="sourceLine" id="cb7-101" data-line-number="101"><span class="co">#&gt; TCATTGCAGAAATTCCATTCTCTCAGCAATTACTATTTTCTCTTCGAGGAAAAAAGAATACCAAAATCTC</span></a>
+<a class="sourceLine" id="cb7-102" data-line-number="102"><span class="co">#&gt; AGACTTTACGATCTATTCATTCAATATTTCCCTTTTTAGAAGACAAATTATCACATTTAAACTATGTGTC</span></a>
+<a class="sourceLine" id="cb7-103" data-line-number="103"><span class="co">#&gt; AGATATATTAATACCCTATCCCATCCATTTGGAAATCTTGGTGCAAATTCTTCAATGCTGGATCCAAGAT</span></a>
+<a class="sourceLine" id="cb7-104" data-line-number="104"><span class="co">#&gt; GTTTCTTCTTTGCATTTATTGCGATTCTTTCTCCACGAACATCATAATGGGAATAGTTTTTTTTTTCCAA</span></a>
+<a class="sourceLine" id="cb7-105" data-line-number="105"><span class="co">#&gt; AGAAATCCTTTTCAAAAGAAAATAAAAGACTCTTTCGATTCCTATATAATTCTTATGTATCTGAATGTGA</span></a>
+<a class="sourceLine" id="cb7-106" data-line-number="106"><span class="co">#&gt; ATTTGTCTTAGTGTTTCTTCGTAAACAATCCTCTTATTTACAATCAAAATCCTATGGAATCTTTCTTGAG</span></a>
+<a class="sourceLine" id="cb7-107" data-line-number="107"><span class="co">#&gt; CGAACACATTTCTATGGAAGAATGGAACATCTTATAGTAGTGTGTCATAATTATTGTCAGAAGGCCTTTT</span></a>
+<a class="sourceLine" id="cb7-108" data-line-number="108"><span class="co">#&gt; GGGTCTTCAAGGATCCTTTTATGCATTATGTTCGATATCAAGGAAAAGCAATTCTGGCATCAAAAGGATC</span></a>
+<a class="sourceLine" id="cb7-109" data-line-number="109"><span class="co">#&gt; TTATCTTTTGATGAAGAAATGGAGATGTCATCTTGTCAATTTCTGGCAATATTATTTTCATTTTTGGGCT</span></a>
+<a class="sourceLine" id="cb7-110" data-line-number="110"><span class="co">#&gt; CAGCCTTACAGAATTTCAATAAACCAATTAGGAAATCATTCCTTCTATTTTCTCGGTTATCTTTCAAGTG</span></a>
+<a class="sourceLine" id="cb7-111" data-line-number="111"><span class="co">#&gt; TATTAAAAAATACTTCGTCTGTAAGGAATCAAATGCTAGAGAATTCCTTTTTAATAGATACTATTACTAA</span></a>
+<a class="sourceLine" id="cb7-112" data-line-number="112"><span class="co">#&gt; TAAATTGGATACCATAGTCCCAGTTCTTCCTCTTATTGGATCTTTGTCTAAAGCTAAATTTTGTACCGTA</span></a>
+<a class="sourceLine" id="cb7-113" data-line-number="113"><span class="co">#&gt; TCCGGGCATCCTAGTAGTAAGCCAATCTGGACGGATTTATCGGATTCTGATATTATTGATAGATTTGGTC</span></a>
+<a class="sourceLine" id="cb7-114" data-line-number="114"><span class="co">#&gt; GGATATGTAGAAATCTTTCTCATTATTATAGTGGATCCTCAAAAAAACAGAGCTTATATCGAATAAGGTA</span></a>
+<a class="sourceLine" id="cb7-115" data-line-number="115"><span class="co">#&gt; TATACTTCGACTTTCTTGTGCTAGAACTTTAGCTCGTAAACATAAAAGTACAGTACGTGCTTTTTTGCAA</span></a>
+<a class="sourceLine" id="cb7-116" data-line-number="116"><span class="co">#&gt; AGATTAGGTTCGGAATTATTAGAAGAATTCTTTACAGAAGAAGAAGGAGTTGTTTTTTTGATTTCCCAAA</span></a>
+<a class="sourceLine" id="cb7-117" data-line-number="117"><span class="co">#&gt; AGAACAAAACCTCTTTTCCTCTCTATAGGTCACATAGAGAACGCATTTGGTATTTGGATATTATCCATAT</span></a>
+<a class="sourceLine" id="cb7-118" data-line-number="118"><span class="co">#&gt; TAATGAATTGGTGAATTCATTTATGATGGGGCGATAAGCCCCTATAAAATAAGAAATATAAATTTTTTCT</span></a>
+<a class="sourceLine" id="cb7-119" data-line-number="119"><span class="co">#&gt; AATGTCTAATAAATAGACGACAAATTCATTAATTTTCATTCTGAAATGCTCATCTAGTAGTGTAGTGATT</span></a>
+<a class="sourceLine" id="cb7-120" data-line-number="120"><span class="co">#&gt; GAATCAACTGAGTATTCAAAATTTTTAGACAAACTTCTAGGGATAGAAGTTTGTTTTATCTGTATACATA</span></a>
+<a class="sourceLine" id="cb7-121" data-line-number="121"><span class="co">#&gt; GGTAAAGTCGTGTGCAATGAAAAATGCAAGCACGATTTGGGGAGAGATAATTTTCTCTATTGTAACAAAT</span></a>
+<a class="sourceLine" id="cb7-122" data-line-number="122"><span class="co">#&gt; AAAAATTATCTACTCCATCCGACTAGTTAATCG</span></a>
+<a class="sourceLine" id="cb7-123" data-line-number="123"><span class="kw"><a href="../reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 </div>
 <div id="more-information" class="section level1">
 <h1 class="hasAnchor">
@@ -434,7 +472,8 @@ res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="k
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -457,17 +496,20 @@ res &lt;-<span class="st"> </span>restez<span class="op">::</span><span class="k
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Dom Bennett.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

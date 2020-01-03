@@ -17,7 +17,7 @@ assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
                   ns = 'restez')
 ```
 
-#1. Download GenBank
+# 1. Download GenBank
 
 In the first section of this introduction to `restez` we will explain how to download parts of GenBank on to your computer and from these downloads, construct a local database. GenBank can be downloaded from NCBI using the File Transfer Protocol (FTP), the online portal for these downloads can be viewed from your web browser,
 [FTP NCBI GenBank](ftp://ftp.ncbi.nlm.nih.gov/genbank/). GenBank is hosted at this portal as 1000s of compressed sequence files called flatfiles. New versions of these flatfiles are released once a month as new sequence information is uploaded. For information on the latest GenBank release, see the [NCBI statistics page](https://www.ncbi.nlm.nih.gov/genbank/statistics/).
@@ -26,7 +26,7 @@ In the first section of this introduction to `restez` we will explain how to dow
 
 Here, we will explain how to set up `restez`, download genbank and then create a database from the downloaded files.
 
-##1.1 Setting up
+## 1.1 Setting up
 
 Before we can download anything, we need to tell `restez` where we would like to store the downloaded files and the eventual GenBank database. To do this we use the `restez_path_set` function. With this function a user can provide a system file path to a folder within which the function will create a new folder called 'restez'. In this example, we will create a `restez` folder in a temporary folder.
 
@@ -45,7 +45,7 @@ A user must always set the `restez` path in order to use the `restez` library an
 
 > **Note**, whenever you intend to use `restez` you will need to specify the `restez` path. If you are using it regularly, it might be a good idea to set it using your .Rprofile.
 
-##1.2 Download
+## 1.2 Download
 
 Now we can download GenBank files using `db_download()`. This is an interactive function, it looks up the latest GenBank release, parses the release notes and prints to console the available sets of flatfiles that can be downloaded. For this example, we will select the smallest available domain which is 'Unannotated' and can be pre-specified with '20'. Normally, you would run this function without the `preselection` argument and just wait for the function to prompt you for a domain selection.
 
@@ -57,7 +57,7 @@ db_download(preselection = '20')
 
 Now the download has begun, we just need to wait for it to finish. For the largest domains, this can take quite a while and may be prone to server errors. If you ever encounter a failed downloaded file it is possible to re-run the `db_download` function again and -- so long as the same selection is made -- the function will only download the missing files.
 
-##1.3 Create a database
+## 1.3 Create a database
 
 After the download has completed, we need to use `db_create()` to create our local database. This looks in the downloads folder of our `restez` path, breaks these files up into separate GenBank records and adds them to the SQL-like database. Again, for very large collections of sequences this can take quite a while.
 
@@ -71,7 +71,7 @@ restez_disconnect()
 
 `db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. You can always run `db_create()` again to change the limits. You will simply need to delete the original database first with `db_delete`.
 
-##1.4 Checking the setup
+## 1.4 Checking the setup
 
 After the download and the database creation steps are complete, we can confirm our setup using `restez_status`.
 
@@ -99,7 +99,7 @@ if (restez_ready()) {
 restez_disconnect()
 ```
 
-#2. Query
+# 2. Query
 
 Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retrieve specific columns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://ropensci.github.io/restez/articles/2_search_and_fetch.html).
 
@@ -132,7 +132,7 @@ restez_disconnect()
 
 Additionally, for more flexibility and options for extracting sequence record information see [GenBank record parsing](https://ropensci.github.io/restez/articles/3_parsing.html).
 
-#3. Entrez
+# 3. Entrez
 
 Entrez wrappers are part of the `restez` package. These allow a user to make use of the local GenBank using functions that were built for [`rentrez`](https://github.com/ropensci/rentrez). This minimises the amount of coding changes required for any Entrez dependent code.
 
@@ -155,7 +155,7 @@ cat(res)
 restez_disconnect()
 ```
 
-#4. More information
+# 4. More information
 
 For more information about `restez` see the other tutorials:
 

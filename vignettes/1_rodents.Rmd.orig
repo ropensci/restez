@@ -1,0 +1,65 @@
+---
+title: "1. Build a database of all rodents"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# hide my wd
+original_status_class <- getFromNamespace(x = 'status_class', ns = 'restez')
+status_class2 <- function() {
+  res <- original_status_class()
+  res$`Restez path`$`Path` <- '[RODENTS PATH]/restez'
+  res$`Download`$`Path` <- '[RODENTS PATH]/restez/downloads'
+  res$`Database`$`Path` <- '[RODENTS PATH]/restez/sql_db'
+  res
+}
+assignInNamespace(x = 'status_class', value = status_class2, ns = 'restez')
+```
+
+In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand. To keep things extra fast, we will also limit the number of sequences in the database by limiting the sequence sizes between 100 and 1000.
+
+The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
+
+Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 59 minutes.
+
+## Download
+```{r setpath, include=FALSE, eval=TRUE}
+# reminder to self: other/rodent_db.R
+pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
+rodents_path <- paste0(pkgwd, 'rodents')
+if (!dir.exists(rodents_path)) {
+  stop('other/rodent_db.R must be run first!', call. = FALSE)
+}
+```
+```{r download, eval=FALSE, include=TRUE}
+library(restez)
+# set the restez path to a memorable location
+restez_path_set(rodents_path)
+# download for domain 15
+db_download(preselection = '15')
+```
+
+## Build
+```{r build, eval=FALSE, include=TRUE}
+library(restez)
+restez_path_set(rodents_path)
+db_create(min_length = 100, max_length = 1000)
+```
+
+## Check status
+```{r status, echo=TRUE}
+library(restez)
+restez_path_set(rodents_path)
+restez_connect()
+restez_status()
+restez_disconnect()
+```
+
+## Next up
+
+**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**

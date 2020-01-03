@@ -1,11 +1,11 @@
-pandoc: 1.19.2.1
-pkgdown: 1.2.0.9000
-pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
+pandoc: 2.3.1
+pkgdown: 1.4.1.9000
+pkgdown_sha: 03fa5022ff360a6f87586145e45f71fe090c64a2
 articles:
   1_rodents: 1_rodents.html
   2_search_and_fetch: 2_search_and_fetch.html
   3_parsing: 3_parsing.html
-  4_phylotar: 4_phylotar.html
+  4_phylotaR: 4_phylotaR.html
   5_tips_and_tricks: 5_tips_and_tricks.html
   restez: restez.html
 

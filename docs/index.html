@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create and Query a Local Copy of 'GenBank' in R • restez</title>
+<title>Create and Query a Local Copy of GenBank in R • restez</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -13,13 +13,14 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Create and Query a Local Copy of 'GenBank' in R">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Create and Query a Local Copy of GenBank in R">
 <meta property="og:description" content="Download large sections of
-    'GenBank' &lt;https://www.ncbi.nlm.nih.gov/genbank/&gt; and generate a local
-    SQL-based database. A user can then query this database using 'restez'
-    functions or through 'rentrez' &lt;https://CRAN.R-project.org/package=rentrez&gt;
+    GenBank &lt;https://www.ncbi.nlm.nih.gov/genbank/&gt; and generate a local
+    SQL-based database. A user can then query this database using restez
+    functions or through rentrez &lt;https://CRAN.R-project.org/package=rentrez&gt;
     wrappers.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -41,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">restez</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -49,7 +50,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -76,7 +77,7 @@
       <a href="articles/3_parsing.html">3. Advanced parsing of a GenBank record</a>
     </li>
     <li>
-      <a href="articles/4_phylotar.html">4. Running phylotaR with restez</a>
+      <a href="articles/4_phylotaR.html">4. Running phylotaR with restez</a>
     </li>
     <li>
       <a href="articles/5_tips_and_tricks.html">5. Tips and Tricks</a>
@@ -90,7 +91,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ropensci/restez">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -103,16 +104,17 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- devtools::rmarkdown::render("README.Rmd") -->
-<!-- Rscript -e "library(knitr); knit('README.Rmd')" -->
 <div id="locally-query-genbank" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#locally-query-genbank" class="anchor"></a>Locally query GenBank <img src="https://raw.githubusercontent.com/ropensci/restez/master/logo.png" height="200" align="right">
 </h1></div>
 
+<blockquote>
+<p>NOTE: <code>restez</code> is no longer available on CRAN due to the archiving of a key dependency. It can still be installed via GitHub. The issue is being dealt with and hopefully a new version of <code>restez</code> will be available on CRAN soon.</p>
+</blockquote>
 <p>Download parts of <a href="https://www.ncbi.nlm.nih.gov/nuccore">NCBI’s GenBank</a> to a local folder and create a simple SQL-like database. Use ‘get’ tools to query the database by accession IDs. <a href="https://github.com/ropensci/rentrez">rentrez</a> wrappers are available, so that if sequences are not available locally they can be searched for online through <a href="https://www.ncbi.nlm.nih.gov/books/NBK25500/">Entrez</a>.</p>
 <p>See the <a href="https://ropensci.github.io/restez/articles/restez.html">detailed tutorials</a> for more information.</p>
 <div id="introduction" class="section level2">
@@ -126,11 +128,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>restez</code> is available via CRAN and can be installed:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"restez"</span>)</code></pre></div>
-<p>Or you can install the development version via GitHub with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/restez"</span>)</code></pre></div>
+<p>The package can currently only be installed through GitHub:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># devtools required for installtion via GitHub</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># install key dependency no longer available on CRAN</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"hannesmuehleisen/MonetDBLite-R"</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># install restez</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ropensci/restez"</span>)</a></code></pre></div>
+<p>(It was previously available via CRAN but was archived due to a key dependency <a href="https://github.com/MonetDB/MonetDBLite-R">MonetDBLite</a> being no longer available.)</p>
 </div>
 <div id="quick-examples" class="section level2">
 <h2 class="hasAnchor">
@@ -141,139 +146,133 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Warning: running these examples may take a few minutes</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(restez)
-<span class="co">#&gt; -------------</span>
-<span class="co">#&gt; restez v1.0.0</span>
-<span class="co">#&gt; -------------</span>
-<span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span>
-<span class="co"># choose a location to store GenBank files</span>
-<span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Run the download function</span>
-<span class="kw"><a href="reference/db_download.html">db_download</a></span>()
-<span class="co"># after download, create the local database</span>
-<span class="kw"><a href="reference/db_create.html">db_create</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Warning: running these examples may take a few minutes</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(restez)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; -------------</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; restez v1.0.0</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; -------------</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; Remember to restez_path_set() and, then, restez_connect()</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># choose a location to store GenBank files</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="reference/restez_path_set.html">restez_path_set</a></span>(rstz_pth)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Run the download function</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="reference/db_download.html">db_download</a></span>()</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># after download, create the local database</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/db_create.html">db_create</a></span>()</a></code></pre></div>
 </div>
 <div id="query" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query" class="anchor"></a>Query</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># connect, ensure safe disconnect after finishing</span>
-<span class="kw"><a href="reference/restez_connect.html">restez_connect</a></span>()
-<span class="co">#&gt; Remember to run `restez_disconnect()`</span>
-<span class="co"># get a random accession ID from the database</span>
-id &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="kw"><a href="reference/list_db_ids.html">list_db_ids</a></span>(), <span class="dv">1</span>)
-<span class="co">#&gt; Warning in list_db_ids(): Number of ids returned was limited to [100].</span>
-<span class="co">#&gt; Set `n=NULL` to return all ids.</span>
-<span class="co"># you can extract:</span>
-<span class="co"># sequences</span>
-seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(seq)
-<span class="co">#&gt;  chr "GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTCAAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGAT"| __truncated__</span>
-<span class="co"># definitions</span>
-def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(def)
-<span class="co">#&gt; [1] "Unidentified clone B18 DNA sequence from ocean beach sand"</span>
-<span class="co"># organisms</span>
-org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(org)
-<span class="co">#&gt; [1] "unidentified"</span>
-<span class="co"># or whole records</span>
-rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(rec)
-<span class="co">#&gt; LOCUS       AF298096                 638 bp    DNA     linear   UNA 23-NOV-2000</span>
-<span class="co">#&gt; DEFINITION  Unidentified clone B18 DNA sequence from ocean beach sand.</span>
-<span class="co">#&gt; ACCESSION   AF298096</span>
-<span class="co">#&gt; VERSION     AF298096.1</span>
-<span class="co">#&gt; KEYWORDS    .</span>
-<span class="co">#&gt; SOURCE      unidentified</span>
-<span class="co">#&gt;   ORGANISM  unidentified</span>
-<span class="co">#&gt;             unclassified sequences.</span>
-<span class="co">#&gt; REFERENCE   1  (bases 1 to 638)</span>
-<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
-<span class="co">#&gt;   TITLE     Sand DNA: a multigenomic library on the beach</span>
-<span class="co">#&gt;   JOURNAL   Unpublished</span>
-<span class="co">#&gt; REFERENCE   2  (bases 1 to 638)</span>
-<span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span>
-<span class="co">#&gt;   TITLE     Direct Submission</span>
-<span class="co">#&gt;   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San</span>
-<span class="co">#&gt;             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA</span>
-<span class="co">#&gt;             92103-8467, USA</span>
-<span class="co">#&gt; FEATURES             Location/Qualifiers</span>
-<span class="co">#&gt;      source          1..638</span>
-<span class="co">#&gt;                      /organism="unidentified"</span>
-<span class="co">#&gt;                      /mol_type="genomic DNA"</span>
-<span class="co">#&gt;                      /db_xref="taxon:32644"</span>
-<span class="co">#&gt;                      /clone="B18"</span>
-<span class="co">#&gt;                      /note="anonymous environmental sample sequence from ocean</span>
-<span class="co">#&gt;                      beach sand"</span>
-<span class="co">#&gt; ORIGIN      </span>
-<span class="co">#&gt;         1 gatcctcgaa aatgcgccag tcggccttga tctcccccaa gggctccttg gctgggaagc</span>
-<span class="co">#&gt;        61 ccaacgcctc aagcggcaag acctggggat aaacgatcaa ccagtcgaga tgttggtcag</span>
-<span class="co">#&gt;       121 actgtccatg atcgaacaag ccaaagatgt cgccggccct gaaatggacg ggaccgaatg</span>
-<span class="co">#&gt;       181 ggtagaaccc ccgccgggta cagcgaacct ggtagtgacg cttgacccgc tcgaaccaac</span>
-<span class="co">#&gt;       241 gaatggagaa ggcggcccga aagagcccca tctgtccgct ggccgaggga aagaggtccc</span>
-<span class="co">#&gt;       301 cttcttncag aggcagggcc atggaccatc gatcctctac tactagccag cccaagggca</span>
-<span class="co">#&gt;       361 gcagcttttc gttcgaaacg gtaagatcga gatccacgac ttcgcccgga aaggctcgcc</span>
-<span class="co">#&gt;       421 tctcgccgag ggtccgctcg tagacgatcc ggtccangct atggcggttc caccaccaag</span>
-<span class="co">#&gt;       481 ctatgggcag gacggtcana aaaaagccga nagaaccaac caggcattga ggccggcaac</span>
-<span class="co">#&gt;       541 caaggccanc acatgangaa cagggcgagg tanatccaac tttgttgaac atgatttcac</span>
-<span class="co">#&gt;       601 aacncttanc gcncatggcc ggattggttg attgactt</span>
-<span class="co">#&gt; //</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># connect, ensure safe disconnect after finishing</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/restez_connect.html">restez_connect</a></span>()</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Remember to run `restez_disconnect()`</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># get a random accession ID from the database</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">id &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="reference/list_db_ids.html">list_db_ids</a></span>(), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Warning in list_db_ids(): Number of ids returned was limited to [100].</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Set `n=NULL` to return all ids.</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co"># you can extract:</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co"># sequences</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">seq &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_sequence_get.html">gb_sequence_get</a></span>(id)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(seq)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  chr "GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNCCGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGA"| __truncated__</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co"># definitions</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">def &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_definition_get.html">gb_definition_get</a></span>(id)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(def)</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; [1] "Unidentified clone A3 DNA sequence from ocean beach sand"</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co"># organisms</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">org &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_organism_get.html">gb_organism_get</a></span>(id)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(org)</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; [1] "unidentified"</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co"># or whole records</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">rec &lt;-<span class="st"> </span><span class="kw"><a href="reference/gb_record_get.html">gb_record_get</a></span>(id)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(rec)</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; LOCUS       AF298085                 537 bp    DNA     linear   UNA 23-NOV-2000</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; DEFINITION  Unidentified clone A3 DNA sequence from ocean beach sand.</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; ACCESSION   AF298085</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; VERSION     AF298085.1</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; KEYWORDS    .</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; SOURCE      unidentified</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt;   ORGANISM  unidentified</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt;             unclassified sequences.</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt; REFERENCE   1  (bases 1 to 537)</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">#&gt;   TITLE     Sand DNA: a multigenomic library on the beach</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co">#&gt;   JOURNAL   Unpublished</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; REFERENCE   2  (bases 1 to 537)</span></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">#&gt;   AUTHORS   Naviaux,R.K.</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co">#&gt;   TITLE     Direct Submission</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt;   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San</span></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt;             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt;             92103-8467, USA</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt; FEATURES             Location/Qualifiers</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt;      source          1..537</span></a>
+<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt;                      /organism="unidentified"</span></a>
+<a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt;                      /mol_type="genomic DNA"</span></a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt;                      /db_xref="taxon:32644"</span></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt;                      /clone="A3"</span></a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt;                      /note="anonymous environmental sample sequence from ocean</span></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt;                      beach sand"</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; ORIGIN      </span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt;         1 gatccatatg tatacggaaa gcgtgtttac ctctttggtc agatantaac tgatgctcac</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt;        61 ccaatcntnc cgtagaccgt gcctgattgg gccggangac ctggggaacg accgcgaagt</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt;       121 tgtgtanctg cggaacctcn gtatnggngt nttacancaa cactgtgccc tcggccattt</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co">#&gt;       181 ccaggttgcc gttgtcctcc tcagnctgna tgacccatnn ataacggcca tctgccaaaa</span></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co">#&gt;       241 cccggntcac gatctgctgg gtaccgccgg ccagttccac cgtttccggc tcgtccacaa</span></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co">#&gt;       301 caccntccca atagacactg tatgcaccgg gcccccggcg ccggttctgc cgaaagaaga</span></a>
+<a class="sourceLine" id="cb4-57" data-line-number="57"><span class="co">#&gt;       361 attgttgctc gtcttcnttc tcnaaatata tgctgacgtt ngccgaacga gtgagtctat</span></a>
+<a class="sourceLine" id="cb4-58" data-line-number="58"><span class="co">#&gt;       421 accggatctc ggtgacgtcg gtgtcgncat cggcgtncgg nctgatccna tcgggggcga</span></a>
+<a class="sourceLine" id="cb4-59" data-line-number="59"><span class="co">#&gt;       481 cgctnaatcc ctnaacagcg ggccaaaggc cangtgcatt tggccgcaac cacctgc</span></a>
+<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#&gt; //</span></a></code></pre></div>
 </div>
 <div id="entrez-wrappers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#entrez-wrappers" class="anchor"></a>Entrez wrappers</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use the entrez_* wrappers to access GB data</span>
-res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC</span>
-<span class="co">#&gt; AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG</span>
-<span class="co">#&gt; CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT</span>
-<span class="co">#&gt; GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT</span>
-<span class="co">#&gt; GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG</span>
-<span class="co">#&gt; CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC</span>
-<span class="co">#&gt; TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG</span>
-<span class="co">#&gt; GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA</span>
-<span class="co">#&gt; CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG</span>
-<span class="co">#&gt; ATTGACTT</span>
-<span class="co"># if the id is not in the local database</span>
-<span class="co"># these wrappers will search online via the rentrez package</span>
-res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'S71333.1'</span>, id),
-                    <span class="dt">rettype =</span> <span class="st">'fasta'</span>)
-<span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(res)
-<span class="co">#&gt; &gt;AF298096.1 Unidentified clone B18 DNA sequence from ocean beach sand</span>
-<span class="co">#&gt; GATCCTCGAAAATGCGCCAGTCGGCCTTGATCTCCCCCAAGGGCTCCTTGGCTGGGAAGCCCAACGCCTC</span>
-<span class="co">#&gt; AAGCGGCAAGACCTGGGGATAAACGATCAACCAGTCGAGATGTTGGTCAGACTGTCCATGATCGAACAAG</span>
-<span class="co">#&gt; CCAAAGATGTCGCCGGCCCTGAAATGGACGGGACCGAATGGGTAGAACCCCCGCCGGGTACAGCGAACCT</span>
-<span class="co">#&gt; GGTAGTGACGCTTGACCCGCTCGAACCAACGAATGGAGAAGGCGGCCCGAAAGAGCCCCATCTGTCCGCT</span>
-<span class="co">#&gt; GGCCGAGGGAAAGAGGTCCCCTTCTTNCAGAGGCAGGGCCATGGACCATCGATCCTCTACTACTAGCCAG</span>
-<span class="co">#&gt; CCCAAGGGCAGCAGCTTTTCGTTCGAAACGGTAAGATCGAGATCCACGACTTCGCCCGGAAAGGCTCGCC</span>
-<span class="co">#&gt; TCTCGCCGAGGGTCCGCTCGTAGACGATCCGGTCCANGCTATGGCGGTTCCACCACCAAGCTATGGGCAG</span>
-<span class="co">#&gt; GACGGTCANAAAAAAGCCGANAGAACCAACCAGGCATTGAGGCCGGCAACCAAGGCCANCACATGANGAA</span>
-<span class="co">#&gt; CAGGGCGAGGTANATCCAACTTTGTTGAACATGATTTCACAACNCTTANCGCNCATGGCCGGATTGGTTG</span>
-<span class="co">#&gt; ATTGACTT</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span>
-<span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span>
-<span class="co">#&gt; ATATCAACAGCCCAGAAGGCTCTTTCTTGTGGATATATCACTCAAAGAACCCAGAAGTTGATGACAGCAG</span>
-<span class="co">#&gt; TGCTCAGAAGGACTGGTGGTTTCCTGGCTGGTTTAACAATGGGATCCACAATTATCAACAAGAGGAAGAA</span>
-<span class="co">#&gt; GACACAGACAAAGAAAAAGGAAGAGAGGAGGAACAAAAAAAGGAAGATGACACAACAGAGCTTCGGCTAT</span>
-<span class="co">#&gt; GGGACTGGTTTAATCCAAAGAAACGCCCAGAGGTTATGACAGTGACCCAATGGAAGGCGCCGGTTGTGTG</span>
-<span class="co">#&gt; GGAAGGCACTTACAACAAAGCCATCCTAGAAAATTATTATGCCAAACAGAAAATTACCGTGGGGTTGACG</span>
-<span class="co">#&gt; GTTTTTGCTATTGGAAGATATATTGAGCATTACTTGGAGGAGTTCGTAACATCTGCTAATAGGTACTTCA</span>
-<span class="co">#&gt; TGGTCGGCCACAAAGTCATATTTTATGTCATGGTGGATGATGTCTCCAAGGCGCCGTTTATAGAGCTGGG</span>
-<span class="co">#&gt; TCCTCTGCGTTCCTTCAAAGTGTTTGAGGTCAAGCCAGAGAAGAGGTGGCAAGACATCAGCATGATGCGT</span>
-<span class="co">#&gt; ATGAAGACCATCGGGGAGCACATCTTGGCCCACATCCAACACGAGGTTGACTTCCTCTTCTGCATGGATG</span>
-<span class="co">#&gt; TGGACCAGGTCTTCCAAGACCATTTTGGGGTAGAGACCCTGGGCCAGTCGGTGGCTCAGCTACAGGCCTG</span>
-<span class="co">#&gt; GTGGTACAAGGCAGATCCTGATGACTTTACCTATGAGAGGCGGAAAGAGTCGGCAGCATATATTCCATTT</span>
-<span class="co">#&gt; GGCCAGGGGGATTTTTATTACCATGCAGCCATTTTTGGAGGAACACCGATTCAGGTTCTCAACATCACCC</span>
-<span class="co">#&gt; AGGAGTGCTTTAAGGGAATCCTCCTGGACAAGAAAAATGACATAGAAGCCGAGTGGCATGATGAAAGCCA</span>
-<span class="co">#&gt; CCTAAACAAGTATTTCCTTCTCAACAAACCCTCTAAAATCTTATCTCCAGAATACTGCTGGGATTATCAT</span>
-<span class="co">#&gt; ATAGGCCTGCCTTCAGATATTAAAACTGTCAAGCTATCATGGCAAACAAAAGAGTATAATTTGGTTAGAA</span>
-<span class="co">#&gt; AGAATGTCTGA</span>
-<span class="kw"><a href="reference/restez_disconnect.html">restez_disconnect</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># use the entrez_* wrappers to access GB data</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> id, <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(res)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; &gt;AF298085.1 Unidentified clone A3 DNA sequence from ocean beach sand</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNC</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; CGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGACCGCGAAGTTGTGTANCTGCGGAACCTCN</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; GTATNGGNGTNTTACANCAACACTGTGCCCTCGGCCATTTCCAGGTTGCCGTTGTCCTCCTCAGNCTGNA</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; TGACCCATNNATAACGGCCATCTGCCAAAACCCGGNTCACGATCTGCTGGGTACCGCCGGCCAGTTCCAC</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; CGTTTCCGGCTCGTCCACAACACCNTCCCAATAGACACTGTATGCACCGGGCCCCCGGCGCCGGTTCTGC</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; CGAAAGAAGAATTGTTGCTCGTCTTCNTTCTCNAAATATATGCTGACGTTNGCCGAACGAGTGAGTCTAT</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; ACCGGATCTCGGTGACGTCGGTGTCGNCATCGGCGTNCGGNCTGATCCNATCGGGGGCGACGCTNAATCC</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; CTNAACAGCGGGCCAAAGGCCANGTGCATTTGGCCGCAACCACCTGC</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co"># if the id is not in the local database</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co"># these wrappers will search online via the rentrez package</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fetch.html">entrez_fetch</a></span>(<span class="dt">db =</span> <span class="st">'nucleotide'</span>, <span class="dt">id =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'S71333.1'</span>, id),</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">                    <span class="dt">rettype =</span> <span class="st">'fasta'</span>)</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; [1] id(s) are unavailable locally, searching online.</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(res)</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; &gt;AF298085.1 Unidentified clone A3 DNA sequence from ocean beach sand</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNC</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; CGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGACCGCGAAGTTGTGTANCTGCGGAACCTCN</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; GTATNGGNGTNTTACANCAACACTGTGCCCTCGGCCATTTCCAGGTTGCCGTTGTCCTCCTCAGNCTGNA</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; TGACCCATNNATAACGGCCATCTGCCAAAACCCGGNTCACGATCTGCTGGGTACCGCCGGCCAGTTCCAC</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; CGTTTCCGGCTCGTCCACAACACCNTCCCAATAGACACTGTATGCACCGGGCCCCCGGCGCCGGTTCTGC</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; CGAAAGAAGAATTGTTGCTCGTCTTCNTTCTCNAAATATATGCTGACGTTNGCCGAACGAGTGAGTCTAT</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; ACCGGATCTCGGTGACGTCGGTGTCGNCATCGGCGTNCGGNCTGATCCNATCGGGGGCGACGCTNAATCC</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; CTNAACAGCGGGCCAAAGGCCANGTGCATTTGGCCGCAACCACCTGC</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; &gt;S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt; ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT</span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt; ATATCAACAGCCCAGAAGGCTCTTTCTTGTGGATATATCACTCAAAGAACCCAGAAGTTGATGACAGCAG</span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; TGCTCAGAAGGACTGGTGGTTTCCTGGCTGGTTTAACAATGGGATCCACAATTATCAACAAGAGGAAGAA</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; GACACAGACAAAGAAAAAGGAAGAGAGGAGGAACAAAAAAAGGAAGATGACACAACAGAGCTTCGGCTAT</span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; GGGACTGGTTTAATCCAAAGAAACGCCCAGAGGTTATGACAGTGACCCAATGGAAGGCGCCGGTTGTGTG</span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; GGAAGGCACTTACAACAAAGCCATCCTAGAAAATTATTATGCCAAACAGAAAATTACCGTGGGGTTGACG</span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; GTTTTTGCTATTGGAAGATATATTGAGCATTACTTGGAGGAGTTCGTAACATCTGCTAATAGGTACTTCA</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; TGGTCGGCCACAAAGTCATATTTTATGTCATGGTGGATGATGTCTCCAAGGCGCCGTTTATAGAGCTGGG</span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; TCCTCTGCGTTCCTTCAAAGTGTTTGAGGTCAAGCCAGAGAAGAGGTGGCAAGACATCAGCATGATGCGT</span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; ATGAAGACCATCGGGGAGCACATCTTGGCCCACATCCAACACGAGGTTGACTTCCTCTTCTGCATGGATG</span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; TGGACCAGGTCTTCCAAGACCATTTTGGGGTAGAGACCCTGGGCCAGTCGGTGGCTCAGCTACAGGCCTG</span></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; GTGGTACAAGGCAGATCCTGATGACTTTACCTATGAGAGGCGGAAAGAGTCGGCAGCATATATTCCATTT</span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; GGCCAGGGGGATTTTTATTACCATGCAGCCATTTTTGGAGGAACACCGATTCAGGTTCTCAACATCACCC</span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; AGGAGTGCTTTAAGGGAATCCTCCTGGACAAGAAAAATGACATAGAAGCCGAGTGGCATGATGAAAGCCA</span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt; CCTAAACAAGTATTTCCTTCTCAACAAACCCTCTAAAATCTTATCTCCAGAATACTGCTGGGATTATCAT</span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; ATAGGCCTGCCTTCAGATATTAAAACTGTCAAGCTATCATGGCAAACAAAAGAGTATAATTTGGTTAGAA</span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt; AGAATGTCTGA</span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="kw"><a href="reference/restez_disconnect.html">restez_disconnect</a></span>()</a></code></pre></div>
 </div>
 </div>
 <div id="contributing" class="section level2">
@@ -312,7 +311,7 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -332,6 +331,12 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 </li>
 </ul>
 </div>
+<div class="community">
+<h2>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 <div class="citation">
 <h2>Citation</h2>
 <ul class="list-unstyled">
@@ -341,22 +346,11 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Dom Bennett <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2722-1359" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>Dom Bennett <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2722-1359" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/ropensci/restez"><img src="https://travis-ci.org/ropensci/restez.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://coveralls.io/github/ropensci/restez?branch=master"><img src="https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master" alt="Coverage Status"></a></li>
-<li><a href="https://github.com/ropensci/onboarding/issues/232"><img src="https://badges.ropensci.org/232_status.svg" alt="ROpenSci status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=restez"><img src="http://cranlogs.r-pkg.org/badges/grand-total/restez" alt="CRAN downloads"></a></li>
-<li><a href="https://zenodo.org/badge/latestdoi/129107980"><img src="https://zenodo.org/badge/129107980.svg" alt="DOI"></a></li>
-<li><a href="http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841"><img src="http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841/status.svg" alt="status"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
@@ -365,12 +359,14 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="reference/entrez_fet
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

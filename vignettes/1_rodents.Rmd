@@ -1,25 +1,10 @@
 ---
 title: "1. Build a database of all rodents"
-date: "`r Sys.Date()`"
+date: "2020-01-03"
 output: rmarkdown::html_vignette
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-# hide my wd
-original_status_class <- getFromNamespace(x = 'status_class', ns = 'restez')
-status_class2 <- function() {
-  res <- original_status_class()
-  res$`Restez path`$`Path` <- '[RODENTS PATH]/restez'
-  res$`Download`$`Path` <- '[RODENTS PATH]/restez/downloads'
-  res$`Database`$`Path` <- '[RODENTS PATH]/restez/sql_db'
-  res
-}
-assignInNamespace(x = 'status_class', value = status_class2, ns = 'restez')
-```
+
 
 In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand. To keep things extra fast, we will also limit the number of sequences in the database by limiting the sequence sizes between 100 and 1000.
 
@@ -27,16 +12,10 @@ The database you build here will be used again in later tutorials and you may wi
 
 Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 59 minutes.
 
-##Download
-```{r setpath, include=FALSE, eval=TRUE}
-# reminder to self: other/rodent_db.R
-pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
-rodents_path <- paste0(pkgwd, 'rodents')
-if (!dir.exists(rodents_path)) {
-  stop('other/rodent_db.R must be run first!', call. = FALSE)
-}
-```
-```{r download, eval=FALSE, include=TRUE}
+## Download
+
+
+```r
 library(restez)
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
@@ -44,22 +23,50 @@ restez_path_set(rodents_path)
 db_download(preselection = '15')
 ```
 
-##Build
-```{r build, eval=FALSE, include=TRUE}
+## Build
+
+```r
 library(restez)
 restez_path_set(rodents_path)
 db_create(min_length = 100, max_length = 1000)
 ```
 
-##Check status
-```{r status, echo=TRUE}
+## Check status
+
+```r
 library(restez)
 restez_path_set(rodents_path)
 restez_connect()
+#> Remember to run `restez_disconnect()`
 restez_status()
+#> Checking setup status at  ...
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Restez path ...
+#> ... Path '[RODENTS PATH]/restez'
+#> ... Does path exist? 'Yes'
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Download ...
+#> ... Path '[RODENTS PATH]/restez/downloads'
+#> ... Does path exist? 'Yes'
+#> ... N. files 35
+#> ... N. GBs 4.21
+#> ... GenBank division selections 'Rodent'
+#> ... GenBank Release 235
+#> ... Last updated '2020-01-03 12:45:46'
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Database ...
+#> ... Path '[RODENTS PATH]/restez/sql_db'
+#> ... Does path exist? 'Yes'
+#> ... N. GBs 0.68
+#> ... Is database connected? 'Yes'
+#> ... Does the database have data? 'Yes'
+#> ... Number of sequences 223200
+#> ... Min. sequence length 100
+#> ... Max. sequence length 1000
+#> ... Last_updated '2020-01-03 13:39:35'
 restez_disconnect()
 ```
 
-##Next up
+## Next up
 
 **[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**

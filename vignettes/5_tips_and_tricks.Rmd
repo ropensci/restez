@@ -7,7 +7,7 @@ output: rmarkdown::html_vignette
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##Multiple restez paths
+## Multiple restez paths
 
 It is not advisable to download the entire GenBank database to your machine. Equally, it is best to limit the size of a database. Databases that are too large will be slow to query and are more likely to cause memory issues. For example, you may actually make a query that demands more memory than is available on your machine. One solution to instead set multiple `restez` paths on your machine.
 
@@ -19,7 +19,7 @@ db_create(alt_restez_path = rodents_path, max_length = 2000)
 ```
 
 
-##Connecting and disconnecting
+## Connecting and disconnecting
 
 Always ensure you disconnect after connecting to a `restez` path. Not doing so may lead to some strange database errors such as 'seg faults' or you may even be prevented from connecting to a database again until you restart R. In scripts you should always place `restez_disconnect()` as the end of the script or when you have stopped making queries. If you are making queries from your own custom function you should use `on.exit`. This allows you to run 'clean up' code whenever a function exits, even if it errors.
 
@@ -44,7 +44,7 @@ restez_path_set(rodents_path)
 (restez_ready())
 ```
 
-##Which domain?
+## Which domain?
 
 The `db_download` function lists the various possible GenBank domains that can be downloaded. You can work out which GenBank domain a sequence belongs to by its three letter code towards the end of its locus. For example, the top of the record for this sequence indicates it is in the rodent domain.
 
@@ -55,7 +55,7 @@ ACCESSION   LT548182
 VERSION     LT548182.1
 ```
 
-##Database performance and behaviour
+## Database performance and behaviour
 
 The `restez` package database is built with [`MonetDBlite`](https://github.com/hannesmuehleisen/MonetDBLite-R). If you
 encounter any errors that include the phrase "Server says", then an issue is
