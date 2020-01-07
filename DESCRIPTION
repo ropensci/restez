@@ -11,7 +11,8 @@ Description: Download large sections of
     SQL-based database. A user can then query this database using 'restez'
     functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez>
     wrappers.
-URL: https://github.com/ropensci/restez#readme
+URL: https://github.com/ropensci/restez#readme,
+    https://docs.ropensci.org/restez
 BugReports: https://github.com/ropensci/restez/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
