@@ -172,7 +172,7 @@ restez_path_set(rodents_path)
 restez_connect()
 #> Remember to run `restez_disconnect()`
 (rand_id <- sample(suppressWarnings(list_db_ids()), 1))
-#> [1] "AB006613"
+#> [1] "AB008118"
 record <- gb_record_get(rand_id)
 (gb_extract(record = record, what = 'features'))
 #> [[1]]
@@ -180,51 +180,44 @@ record <- gb_record_get(rand_id)
 #> [1] "source"
 #> 
 #> [[1]]$location
-#> [1] "1..930"
+#> [1] "1..714"
 #> 
 #> [[1]]$organism
-#> [1] "Rattus norvegicus"
+#> [1] "Mus musculus"
 #> 
 #> [[1]]$mol_type
-#> [1] "mRNA"
+#> [1] "genomic DNA"
 #> 
 #> [[1]]$strain
-#> [1] "Sprague-Dawley"
+#> [1] "129"
 #> 
 #> [[1]]$db_xref
-#> [1] "taxon:10116"
-#> 
-#> [[1]]$sex
-#> [1] "male"
-#> 
-#> [[1]]$tissue_type
-#> [1] "brown adipose"
-#> 
-#> [[1]]$dev_stage
-#> [1] "8-week-old"
+#> [1] "taxon:10090"
 #> 
 #> 
 #> [[2]]
 #> [[2]]$type
-#> [1] "CDS"
+#> [1] "gene"
 #> 
 #> [[2]]$location
-#> [1] "1..930"
+#> [1] "complement(380..510)"
 #> 
-#> [[2]]$note
-#> [1] "UCP-2"
+#> [[2]]$gene
+#> [1] "Limk-2"
 #> 
-#> [[2]]$codon_start
-#> [1] "1"
 #> 
-#> [[2]]$product
-#> [1] "uncoupling protein-2"
+#> [[3]]
+#> [[3]]$type
+#> [1] "exon"
 #> 
-#> [[2]]$protein_id
-#> [1] "BAA23383.1"
+#> [[3]]$location
+#> [1] "complement(380..510)"
 #> 
-#> [[2]]$translation
-#> [1] "MVGFKATDVPPTATVKFLGAGTAACIADLITFPLDTAKVRLQIQGESQGLARTAASAQYRGVLGTILTMVRTEGPRSLYNGLVAGLQRQMSFASVRIGLYDSVKQFYTKGSEHAGIGSRLLAGSTTGALAVAVAQPTDVVKVRFQAQARAGGGRRYQSTVEAYKTIAREEGIRGLWKGTSPNVARNAIVNCTELVTYDLIKDTLLKANLMTDDLPCHFTSAFGAGFCTTVIASPVDVVKTRYMNSALGQYHSAGHCALTMLRKEGPRAFYKGFMPSFLRLGSWNVVMFVTYEQLKRALMAAYESREAPF"
+#> [[3]]$gene
+#> [1] "Limk-2"
+#> 
+#> [[3]]$note
+#> [1] "1a"
 restez_disconnect()
 ```
 

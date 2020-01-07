@@ -46,18 +46,18 @@ setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, mxsql = 500)
 # run just the first two stages for this demonstration
 taxise_run(wd)
 #> --------------------------------------------
-#> Starting stage TAXISE: [2020-01-03 14:49:31]
+#> Starting stage TAXISE: [2020-01-07 09:26:04]
 #> --------------------------------------------
 #> Searching taxonomic IDs ...
 #> Downloading taxonomic records ...
 #> . [1-28]
 #> Generating taxonomic dictionary ...
 #> ---------------------------------------------
-#> Completed stage TAXISE: [2020-01-03 14:49:34]
+#> Completed stage TAXISE: [2020-01-07 09:26:08]
 #> ---------------------------------------------
 download_run(wd)
 #> ----------------------------------------------
-#> Starting stage DOWNLOAD: [2020-01-03 14:49:34]
+#> Starting stage DOWNLOAD: [2020-01-07 09:26:08]
 #> ----------------------------------------------
 #> Identifying suitable clades ...
 #> Identified [1] suitable clades.
@@ -68,7 +68,7 @@ download_run(wd)
 #> . . Getting [100 sqs] from restez database...
 #> Successfully retrieved [100 sqs] in total.
 #> -----------------------------------------------
-#> Completed stage DOWNLOAD: [2020-01-03 14:49:39]
+#> Completed stage DOWNLOAD: [2020-01-07 09:26:12]
 #> -----------------------------------------------
 ```
 

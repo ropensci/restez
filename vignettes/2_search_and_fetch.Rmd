@@ -1,6 +1,6 @@
 ---
 title: "2. How to search for and fetch sequences"
-date: "2020-01-03"
+date: "2020-01-07"
 output: rmarkdown::html_vignette
 ---
 
@@ -62,7 +62,7 @@ system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
 #>    user  system elapsed 
-#>   0.466   0.944   1.425
+#>   0.475   0.967   1.748
 # time via Entrez
 system.time(expr = {
   coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -82,12 +82,12 @@ system.time(expr = {
                                             rettype = 'fasta')
   })
 #>    user  system elapsed 
-#>   0.099   0.019   6.940
+#>   0.136   0.037   7.207
 # always disconnect
 restez_disconnect()
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
-##Missing
+## Missing
 
 A user should know that if an ID cannot be found in the local database no error or warning is raised. This is why it can be good practice to test whether all the provided IDs are in the returned named vector. In this example, we can see that not all the accession IDs that were provided are in the returned `coi_sequences`. Why is that?
 

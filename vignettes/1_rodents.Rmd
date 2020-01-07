@@ -1,6 +1,6 @@
 ---
 title: "1. Build a database of all rodents"
-date: "2020-01-03"
+date: "2020-01-07"
 output: rmarkdown::html_vignette
 ---
 
@@ -35,6 +35,15 @@ db_create(min_length = 100, max_length = 1000)
 
 ```r
 library(restez)
+#> -------------
+#> restez v1.0.2
+#> -------------
+#> Remember to restez_path_set() and, then, restez_connect()
+#> 
+#> Attaching package: 'restez'
+#> The following object is masked _by_ '.GlobalEnv':
+#> 
+#>     record
 restez_path_set(rodents_path)
 restez_connect()
 #> Remember to run `restez_disconnect()`
