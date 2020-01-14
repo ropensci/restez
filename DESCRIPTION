@@ -35,4 +35,6 @@ Suggests:
     knitr,
     R.utils,
     rmarkdown
+Remotes:
+    hannesmuehleisen/MonetDBLite-R
 RoxygenNote: 6.1.1
