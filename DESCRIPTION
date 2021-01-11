@@ -24,7 +24,7 @@ Imports:
     rentrez,
     DBI (>= 1.0.0),
     downloader,
-    RCurl,
+    curl,
     cli,
     crayon,
     callr (>= 3.0.0)

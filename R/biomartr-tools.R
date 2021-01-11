@@ -8,7 +8,7 @@
 # originally connected.to.internet
 check_connection <- function() {
   check_url <- "https://www.ncbi.nlm.nih.gov/"
-  if (RCurl::url.exists(check_url)) {
+  if (url_exists(check_url)) {
     TRUE
   } else {
     msg <- paste0("Unable to connect to ", char(check_url),
@@ -41,4 +41,12 @@ custom_download <- function(...) {
                          quiet = TRUE, mode = 'wb')
   }
   invisible(NULL)
+}
+
+url_exists <- function(url){
+  h <- curl::new_handle(nobody = TRUE)
+  tryCatch({
+    req <- curl::curl_fetch_memory(url, handle = h)
+    return(req$status_code < 400)
+  }, error = function(e){FALSE})
 }
