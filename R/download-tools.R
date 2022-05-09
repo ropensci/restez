@@ -33,7 +33,7 @@ predict_datasizes <- function(uncompressed_filesize) {
 #' @return NULL
 #' @family private
 latest_genbank_release_notes <- function() {
-  url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
+  url <- 'https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
   flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
   curl::curl_download(url = url, destfile = flpth)
 }
@@ -44,7 +44,7 @@ latest_genbank_release_notes <- function() {
 #' @return character
 #' @family private
 latest_genbank_release <- function() {
-  url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/GB_Release_Number'
+  url <- 'https://ftp.ncbi.nlm.nih.gov/genbank/GB_Release_Number'
   flpth <- file.path(tempdir(), 'gb_release_number.txt')
   curl::curl_download(url = url, destfile = flpth)
   release <- readChar(con = flpth, nchars = 10)
@@ -141,7 +141,7 @@ file_download <- function(fl, overwrite=FALSE) {
     }
     FALSE
   }
-  base_url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/'
+  base_url <- 'https://ftp.ncbi.nlm.nih.gov/genbank/'
   gzfl <- paste0(fl, '.gz')
   gzurl <- paste0(base_url, gzfl)
   gzdest <- file.path(dwnld_path_get(), gzfl)
