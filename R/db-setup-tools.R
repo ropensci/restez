@@ -126,7 +126,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' This function will not overwrite a pre-existing database. Old databases must
 #' be deleted before a new one can be created. Use \code{\link{db_delete}} with
 #' everything=FALSE to delete an SQL database.
-#' 
+#'
 #' Connections/disconnections to the database are made automatically.
 #'
 #' @param db_type character, database type
@@ -172,8 +172,7 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
   # log min and max
   db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
-  # Note, avoid callr with gb_build()
-  read_errors <- gb_build2(dpth = dpth, seq_files = seq_files,
+  read_errors <- gb_build(dpth = dpth, seq_files = seq_files,
                            max_length = max_length, min_length = min_length)
   cat_line('Done.')
   if (read_errors) {

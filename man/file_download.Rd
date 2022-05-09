@@ -50,7 +50,6 @@ Other private:
 \code{\link{extract_version}()},
 \code{\link{filename_log}()},
 \code{\link{flatfile_read}()},
-\code{\link{gb_build2}()},
 \code{\link{gb_build}()},
 \code{\link{gb_df_create}()},
 \code{\link{gb_df_generate}()},

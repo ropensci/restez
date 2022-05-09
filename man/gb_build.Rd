@@ -57,7 +57,6 @@ Other private:
 \code{\link{file_download}()},
 \code{\link{filename_log}()},
 \code{\link{flatfile_read}()},
-\code{\link{gb_build2}()},
 \code{\link{gb_df_create}()},
 \code{\link{gb_df_generate}()},
 \code{\link{gb_sql_add}()},

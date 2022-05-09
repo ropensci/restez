@@ -152,18 +152,7 @@ file_download <- function(fl, overwrite=FALSE) {
     cat_line('... ... already downloaded')
     return(TRUE)
   }
-  success <- tryCatch({
-    curl::curl_download(url = gzurl, destfile = gzdest)
-    TRUE
-  }, error = function(e) {
-    cat_line('... ... ', char(gzurl), ' cannot be reached.')
-    remove(gzdest)
-  }, interrupt = function(e) {
-    remove(gzdest)
-    stop('User halted', call. = FALSE)
-  })
-  if (success) {
-    dwnld_rcrd_log(fl)
-  }
-  success
+  curl::curl_download(url = gzurl, destfile = gzdest, quiet = FALSE)
+  dwnld_rcrd_log(fl)
+  TRUE
 }
