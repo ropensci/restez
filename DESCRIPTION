@@ -29,7 +29,7 @@ Imports:
     crayon,
     callr (>= 3.0.0)
 Suggests:
-    devtools,
+    sessioninfo,
     MonetDBLite (>= 0.6.0),
     testthat,
     knitr,

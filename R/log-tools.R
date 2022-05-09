@@ -28,7 +28,7 @@ readme_log <- function() {
 #' @family private
 seshinfo_log <- function() {
   flpth <- file.path(restez_path_get(), 'session_info.txt')
-  session_info <- devtools::session_info()
+  session_info <- sessioninfo::session_info()
   write(x = 'SYSTEM\n', file = flpth)
   utils::capture.output(session_info[[1]], file = flpth, append = TRUE)
   write(x = '\nPACKAGES\n', file = flpth, append = TRUE)
