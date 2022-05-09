@@ -48,8 +48,6 @@ reference:
     - cleanup
     - connected
     - connection_get
-    - custom_download
-    - custom_download2
     - db_sqlngths_get
     - db_sqlngths_log
     - dir_size
@@ -74,7 +72,6 @@ reference:
     - filename_log
     - flatfile_read
     - gb_build
-    - gb_build2
     - gb_df_create
     - gb_df_generate
     - gb_sql_add

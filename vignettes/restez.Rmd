@@ -12,9 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# hide line spinner
-assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
-                  ns = 'restez')
 ```
 
 # 1. Download GenBank
