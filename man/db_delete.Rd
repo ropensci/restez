@@ -28,9 +28,12 @@ db_delete(everything = TRUE)
 (restez_path_get())
 }
 \seealso{
-Other database: \code{\link{count_db_ids}},
-  \code{\link{db_create}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}}, \code{\link{is_in_db}},
-  \code{\link{list_db_ids}}
+Other database: 
+\code{\link{count_db_ids}()},
+\code{\link{db_create}()},
+\code{\link{db_download}()},
+\code{\link{demo_db_create}()},
+\code{\link{is_in_db}()},
+\code{\link{list_db_ids}()}
 }
 \concept{database}

@@ -13,10 +13,12 @@ Set the restez path to NULL
 Any connected database will be automatically disconnected.
 }
 \seealso{
-Other setup: \code{\link{restez_connect}},
-  \code{\link{restez_disconnect}},
-  \code{\link{restez_path_get}},
-  \code{\link{restez_path_set}},
-  \code{\link{restez_ready}}, \code{\link{restez_status}}
+Other setup: 
+\code{\link{restez_connect}()},
+\code{\link{restez_disconnect}()},
+\code{\link{restez_path_get}()},
+\code{\link{restez_path_set}()},
+\code{\link{restez_ready}()},
+\code{\link{restez_status}()}
 }
 \concept{setup}

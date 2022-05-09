@@ -4,8 +4,7 @@
 \alias{db_download}
 \title{Download database}
 \usage{
-db_download(db = "nucleotide", overwrite = FALSE,
-  preselection = NULL)
+db_download(db = "nucleotide", overwrite = FALSE, preselection = NULL)
 }
 \arguments{
 \item{db}{Database type, only 'nucleotide' currently available.}
@@ -33,9 +32,12 @@ db_download()
 }
 }
 \seealso{
-Other database: \code{\link{count_db_ids}},
-  \code{\link{db_create}}, \code{\link{db_delete}},
-  \code{\link{demo_db_create}}, \code{\link{is_in_db}},
-  \code{\link{list_db_ids}}
+Other database: 
+\code{\link{count_db_ids}()},
+\code{\link{db_create}()},
+\code{\link{db_delete}()},
+\code{\link{demo_db_create}()},
+\code{\link{is_in_db}()},
+\code{\link{list_db_ids}()}
 }
 \concept{database}

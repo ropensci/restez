@@ -29,10 +29,11 @@ restez_connect()
 db_delete(everything = TRUE)
 }
 \seealso{
-Other get: \code{\link{gb_fasta_get}},
-  \code{\link{gb_organism_get}},
-  \code{\link{gb_record_get}},
-  \code{\link{gb_sequence_get}},
-  \code{\link{gb_version_get}}
+Other get: 
+\code{\link{gb_fasta_get}()},
+\code{\link{gb_organism_get}()},
+\code{\link{gb_record_get}()},
+\code{\link{gb_sequence_get}()},
+\code{\link{gb_version_get}()}
 }
 \concept{get}

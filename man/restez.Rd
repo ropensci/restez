@@ -3,7 +3,6 @@
 \docType{package}
 \name{restez}
 \alias{restez}
-\alias{restez-package}
 \title{restez: Create and Query a Local Copy of GenBank in R}
 \description{
 The restez package comes with five families of functions:

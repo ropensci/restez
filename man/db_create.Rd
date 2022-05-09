@@ -4,8 +4,12 @@
 \alias{db_create}
 \title{Create new NCBI database}
 \usage{
-db_create(db_type = "nucleotide", min_length = 0, max_length = NULL,
-  alt_restez_path = NULL)
+db_create(
+  db_type = "nucleotide",
+  min_length = 0,
+  max_length = NULL,
+  alt_restez_path = NULL
+)
 }
 \arguments{
 \item{db_type}{character, database type}
@@ -48,9 +52,12 @@ db_create()
 }
 }
 \seealso{
-Other database: \code{\link{count_db_ids}},
-  \code{\link{db_delete}}, \code{\link{db_download}},
-  \code{\link{demo_db_create}}, \code{\link{is_in_db}},
-  \code{\link{list_db_ids}}
+Other database: 
+\code{\link{count_db_ids}()},
+\code{\link{db_delete}()},
+\code{\link{db_download}()},
+\code{\link{demo_db_create}()},
+\code{\link{is_in_db}()},
+\code{\link{list_db_ids}()}
 }
 \concept{database}
