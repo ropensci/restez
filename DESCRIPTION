@@ -23,7 +23,6 @@ Imports:
     utils,
     rentrez,
     DBI (>= 1.0.0),
-    downloader,
     curl,
     cli,
     crayon,
