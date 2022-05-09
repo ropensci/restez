@@ -35,9 +35,7 @@ predict_datasizes <- function(uncompressed_filesize) {
 latest_genbank_release_notes <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt'
   flpth <- file.path(dwnld_path_get(), 'latest_release_notes.txt')
-  tryCatch(custom_download2(url = url, destfile = flpth),
-           interrupt = function(e) stop('User halted.', call. = FALSE))
-  
+  curl::curl_download(url = url, destfile = flpth)
 }
 
 #' @name latest_genbank_release
@@ -48,8 +46,7 @@ latest_genbank_release_notes <- function() {
 latest_genbank_release <- function() {
   url <- 'ftp://ftp.ncbi.nlm.nih.gov/genbank/GB_Release_Number'
   flpth <- file.path(tempdir(), 'gb_release_number.txt')
-  tryCatch(custom_download2(url = url, destfile = flpth),
-           interrupt = function(e) stop('User halted.', call. = FALSE))
+  curl::curl_download(url = url, destfile = flpth)
   release <- readChar(con = flpth, nchars = 10)
   file.remove(flpth)
   gsub(pattern = '[^0-9]', replacement = '', x = release)
@@ -156,8 +153,7 @@ file_download <- function(fl, overwrite=FALSE) {
     return(TRUE)
   }
   success <- tryCatch({
-    # can switch to custom_download() to avoid callr
-    custom_download2(url = gzurl, destfile = gzdest)
+    curl::curl_download(url = gzurl, destfile = gzdest)
     TRUE
   }, error = function(e) {
     cat_line('... ... ', char(gzurl), ' cannot be reached.')
