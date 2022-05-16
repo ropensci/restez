@@ -26,6 +26,7 @@ Imports:
     curl,
     cli,
     crayon,
+    stringi
 Suggests:
     sessioninfo,
     MonetDBLite (>= 0.6.0),

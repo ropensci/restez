@@ -81,11 +81,32 @@ extract_seqrecpart <- function(record) {
 #' @title Extract clean sequence from sequence part
 #' @description Return clean sequence from seqrecpart of a GenBank record
 #' @param seqrecpart Sequence part of a GenBank record, character
+#' @param max_len Number: maximum number of characters allowed in a single
+#' record before splitting the record into parts. Does not affect output,
+#' but only internal calculations, so generally should not be changed.
+#' Default = 1e8.
 #' @details If element is not found, '' returned.
 #' @return character
 #' @family private
-extract_clean_sequence <- function(seqrecpart) {
-  seq <- gsub(pattern = '([0-9]|\\s+|\n|/)', replacement = '', x = seqrecpart)
+extract_clean_sequence <- function(seqrecpart, max_len = 1e8) {
+  # If number of chars in sequence part is too long for gsub(),
+  # split into chunks each no bigger than max_len chars
+  if (nchar(seqrecpart) > max_len) {
+    seqrecpart <- stringi::stri_sub(
+      seqrecpart,
+      seq(1, stringi::stri_length(seqrecpart),
+          by = max_len),
+      length = max_len
+    )
+  }
+  # Extract the DNA sequence from each part
+  seq <- paste0(
+    sapply(
+      seqrecpart,
+      function(x) gsub(pattern = '([0-9]|\\s+|\n|/)', replacement = '', x)
+    ),
+    collapse = ""
+  )
   # upper case is recommended, at least it is what rentrez returns
   toupper(seq)
 }
