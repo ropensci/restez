@@ -112,9 +112,11 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' @description Create a new local SQL database from downloaded files.
 #' Currently only GenBank/nucleotide/nuccore database is supported.
 #' @details
-#' All .seq.gz files are added to the database. A user can specify sequence
-#' limit sizes for those sequences to be added to the database -- smaller
-#' databases are faster to search.
+#' All .seq.gz files are added to the database by default. A user can specify
+#' minimum/maximum sequence lengths or accession numbers to limit the sequences
+#' to be added to the database -- smaller databases are faster to search. The
+#' final selection of sequences is the result of applying all filters
+#' (`acc_filter`, `min_length`, `max_length`) in combination.
 #'
 #' Alternatively, a user can use the \code{alt_restez_path} to add the files
 #' from an alternative restez file path. For example, you may wish to have a
@@ -129,23 +131,43 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #'
 #' Connections/disconnections to the database are made automatically.
 #'
+#' @inheritParams gb_df_generate
 #' @param db_type character, database type
-#' @param min_length Minimum sequence length, default 0.
-#' @param max_length Maximum sequence length, default NULL.
 #' @param alt_restez_path Alternative restez path if you would like to use the
 #' downloads from a different restez path.
 #' @return NULL
 #' @export
 #' @examples
 #' \dontrun{
+#' # Example of general usage
 #' library(restez)
 #' restez_path_set(filepath = 'path/for/downloads/and/database')
 #' db_download()
 #' db_create()
+#'
+#' # Example of using `acc_filter`
+#' #
+#' # Download files to temporary directory
+#' temp_dir <- paste0(tempdir(), "/restez", collapse = "")
+#' dir.create(temp_dir)
+#' restez_path_set(filepath = temp_dir)
+#' # Choose GenBank domain 20 ('unannotated'), the smallest
+#' db_download(preselection = 20)
+#' # Only include three accessions in database
+#' db_create(
+#'   acc_filter = c("AF000122", "AF000123", "AF000124")
+#' )
+#' restez_connect()
+#' list_db_ids()
+#' # Cleanup
+#' restez_disconnect()
+#' db_delete()
+#' unlink(temp_dir)
 #' }
 # db_type: a nod to the future,
-db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
-                      alt_restez_path = NULL) {
+db_create <- function(
+  db_type = 'nucleotide', min_length = 0, max_length = NULL,
+  acc_filter = NULL, invert = FALSE, alt_restez_path = NULL) {
   # LT548182 did not appear in rodent database with size limits, why?
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
@@ -169,11 +191,12 @@ db_create <- function(db_type='nucleotide', min_length=0, max_length=NULL,
   }
   # add
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
-  cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
+  cat_line('Scanning ', stat(length(seq_files)), ' file(s) to add to the database ...')
   # log min and max
   db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
   read_errors <- gb_build(dpth = dpth, seq_files = seq_files,
-                           max_length = max_length, min_length = min_length)
+                           max_length = max_length, min_length = min_length,
+                           acc_filter = acc_filter, invert = invert)
   cat_line('Done.')
   if (read_errors) {
     message('Some files failed to be read. Try running db_download() again.')
