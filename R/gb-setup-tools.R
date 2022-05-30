@@ -158,14 +158,18 @@ gb_sql_add <- function(df) {
 #' files to a SQL-like database. If any errors during the process, FALSE is
 #' returned.
 #' @details This function will automatically connect to the restez database.
+#'
 #' @inheritParams gb_df_generate
 #' @param dpth Download path (where seq_files are stored)
 #' @param seq_files .seq.tar seq file names
+#' @param scan Logical vector of length 1; should the sequence file be scanned
+#' for accessions in `acc_filter` prior to processing? Only used if
+#' `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.
 #' @return Logical
 #' @family private
 gb_build <- function(
   dpth, seq_files, max_length, min_length,
-  acc_filter = NULL, invert = FALSE) {
+  acc_filter = NULL, invert = FALSE, scan = FALSE) {
   quiet_connect()
   on.exit(restez_disconnect())
   read_errors <- FALSE
@@ -174,6 +178,15 @@ gb_build <- function(
     stat_i <- paste0(i, '/', length(seq_files))
     cat_line('... ', char(seq_file), ' (', stat(stat_i), ')')
     flpth <- file.path(dpth, seq_file)
+    # File scanning: faster method to skip loading record if
+    # no desired accessions are present
+    if (isTRUE(scan) && !is.null(acc_filter) && invert == FALSE) {
+      records_detected <- search_gz(acc_filter, flpth)
+      if (!records_detected) {
+        cat_line('... ... No accessions in acc_filter detected; skipping file.')
+        next
+      }
+    }
     records <- flatfile_read(flpth = flpth)
     if (length(records) > 0) {
       df <- gb_df_generate(records = records, min_length = min_length,
@@ -183,7 +196,8 @@ gb_build <- function(
         gb_sql_add(df = df)
         add_rcrd_log(fl = seq_file)
       } else {
-        cat_line('... ... Hmmmm... no records found in that file.')
+        cat_line('... ... No sequences found that meet filters; skipping file.')
+        next
       }
     } else {
       read_errors <- TRUE
@@ -191,4 +205,34 @@ gb_build <- function(
     }
   }
   read_errors
+}
+
+#' @name search_gz
+#' @title Scan a gzipped file for text
+#' @description Scans a zipped file for text
+#' strings and returns TRUE if any are present.
+#' @param terms Character vector; search terms (most likely GenBank accession
+#' numbers)
+#' @param path Path to the gzipped file to scan
+#' @return Logical
+#' @family private
+search_gz <- function(terms, path) {
+  # There are a potentially large number of terms,
+  # so grepping works best with external files
+  temp_file <- tempfile()
+  writeLines(terms, temp_file)
+  # Run zgrep
+  command <- paste(
+    "zgrep -c -F -f",
+    temp_file,
+    path
+  )
+  # zgrep returns count of times any of the accessions occurred in the file
+  search_res <- as.integer(
+    suppressWarnings(system(command, intern = TRUE))
+  )
+  # Done with temp file
+  unlink(temp_file)
+  # Return TRUE if at least one accession found
+  search_res > 0
 }

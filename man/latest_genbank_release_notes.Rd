@@ -67,6 +67,7 @@ Other private:
 \code{\link{readme_log}()},
 \code{\link{restez_path_check}()},
 \code{\link{restez_rl}()},
+\code{\link{search_gz}()},
 \code{\link{seshinfo_log}()},
 \code{\link{setup}()},
 \code{\link{slctn_get}()},

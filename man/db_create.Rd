@@ -10,7 +10,8 @@ db_create(
   max_length = NULL,
   acc_filter = NULL,
   invert = FALSE,
-  alt_restez_path = NULL
+  alt_restez_path = NULL,
+  scan = FALSE
 )
 }
 \arguments{
@@ -29,6 +30,10 @@ will be included in the databasse. Default FALSE.}
 
 \item{alt_restez_path}{Alternative restez path if you would like to use the
 downloads from a different restez path.}
+
+\item{scan}{Logical vector of length 1; should the sequence file be scanned
+for accessions in `acc_filter` prior to processing? Only used if
+`acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
 }
 \description{
 Create a new local SQL database from downloaded files.
@@ -40,6 +45,14 @@ minimum/maximum sequence lengths or accession numbers to limit the sequences
 to be added to the database -- smaller databases are faster to search. The
 final selection of sequences is the result of applying all filters
 (`acc_filter`, `min_length`, `max_length`) in combination.
+
+The `scan` option can decrease the time needed to build a database if only a
+small number of sequences should be written to the database compared to the
+number of the sequences downloaded from GenBank; i.e., if many of the files
+downloaded from GenBank do not contain any sequences that should be written
+to the database. When set to TRUE, if a file does not contain any of the
+accessions in `acc_filter`, further processing of that file will be skipped
+and none of the sequences it contains will be added to the database.
 
 Alternatively, a user can use the \code{alt_restez_path} to add the files
 from an alternative restez file path. For example, you may wish to have a

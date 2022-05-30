@@ -10,7 +10,8 @@ gb_build(
   max_length,
   min_length,
   acc_filter = NULL,
-  invert = FALSE
+  invert = FALSE,
+  scan = FALSE
 )
 }
 \arguments{
@@ -28,6 +29,10 @@ the database as specified by `invert`.}
 \item{invert}{Logical vector of length 1; if TRUE, accessions in `acc_filter`
 will be excluded from the database; if FALSE, only accessions in `acc_filter`
 will be included in the databasse. Default FALSE.}
+
+\item{scan}{Logical vector of length 1; should the sequence file be scanned
+for accessions in `acc_filter` prior to processing? Only used if
+`acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
 }
 \value{
 Logical
@@ -97,6 +102,7 @@ Other private:
 \code{\link{readme_log}()},
 \code{\link{restez_path_check}()},
 \code{\link{restez_rl}()},
+\code{\link{search_gz}()},
 \code{\link{seshinfo_log}()},
 \code{\link{setup}()},
 \code{\link{slctn_get}()},

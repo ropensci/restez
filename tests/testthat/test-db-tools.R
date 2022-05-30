@@ -34,6 +34,38 @@ test_that('db_create() works', {
   expect_error(db_create())
   expect_true(dir.exists(restez:::sql_path_get()))
 })
+test_that('search_gz() works', {
+  restez:::setup()
+  on.exit(restez:::cleanup())
+  fp <- file.path(restez:::dwnld_path_get(), 'test.seq')
+  record_text <- paste0(unlist(records), collapse = '\n')
+  write(x = record_text, file = fp)
+  R.utils::gzip(fp)
+  fp_zip <- paste0(fp, ".gz")
+  expect_true(
+    search_gz(c("AC092025", "AC090116"), fp_zip)
+  )
+  expect_false(
+    search_gz(c("AC0920254085dfash", "AC09011635t09248tgjaf"), fp_zip)
+  )
+})
+test_that('search_gz() works inside db_create()', {
+  restez:::setup()
+  restez::restez_connect()
+  on.exit(restez:::cleanup())
+  fp <- file.path(restez:::dwnld_path_get(), 'test.seq')
+  record_text <- paste0(unlist(records), collapse = '\n')
+  write(x = record_text, file = fp)
+  R.utils::gzip(fp)
+  db_create(acc_filter = c("AC092025", "AC090116"), scan = TRUE)
+  expect_true(file.exists(restez:::sql_path_get()))
+  restez::restez_connect()
+  expect_equal(
+    sort(list_db_ids(n = NULL)),
+    sort(c("AC092025", "AC090116"))
+  )
+  restez:::cleanup()
+})
 test_that('db_download() works', {
   restez:::setup()
   on.exit(restez:::cleanup())
