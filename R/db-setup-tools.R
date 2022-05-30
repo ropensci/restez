@@ -191,7 +191,7 @@ db_create <- function(
   }
   # add
   seq_files <- list.files(path = dpth, pattern = '.seq.gz$')
-  cat_line('Adding ', stat(length(seq_files)), ' file(s) to the database ...')
+  cat_line('Scanning ', stat(length(seq_files)), ' file(s) to add to the database ...')
   # log min and max
   db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
   read_errors <- gb_build(dpth = dpth, seq_files = seq_files,
