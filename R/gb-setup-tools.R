@@ -50,7 +50,7 @@ flatfile_read <- function(flpth) {
 #' @param invert Logical vector of length 1; if TRUE, accessions in `acc_filter`
 #' will be excluded from the database; if FALSE, only accessions in `acc_filter`
 #' will be included in the databasse. Default FALSE.
-#' @return data.frame
+#' @return data.frame, or NULL if no records pass filters
 #' @family private
 gb_df_generate <- function(records, min_length=0, max_length=NULL,
   acc_filter = NULL, invert = FALSE) {
@@ -94,7 +94,9 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL,
       pull <- pull & accessions %in% acc_filter
     }
   }
-  if (!any(pull)) stop("No accessions match conditions specified")
+  if (!any(pull)) {
+    return(NULL)
+  }
   gb_df_create(accessions = accessions[pull], versions = versions[pull],
                organisms = organisms[pull], definitions = definitions[pull],
                sequences = seqrecparts[pull], records = infoparts[pull])
@@ -177,8 +179,12 @@ gb_build <- function(
       df <- gb_df_generate(records = records, min_length = min_length,
                            max_length = max_length, acc_filter = acc_filter,
                            invert = invert)
-      gb_sql_add(df = df)
-      add_rcrd_log(fl = seq_file)
+      if (!is.null(df)) {
+        gb_sql_add(df = df)
+        add_rcrd_log(fl = seq_file)
+      } else {
+        cat_line('... ... Hmmmm... no records found in that file.')
+      }
     } else {
       read_errors <- TRUE
       cat_line('... ... Hmmmm... no records found in that file.')

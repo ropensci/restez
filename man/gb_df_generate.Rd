@@ -27,7 +27,7 @@ will be excluded from the database; if FALSE, only accessions in `acc_filter`
 will be included in the databasse. Default FALSE.}
 }
 \value{
-data.frame
+data.frame, or NULL if no records pass filters
 }
 \description{
 For a list of records, construct a data.frame
