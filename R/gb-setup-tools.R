@@ -71,11 +71,18 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL,
                                FUN = extract_definition))
   organisms <- unname(vapply(X = infoparts, FUN.VALUE = character(1),
                              FUN = extract_organism))
+  # reset `pull` before filtering
+  pull <- rep(TRUE, length(seqrecparts))
   # filter by sequence lengths
-  seqlengths <- unname(vapply(X = seqrecparts, FUN = function(x) {
-    nchar(extract_clean_sequence(x))
-    }, FUN.VALUE = integer(1)))
-  pull <- seqlengths >= min_length
+  # only calculate seq length if needed
+  if (!is.null(max_length) | min_length > 0) {
+    seqlengths <- unname(vapply(X = seqrecparts, FUN = function(x) {
+      nchar(extract_clean_sequence(x))
+      }, FUN.VALUE = integer(1)))
+  }
+  if (min_length > 0) {
+    pull <- seqlengths >= min_length
+  }
   if (!is.null(max_length)) {
     pull <- pull & seqlengths <= max_length
   }
