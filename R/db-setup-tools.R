@@ -117,6 +117,14 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' to be added to the database -- smaller databases are faster to search. The
 #' final selection of sequences is the result of applying all filters
 #' (`acc_filter`, `min_length`, `max_length`) in combination.
+#' 
+#' The `scan` option can decrease the time needed to build a database if only a
+#' small number of sequences should be written to the database compared to the
+#' number of the sequences downloaded from GenBank; i.e., if many of the files
+#' downloaded from GenBank do not contain any sequences that should be written
+#' to the database. When set to TRUE, if a file does not contain any of the
+#' accessions in `acc_filter`, further processing of that file will be skipped
+#' and none of the sequences it contains will be added to the database.
 #'
 #' Alternatively, a user can use the \code{alt_restez_path} to add the files
 #' from an alternative restez file path. For example, you may wish to have a
@@ -132,6 +140,7 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' Connections/disconnections to the database are made automatically.
 #'
 #' @inheritParams gb_df_generate
+#' @inheritParams gb_build
 #' @param db_type character, database type
 #' @param alt_restez_path Alternative restez path if you would like to use the
 #' downloads from a different restez path.
@@ -167,7 +176,8 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 # db_type: a nod to the future,
 db_create <- function(
   db_type = 'nucleotide', min_length = 0, max_length = NULL,
-  acc_filter = NULL, invert = FALSE, alt_restez_path = NULL) {
+  acc_filter = NULL, invert = FALSE, alt_restez_path = NULL,
+  scan = FALSE) {
   # LT548182 did not appear in rodent database with size limits, why?
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
@@ -196,7 +206,8 @@ db_create <- function(
   db_sqlngths_log(min_lngth = min_length, max_lngth = max_length)
   read_errors <- gb_build(dpth = dpth, seq_files = seq_files,
                            max_length = max_length, min_length = min_length,
-                           acc_filter = acc_filter, invert = invert)
+                           acc_filter = acc_filter, invert = invert,
+                           scan = scan)
   cat_line('Done.')
   if (read_errors) {
     message('Some files failed to be read. Try running db_download() again.')
