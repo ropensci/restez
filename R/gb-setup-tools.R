@@ -36,15 +36,24 @@ flatfile_read <- function(flpth) {
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
 #'
-#' Use max and min sequence lengths to minimise the size of the database.
-#' All sequences have to be at least as long as min and less than or equal
-#' in length to max, unless max is NULL in which there is no maximum length.
+#' Use `acc_filter` and max and min sequence lengths to minimise the size of the
+#' database. All sequences have to be at least as long as min and less than or
+#' equal in length to max, unless max is NULL in which there is no maximum
+#' length. The final selection of sequences is the result of applying all
+#' filters (`acc_filter`, `min_length`, `max_length`) in combination.
+#'
 #' @param records character, vector of GenBank records in text format
 #' @param min_length Minimum sequence length, default 0.
 #' @param max_length Maximum sequence length, default NULL.
+#' @param acc_filter Character vector; accessions to include or exclude from
+#' the database as specified by `invert`.
+#' @param invert Logical vector of length 1; if TRUE, accessions in `acc_filter`
+#' will be excluded from the database; if FALSE, only accessions in `acc_filter`
+#' will be included in the databasse. Default FALSE.
 #' @return data.frame
 #' @family private
-gb_df_generate <- function(records, min_length=0, max_length=NULL) {
+gb_df_generate <- function(records, min_length=0, max_length=NULL,
+  acc_filter = NULL, invert = FALSE) {
   infoparts <- unname(vapply(X = records, FUN = extract_inforecpart,
                              FUN.VALUE = character(1)))
   # not all records have sequences, in which the whole record is the infopart
@@ -70,6 +79,15 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL) {
   if (!is.null(max_length)) {
     pull <- pull & seqlengths <= max_length
   }
+  # filter by accessions to include
+  if (!is.null(acc_filter)) {
+    if (invert) {
+      pull <- pull & !(accessions %in% acc_filter)
+    } else {
+      pull <- pull & accessions %in% acc_filter
+    }
+  }
+  if (!any(pull)) stop("No accessions match conditions specified")
   gb_df_create(accessions = accessions[pull], versions = versions[pull],
                organisms = organisms[pull], definitions = definitions[pull],
                sequences = seqrecparts[pull], records = infoparts[pull])
@@ -131,13 +149,14 @@ gb_sql_add <- function(df) {
 #' files to a SQL-like database. If any errors during the process, FALSE is
 #' returned.
 #' @details This function will automatically connect to the restez database.
+#' @inheritParams gb_df_generate
 #' @param dpth Download path (where seq_files are stored)
 #' @param seq_files .seq.tar seq file names
-#' @param max_length Maximum sequence length
-#' @param min_length Minimum sequence length
 #' @return Logical
 #' @family private
-gb_build <- function(dpth, seq_files, max_length, min_length) {
+gb_build <- function(
+  dpth, seq_files, max_length, min_length,
+  acc_filter = NULL, invert = FALSE) {
   quiet_connect()
   on.exit(restez_disconnect())
   read_errors <- FALSE
@@ -149,7 +168,8 @@ gb_build <- function(dpth, seq_files, max_length, min_length) {
     records <- flatfile_read(flpth = flpth)
     if (length(records) > 0) {
       df <- gb_df_generate(records = records, min_length = min_length,
-                           max_length = max_length)
+                           max_length = max_length, acc_filter = acc_filter,
+                           invert = invert)
       gb_sql_add(df = df)
       add_rcrd_log(fl = seq_file)
     } else {
