@@ -178,12 +178,13 @@ gb_build <- function(
     stat_i <- paste0(i, '/', length(seq_files))
     cat_line('... ', char(seq_file), ' (', stat(stat_i), ')')
     flpth <- file.path(dpth, seq_file)
-    # File scanning: faster method to skip loading record if 
+    # File scanning: faster method to skip loading record if
     # no desired accessions are present
     if (isTRUE(scan) && !is.null(acc_filter) && invert == FALSE) {
       records_detected <- search_gz(acc_filter, flpth)
       if (!records_detected) {
         cat_line('... ... No accessions in acc_filter detected; skipping file.')
+        return(FALSE)
       }
     }
     records <- flatfile_read(flpth = flpth)
@@ -196,6 +197,7 @@ gb_build <- function(
         add_rcrd_log(fl = seq_file)
       } else {
         cat_line('... ... No sequences found that meet filters; skipping file.')
+        return(FALSE)
       }
     } else {
       read_errors <- TRUE
@@ -236,7 +238,7 @@ search_gz_single <- function(terms, path) {
 search_gz <- function(terms, path) {
   # Set maximum number of terms to search with awk
   # more than 100,000 will definitely cause an error
-  chunk_size <- 50000
+  chunk_size <- 10000
   if (length(terms) < chunk_size) {
     res <- search_gz_single(terms, path)
   } else {
