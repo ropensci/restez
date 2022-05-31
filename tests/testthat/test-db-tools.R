@@ -57,11 +57,12 @@ test_that('search_gz() works inside db_create()', {
   record_text <- paste0(unlist(records), collapse = '\n')
   write(x = record_text, file = fp)
   R.utils::gzip(fp)
-  db_create(acc_filter = "AC092025", scan = TRUE)
+  db_create(acc_filter = c("AC092025", "AC090116"), scan = TRUE)
   expect_true(file.exists(restez:::sql_path_get()))
   restez::restez_connect()
   expect_equal(
-    list_db_ids(n = NULL), "AC092025"
+    sort(list_db_ids(n = NULL)),
+    sort(c("AC092025", "AC090116"))
   )
   restez:::cleanup()
 })
