@@ -184,7 +184,7 @@ gb_build <- function(
       records_detected <- search_gz(acc_filter, flpth)
       if (!records_detected) {
         cat_line('... ... No accessions in acc_filter detected; skipping file.')
-        return(FALSE)
+        next
       }
     }
     records <- flatfile_read(flpth = flpth)
@@ -197,7 +197,7 @@ gb_build <- function(
         add_rcrd_log(fl = seq_file)
       } else {
         cat_line('... ... No sequences found that meet filters; skipping file.')
-        return(FALSE)
+        next
       }
     } else {
       read_errors <- TRUE
@@ -207,47 +207,32 @@ gb_build <- function(
   read_errors
 }
 
-#' @name search_gz_single
+#' @name search_gz
 #' @title Scan a gzipped file for text
-#' @description Helper function for search_gz. Scans a zipped file for text
+#' @description Scans a zipped file for text
 #' strings and returns TRUE if any are present.
 #' @param terms Character vector; search terms (most likely GenBank accession
 #' numbers)
 #' @param path Path to the gzipped file to scan
 #' @return Logical
 #' @family private
-search_gz_single <- function(terms, path) {
-  search_terms <- paste0(terms, collapse = "|")
-  command <- paste0(
-    "gzip -dc ", path, " | awk '/", search_terms, "/' ", collapse = "")
-  res <- system(command, intern = TRUE)
-  if (length(res) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
-}
-
-#' @name search_gz
-#' @title Scan a gzipped file for text
-#' @description Scans a zipped file for text
-#' strings and returns TRUE if any are present.
-#' @inheritParams search_gz_single
-#' @return Logical
-#' @family private
 search_gz <- function(terms, path) {
-  # Set maximum number of terms to search with awk
-  # more than 100,000 will definitely cause an error
-  chunk_size <- 10000
-  if (length(terms) < chunk_size) {
-    res <- search_gz_single(terms, path)
-  } else {
-    # Determine number of chunks
-    n <- length(terms)
-    r <- rep(1:ceiling(n / chunk_size), each = chunk_size)[1:n]
-    term_list <- split(terms, r)
-    # Loops across list of terms
-    res <- lapply(term_list, search_gz_single, path = path)
-  }
-  any(unlist(res))
+  # There are a potentially large number of terms,
+  # so grepping works best with external files
+  temp_file <- tempfile()
+  writeLines(terms, temp_file)
+  # Run zgrep
+  command <- paste(
+    "zgrep -c -F -f",
+    temp_file,
+    path
+  )
+  # zgrep returns count of times any of the accessions occurred in the file
+  search_res <- as.integer(
+    suppressWarnings(system(command, intern = TRUE))
+  )
+  # Done with temp file
+  unlink(temp_file)
+  # Return TRUE if at least one accession found
+  search_res > 0
 }
