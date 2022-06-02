@@ -4,16 +4,35 @@
 \alias{gb_build}
 \title{Read and add .seq files to database}
 \usage{
-gb_build(dpth, seq_files, max_length, min_length)
+gb_build(
+  dpth,
+  seq_files,
+  max_length,
+  min_length,
+  acc_filter = NULL,
+  invert = FALSE,
+  scan = FALSE
+)
 }
 \arguments{
 \item{dpth}{Download path (where seq_files are stored)}
 
 \item{seq_files}{.seq.tar seq file names}
 
-\item{max_length}{Maximum sequence length}
+\item{max_length}{Maximum sequence length, default NULL.}
 
-\item{min_length}{Minimum sequence length}
+\item{min_length}{Minimum sequence length, default 0.}
+
+\item{acc_filter}{Character vector; accessions to include or exclude from
+the database as specified by `invert`.}
+
+\item{invert}{Logical vector of length 1; if TRUE, accessions in `acc_filter`
+will be excluded from the database; if FALSE, only accessions in `acc_filter`
+will be included in the databasse. Default FALSE.}
+
+\item{scan}{Logical vector of length 1; should the sequence file be scanned
+for accessions in `acc_filter` prior to processing? Only used if
+`acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
 }
 \value{
 Logical
@@ -83,6 +102,7 @@ Other private:
 \code{\link{readme_log}()},
 \code{\link{restez_path_check}()},
 \code{\link{restez_rl}()},
+\code{\link{search_gz}()},
 \code{\link{seshinfo_log}()},
 \code{\link{setup}()},
 \code{\link{slctn_get}()},

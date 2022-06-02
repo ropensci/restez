@@ -65,6 +65,17 @@ test_that('gb_df_generate() works', {
                     "raw_sequence", "raw_record")
   expect_true(all(colnames(df) %in% expctd_clnms))
 })
+test_that('gb_df_generate() can filter by accession', {
+  accs_filter <- c("AC092025", "AC090116", "AC091644")
+  df <- restez:::gb_df_generate(
+    records = records,
+    acc_filter = accs_filter)
+  expect_equal(sort(accs_filter), sort(df$accession))
+  expect_true(nrow(df) == 3)
+  expctd_clnms <- c("accession", "version", "organism", "raw_definition",
+                    "raw_sequence", "raw_record")
+  expect_true(all(colnames(df) %in% expctd_clnms))
+})
 test_that('gb_sql_add() works', {
   restez:::setup()
   restez::restez_connect()

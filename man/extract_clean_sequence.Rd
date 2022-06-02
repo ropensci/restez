@@ -4,10 +4,15 @@
 \alias{extract_clean_sequence}
 \title{Extract clean sequence from sequence part}
 \usage{
-extract_clean_sequence(seqrecpart)
+extract_clean_sequence(seqrecpart, max_len = 1e+08)
 }
 \arguments{
 \item{seqrecpart}{Sequence part of a GenBank record, character}
+
+\item{max_len}{Number: maximum number of characters allowed in a single
+record before splitting the record into parts. Does not affect output,
+but only internal calculations, so generally should not be changed.
+Default = 1e8.}
 }
 \value{
 character
@@ -75,6 +80,7 @@ Other private:
 \code{\link{readme_log}()},
 \code{\link{restez_path_check}()},
 \code{\link{restez_rl}()},
+\code{\link{search_gz}()},
 \code{\link{seshinfo_log}()},
 \code{\link{setup}()},
 \code{\link{slctn_get}()},
