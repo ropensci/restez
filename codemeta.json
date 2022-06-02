@@ -1,24 +1,28 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "restez",
-  "description": "Download large sections of\n    'GenBank' <https://www.ncbi.nlm.nih.gov/genbank/> and generate a local\n    SQL-based database. A user can then query this database using 'restez'\n    functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez>\n    wrappers.",
+  "description": "Download large sections of 'GenBank' <https://www.ncbi.nlm.nih.gov/genbank/> and generate a local SQL-based database. A user can then query this database using 'restez' functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez> wrappers.",
   "name": "restez: Create and Query a Local Copy of 'GenBank' in R",
-  "codeRepository": "https://github.com/ropensci/restez#readme",
+  "relatedLink": "https://docs.ropensci.org/restez",
+  "codeRepository": "https://github.com/ropensci/restez",
   "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
   "author": [
+    {
+      "@type": "Person",
+      "givenName": "Joel H.",
+      "familyName": "Nitta",
+      "email": "joelnitta@gmail.com",
+      "@id": "https://orcid.org/0000-0003-4719-7472"
+    },
     {
       "@type": "Person",
       "givenName": "Dom",
@@ -30,13 +34,31 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Dom",
-      "familyName": "Bennett",
-      "email": "dominic.john.bennett@gmail.com",
-      "@id": "https://orcid.org/0000-0003-2722-1359"
+      "givenName": "Joel H.",
+      "familyName": "Nitta",
+      "email": "joelnitta@gmail.com",
+      "@id": "https://orcid.org/0000-0003-4719-7472"
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sessioninfo",
+      "name": "sessioninfo",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sessioninfo"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "MonetDBLite",
+      "name": "MonetDBLite",
+      "version": ">= 0.6.0"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "testthat",
@@ -86,19 +108,19 @@
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.3.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "rentrez",
       "name": "rentrez",
@@ -110,20 +132,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rentrez"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "MonetDBLite",
-      "name": "MonetDBLite",
-      "version": ">= 0.6.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=MonetDBLite"
-    },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "DBI",
       "name": "DBI",
@@ -136,31 +145,19 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=DBI"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
-      "identifier": "downloader",
-      "name": "downloader",
+      "identifier": "curl",
+      "name": "curl",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=downloader"
+      "sameAs": "https://CRAN.R-project.org/package=curl"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "RCurl",
-      "name": "RCurl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=RCurl"
-    },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
       "name": "cli",
@@ -172,7 +169,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=cli"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "crayon",
       "name": "crayon",
@@ -184,59 +181,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=crayon"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
-      "identifier": "callr",
-      "name": "callr",
-      "version": ">= 3.0.0",
+      "identifier": "stringi",
+      "name": "stringi",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=callr"
+      "sameAs": "https://CRAN.R-project.org/package=stringi"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "devtools",
-      "name": "devtools",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=devtools"
-    }
-  ],
-  "readme": "https://github.com/ropensci/restez/blob/master/README.md",
-  "fileSize": "1399.149KB",
-  "contIntegration": [
-    "https://travis-ci.org/AntonelliLab/restez",
-    "https://coveralls.io/github/AntonelliLab/restez?branch=master"
-  ],
-  "keywords": [
-    "genbank",
-    "dna",
-    "sequence",
-    "entrez",
-    "r",
-    "r-package",
-    "rstats"
-  ],
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
+    "SystemRequirements": null
   },
-  "releaseNotes": "https://github.com/ropensci/restez/blob/master/NEWS.md",
-  "review": {
-    "@type": "Review",
-    "url": "https://github.com/ropensci/onboarding/issues/232",
-    "provider": "http://ropensci.org"
-  },
+  "fileSize": "1657.315KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -285,7 +244,7 @@
       ],
       "name": "restez: Create and Query a Local Copy of GenBank in R",
       "identifier": "10.21105/joss.01102",
-      "paginiation": "1102",
+      "pagination": "1102",
       "@id": "https://doi.org/10.21105/joss.01102",
       "sameAs": "https://doi.org/10.21105/joss.01102",
       "isPartOf": {
@@ -300,5 +259,13 @@
       }
     }
   ],
-  "relatedLink": "https://CRAN.R-project.org/package=restez"
+  "releaseNotes": "https://github.com/ropensci/restez/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/restez/blob/main/README.md",
+  "contIntegration": ["https://travis-ci.org/ropensci/restez", "https://coveralls.io/github/ropensci/restez?branch=master"],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/232",
+    "provider": "https://ropensci.org"
+  },
+  "keywords": ["genbank", "dna", "sequence", "entrez", "r", "r-package", "rstats"]
 }
