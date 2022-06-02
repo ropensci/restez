@@ -12,11 +12,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-# don't run callr
-assignInNamespace(x = 'custom_download2', value = restez:::custom_download,
-                  ns = 'restez')
-assignInNamespace(x = 'gb_build2', value = restez:::gb_build,
-                  ns = 'restez')
 ```
 
 # Locally query GenBank <img src="https://raw.githubusercontent.com/ropensci/restez/master/logo.png" height="200" align="right"/>
@@ -151,7 +146,7 @@ Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API.
 
 ## Maintainer
 
-[Dom Bennett](https://github.com/DomBennett)
+[Joel Nitta](https://github.com/joelnitta)
 
 -----
 
