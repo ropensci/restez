@@ -122,10 +122,6 @@ restez_disconnect()
 
 Want to contribute? Check the [contributing page](https://ropensci.github.io/restez/CONTRIBUTING.html).
 
-## Version
-
-Release version 1.
-
 ## Licence
 
 MIT
