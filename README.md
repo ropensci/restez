@@ -89,7 +89,7 @@ no longer available.)
 # Warning: running these examples may take a few minutes
 library(restez)
 #> -------------
-#> restez v1.0.3
+#> restez v1.1.0
 #> -------------
 #> Remember to restez_path_set() and, then, restez_connect()
 # choose a location to store GenBank files
@@ -117,11 +117,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "GATCCCGACCTTGATGCTGTTCAAGGGCGGCAACGTCGAGGCGACCAAGGTCGGGGCACTGTCGAAGAGCCAGCTCGCGGCATTTCTCGACAGCAATCTCTGAGCGCGACG"| __truncated__
+#>  chr "AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGAAGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGT"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified clone B27 DNA sequence from ocean beach sand"
+#> [1] "Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -129,44 +129,46 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF298103                 647 bp    DNA     linear   UNA 23-NOV-2000
-#> DEFINITION  Unidentified clone B27 DNA sequence from ocean beach sand.
-#> ACCESSION   AF298103
-#> VERSION     AF298103.1
+#> LOCUS       AF298113                 633 bp    DNA     linear   UNA 23-NOV-2000
+#> DEFINITION  Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence.
+#> ACCESSION   AF298113
+#> VERSION     AF298113.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 647)
+#> REFERENCE   1  (bases 1 to 633)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Sand DNA: a multigenomic library on the beach
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 647)
+#> REFERENCE   2  (bases 1 to 633)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Direct Submission
 #>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
 #>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
 #>             92103-8467, USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..647
+#>      source          1..633
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="B27"
+#>                      /clone="E16S17"
 #>                      /note="anonymous environmental sample sequence from ocean
 #>                      beach sand"
+#>      rRNA            <1..>633
+#>                      /product="SSU ribosomal RNA"
 #> ORIGIN      
-#>         1 gatcccgacc ttgatgctgt tcaagggcgg caacgtcgag gcgaccaagg tcggggcact
-#>        61 gtcgaagagc cagctcgcgg catttctcga cagcaatctc tgagcgcgac gcgcgccgcc
-#>       121 gtcatgtggc gctcatcacg aaaacttcgt cacacggggt agacgccccc tgaggcgcgt
-#>       181 gttaggtttt tcatacaccg gcgcactcgc gccgtcctca ccttcatccg tacccagcac
-#>       241 acgcttgctc acgcccatac ccgtgcggtc gtcatgaccg tcgaccgtgc tgcccgccag
-#>       301 tccgcctctt ggattgctta atgaacctca cagagttgaa acagaaaacc gccccggagc
-#>       361 tgctcgagct gtcgcaggag ctcggcatcg agggcatggc ccgctcgcgc aagcaggacg
-#>       421 tgatcttcgc gatcctgaag aaccaggcga agaagggcga ggacatctac ggcgacggcg
-#>       481 tgctcgaaat ccttcaggac ggattcggct tnctgcgctc gtctgacagc ttctacctgg
-#>       541 ccgggcccga cgacatttac gtnagtccna gccanatccg ccgcttnggc tgncaccggn
-#>       601 nnaccgtggt tggaaagata aggcttcaaa ggagggaagc gctcttt
+#>         1 aattcggctt ggttaccttg ttacgacttc accccagtca tgaaccacaa agtggtgagc
+#>        61 gacctcccga aggttagtct acccacttct tttgcaaccc actcccatgg tgtgacgggc
+#>       121 ggtgtgtaca aggcccggga acgtattcac cgtagcaatg ctgatctacg attactagcg
+#>       181 attccaactt catgcagtcg agttgcagac tgcaatccgg actaagaact gctttgtggg
+#>       241 attggctccc cctcgcgggt tagcgaccct ctgtacagcc cattgtagca cgtgtgtagc
+#>       301 ccagcccata agggccatga tgacttgacg tcatccccac cttcctccgg tttgtcaccg
+#>       361 gcagtctcct tagagttccc accattacgt gctggcaact aaggacaang gttgcgctcg
+#>       421 ttgcgggact taacccaaca tctcacgaca cgagctgacg acagccatgc agcacctgtg
+#>       481 taacggcccg aangcggcac catctctggt aaccttccat tacatgtcaa atccaggtaa
+#>       541 ggttctgcgc gttgcatcga attaaaccac atgctccact gcttgtgcgg gccccccgtc
+#>       601 aatttctttg agtttaatct tgcgaccgta ctt
 #> //
 ```
 
@@ -176,34 +178,34 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF298103.1 Unidentified clone B27 DNA sequence from ocean beach sand
-#> GATCCCGACCTTGATGCTGTTCAAGGGCGGCAACGTCGAGGCGACCAAGGTCGGGGCACTGTCGAAGAGC
-#> CAGCTCGCGGCATTTCTCGACAGCAATCTCTGAGCGCGACGCGCGCCGCCGTCATGTGGCGCTCATCACG
-#> AAAACTTCGTCACACGGGGTAGACGCCCCCTGAGGCGCGTGTTAGGTTTTTCATACACCGGCGCACTCGC
-#> GCCGTCCTCACCTTCATCCGTACCCAGCACACGCTTGCTCACGCCCATACCCGTGCGGTCGTCATGACCG
-#> TCGACCGTGCTGCCCGCCAGTCCGCCTCTTGGATTGCTTAATGAACCTCACAGAGTTGAAACAGAAAACC
-#> GCCCCGGAGCTGCTCGAGCTGTCGCAGGAGCTCGGCATCGAGGGCATGGCCCGCTCGCGCAAGCAGGACG
-#> TGATCTTCGCGATCCTGAAGAACCAGGCGAAGAAGGGCGAGGACATCTACGGCGACGGCGTGCTCGAAAT
-#> CCTTCAGGACGGATTCGGCTTNCTGCGCTCGTCTGACAGCTTCTACCTGGCCGGGCCCGACGACATTTAC
-#> GTNAGTCCNAGCCANATCCGCCGCTTNGGCTGNCACCGGNNNACCGTGGTTGGAAAGATAAGGCTTCAAA
-#> GGAGGGAAGCGCTCTTT
+#> >AF298113.1 Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence
+#> AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGA
+#> AGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGTGTGACGGGCGGTGTGTACAAGGCCCGGGA
+#> ACGTATTCACCGTAGCAATGCTGATCTACGATTACTAGCGATTCCAACTTCATGCAGTCGAGTTGCAGAC
+#> TGCAATCCGGACTAAGAACTGCTTTGTGGGATTGGCTCCCCCTCGCGGGTTAGCGACCCTCTGTACAGCC
+#> CATTGTAGCACGTGTGTAGCCCAGCCCATAAGGGCCATGATGACTTGACGTCATCCCCACCTTCCTCCGG
+#> TTTGTCACCGGCAGTCTCCTTAGAGTTCCCACCATTACGTGCTGGCAACTAAGGACAANGGTTGCGCTCG
+#> TTGCGGGACTTAACCCAACATCTCACGACACGAGCTGACGACAGCCATGCAGCACCTGTGTAACGGCCCG
+#> AANGCGGCACCATCTCTGGTAACCTTCCATTACATGTCAAATCCAGGTAAGGTTCTGCGCGTTGCATCGA
+#> ATTAAACCACATGCTCCACTGCTTGTGCGGGCCCCCCGTCAATTTCTTTGAGTTTAATCTTGCGACCGTA
+#> CTT
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF298103.1 Unidentified clone B27 DNA sequence from ocean beach sand
-#> GATCCCGACCTTGATGCTGTTCAAGGGCGGCAACGTCGAGGCGACCAAGGTCGGGGCACTGTCGAAGAGC
-#> CAGCTCGCGGCATTTCTCGACAGCAATCTCTGAGCGCGACGCGCGCCGCCGTCATGTGGCGCTCATCACG
-#> AAAACTTCGTCACACGGGGTAGACGCCCCCTGAGGCGCGTGTTAGGTTTTTCATACACCGGCGCACTCGC
-#> GCCGTCCTCACCTTCATCCGTACCCAGCACACGCTTGCTCACGCCCATACCCGTGCGGTCGTCATGACCG
-#> TCGACCGTGCTGCCCGCCAGTCCGCCTCTTGGATTGCTTAATGAACCTCACAGAGTTGAAACAGAAAACC
-#> GCCCCGGAGCTGCTCGAGCTGTCGCAGGAGCTCGGCATCGAGGGCATGGCCCGCTCGCGCAAGCAGGACG
-#> TGATCTTCGCGATCCTGAAGAACCAGGCGAAGAAGGGCGAGGACATCTACGGCGACGGCGTGCTCGAAAT
-#> CCTTCAGGACGGATTCGGCTTNCTGCGCTCGTCTGACAGCTTCTACCTGGCCGGGCCCGACGACATTTAC
-#> GTNAGTCCNAGCCANATCCGCCGCTTNGGCTGNCACCGGNNNACCGTGGTTGGAAAGATAAGGCTTCAAA
-#> GGAGGGAAGCGCTCTTT
+#> >AF298113.1 Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence
+#> AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGA
+#> AGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGTGTGACGGGCGGTGTGTACAAGGCCCGGGA
+#> ACGTATTCACCGTAGCAATGCTGATCTACGATTACTAGCGATTCCAACTTCATGCAGTCGAGTTGCAGAC
+#> TGCAATCCGGACTAAGAACTGCTTTGTGGGATTGGCTCCCCCTCGCGGGTTAGCGACCCTCTGTACAGCC
+#> CATTGTAGCACGTGTGTAGCCCAGCCCATAAGGGCCATGATGACTTGACGTCATCCCCACCTTCCTCCGG
+#> TTTGTCACCGGCAGTCTCCTTAGAGTTCCCACCATTACGTGCTGGCAACTAAGGACAANGGTTGCGCTCG
+#> TTGCGGGACTTAACCCAACATCTCACGACACGAGCTGACGACAGCCATGCAGCACCTGTGTAACGGCCCG
+#> AANGCGGCACCATCTCTGGTAACCTTCCATTACATGTCAAATCCAGGTAAGGTTCTGCGCGTTGCATCGA
+#> ATTAAACCACATGCTCCACTGCTTGTGCGGGCCCCCCGTCAATTTCTTTGAGTTTAATCTTGCGACCGTA
+#> CTT
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
@@ -230,10 +232,6 @@ restez_disconnect()
 
 Want to contribute? Check the [contributing
 page](https://ropensci.github.io/restez/CONTRIBUTING.html).
-
-## Version
-
-Release version 1.
 
 ## Licence
 
