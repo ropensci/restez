@@ -1,6 +1,7 @@
 # LIBS
 library(restez)
 library(testthat)
+library(mockery)
 
 # VARS
 nrcrds <- 5
@@ -67,24 +68,19 @@ test_that('search_gz() works inside db_create()', {
   restez:::cleanup()
 })
 test_that('db_download() works', {
-  restez:::setup()
-  on.exit(restez:::cleanup())
-  res <- with_mock(
-    `restez:::check_connection` = function() TRUE,
-    `restez:::latest_genbank_release` = function() 255,
-    `restez:::latest_genbank_release_notes` = function() NULL,
-    `restez:::identify_downloadable_files` = function() {
-      mck_dwnldbl
-      },
-    `restez:::restez_rl` = function(prompt) '1',
-    `restez:::file_download` = function(...) TRUE,
-    restez:::db_download()
-  )
-  expect_true(res)
+  setup()
+  on.exit(cleanup())
+  stub(db_download, "check_connection", TRUE)
+  stub(db_download, "latest_genbank_release", 1000)
+  stub(db_download, "latest_genbank_release_notes", NULL)
+  stub(db_download, "identify_downloadable_files", mck_dwnldbl)
+  stub(db_download, "restez_rl", "1")
+  stub(db_download, "file_download", TRUE)
+  expect_true(db_download())
 })
 test_that('db_delete() works', {
-  restez:::setup()
-  on.exit(restez:::cleanup())
+  setup()
+  on.exit(cleanup())
   demo_db_create()
   db_delete(everything = FALSE)
   expect_false(file.exists(restez:::sql_path_get()))
