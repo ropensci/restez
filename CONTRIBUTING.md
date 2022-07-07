@@ -4,7 +4,7 @@ You are very welcome to help out in the development of restez. The NCBI database
 for a single person from a single discpline within the biological sciences to effectively realise all of what NCBI has to offer.
 Restez needs your help!
 
-If you have any ideas for future features than please add them to the [issues page](https://github.com/AntonelliLab/restez/issues).
+If you have any ideas for future features than please add them to the [issues page](https://github.com/ropensci/restez/issues).
 If you have the guile, time and inspriation to add those features yourself, then please fork and send a pull request.
 
 ## Areas for possible contribution
@@ -43,14 +43,13 @@ package and make sure it meets CRAN guidelines use `devtools`.
 
 ```r
 devtools::test()
-devtools::check_cran()
 ```
 
 For help, refer to Hadley Wickham's book, [R packages](http://r-pkgs.had.co.nz/).
 
 ## Style guide
 
-Restez is being developed for eventual submission to ROpenSci. This means the package and its code should meet ROpenSci style and
+Restez is part of ROpenSci. This means the package and its code should meet ROpenSci style and
 standards. For example, function names should be all lowercase, separated by underscores and the last word should, ideally, be
 a verb.
 

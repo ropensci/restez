@@ -17,7 +17,7 @@ readme_log <- function() {
                    ' added etc. Please provide this logged information if you ',
                    'raise a bug.',
                    ' It is best to raise any bug via GitHub issues:\n',
-                   'https://github.com/AntonelliLab/restez/issues')
+                   'https://github.com/ropensci/restez/issues')
   write(x = readme, file = flpth)
 }
 
