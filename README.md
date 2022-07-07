@@ -17,9 +17,16 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-
 [![status](http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841/status.svg)](http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841)
 
 > NOTE: `restez` is no longer available on CRAN due to the archiving of
-> a key dependency. It can still be installed via GitHub. The issue is
-> being dealt with and hopefully a new version of `restez` will be
-> available on CRAN soon.
+> a key dependency
+> ([MonetDBLite](https://github.com/MonetDB/MonetDBLite-R)). It can
+> still be installed via GitHub. The issue is being dealt with and
+> hopefully a new version of `restez` will be available on CRAN soon.
+
+> ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with
+> [duckdb](https://github.com/duckdb/duckdb) in the development version,
+> which should allow for submission to CRAN. Becauase of the change, the
+> development verion **is not compatible with databases built with
+> previous versions of restez**.
 
 Download parts of [NCBI’s GenBank](https://www.ncbi.nlm.nih.gov/nuccore)
 to a local folder and create a simple SQL-like database. Use ‘get’ tools
@@ -117,11 +124,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGAAGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGT"| __truncated__
+#>  chr "GATCCTTTCCCAGCCCTTGCACTTCACGACCCAGCCGGGCTGACCGCCGCCGGAAGGCATTGCCGGAGCGCGGGGCAGCGTCACCGAANGTGCCGTTGGGGTACTGGGGGT"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence"
+#> [1] "Unidentified clone B5 DNA sequence from ocean beach sand"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -129,46 +136,39 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF298113                 633 bp    DNA     linear   UNA 23-NOV-2000
-#> DEFINITION  Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence.
-#> ACCESSION   AF298113
-#> VERSION     AF298113.1
+#> LOCUS       AF298110                 345 bp    DNA     linear   UNA 23-NOV-2000
+#> DEFINITION  Unidentified clone B5 DNA sequence from ocean beach sand.
+#> ACCESSION   AF298110
+#> VERSION     AF298110.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 633)
+#> REFERENCE   1  (bases 1 to 345)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Sand DNA: a multigenomic library on the beach
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 633)
+#> REFERENCE   2  (bases 1 to 345)
 #>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Direct Submission
 #>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
 #>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
 #>             92103-8467, USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..633
+#>      source          1..345
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="E16S17"
+#>                      /clone="B5"
 #>                      /note="anonymous environmental sample sequence from ocean
 #>                      beach sand"
-#>      rRNA            <1..>633
-#>                      /product="SSU ribosomal RNA"
 #> ORIGIN      
-#>         1 aattcggctt ggttaccttg ttacgacttc accccagtca tgaaccacaa agtggtgagc
-#>        61 gacctcccga aggttagtct acccacttct tttgcaaccc actcccatgg tgtgacgggc
-#>       121 ggtgtgtaca aggcccggga acgtattcac cgtagcaatg ctgatctacg attactagcg
-#>       181 attccaactt catgcagtcg agttgcagac tgcaatccgg actaagaact gctttgtggg
-#>       241 attggctccc cctcgcgggt tagcgaccct ctgtacagcc cattgtagca cgtgtgtagc
-#>       301 ccagcccata agggccatga tgacttgacg tcatccccac cttcctccgg tttgtcaccg
-#>       361 gcagtctcct tagagttccc accattacgt gctggcaact aaggacaang gttgcgctcg
-#>       421 ttgcgggact taacccaaca tctcacgaca cgagctgacg acagccatgc agcacctgtg
-#>       481 taacggcccg aangcggcac catctctggt aaccttccat tacatgtcaa atccaggtaa
-#>       541 ggttctgcgc gttgcatcga attaaaccac atgctccact gcttgtgcgg gccccccgtc
-#>       601 aatttctttg agtttaatct tgcgaccgta ctt
+#>         1 gatcctttcc cagcccttgc acttcacgac ccagccgggc tgaccgccgc cggaaggcat
+#>        61 tgccggagcg cggggcagcg tcaccgaang tgccgttggg gtactggggg tactccttca
+#>       121 agggaccatg cgccagccgc tgctggtcgc gcagcttcac ccggcacagg ttaagcacgc
+#>       181 tgtcctgcat ggcgcaggtc acccgctggc ccctgccgct cgtctcgcga tggaacaagg
+#>       241 cggtcacgat cccgagagcg agatgcacgc cggtgcctga atcgccgatc tgcgaccccg
+#>       301 tgacgagcgg cggcccgtct tcgaagccgg tggtgctggc ggatc
 #> //
 ```
 
@@ -178,34 +178,24 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF298113.1 Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence
-#> AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGA
-#> AGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGTGTGACGGGCGGTGTGTACAAGGCCCGGGA
-#> ACGTATTCACCGTAGCAATGCTGATCTACGATTACTAGCGATTCCAACTTCATGCAGTCGAGTTGCAGAC
-#> TGCAATCCGGACTAAGAACTGCTTTGTGGGATTGGCTCCCCCTCGCGGGTTAGCGACCCTCTGTACAGCC
-#> CATTGTAGCACGTGTGTAGCCCAGCCCATAAGGGCCATGATGACTTGACGTCATCCCCACCTTCCTCCGG
-#> TTTGTCACCGGCAGTCTCCTTAGAGTTCCCACCATTACGTGCTGGCAACTAAGGACAANGGTTGCGCTCG
-#> TTGCGGGACTTAACCCAACATCTCACGACACGAGCTGACGACAGCCATGCAGCACCTGTGTAACGGCCCG
-#> AANGCGGCACCATCTCTGGTAACCTTCCATTACATGTCAAATCCAGGTAAGGTTCTGCGCGTTGCATCGA
-#> ATTAAACCACATGCTCCACTGCTTGTGCGGGCCCCCCGTCAATTTCTTTGAGTTTAATCTTGCGACCGTA
-#> CTT
+#> >AF298110.1 Unidentified clone B5 DNA sequence from ocean beach sand
+#> GATCCTTTCCCAGCCCTTGCACTTCACGACCCAGCCGGGCTGACCGCCGCCGGAAGGCATTGCCGGAGCG
+#> CGGGGCAGCGTCACCGAANGTGCCGTTGGGGTACTGGGGGTACTCCTTCAAGGGACCATGCGCCAGCCGC
+#> TGCTGGTCGCGCAGCTTCACCCGGCACAGGTTAAGCACGCTGTCCTGCATGGCGCAGGTCACCCGCTGGC
+#> CCCTGCCGCTCGTCTCGCGATGGAACAAGGCGGTCACGATCCCGAGAGCGAGATGCACGCCGGTGCCTGA
+#> ATCGCCGATCTGCGACCCCGTGACGAGCGGCGGCCCGTCTTCGAAGCCGGTGGTGCTGGCGGATC
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF298113.1 Unidentified clone E16S17 SSU ribosomal RNA gene, partial sequence
-#> AATTCGGCTTGGTTACCTTGTTACGACTTCACCCCAGTCATGAACCACAAAGTGGTGAGCGACCTCCCGA
-#> AGGTTAGTCTACCCACTTCTTTTGCAACCCACTCCCATGGTGTGACGGGCGGTGTGTACAAGGCCCGGGA
-#> ACGTATTCACCGTAGCAATGCTGATCTACGATTACTAGCGATTCCAACTTCATGCAGTCGAGTTGCAGAC
-#> TGCAATCCGGACTAAGAACTGCTTTGTGGGATTGGCTCCCCCTCGCGGGTTAGCGACCCTCTGTACAGCC
-#> CATTGTAGCACGTGTGTAGCCCAGCCCATAAGGGCCATGATGACTTGACGTCATCCCCACCTTCCTCCGG
-#> TTTGTCACCGGCAGTCTCCTTAGAGTTCCCACCATTACGTGCTGGCAACTAAGGACAANGGTTGCGCTCG
-#> TTGCGGGACTTAACCCAACATCTCACGACACGAGCTGACGACAGCCATGCAGCACCTGTGTAACGGCCCG
-#> AANGCGGCACCATCTCTGGTAACCTTCCATTACATGTCAAATCCAGGTAAGGTTCTGCGCGTTGCATCGA
-#> ATTAAACCACATGCTCCACTGCTTGTGCGGGCCCCCCGTCAATTTCTTTGAGTTTAATCTTGCGACCGTA
-#> CTT
+#> >AF298110.1 Unidentified clone B5 DNA sequence from ocean beach sand
+#> GATCCTTTCCCAGCCCTTGCACTTCACGACCCAGCCGGGCTGACCGCCGCCGGAAGGCATTGCCGGAGCG
+#> CGGGGCAGCGTCACCGAANGTGCCGTTGGGGTACTGGGGGTACTCCTTCAAGGGACCATGCGCCAGCCGC
+#> TGCTGGTCGCGCAGCTTCACCCGGCACAGGTTAAGCACGCTGTCCTGCATGGCGCAGGTCACCCGCTGGC
+#> CCCTGCCGCTCGTCTCGCGATGGAACAAGGCGGTCACGATCCCGAGAGCGAGATGCACGCCGGTGCCTGA
+#> ATCGCCGATCTGCGACCCCGTGACGAGCGGCGGCCCGTCTTCGAAGCCGGTGGTGCTGGCGGATC
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
@@ -255,6 +245,8 @@ Preprints* 5:e3179v2 <https://doi.org/10.7287/peerj.preprints.3179v2>
 ## Maintainer
 
 [Joel Nitta](https://github.com/joelnitta)
+
+This package previously developed and maintained by Dom Bennett
 
 ------------------------------------------------------------------------
 
