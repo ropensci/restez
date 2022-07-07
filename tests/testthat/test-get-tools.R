@@ -1,29 +1,28 @@
 # LIBS
-library(restez)
 library(testthat)
 
 # VARS
 nrcrds <- 10  # how many fake records to test on?
-data_d <- restez:::testdatadir_get()
+data_d <- testdatadir_get()
 
 # DATA
 records <- readRDS(file = file.path(data_d, 'records.RData'))
 
 # SETUP
-restez:::cleanup()
-restez:::setup()
+cleanup()
+setup()
 restez_connect()
-df <- restez:::gb_df_generate(records = sample(records, size = nrcrds))
+df <- gb_df_generate(records = sample(records, size = nrcrds))
 ids <- as.character(df[['accession']])
-restez:::gb_sql_add(df = df)
+gb_sql_add(df = df)
 
 # RUNNING
 context('Testing \'get-tools\'')
 test_that('gb_sql_query() works', {
   id <- sample(ids, 1)
-  res <- restez:::gb_sql_query(nm = 'accession', id = id)
+  res <- gb_sql_query(nm = 'accession', id = id)
   expect_true(res[[1]] == id)
-  expect_error(restez:::gb_sql_query(nm = 'notathing', id = id))
+  expect_error(gb_sql_query(nm = 'notathing', id = id))
 })
 test_that('gb_sequence_get() works', {
   id <- sample(ids, 1)
@@ -69,12 +68,12 @@ test_that('is_in_db() works', {
   expect_true(all(res == c(FALSE, TRUE, TRUE, TRUE)))
 })
 test_that('list_db_ids() works', {
-  expect_warning(restez:::list_db_ids(db = 'nucleotide'))
-  res <- suppressWarnings(restez:::list_db_ids(db = 'nucleotide'))
+  expect_warning(list_db_ids(db = 'nucleotide'))
+  res <- suppressWarnings(list_db_ids(db = 'nucleotide'))
   expect_true(all(ids %in% res))
 })
 test_that('count_db_ids() works', {
   res <- count_db_ids()
   expect_true(res == nrcrds)
 })
-restez:::cleanup()
+cleanup()

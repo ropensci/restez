@@ -1,14 +1,13 @@
 # LIBS
-library(restez)
 library(testthat)
 
 # RUNNING
-restez:::cleanup()
+cleanup()
 context('Testing \'status-tools\'')
 test_that('restez_status() works', {
   expect_error(restez_status(gb_check = FALSE))
-  restez:::setup()
-  on.exit(restez:::cleanup())
+  setup()
+  on.exit(cleanup())
   status_obj <- restez_status(gb_check = FALSE)
   expect_true(status_obj$`Restez path`$`Does path exist?`)
   demo_db_create(n = 10)
@@ -19,13 +18,13 @@ test_that('restez_status() works', {
   expect_true(status_obj$Database$`Does the database have data?`)
 })
 test_that('status_class() works', {
-  restez:::cleanup()
-  restez:::setup()
-  expect_true(inherits(restez:::status_class(), 'status'))
+  cleanup()
+  setup()
+  expect_true(inherits(status_class(), 'status'))
 })
 test_that('print.status() works', {
-  restez:::cleanup()
-  restez:::setup()
-  expect_null(restez:::print.status(restez:::status_class()))
+  cleanup()
+  setup()
+  expect_null(print.status(status_class()))
 })
-restez:::cleanup()
+cleanup()
