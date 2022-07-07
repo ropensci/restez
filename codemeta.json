@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/restez",
   "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -213,7 +213,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1656.282KB",
+  "fileSize": "1656.229KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -278,10 +278,12 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/restez/blob/master/NEWS.md",
-  "contIntegration": ["https://travis-ci.org/ropensci/restez", "https://coveralls.io/github/ropensci/restez?branch=master"],
+  "readme": "https://github.com/ropensci/restez/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/restez/actions", "https://coveralls.io/github/ropensci/restez?branch=master"],
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/232",
     "provider": "https://ropensci.org"
-  }
+  },
+  "keywords": ["genbank", "dna", "sequence", "entrez", "r", "r-package", "rstats"]
 }

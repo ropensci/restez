@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 > NOTE: `restez` is no longer available on CRAN due to the archiving of a key dependency ([MonetDBLite](https://github.com/MonetDB/MonetDBLite-R)). It can still be installed via GitHub. The issue is being dealt with and hopefully a new version of `restez` will be available on CRAN soon.
 
-> ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with [duckdb](https://github.com/duckdb/duckdb) in the development version, which should allow for submission to CRAN. Becauase of the change, the development verion **is not compatible with databases built with previous versions of restez**.
+> ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with [duckdb](https://github.com/duckdb/duckdb) in version 2.0.0, which should allow for submission to CRAN. Because of this change, restez v2.0.0 or higher **is not compatible with databases built with previous versions of restez**.
 
 Download parts of [NCBI's GenBank](https://www.ncbi.nlm.nih.gov/nuccore) to a local folder and create a simple SQL-like database. Use 'get' tools to query the database by accession IDs. [rentrez](https://github.com/ropensci/rentrez) wrappers are available, so that if sequences are not available locally they can be searched for online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
