@@ -78,4 +78,4 @@ restez_disconnect()
 
 ## Next up
 
-**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**
+**[How to search for and fetch sequences](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html)**

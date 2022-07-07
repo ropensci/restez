@@ -223,4 +223,4 @@ restez_disconnect()
 
 ## Next up
 
-**[Running phylotaR with restez](https://ropensci.github.io/restez/articles/4_phylotar.html)**
+**[Running phylotaR with restez](https://docs.ropensci.org/restez/articles/4_phylotar.html)**

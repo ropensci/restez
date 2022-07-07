@@ -98,7 +98,7 @@ restez_disconnect()
 
 # 2. Query
 
-Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retrieve specific columns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://ropensci.github.io/restez/articles/2_search_and_fetch.html).
+Once a restez database has been set up we can query the database using the `gb_*_get()` functions. These functions allow us to retrieve specific columns in the SQL-like database: 'sequence', 'definition', 'accession', 'version' and 'organism'. Also, they allow us to get the whole text formatted record and sequence data in fasta format. In this example, we can use `list_db_ids()` to identify accession numbers in the database. We could also use `entrez_search()` provided the database contains sequences of interest to us, see ['search and fetch'](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html).
 
 > Always remember to disconnect after you have finished your querying!
 
@@ -127,7 +127,7 @@ cat(gb_fasta_get(id = c(id, 'notanid')))
 restez_disconnect()
 ```
 
-Additionally, for more flexibility and options for extracting sequence record information see [GenBank record parsing](https://ropensci.github.io/restez/articles/3_parsing.html).
+Additionally, for more flexibility and options for extracting sequence record information see [GenBank record parsing](https://docs.ropensci.org/restez/articles/3_parsing.html).
 
 # 3. Entrez
 
@@ -156,8 +156,8 @@ restez_disconnect()
 
 For more information about `restez` see the other tutorials:
 
-1. [Build a database of all rodents](https://ropensci.github.io/restez/articles/1_rodents.html)
-2. [How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)
-3. [Advanced parsing of a GenBank record](https://ropensci.github.io/restez/articles/3_parsing.html)
-4. [Running phylotaR with restez](https://ropensci.github.io/restez/articles/4_phylotar.html)
-5. [Tips and tricks](https://ropensci.github.io/restez/articles/5_tips_and_tricks.html)
+1. [Build a database of all rodents](https://docs.ropensci.org/restez/articles/1_rodents.html)
+2. [How to search for and fetch sequences](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html)
+3. [Advanced parsing of a GenBank record](https://docs.ropensci.org/restez/articles/3_parsing.html)
+4. [Running phylotaR with restez](https://docs.ropensci.org/restez/articles/4_phylotar.html)
+5. [Tips and tricks](https://docs.ropensci.org/restez/articles/5_tips_and_tricks.html)
