@@ -23,7 +23,8 @@ flatfile_read <- function(flpth) {
   record_ends <- which(lines == '//')
   record_starts <- c(1, record_ends[-1*length(record_ends)] + 1)
   records <- lapply(X = seq_along(record_ends), FUN = generate_records)
-  records
+  # return character vector
+  unlist(records)
 }
 
 #' @name gb_df_generate
@@ -54,6 +55,12 @@ flatfile_read <- function(flpth) {
 #' @family private
 gb_df_generate <- function(records, min_length=0, max_length=NULL,
   acc_filter = NULL, invert = FALSE) {
+  # Convert records to character vector if needed
+  if (inherits(records, "list")) {
+    records <- unlist(records)
+  }
+  if (!is.character(records)) stop("'records' must be a character vector")
+  # Extract info part of record (part other than sequence)
   infoparts <- unname(vapply(X = records, FUN = extract_inforecpart,
                              FUN.VALUE = character(1)))
   # not all records have sequences, in which the whole record is the infopart

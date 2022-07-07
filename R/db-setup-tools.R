@@ -252,8 +252,8 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
 #' @example examples/db_delete.R
 db_delete <- function(everything = FALSE) {
   restez_disconnect()
-  if (length(sql_path_get()) > 0 && dir.exists(sql_path_get())) {
-    unlink(sql_path_get(), recursive = TRUE)
+  if (length(sql_path_get()) > 0 && file.exists(sql_path_get())) {
+    unlink(sql_path_get())
   }
   if (everything) {
     if (length(restez_path_get()) > 0 && dir.exists(restez_path_get())) {

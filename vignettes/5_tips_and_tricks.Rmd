@@ -66,7 +66,7 @@ VERSION     LT548182.1
 
 ## Database performance and behaviour
 
-The `restez` package database is built with [`MonetDBlite`](https://github.com/hannesmuehleisen/MonetDBLite-R).
+The `restez` package database is built with [`duckdb`](https://github.com/duckdb/duckdb).
 If you encounter any errors that include the phrase "Server says", then an issue is
 likely to have occurred within the database. Please raise such issues with
 [GitHub](https://github.com/ropensci/restez/issues). But keep the following
