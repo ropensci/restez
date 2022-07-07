@@ -32,7 +32,7 @@ test_that('db_create() works', {
   R.utils::gzip(fp)
   db_create()
   expect_error(db_create())
-  expect_true(dir.exists(restez:::sql_path_get()))
+  expect_true(file.exists(restez:::sql_path_get()))
 })
 test_that('search_gz() works', {
   restez:::setup()

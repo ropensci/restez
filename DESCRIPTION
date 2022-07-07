@@ -37,14 +37,13 @@ Imports:
     curl,
     cli,
     crayon,
-    stringi
+    stringi,
+    duckdb
 Suggests:
     sessioninfo,
-    MonetDBLite (>= 0.6.0),
     testthat,
     knitr,
     R.utils,
-    rmarkdown
-Remotes:
-    hannesmuehleisen/MonetDBLite-R
+    rmarkdown,
+    mockery
 RoxygenNote: 7.2.0

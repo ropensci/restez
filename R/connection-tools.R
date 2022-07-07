@@ -8,7 +8,7 @@
 #' @example examples/restez_ready.R
 restez_ready <- function() {
   fp <- sql_path_get()
-  inherits(fp, 'character') && length(fp) == 1 && dir.exists(fp) &&
+  inherits(fp, 'character') && length(fp) == 1 && file.exists(fp) &&
     connected() && has_data()
 }
 
@@ -21,8 +21,8 @@ connected <- function() {
   res <- FALSE
   connection <- getOption('restez_connection')
   if (is.null(connection)) return(FALSE)
-  if (inherits(x = connection, what = 'MonetDBEmbeddedConnection')) {
-    res <- connection@connenv$open
+  if (inherits(x = connection, what = 'duckdb_connection')) {
+    res <- TRUE
   }
   res
 }
@@ -49,13 +49,13 @@ has_data <- function() {
 #' @export
 restez_connect <- function() {
   restez_path_check()
-  if (!DBI::dbCanConnect(drv = MonetDBLite::MonetDBLite(),
-                         dbname = sql_path_get())) {
+  if (!DBI::dbCanConnect(drv = duckdb::duckdb(),
+                         dbdir = sql_path_get())) {
     stop('Unable to connect to restez db. Did you run `restez_path_set`?')
   }
   message('Remember to run `restez_disconnect()`')
-  connection <- DBI::dbConnect(drv = MonetDBLite::MonetDBLite(),
-                               dbname = sql_path_get())
+  connection <- DBI::dbConnect(drv = duckdb::duckdb(),
+                               dbdir = sql_path_get())
   options('restez_connection' = connection)
   invisible(NULL)
 }

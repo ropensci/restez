@@ -66,7 +66,7 @@ status_class <- function() {
   flpth <- sql_path_get()
   sqlngths <- db_sqlngths_get()
   nseqs <- suppressWarnings(count_db_ids())
-  database_info <- list('Path' = flpth, 'Does path exist?' = dir.exists(flpth),
+  database_info <- list('Path' = flpth, 'Does path exist?' = file.exists(flpth),
                         'N. GBs' = dir_size(flpth),
                         'Is database connected?' = connected(),
                         'Does the database have data?' = has_data(),

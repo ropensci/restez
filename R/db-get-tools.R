@@ -13,9 +13,9 @@
 list_db_ids <- function(db = 'nucleotide', n=100) {
   connection <- connection_get()
   if (db == 'nucleotide') {
-    sttmnt <- "SELECT accession from nucleotide"
+    sttmnt <- "SELECT accession FROM nucleotide"
     if (!is.null(n)) {
-      sttmnt <- paste0(sttmnt, '\nLIMIT ', as.integer(n))
+      sttmnt <- paste(sttmnt, 'LIMIT', as.integer(n))
     }
     res <- DBI::dbGetQuery(conn = connection, statement = sttmnt)
   }
@@ -61,11 +61,6 @@ count_db_ids <- function(db = 'nucleotide') {
     return(0L)
   }
   connection <- connection_get()
-  qry <- "SELECT count(*) FROM nucleotide"
-  qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
-  on.exit(expr = {
-    DBI::dbClearResult(res = qry_res)
-  })
-  res <- DBI::dbFetch(res = qry_res)
+  res <- DBI::dbGetQuery(connection, "SELECT count(*) FROM nucleotide")
   as.integer(res[[1]])
 }
