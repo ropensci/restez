@@ -44,18 +44,25 @@ has_data <- function() {
 #' @family setup
 #' @description Sets a connection to the local database. If database
 #' connection cannot be made, an error is returned.
+#' @param read_only Logical; should the connection be made in read-only
+#' mode? Read-only mode is required for multiple R processes to access
+#' the database simultaneously. Default FALSE.
 #' @return NULL
 #' @example examples/restez_connect.R
 #' @export
-restez_connect <- function() {
+restez_connect <- function(read_only = FALSE) {
   restez_path_check()
-  if (!DBI::dbCanConnect(drv = duckdb::duckdb(),
-                         dbdir = sql_path_get())) {
+  if (!DBI::dbCanConnect(
+    drv = duckdb::duckdb(),
+    dbdir = sql_path_get()
+    )) {
     stop('Unable to connect to restez db. Did you run `restez_path_set`?')
   }
   message('Remember to run `restez_disconnect()`')
-  connection <- DBI::dbConnect(drv = duckdb::duckdb(),
-                               dbdir = sql_path_get())
+  connection <- DBI::dbConnect(
+    drv = duckdb::duckdb(),
+    dbdir = sql_path_get(),
+    read_only = read_only)
   options('restez_connection' = connection)
   invisible(NULL)
 }

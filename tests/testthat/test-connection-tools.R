@@ -21,6 +21,13 @@ test_that('restez_connect() works', {
   restez_connect()
   expect_true(is(connection_get(), 'duckdb_connection'))
 })
+test_that('restez_connect() works in read-only mode', {
+  expect_error(restez_connect())
+  setup()
+  on.exit(cleanup())
+  restez_connect(read_only = TRUE)
+  expect_true(is(connection_get(), 'duckdb_connection'))
+})
 test_that('restez_disconnect() works', {
   expect_null(restez_disconnect())
   setup()

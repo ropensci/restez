@@ -4,7 +4,12 @@
 \alias{restez_connect}
 \title{Connect to the restez database}
 \usage{
-restez_connect()
+restez_connect(read_only = FALSE)
+}
+\arguments{
+\item{read_only}{Logical; should the connection be made in read-only
+mode? Read-only mode is required for multiple R processes to access
+the database simultaneously. Default FALSE.}
 }
 \description{
 Sets a connection to the local database. If database
