@@ -5,7 +5,8 @@ restez_database
 .Rprofile
 README.html
 rodents/
-
+# Working files
+working*
 # History files
 .Rhistory
 .Rapp.history
