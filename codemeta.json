@@ -55,12 +55,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "MonetDBLite",
-      "name": "MonetDBLite",
-      "version": ">= 0.6.0"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "provider": {
@@ -106,6 +100,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "mockery",
+      "name": "mockery",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mockery"
     }
   ],
   "softwareRequirements": {
@@ -193,9 +199,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringi"
     },
+    "9": {
+      "@type": "SoftwareApplication",
+      "identifier": "duckdb",
+      "name": "duckdb",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=duckdb"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "1657.388KB",
+  "fileSize": "1656.282KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -260,12 +278,10 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/restez/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/restez/blob/main/README.md",
   "contIntegration": ["https://travis-ci.org/ropensci/restez", "https://coveralls.io/github/ropensci/restez?branch=master"],
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/232",
     "provider": "https://ropensci.org"
-  },
-  "keywords": ["genbank", "dna", "sequence", "entrez", "r", "r-package", "rstats"]
+  }
 }
