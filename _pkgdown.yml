@@ -100,6 +100,7 @@ reference:
     - readme_log
     - restez_path_check
     - restez_rl
+    - search_gz
     - seshinfo_log
     - setup
     - slctn_get
