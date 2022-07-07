@@ -36,9 +36,9 @@ gb_fasta_get <- function(id, width=70) {
   #  share with phylotaR
   res <- gb_sql_query(nm = 'raw_definition,raw_sequence,version', id = id)
   cnvrt <- function(i) {
-    sq <- rawToChar(res[i, 'raw_sequence'][[1]])
+    sq <- res[i, 'raw_sequence'][[1]]
     sq <- extract_clean_sequence(sq)
-    def <- rawToChar(res[i, 'raw_definition'][[1]])
+    def <- res[i, 'raw_definition'][[1]]
     n <- nchar(sq)
     if (n > width) {
       slices <- c(seq(from = 1, to = nchar(sq), by = width), nchar(sq) + 1)
@@ -69,7 +69,7 @@ gb_fasta_get <- function(id, width=70) {
 #' @example examples/gb_sequence_get.R
 gb_sequence_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_sequence', id = id)
-  sqs <- lapply(res[['raw_sequence']], rawToChar)
+  sqs <- res[['raw_sequence']]
   sqs <- lapply(sqs, extract_clean_sequence)
   names(sqs) <- res[['accession']]
   unlist(sqs)
@@ -86,8 +86,8 @@ gb_sequence_get <- function(id) {
 #' @example examples/gb_record_get.R
 gb_record_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_record,raw_sequence', id = id)
-  rcs <- lapply(X = res[['raw_record']], FUN = rawToChar)
-  seqs <- lapply(X = res[['raw_sequence']], FUN = rawToChar)
+  rcs <- res[['raw_record']]
+  seqs <- res[['raw_sequence']]
   with_seq <- which(vapply(X = seqs, FUN = function(x) x != '', logical(1)))
   # stick inf and seq together to make complete record
   # inverse of '\nORIGIN\\s+\n\\s+1\\s+'
@@ -109,7 +109,7 @@ gb_record_get <- function(id) {
 #' @example examples/gb_definition_get.R
 gb_definition_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_definition', id = id)
-  dfs <- lapply(res[['raw_definition']], rawToChar)
+  dfs <- res[['raw_definition']]
   names(dfs) <- res[['accession']]
   unlist(dfs)
 }

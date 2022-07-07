@@ -116,12 +116,9 @@ gb_df_generate <- function(records, min_length=0, max_length=NULL,
 #' @family private
 gb_df_create <- function(accessions, versions, organisms, definitions,
                          sequences, records) {
-  raw_definitions <- lapply(definitions, charToRaw)
-  raw_sequences <- lapply(sequences, charToRaw)
-  raw_records <- lapply(records, charToRaw)
   df <- data.frame(accession = accessions, version = versions,
-                   organism = organisms, raw_definition = I(raw_definitions),
-                   raw_sequence = I(raw_sequences), raw_record = I(raw_records))
+                   organism = organisms, raw_definition = definitions,
+                   raw_sequence = sequences, raw_record = records)
   df
 }
 
@@ -134,19 +131,17 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 gb_sql_add <- function(df) {
   connection <- connection_get()
   if (!restez_ready()) {
-    DBI::dbBegin(conn = connection)
     # https://www.ncbi.nlm.nih.gov/Sequin/acc.html
     # why does TINYINT not work?
-    DBI::dbSendQuery(conn = connection, "CREATE TABLE nucleotide (
+    DBI::dbExecute(conn = connection, "CREATE TABLE nucleotide (
             accession VARCHAR(20),
             version INT,
             organism VARCHAR(100),
-            raw_definition BLOB,
-            raw_sequence BLOB,
-            raw_record BLOB,
+            raw_definition VARCHAR,
+            raw_sequence VARCHAR,
+            raw_record VARCHAR,
             PRIMARY KEY (accession)
             )")
-    DBI::dbCommit(conn = connection)
   }
   DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
