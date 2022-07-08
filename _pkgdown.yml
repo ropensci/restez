@@ -1,3 +1,5 @@
+destination: working
+
 reference:
 - title: Set-up
   desc: Set and verify your restez path
@@ -111,8 +113,10 @@ reference:
 
 articles:
 - title: All articles
+  navbar: ~
   desc: Detailed tutorials for using `restez`
   contents:
+  - restez
   - '`1_rodents`'
   - '`2_search_and_fetch`'
   - '`3_parsing`'
