@@ -22,9 +22,9 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-
 > hopefully a new version of `restez` will be available on CRAN soon.
 
 > ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with
-> [duckdb](https://github.com/duckdb/duckdb) in the development version,
-> which should allow for submission to CRAN. Becauase of the change, the
-> development verion **is not compatible with databases built with
+> [duckdb](https://github.com/duckdb/duckdb) in version 2.0.0, which
+> should allow for submission to CRAN. Because of this change, restez
+> v2.0.0 or higher **is not compatible with databases built with
 > previous versions of restez**.
 
 Download parts of [NCBI’s GenBank](https://www.ncbi.nlm.nih.gov/nuccore)
@@ -123,11 +123,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "CATGAATAAATCCTCGTATTCAGGTGAGCCTCCCTGTCCTCTCGCCTCCCCCTTTGTGTCTGTCTCTGGGAAAAGAAAAAGGTTGAAAAACCCCGGAGCACGAGGTGCGCA"| __truncated__
+#>  chr "GATCCGGCCGCAGCCGCAGTGTCGGCATTGTTCCCGCTGGGCGAGACGGAGATCACCCTCACGGTCTTCTCGGGCGATCAGTCCGACGCCGAGACGACGACGGTGACGATC"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "PCR artifactual sequence for diagnosis of avian malaria"
+#> [1] "Unidentified clone B15 DNA sequence from ocean beach sand"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -135,49 +135,43 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF148959                 509 bp    DNA     linear   UNA 18-JUL-1999
-#> DEFINITION  PCR artifactual sequence for diagnosis of avian malaria.
-#> ACCESSION   AF148959
-#> VERSION     AF148959.1
+#> LOCUS       AF298094                 581 bp    DNA     linear   UNA 23-NOV-2000
+#> DEFINITION  Unidentified clone B15 DNA sequence from ocean beach sand.
+#> ACCESSION   AF298094
+#> VERSION     AF298094.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 509)
-#>   AUTHORS   Jarvi,S.I., Schultz,J.J. and Atkinson,C.T.
-#>   TITLE     Evaluation of a PCR test for diagnosis of avian malaria (Plasmodium
-#>             relictum) in Hawaiian forest birds
+#> REFERENCE   1  (bases 1 to 581)
+#>   AUTHORS   Naviaux,R.K.
+#>   TITLE     Sand DNA: a multigenomic library on the beach
 #>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 509)
-#>   AUTHORS   Jarvi,S.I., Schultz,J.J. and Atkinson,C.T.
+#> REFERENCE   2  (bases 1 to 581)
+#>   AUTHORS   Naviaux,R.K.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (06-MAY-1999) Wildlife Disease Laboratory, PIERC,
-#>             USGS-BRD, Building 343, Hawaii Vocanoes National Park, HI 96718,
-#>             USA
+#>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
+#>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
+#>             92103-8467, USA
 #> FEATURES             Location/Qualifiers
-#>      source          1..509
+#>      source          1..581
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /note="Originated from an elepaio (Chasiempis
-#>                      sandwichensis) captured in 1995 in the Alakai Wilderness
-#>                      Preserve, Kauai. DNA extracted from a sample of whole
-#>                      blood was used as template in a PCR reaction in which
-#>                      primers 89 and 90 (Feldman RA, Freed LA, Cann RL, 1995, A
-#>                      PCR test for malaria in Hawaiian forest birds, Molecular
-#>                      Ecology 4:663-673) were present in equimolar amounts.
-#>                      Primer 89 served as both the 5' and 3' primers in the
-#>                      amplification of this product."
+#>                      /clone="B15"
+#>                      /note="anonymous environmental sample sequence from ocean
+#>                      beach sand"
 #> ORIGIN      
-#>         1 catgaataaa tcctcgtatt caggtgagcc tccctgtcct ctcgcctccc cctttgtgtc
-#>        61 tgtctctggg aaaagaaaaa ggttgaaaaa ccccggagca cgaggtgcgc aagccctcct
-#>       121 ggctgcgagc gctctgcgga ggagtgagcg gctggttcgc tgtgtataaa caagtggaaa
-#>       181 aggcttaaaa agcaaagcaa acgcggcggg gcagctggtt ccaggcagag cccggcactg
-#>       241 ggggcacgga gcttgttatc tgagggcacc tgtgccagca gggggtgaga tccatcgcca
-#>       301 agtgacagcg tggcatggga acaggaccgt ggggtgtgtg tctgagtgtg acactgggct
-#>       361 gcaggcattt ccaaatcccc taatgccgag ggattctctt ctgccttctc ctgtctggct
-#>       421 tgccagtttg gccctaccgg gtgagggcat ttgccctctg ctcgggcagc tcctcctccc
-#>       481 cggctggcac agaatgtgca gccaccctg
+#>         1 gatccggccg cagccgcagt gtcggcattg ttcccgctgg gcgagacgga gatcaccctc
+#>        61 acggtcttct cgggcgatca gtccgacgcc gagacgacga cggtgacgat cgaggacacg
+#>       121 accgcgccga cgttcaccca cgcactgggt gatgtccttc cgatggtgac gaaggaggca
+#>       181 acggagcccg gagggcatga cttcagcccg gccacgccgg acgcctggga ccatggagac
+#>       241 agcgacctcg acatcgcttg cggtacggaa ctcccgcatc tcttcccgat cggggataca
+#>       301 gagatcacct ggacggcgac ggacgatcag gacctttcga cgacggcaac gcagatcatc
+#>       361 cggatcgagg acaacacgcc gccgaccttc atccagcgcg atgatcaggt cgtggcgacc
+#>       421 acgtacgatc cggtcggtct caggaaggag cacgttccgc tcgcgggcac cgtcatcgcg
+#>       481 gtggacttcg gacagcccgt accgctcacg aacaccgccc cggacgtntt tcggttgggg
+#>       541 agcacggaga tncctggacc gcgacggtgc gtncgggaac t
 #> //
 ```
 
@@ -187,30 +181,32 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF148959.1 PCR artifactual sequence for diagnosis of avian malaria
-#> CATGAATAAATCCTCGTATTCAGGTGAGCCTCCCTGTCCTCTCGCCTCCCCCTTTGTGTCTGTCTCTGGG
-#> AAAAGAAAAAGGTTGAAAAACCCCGGAGCACGAGGTGCGCAAGCCCTCCTGGCTGCGAGCGCTCTGCGGA
-#> GGAGTGAGCGGCTGGTTCGCTGTGTATAAACAAGTGGAAAAGGCTTAAAAAGCAAAGCAAACGCGGCGGG
-#> GCAGCTGGTTCCAGGCAGAGCCCGGCACTGGGGGCACGGAGCTTGTTATCTGAGGGCACCTGTGCCAGCA
-#> GGGGGTGAGATCCATCGCCAAGTGACAGCGTGGCATGGGAACAGGACCGTGGGGTGTGTGTCTGAGTGTG
-#> ACACTGGGCTGCAGGCATTTCCAAATCCCCTAATGCCGAGGGATTCTCTTCTGCCTTCTCCTGTCTGGCT
-#> TGCCAGTTTGGCCCTACCGGGTGAGGGCATTTGCCCTCTGCTCGGGCAGCTCCTCCTCCCCGGCTGGCAC
-#> AGAATGTGCAGCCACCCTG
+#> >AF298094.1 Unidentified clone B15 DNA sequence from ocean beach sand
+#> GATCCGGCCGCAGCCGCAGTGTCGGCATTGTTCCCGCTGGGCGAGACGGAGATCACCCTCACGGTCTTCT
+#> CGGGCGATCAGTCCGACGCCGAGACGACGACGGTGACGATCGAGGACACGACCGCGCCGACGTTCACCCA
+#> CGCACTGGGTGATGTCCTTCCGATGGTGACGAAGGAGGCAACGGAGCCCGGAGGGCATGACTTCAGCCCG
+#> GCCACGCCGGACGCCTGGGACCATGGAGACAGCGACCTCGACATCGCTTGCGGTACGGAACTCCCGCATC
+#> TCTTCCCGATCGGGGATACAGAGATCACCTGGACGGCGACGGACGATCAGGACCTTTCGACGACGGCAAC
+#> GCAGATCATCCGGATCGAGGACAACACGCCGCCGACCTTCATCCAGCGCGATGATCAGGTCGTGGCGACC
+#> ACGTACGATCCGGTCGGTCTCAGGAAGGAGCACGTTCCGCTCGCGGGCACCGTCATCGCGGTGGACTTCG
+#> GACAGCCCGTACCGCTCACGAACACCGCCCCGGACGTNTTTCGGTTGGGGAGCACGGAGATNCCTGGACC
+#> GCGACGGTGCGTNCGGGAACT
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF148959.1 PCR artifactual sequence for diagnosis of avian malaria
-#> CATGAATAAATCCTCGTATTCAGGTGAGCCTCCCTGTCCTCTCGCCTCCCCCTTTGTGTCTGTCTCTGGG
-#> AAAAGAAAAAGGTTGAAAAACCCCGGAGCACGAGGTGCGCAAGCCCTCCTGGCTGCGAGCGCTCTGCGGA
-#> GGAGTGAGCGGCTGGTTCGCTGTGTATAAACAAGTGGAAAAGGCTTAAAAAGCAAAGCAAACGCGGCGGG
-#> GCAGCTGGTTCCAGGCAGAGCCCGGCACTGGGGGCACGGAGCTTGTTATCTGAGGGCACCTGTGCCAGCA
-#> GGGGGTGAGATCCATCGCCAAGTGACAGCGTGGCATGGGAACAGGACCGTGGGGTGTGTGTCTGAGTGTG
-#> ACACTGGGCTGCAGGCATTTCCAAATCCCCTAATGCCGAGGGATTCTCTTCTGCCTTCTCCTGTCTGGCT
-#> TGCCAGTTTGGCCCTACCGGGTGAGGGCATTTGCCCTCTGCTCGGGCAGCTCCTCCTCCCCGGCTGGCAC
-#> AGAATGTGCAGCCACCCTG
+#> >AF298094.1 Unidentified clone B15 DNA sequence from ocean beach sand
+#> GATCCGGCCGCAGCCGCAGTGTCGGCATTGTTCCCGCTGGGCGAGACGGAGATCACCCTCACGGTCTTCT
+#> CGGGCGATCAGTCCGACGCCGAGACGACGACGGTGACGATCGAGGACACGACCGCGCCGACGTTCACCCA
+#> CGCACTGGGTGATGTCCTTCCGATGGTGACGAAGGAGGCAACGGAGCCCGGAGGGCATGACTTCAGCCCG
+#> GCCACGCCGGACGCCTGGGACCATGGAGACAGCGACCTCGACATCGCTTGCGGTACGGAACTCCCGCATC
+#> TCTTCCCGATCGGGGATACAGAGATCACCTGGACGGCGACGGACGATCAGGACCTTTCGACGACGGCAAC
+#> GCAGATCATCCGGATCGAGGACAACACGCCGCCGACCTTCATCCAGCGCGATGATCAGGTCGTGGCGACC
+#> ACGTACGATCCGGTCGGTCTCAGGAAGGAGCACGTTCCGCTCGCGGGCACCGTCATCGCGGTGGACTTCG
+#> GACAGCCCGTACCGCTCACGAACACCGCCCCGGACGTNTTTCGGTTGGGGAGCACGGAGATNCCTGGACC
+#> GCGACGGTGCGTNCGGGAACT
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
