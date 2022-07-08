@@ -2,7 +2,6 @@ reference:
 - title: Set-up
   desc: Set and verify your restez path
   contents:
-    - restez
     - restez_path_set
     - restez_path_get
     - restez_path_unset
