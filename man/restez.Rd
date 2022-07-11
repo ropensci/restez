@@ -3,6 +3,7 @@
 \docType{package}
 \name{restez}
 \alias{restez}
+\alias{restez-package}
 \title{restez: Create and Query a Local Copy of GenBank in R}
 \description{
 The restez package comes with five families of functions:
@@ -42,3 +43,22 @@ curious you can read their documentation using the form
 \code{?restez:::functionname}.
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ropensci/restez}
+  \item \url{https://docs.ropensci.org/restez}
+  \item Report bugs at \url{https://github.com/ropensci/restez/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Joel H. Nitta \email{joelnitta@gmail.com} (\href{https://orcid.org/0000-0003-4719-7472}{ORCID})
+
+Authors:
+\itemize{
+  \item Dom Bennett \email{dominic.john.bennett@gmail.com} (\href{https://orcid.org/0000-0003-2722-1359}{ORCID})
+}
+
+}
+\keyword{internal}
