@@ -27,6 +27,6 @@
 #' curious you can read their documentation using the form
 #' \code{?restez:::functionname}.
 #'
-#' @docType package
 #' @name restez
-NULL
+#' @keywords internal
+"_PACKAGE"
