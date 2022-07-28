@@ -77,7 +77,6 @@ test_that('gb_df_generate() can filter by accession', {
 })
 test_that('gb_sql_add() works', {
   setup()
-  restez::restez_connect()
   on.exit(cleanup())
   df <- gb_df_generate(records = sample(records, size = 3))
   gb_sql_add(df = df)
