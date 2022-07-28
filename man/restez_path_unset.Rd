@@ -9,13 +9,8 @@ restez_path_unset()
 \description{
 Set the restez path to NULL
 }
-\details{
-Any connected database will be automatically disconnected.
-}
 \seealso{
 Other setup: 
-\code{\link{restez_connect}()},
-\code{\link{restez_disconnect}()},
 \code{\link{restez_path_get}()},
 \code{\link{restez_path_set}()},
 \code{\link{restez_ready}()},

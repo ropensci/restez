@@ -17,25 +17,20 @@ Status class
 Report to console current setup status of restez.
 }
 \details{
-Always remember to run \code{\link{restez_connect}} before running
-this function. Set gb_check=TRUE to see if your downloads are up-to-date.
+Set gb_check=TRUE to see if your downloads are up-to-date.
 }
 \examples{
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
 demo_db_create(n = 5)
-restez_connect()
 restez_status()
-restez_disconnect()
 db_delete(everything = TRUE)
 # Errors:
 # restez_status()
 }
 \seealso{
 Other setup: 
-\code{\link{restez_connect}()},
-\code{\link{restez_disconnect}()},
 \code{\link{restez_path_get}()},
 \code{\link{restez_path_set}()},
 \code{\link{restez_path_unset}()},

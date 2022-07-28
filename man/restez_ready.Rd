@@ -10,24 +10,20 @@ restez_ready()
 Logical
 }
 \description{
-Returns TRUE if a restez SQL database is available, connected
-and has data. Use restez_status() for more information.
+Returns TRUE if a restez SQL database is available.
+Use restez_status() for more information.
 }
 \examples{
 library(restez)
 fp <- tempdir()
 restez_path_set(filepath = fp)
 demo_db_create(n = 5)
-restez_connect()
 (restez_ready())
-restez_disconnect()
 db_delete(everything = TRUE)
 (restez_ready())
 }
 \seealso{
 Other setup: 
-\code{\link{restez_connect}()},
-\code{\link{restez_disconnect}()},
 \code{\link{restez_path_get}()},
 \code{\link{restez_path_set}()},
 \code{\link{restez_path_unset}()},
