@@ -178,13 +178,17 @@ db_create <- function(
   db_type = 'nucleotide', min_length = 0, max_length = NULL,
   acc_filter = NULL, invert = FALSE, alt_restez_path = NULL,
   scan = FALSE) {
+  on.exit(restez_disconnect())
   # LT548182 did not appear in rodent database with size limits, why?
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
   # checks
   restez_path_check()
-  quiet_connect()
+  # first close any connection if one exists
+  restez_disconnect()
+  # check if db exists with data
+  restez_connect(read_only = FALSE)
   with_data <- has_data()
   restez_disconnect()
   if (with_data) {
@@ -226,6 +230,7 @@ db_create <- function(
 #' @export
 #' @example examples/demo_db_create.R
 demo_db_create <- function(db_type='nucleotide', n=100) {
+  on.exit(restez_disconnect())
   if (db_type != 'nucleotide') {
     stop('Database types, other than nucleotide, not yet supported.')
   }
@@ -234,8 +239,6 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
   }
   # checks
   restez_path_check()
-  quiet_connect()
-  on.exit(restez_disconnect())
   # create
   df <- mock_gb_df_generate(n = n)
   gb_sql_add(df = df)
@@ -251,7 +254,6 @@ demo_db_create <- function(db_type='nucleotide', n=100) {
 #' @export
 #' @example examples/db_delete.R
 db_delete <- function(everything = FALSE) {
-  restez_disconnect()
   if (length(sql_path_get()) > 0 && file.exists(sql_path_get())) {
     unlink(sql_path_get())
   }

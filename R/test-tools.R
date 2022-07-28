@@ -4,7 +4,6 @@
 #' @return NULL
 #' @family private
 cleanup <- function() {
-  restez_disconnect()
   restez_path_unset()
   if (dir.exists('test_db_fldr')) {
     unlink('test_db_fldr', recursive = TRUE)

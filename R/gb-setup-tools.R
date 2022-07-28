@@ -136,8 +136,10 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @return NULL
 #' @family private
 gb_sql_add <- function(df) {
+  is_restez_ready <- restez_ready()
+  restez_connect()
   connection <- connection_get()
-  if (!restez_ready()) {
+  if (!is_restez_ready) {
     # https://www.ncbi.nlm.nih.gov/Sequin/acc.html
     # why does TINYINT not work?
     DBI::dbExecute(conn = connection, "CREATE TABLE nucleotide (
@@ -152,6 +154,7 @@ gb_sql_add <- function(df) {
   }
   DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
+  restez_disconnect()
 }
 
 #' @name gb_build
@@ -172,7 +175,6 @@ gb_sql_add <- function(df) {
 gb_build <- function(
   dpth, seq_files, max_length, min_length,
   acc_filter = NULL, invert = FALSE, scan = FALSE) {
-  quiet_connect()
   on.exit(restez_disconnect())
   read_errors <- FALSE
   for (i in seq_along(seq_files)) {
