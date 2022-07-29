@@ -51,7 +51,7 @@ test_that('search_gz() works', {
 })
 test_that('search_gz() works inside db_create()', {
   setup()
-  restez::restez_connect()
+  restez_connect()
   on.exit(cleanup())
   fp <- file.path(dwnld_path_get(), 'test.seq')
   record_text <- paste0(unlist(records), collapse = '\n')
@@ -59,7 +59,7 @@ test_that('search_gz() works inside db_create()', {
   R.utils::gzip(fp)
   db_create(acc_filter = c("AC092025", "AC090116"), scan = TRUE)
   expect_true(file.exists(sql_path_get()))
-  restez::restez_connect()
+  restez_connect()
   expect_equal(
     sort(list_db_ids(n = NULL)),
     sort(c("AC092025", "AC090116"))
