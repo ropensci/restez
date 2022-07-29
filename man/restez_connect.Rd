@@ -68,7 +68,6 @@ Other private:
 \code{\link{mock_seq}()},
 \code{\link{predict_datasizes}()},
 \code{\link{print.status}()},
-\code{\link{quiet_connect}()},
 \code{\link{readme_log}()},
 \code{\link{restez_disconnect}()},
 \code{\link{restez_path_check}()},

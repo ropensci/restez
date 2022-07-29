@@ -87,10 +87,7 @@ db_download(preselection = 20)
 db_create(
   acc_filter = c("AF000122", "AF000123", "AF000124")
 )
-restez_connect()
 list_db_ids()
-# Cleanup
-restez_disconnect()
 db_delete()
 unlink(temp_dir)
 }
