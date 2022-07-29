@@ -57,16 +57,6 @@ restez_connect <- function(read_only = FALSE) {
   invisible(NULL)
 }
 
-#' @name quiet_connect
-#' @title Quiely connect to the restez database
-#' @family private
-#' @description Quiet version of restez_connect for automatic connections.
-#' @return NULL
-quiet_connect <- function() {
-  restez_disconnect()
-  suppressMessages(restez_connect())
-}
-
 #' @name restez_disconnect
 #' @title Disconnect from restez database
 #' @family private

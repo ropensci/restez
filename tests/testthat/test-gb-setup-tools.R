@@ -24,7 +24,7 @@ context('Testing \'setup-tools\'')
 cleanup()
 test_that('gb_build() works', {
   res <- with_mock(
-    `restez::quiet_connect` = function() NULL,
+    `restez::restez_connect` = function() NULL,
     `restez::flatfile_read` = function(...) NULL,
     `restez::gb_df_generate` = function() NULL,
     `restez::gb_sql_add` = function() NULL,
@@ -34,7 +34,7 @@ test_that('gb_build() works', {
   )
   expect_true(res)
   res <- with_mock(
-    `restez::quiet_connect` = function() NULL,
+    `restez::restez_connect` = function() NULL,
     `restez::flatfile_read` = function(...) NULL,
     `restez::gb_df_generate` = function() NULL,
     `restez::gb_sql_add` = function() NULL,
