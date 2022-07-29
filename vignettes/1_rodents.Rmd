@@ -1,6 +1,6 @@
 ---
 title: "1. Build a database of all rodents"
-date: "2020-01-07"
+date: "2022-07-29"
 output: rmarkdown::html_vignette
 ---
 
@@ -15,6 +15,7 @@ Setting up the rodents database will likely take a long time. The exact time wil
 ## Download
 
 
+
 ```r
 library(restez)
 # set the restez path to a memorable location
@@ -26,56 +27,39 @@ db_download(preselection = '15')
 ## Build
 
 ```r
-library(restez)
-restez_path_set(rodents_path)
 db_create(min_length = 100, max_length = 1000)
 ```
 
 ## Check status
 
 ```r
-library(restez)
-#> -------------
-#> restez v1.0.2
-#> -------------
-#> Remember to restez_path_set() and, then, restez_connect()
-#> 
-#> Attaching package: 'restez'
-#> The following object is masked _by_ '.GlobalEnv':
-#> 
-#>     record
-restez_path_set(rodents_path)
-restez_connect()
-#> Remember to run `restez_disconnect()`
 restez_status()
 #> Checking setup status at  ...
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Restez path ...
 #> ... Path '[RODENTS PATH]/restez'
 #> ... Does path exist? 'Yes'
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Download ...
 #> ... Path '[RODENTS PATH]/restez/downloads'
 #> ... Does path exist? 'Yes'
-#> ... N. files 35
-#> ... N. GBs 4.21
-#> ... GenBank division selections 'Rodent'
-#> ... GenBank Release 235
-#> ... Last updated '2020-01-03 12:45:46'
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ... N. files 58
+#> ... N. GBs 6.77
+#> ... GenBank division selections 'Primate'
+#> ... GenBank Release 250
+#> ... Last updated '2022-07-28 21:51:13'
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Database ...
 #> ... Path '[RODENTS PATH]/restez/sql_db'
 #> ... Does path exist? 'Yes'
-#> ... N. GBs 0.68
-#> ... Is database connected? 'Yes'
+#> ... N. GBs 0
 #> ... Does the database have data? 'Yes'
-#> ... Number of sequences 223200
+#> ... Number of sequences 631991
 #> ... Min. sequence length 100
 #> ... Max. sequence length 1000
-#> ... Last_updated '2020-01-03 13:39:35'
-restez_disconnect()
+#> ... Last_updated '2022-07-29 00:50:00'
 ```
 
 ## Next up
 
-**[How to search for and fetch sequences](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html)**
+**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**
