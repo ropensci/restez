@@ -166,14 +166,11 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
 #' db_create(
 #'   acc_filter = c("AF000122", "AF000123", "AF000124")
 #' )
-#' restez_connect()
 #' list_db_ids()
-#' # Cleanup
-#' restez_disconnect()
 #' db_delete()
 #' unlink(temp_dir)
 #' }
-# db_type: a nod to the future,
+# db_type: a nod to the future
 db_create <- function(
   db_type = 'nucleotide', min_length = 0, max_length = NULL,
   acc_filter = NULL, invert = FALSE, alt_restez_path = NULL,
