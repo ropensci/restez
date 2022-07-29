@@ -14,7 +14,7 @@ list_db_ids <- function(db = 'nucleotide', n=100) {
   on.exit(restez_disconnect())
   # first close any connection if one exists
   restez_disconnect()
-  restez_connect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   if (db == 'nucleotide') {
     sttmnt <- "SELECT accession FROM nucleotide"
@@ -68,7 +68,7 @@ count_db_ids <- function(db = 'nucleotide') {
   }
   # first close any connection if one exists
   restez_disconnect()
-  restez_connect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   res <- DBI::dbGetQuery(connection, "SELECT count(*) FROM nucleotide")
   restez_disconnect()

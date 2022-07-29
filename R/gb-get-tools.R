@@ -15,7 +15,7 @@ gb_sql_query <- function(nm, id) {
                 " FROM nucleotide WHERE accession IN ", qry_id)
   # first close any connection if one exists
   restez_disconnect()
-  restez_connect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
   on.exit(expr = {
