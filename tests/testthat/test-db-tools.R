@@ -42,6 +42,7 @@ test_that('search_gz() works', {
   write(x = record_text, file = fp)
   R.utils::gzip(fp)
   fp_zip <- paste0(fp, ".gz")
+  skip_on_os("windows") # does not work on windows (no zgrep)
   expect_true(
     search_gz(c("AC092025", "AC090116"), fp_zip)
   )
@@ -58,6 +59,7 @@ test_that('search_gz() works inside db_create()', {
   write(x = record_text, file = fp)
   R.utils::gzip(fp)
   db_create(acc_filter = c("AC092025", "AC090116"), scan = TRUE)
+  skip_on_os("windows") # does not work on windows (no zgrep)
   expect_true(file.exists(sql_path_get()))
   restez_connect()
   expect_equal(
@@ -65,6 +67,20 @@ test_that('search_gz() works inside db_create()', {
     sort(c("AC092025", "AC090116"))
   )
   cleanup()
+})
+test_that('search_gz() warning works', {
+  setup()
+  on.exit(cleanup())
+  fp <- file.path(dwnld_path_get(), 'test.seq')
+  record_text <- paste0(unlist(records), collapse = '\n')
+  write(x = record_text, file = fp)
+  R.utils::gzip(fp)
+  fp_zip <- paste0(fp, ".gz")
+  skip_on_os(c("mac", "linux", "solaris")) # only run on windows
+  expect_warning(
+    search_gz(c("AC092025", "AC090116"), fp_zip),
+    "Cannot scan gzipped file without zgrep"
+  )
 })
 test_that('db_download() works', {
   setup()
