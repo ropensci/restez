@@ -32,8 +32,9 @@ will be included in the databasse. Default FALSE.}
 downloads from a different restez path.}
 
 \item{scan}{Logical vector of length 1; should the sequence file be scanned
-for accessions in `acc_filter` prior to processing? Only used if
-`acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
+for accessions in `acc_filter` prior to processing?
+Requires zgrep to be installed (so does not work on Windows).
+Only used if `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
 }
 \description{
 Create a new local SQL database from downloaded files.
