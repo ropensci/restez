@@ -136,8 +136,10 @@ gb_df_create <- function(accessions, versions, organisms, definitions,
 #' @return NULL
 #' @family private
 gb_sql_add <- function(df) {
+  is_restez_ready <- restez_ready()
+  restez_connect()
   connection <- connection_get()
-  if (!restez_ready()) {
+  if (!is_restez_ready) {
     # https://www.ncbi.nlm.nih.gov/Sequin/acc.html
     # why does TINYINT not work?
     DBI::dbExecute(conn = connection, "CREATE TABLE nucleotide (
@@ -152,6 +154,7 @@ gb_sql_add <- function(df) {
   }
   DBI::dbWriteTable(conn = connection, name = 'nucleotide', value = df,
                     append = TRUE)
+  restez_disconnect()
 }
 
 #' @name gb_build
@@ -165,14 +168,14 @@ gb_sql_add <- function(df) {
 #' @param dpth Download path (where seq_files are stored)
 #' @param seq_files .seq.tar seq file names
 #' @param scan Logical vector of length 1; should the sequence file be scanned
-#' for accessions in `acc_filter` prior to processing? Only used if
-#' `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.
+#' for accessions in `acc_filter` prior to processing?
+#' Requires zgrep to be installed (so does not work on Windows).
+#' Only used if `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.
 #' @return Logical
 #' @family private
 gb_build <- function(
   dpth, seq_files, max_length, min_length,
   acc_filter = NULL, invert = FALSE, scan = FALSE) {
-  quiet_connect()
   on.exit(restez_disconnect())
   read_errors <- FALSE
   for (i in seq_along(seq_files)) {
@@ -219,6 +222,11 @@ gb_build <- function(
 #' @return Logical
 #' @family private
 search_gz <- function(terms, path) {
+  # Skip scan if no zgrep
+  if (nchar(Sys.which("zgrep")) == 0) {
+    warning("Cannot scan gzipped file without zgrep; skipping scan")
+    return(TRUE)
+  }
   # There are a potentially large number of terms,
   # so grepping works best with external files
   temp_file <- tempfile()

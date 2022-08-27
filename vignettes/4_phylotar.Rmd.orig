@@ -25,7 +25,7 @@ devtools::install_github(repo = 'ropensci/phylotaR')
 ```
 
 ## Setup
-Since we will be running the `phylotaR` pipeline for Dipodinae, we can use the rodents database we created [before](https://ropensci.github.io/restez/articles/1_rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database. (Connections to the `restez` database will be made automatically, `restez_connect` or `restez_disconnect` do not need to be run.)
+Since we will be running the `phylotaR` pipeline for Dipodinae, we can use the rodents database we created [before](https://ropensci.github.io/restez/articles/1_rodents.html). We do not need to set-up the `phylotaR` pipeline any differently with a `restez` database, except to ensure we have set the `restez` path to the rodent database.
 
 ```r
 library(phylotaR)

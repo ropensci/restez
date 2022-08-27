@@ -26,8 +26,6 @@ restez_path_set(filepath = 'path/to/where/you/want/files/to/download')
 }
 \seealso{
 Other setup: 
-\code{\link{restez_connect}()},
-\code{\link{restez_disconnect}()},
 \code{\link{restez_path_get}()},
 \code{\link{restez_path_unset}()},
 \code{\link{restez_ready}()},

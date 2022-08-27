@@ -9,48 +9,12 @@ output: rmarkdown::html_vignette
 
 It is not advisable to download the entire GenBank database to your machine. Equally, it is best to limit the size of a database. Databases that are too large will be slow to query and are more likely to cause memory issues. For example, you may actually make a query that demands more memory than is available on your machine. One solution to instead set multiple `restez` paths on your machine.
 
-You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the `alt_restez_path` argument. Do also make use of `restez_path_unset` to disconnect and unset the `restez` path.
+You can either set up a path for different domains. Or you could download for a single set of domains and then create a database from the same downloaded files using the `alt_restez_path` argument.
 
 
 ```r
 # a larger database from the same download files in rodents_path
 db_create(alt_restez_path = rodents_path, max_length = 2000)
-```
-
-
-## Connecting and disconnecting
-
-Always ensure you disconnect after connecting to a `restez` path. Not doing so may lead to some strange database errors such as 'seg faults' or you may even be prevented from connecting to a database again until you restart R. In scripts you should always place `restez_disconnect()` as the end of the script or when you have stopped making queries. If you are making queries from your own custom function you should use `on.exit`. This allows you to run 'clean up' code whenever a function exits, even if it errors.
-
-
-
-```r
-suppressMessages(library(restez))
-random_definition <- function() {
-  suppressMessages(restez_connect())
-  on.exit(restez_disconnect())
-  if (restez_ready()) {
-    # deliberate mistake
-    id <- sample(list_db_ids(n = NULL), 1)[[1]]
-    return(gb_definition_get(id))
-  }
-}
-restez_path_set(rodents_path)
-(definition <- random_definition())
-```
-
-```
-##                                                                                              KU614570 
-## "Mus musculus clone PD151104P3E10 immunoglobulin heavy chain variable region (Igh) mRNA, partial cds"
-```
-
-```r
-# not connected outside of function!
-(restez_ready())
-```
-
-```
-## [1] FALSE
 ```
 
 ## Which domain?

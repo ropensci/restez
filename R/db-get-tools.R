@@ -11,6 +11,10 @@
 #' @export
 #' @example examples/list_db_ids.R
 list_db_ids <- function(db = 'nucleotide', n=100) {
+  on.exit(restez_disconnect())
+  # first close any connection if one exists
+  restez_disconnect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   if (db == 'nucleotide') {
     sttmnt <- "SELECT accession FROM nucleotide"
@@ -24,6 +28,7 @@ list_db_ids <- function(db = 'nucleotide', n=100) {
                   'Set `n=NULL` to return all ids.')
     warning(msg)
   }
+  restez_disconnect()
   res[[1]]
 }
 
@@ -56,11 +61,16 @@ is_in_db <- function(id, db = 'nucleotide') {
 #' @export
 #' @example examples/count_db_ids.R
 count_db_ids <- function(db = 'nucleotide') {
+  on.exit(restez_disconnect())
   if (!restez_ready()) {
-    warning('No database connection. Did you run `restez_connect`?')
+    warning('No database detected. Did you run `db_create()`?')
     return(0L)
   }
+  # first close any connection if one exists
+  restez_disconnect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   res <- DBI::dbGetQuery(connection, "SELECT count(*) FROM nucleotide")
+  restez_disconnect()
   as.integer(res[[1]])
 }

@@ -20,7 +20,6 @@ for an accession ID.
 library(restez)
 restez_path_set(filepath = tempdir())
 demo_db_create(n = 5)
-restez_connect()
 (def <- gb_definition_get(id = 'demo_1'))
 (defs <- gb_definition_get(id = c('demo_1', 'demo_2')))
 

@@ -31,8 +31,9 @@ will be excluded from the database; if FALSE, only accessions in `acc_filter`
 will be included in the databasse. Default FALSE.}
 
 \item{scan}{Logical vector of length 1; should the sequence file be scanned
-for accessions in `acc_filter` prior to processing? Only used if
-`acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
+for accessions in `acc_filter` prior to processing?
+Requires zgrep to be installed (so does not work on Windows).
+Only used if `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
 }
 \value{
 Logical
@@ -98,8 +99,9 @@ Other private:
 \code{\link{mock_seq}()},
 \code{\link{predict_datasizes}()},
 \code{\link{print.status}()},
-\code{\link{quiet_connect}()},
 \code{\link{readme_log}()},
+\code{\link{restez_connect}()},
+\code{\link{restez_disconnect}()},
 \code{\link{restez_path_check}()},
 \code{\link{restez_rl}()},
 \code{\link{search_gz}()},

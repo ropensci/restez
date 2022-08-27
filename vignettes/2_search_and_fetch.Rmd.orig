@@ -19,7 +19,6 @@ To run all the code in this tutorial you will need to have already set up the ro
 
 Let's pretend we're interested in COI sequences for a group of rodents called the Sciuromorpha. We can create an NCBI search term; use `entrez_search` to perform the search; and then retrieve the accession IDs using `entrez_fetch` with the `acc` rettype. `entrez_fetch` returns a single text that will need to be split up by the newline character. Finally, we should drop any version number after the downloaded accessions. This is not strictly necessary, but it makes it easier to check our results from `restez` later.
 
-
 ```{r search, include=TRUE}
 # 33553 - Sciuromorpha - squirrel-like things
 search_term <- 'txid33553[Organism:exp] AND COI [GENE] AND 100:1000[SLEN]'
@@ -45,7 +44,6 @@ rodents_path <- file.path(pkgwd, 'rodents')
 ```{r retrieve, include=TRUE}
 library(restez)
 restez_path_set(rodents_path)
-restez_connect()
 coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])
 # Are all accessions in results?
@@ -79,8 +77,6 @@ system.time(expr = {
                                             id = accessions[401:456],
                                             rettype = 'fasta')
   })
-# always disconnect
-restez_disconnect()
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ## Missing

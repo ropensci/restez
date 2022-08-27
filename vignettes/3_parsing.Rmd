@@ -111,8 +111,10 @@ We can extract different elements of the above record with `gb_extract()` ....
 ```r
 # such as the LOCUS information ...
 (gb_extract(record = record, what = 'locus'))
-#>     accession        length           mol          type        domain          date 
-#>    "AY952423"        "2623"         "DNA"      "linear"         "PLN" "17-APR-2005"
+#>     accession        length           mol          type        domain 
+#>    "AY952423"        "2623"         "DNA"      "linear"         "PLN" 
+#>          date 
+#> "17-APR-2005"
 # the accession
 (gb_extract(record = record, what = 'accession'))
 #> [1] "AY952423"
@@ -169,10 +171,8 @@ You can try out the above functions yourself on any sequence record by downloadi
 ```r
 library(restez)
 restez_path_set(rodents_path)
-restez_connect()
-#> Remember to run `restez_disconnect()`
 (rand_id <- sample(suppressWarnings(list_db_ids()), 1))
-#> [1] "AB008118"
+#> [1] "AB005816"
 record <- gb_record_get(rand_id)
 (gb_extract(record = record, what = 'features'))
 #> [[1]]
@@ -180,47 +180,30 @@ record <- gb_record_get(rand_id)
 #> [1] "source"
 #> 
 #> [[1]]$location
-#> [1] "1..714"
+#> [1] "1..494"
 #> 
 #> [[1]]$organism
-#> [1] "Mus musculus"
+#> [1] "Homo sapiens"
 #> 
 #> [[1]]$mol_type
 #> [1] "genomic DNA"
 #> 
-#> [[1]]$strain
-#> [1] "129"
-#> 
 #> [[1]]$db_xref
-#> [1] "taxon:10090"
+#> [1] "taxon:9606"
 #> 
+#> [[1]]$chromosome
+#> [1] "11"
 #> 
-#> [[2]]
-#> [[2]]$type
-#> [1] "gene"
+#> [[1]]$map
+#> [1] "11q13gene            <1..>494"
 #> 
-#> [[2]]$location
-#> [1] "complement(380..510)"
+#> [[1]]$gene
+#> [1] "PPP1CA"
 #> 
-#> [[2]]$gene
-#> [1] "Limk-2"
-#> 
-#> 
-#> [[3]]
-#> [[3]]$type
-#> [1] "exon"
-#> 
-#> [[3]]$location
-#> [1] "complement(380..510)"
-#> 
-#> [[3]]$gene
-#> [1] "Limk-2"
-#> 
-#> [[3]]$note
-#> [1] "1a"
-restez_disconnect()
+#> [[1]]$note
+#> [1] "DNA fragment containing a part of CpG island of thehuman PPP1CA gene;Fragment RP8-11A"
 ```
 
 ## Next up
 
-**[Running phylotaR with restez](https://docs.ropensci.org/restez/articles/4_phylotar.html)**
+**[Running phylotaR with restez](https://ropensci.github.io/restez/articles/4_phylotar.html)**

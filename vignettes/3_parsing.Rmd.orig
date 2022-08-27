@@ -59,11 +59,9 @@ rodents_path <- file.path(pkgwd, 'rodents')
 ```{r database, include=TRUE}
 library(restez)
 restez_path_set(rodents_path)
-restez_connect()
 (rand_id <- sample(suppressWarnings(list_db_ids()), 1))
 record <- gb_record_get(rand_id)
 (gb_extract(record = record, what = 'features'))
-restez_disconnect()
 ```
 
 ## Next up

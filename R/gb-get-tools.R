@@ -7,17 +7,22 @@
 #' @return data.frame
 #' @family private
 gb_sql_query <- function(nm, id) {
+  on.exit(restez_disconnect())
   # reduce ids to accessions
   id <- sub(pattern = '\\.[0-9]+', replacement = '', x = id)
   qry_id <- paste0('(', paste0(paste0("'", id, "'"), collapse = ','), ')')
   qry <- paste0("SELECT accession,", nm,
                 " FROM nucleotide WHERE accession IN ", qry_id)
+  # first close any connection if one exists
+  restez_disconnect()
+  restez_connect(read_only = TRUE)
   connection <- connection_get()
   qry_res <- DBI::dbSendQuery(conn = connection, statement = qry)
   on.exit(expr = {
     DBI::dbClearResult(res = qry_res)
   })
   res <- DBI::dbFetch(res = qry_res)
+  restez_disconnect()
   res
 }
 

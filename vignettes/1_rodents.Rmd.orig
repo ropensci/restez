@@ -30,12 +30,13 @@ Setting up the rodents database will likely take a long time. The exact time wil
 ## Download
 ```{r setpath, include=FALSE, eval=TRUE}
 # reminder to self: other/rodent_db.R
-pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
+pkgwd <- sub(pattern = 'vignettes', replacement = '', x = getwd())
 rodents_path <- paste0(pkgwd, 'rodents')
 if (!dir.exists(rodents_path)) {
   stop('other/rodent_db.R must be run first!', call. = FALSE)
 }
 ```
+
 ```{r download, eval=FALSE, include=TRUE}
 library(restez)
 # set the restez path to a memorable location
@@ -46,18 +47,12 @@ db_download(preselection = '15')
 
 ## Build
 ```{r build, eval=FALSE, include=TRUE}
-library(restez)
-restez_path_set(rodents_path)
 db_create(min_length = 100, max_length = 1000)
 ```
 
 ## Check status
 ```{r status, echo=TRUE}
-library(restez)
-restez_path_set(rodents_path)
-restez_connect()
 restez_status()
-restez_disconnect()
 ```
 
 ## Next up
