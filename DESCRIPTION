@@ -46,4 +46,4 @@ Suggests:
     R.utils,
     rmarkdown,
     mockery
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
