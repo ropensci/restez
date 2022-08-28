@@ -97,7 +97,6 @@ reference:
     - mock_seq
     - predict_datasizes
     - print.status
-    - quiet_connect
     - readme_log
     - restez_path_check
     - restez_rl
