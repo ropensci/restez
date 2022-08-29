@@ -27,6 +27,13 @@ test_that('gb_sequence_get() works', {
   id <- sample(ids, 1)
   sequence <- gb_sequence_get(id = id)
   expect_true(grepl('[atcgn]*', sequence[[1]]))
+  seq_dnabin_1 <- gb_sequence_get(id = id, dnabin = TRUE)
+  expect_s3_class(seq_dnabin_1, "DNAbin")
+  id_2 <- sample(ids, 2)
+  seq_dnabin_2 <- gb_sequence_get(id = id_2, dnabin = TRUE)
+  expect_s3_class(seq_dnabin_2, "DNAbin")
+  expect_equal(length(seq_dnabin_2), 2)
+  expect_equal(names(seq_dnabin_2), id_2)
 })
 test_that('gb_record_get() works', {
   id <- sample(ids, 1)
