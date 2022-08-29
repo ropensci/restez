@@ -49,6 +49,7 @@ reference:
     - cleanup
     - connected
     - connection_get
+    - db_download_intern
     - db_sqlngths_get
     - db_sqlngths_log
     - dir_size
