@@ -21,6 +21,7 @@ reference:
     - is_in_db
     - list_db_ids
     - count_db_ids
+    - ncbi_acc_get
 - title: GenBank
   desc: Retrieve data from the local GenBank database
   contents:

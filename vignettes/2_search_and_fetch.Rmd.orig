@@ -15,34 +15,29 @@ A downside of the `restez` approach is we are unable to then search the local da
 
 To run all the code in this tutorial you will need to have already set up the rodents database, see [Build a database of all rodents](https://ropensci.github.io/restez/articles/1_rodents.html).
 
-## Search NCBI
+## Search NCBI GenBank accession numbers
 
-Let's pretend we're interested in COI sequences for a group of rodents called the Sciuromorpha. We can create an NCBI search term; use `entrez_search` to perform the search; and then retrieve the accession IDs using `entrez_fetch` with the `acc` rettype. `entrez_fetch` returns a single text that will need to be split up by the newline character. Finally, we should drop any version number after the downloaded accessions. This is not strictly necessary, but it makes it easier to check our results from `restez` later.
+Let's pretend we're interested in COI sequences for a group of rodents called the Sciuromorpha. `restez` provides the `ncbi_acc_get()` function to make this easy: just provide a text string query [like you would on NCBI GenBank](https://www.ncbi.nlm.nih.gov/books/NBK49540/), and it returns a character vector of accession numbers corresponding to that query. By default, it drops any version number after each accession number. This is not strictly necessary, but it makes it easier to check our results from `restez` later.
 
 ```{r search, include=TRUE}
+library(restez)
+
 # 33553 - Sciuromorpha - squirrel-like things
-search_term <- 'txid33553[Organism:exp] AND COI [GENE] AND 100:1000[SLEN]'
-search_object <- rentrez::entrez_search(db = 'nucleotide', term = search_term,
-                                        use_history = TRUE, retmax = 0)
-accessions <- rentrez::entrez_fetch(db = 'nucleotide',
-                                    web_history = search_object$web_history,
-                                    rettype = 'acc')
-accessions <- strsplit(x = accessions, split = '\\n')[[1]]
-accessions <- sub(pattern = '\\.[0-9]+', replacement = '', x = accessions)
+accessions <- ncbi_acc_get(
+  'txid33553[Organism:exp] AND COI [GENE] AND 100:1000[SLEN]')
 print(length(accessions))
 print(accessions[1:10])
 ```
 
 ## Retrieve sequences
 
-To fetch the sequences from the rodents database, we can just use the `gb_fasta_get` function.
+To fetch the sequences from the rodents database, we can use the `gb_fasta_get` function.
 
 ```{r setpath, include=FALSE, eval=TRUE}
 pkgwd <- sub(pattern = 'vignettes', replacement = '' , x = getwd())
 rodents_path <- file.path(pkgwd, 'rodents')
 ```
 ```{r retrieve, include=TRUE}
-library(restez)
 restez_path_set(rodents_path)
 coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])

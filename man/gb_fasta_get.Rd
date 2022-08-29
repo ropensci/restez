@@ -30,6 +30,8 @@ demo_db_create(n = 5)
 db_delete(everything = TRUE)
 }
 \seealso{
+[ncbi_acc_get()]
+
 Other get: 
 \code{\link{gb_definition_get}()},
 \code{\link{gb_organism_get}()},
