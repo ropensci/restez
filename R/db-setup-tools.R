@@ -1,23 +1,26 @@
-#' @name db_download
-#' @family database
-#' @title Download database
+#' @name db_download_intern
+#' @family private
+#' @title Download database (internal version)
 #' @description Download .seq.tar files from the latest GenBank release. The
 #' user interactively selects the parts of GenBank to download (e.g. primates,
-#' plants, bacteria ...)
+#' plants, bacteria ...).
+#' This is an internal function so the download can be wrapped in `while()` to
+#' enable persistant downloading.
 #' @details
 #' The downloaded files will appear in the restez filepath under downloads.
 #' @param db Database type, only 'nucleotide' currently available.
-#' @param preselection character of user input
+#' @param preselection Character vector of length 1; GenBank domains to
+#'   download. If not specified (default), a menu will be provided for
+#'   selection.
+#'   To specify, provide either a single number or a single character string
+#'   of numbers separated by spaces, e.g. "19 20" for 'Phage' (19) and
+#'   'Unannotated' (20).
 #' @param overwrite T/F, overwrite pre-existing downloaded files?
 #' @return T/F, if all files download correctly, TRUE else FALSE.
-#' @export
-#' @examples
-#' \dontrun{
-#' library(restez)
-#' restez_path_set(filepath = 'path/for/downloads')
-#' db_download()
-#' }
-db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
+#'
+db_download_intern <- function(
+  db='nucleotide', overwrite=FALSE, preselection=NULL
+  ) {
   # checks
   restez_path_check()
   check_connection()
@@ -42,8 +45,9 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
     spacer <- paste0(i, paste0(rep(' ', 3 - nchar(i)), collapse = ''), '- ')
     lowerspacer <- paste0(rep('  ', nchar(spacer) - 1), collapse = '')
     gbdomain <- sub(pattern = ',$', replacement = '', x = names(types)[[i]])
-    cli::cat_bullet(spacer, char(gbdomain), '\n', lowerspacer, stat(types[[i]]),
-                    ' files and ', stat(ngbs, 'GB'))
+    cli::cat_bullet(
+      spacer, char(gbdomain), '\n', lowerspacer, stat(types[[i]]),
+      ' files and ', stat(ngbs, 'GB'))
   }
   cat_line('Provide one or more numbers separated by spaces.')
   mammal_indexs <- which(grepl(pattern = '(rodent|primate|mammal)',
@@ -98,12 +102,69 @@ db_download <- function(db='nucleotide', overwrite=FALSE, preselection=NULL) {
     }
   }
   if (any_fails) {
-    cat_line('Not all the file(s) downloaded. The server may be down. ',
-             'You can always try running db_download() again at a later time.')
+    cat_line(
+      'Not all the file(s) downloaded. The server may be down. ',
+      'You can always try running db_download() again at a later time.')
   } else {
     cat_line('Done. Enjoy your day.')
   }
   invisible(!any_fails)
+}
+
+#' @name db_download
+#' @family database
+#' @title Download database
+#' @description Download .seq.tar files from the latest GenBank release.
+#' @details
+#' In default mode, the user interactively selects the parts (i.e., "domains")
+#' of GenBank to download (e.g. primates, plants, bacteria ...). Alternatively,
+#' the selected domains can be provided as a character string to `preselection`.
+#'
+#' The `max_tries` argument is useful for large databases that may otherwise
+#' fail due to periodic lapses in internet connectivity. This value can be set
+#' to `Inf` to continuously try until the database download succeeds (not
+#' recommended if you do not have an internet connection!).
+#' @inherit db_download_intern
+#' @param max_tries Numeric vector of length 1; maximum number of times to
+#'   attempt downloading database (default 1).
+#' @export
+#' @examples
+#' \dontrun{
+#' library(restez)
+#' restez_path_set(filepath = 'path/for/downloads')
+#' db_download()
+#' }
+db_download <- function(
+  db='nucleotide', overwrite=FALSE, preselection=NULL, max_tries = 1
+  ) {
+
+  # Check max_tries
+  max_tries <- as.numeric(max_tries)
+  assertthat::assert_that(assertthat::is.number(max_tries))
+  assertthat::assert_that(
+    max_tries > 0,
+    msg = "'max_tries' must be greater than 0")
+
+  # Run in a while() loop to enable persistant downloads
+  tries <- 0
+  while (tries < max_tries) {
+    dl_res <- try(
+      db_download_intern(
+        db = db, overwrite = overwrite, preselection = preselection
+      )
+    )
+    if (inherits(dl_res, "try-error")) {
+      # Report error before trying again
+      cat("ERROR: ", dl_res, "\n")
+      tries <- tries + 1
+      message(paste("Trying again, attempt number", tries))
+      # Wait 10 secs before next attempt
+      Sys.sleep(10)
+     } else {
+      return(invisible(dl_res))
+     }
+}
+
 }
 
 #' @name db_create

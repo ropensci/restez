@@ -223,9 +223,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=fs"
     },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "assertthat",
+      "name": "assertthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=assertthat"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "1658.17KB",
+  "fileSize": "1666.925KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

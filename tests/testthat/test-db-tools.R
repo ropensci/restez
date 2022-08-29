@@ -82,15 +82,21 @@ test_that('search_gz() warning works', {
     "Cannot scan gzipped file without zgrep"
   )
 })
+test_that('db_download_intern() works', {
+  setup()
+  on.exit(cleanup())
+  stub(db_download_intern, "check_connection", TRUE)
+  stub(db_download_intern, "latest_genbank_release", 1000)
+  stub(db_download_intern, "latest_genbank_release_notes", NULL)
+  stub(db_download_intern, "identify_downloadable_files", mck_dwnldbl)
+  stub(db_download_intern, "restez_rl", "1")
+  stub(db_download_intern, "file_download", TRUE)
+  expect_true(db_download_intern())
+})
 test_that('db_download() works', {
   setup()
   on.exit(cleanup())
-  stub(db_download, "check_connection", TRUE)
-  stub(db_download, "latest_genbank_release", 1000)
-  stub(db_download, "latest_genbank_release_notes", NULL)
-  stub(db_download, "identify_downloadable_files", mck_dwnldbl)
-  stub(db_download, "restez_rl", "1")
-  stub(db_download, "file_download", TRUE)
+  stub(db_download, "db_download_intern", TRUE)
   expect_true(db_download())
 })
 test_that('db_delete() works', {

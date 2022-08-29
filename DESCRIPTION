@@ -39,7 +39,8 @@ Imports:
     crayon,
     stringi,
     duckdb,
-    fs
+    fs,
+    assertthat
 Suggests:
     sessioninfo,
     testthat,
