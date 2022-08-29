@@ -30,6 +30,8 @@ db_delete(everything = TRUE)
 
 }
 \seealso{
+[ncbi_acc_get()]
+
 Other get: 
 \code{\link{gb_definition_get}()},
 \code{\link{gb_fasta_get}()},

@@ -50,6 +50,8 @@ db_download()
 }
 }
 \seealso{
+[ncbi_acc_get()]
+
 Other database: 
 \code{\link{count_db_ids}()},
 \code{\link{db_create}()},

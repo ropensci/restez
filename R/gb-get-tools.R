@@ -36,6 +36,7 @@ gb_sql_query <- function(nm, id) {
 #' @return named vector of fasta sequences, if no results found NULL
 #' @export
 #' @example examples/gb_fasta_get.R
+#' @seealso [ncbi_acc_get()]
 gb_fasta_get <- function(id, width=70) {
   # TODO: separate the fasta conversion into a new function and
   #  share with phylotaR
@@ -72,6 +73,7 @@ gb_fasta_get <- function(id, width=70) {
 #' @return named vector of sequences, if no results found NULL
 #' @export
 #' @example examples/gb_sequence_get.R
+#' @seealso [ncbi_acc_get()]
 gb_sequence_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_sequence', id = id)
   sqs <- res[['raw_sequence']]
@@ -89,6 +91,7 @@ gb_sequence_get <- function(id) {
 #' @return named vector of records, if no results found NULL
 #' @export
 #' @example examples/gb_record_get.R
+#' @seealso [ncbi_acc_get()]
 gb_record_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_record,raw_sequence', id = id)
   rcs <- res[['raw_record']]
@@ -112,6 +115,7 @@ gb_record_get <- function(id) {
 #' @return named vector of definitions, if no results found NULL
 #' @export
 #' @example examples/gb_definition_get.R
+#' @seealso [ncbi_acc_get()]
 gb_definition_get <- function(id) {
   res <- gb_sql_query(nm = 'raw_definition', id = id)
   dfs <- res[['raw_definition']]
@@ -128,6 +132,7 @@ gb_definition_get <- function(id) {
 #' @return named vector of definitions, if no results found NULL
 #' @export
 #' @example examples/gb_organism_get.R
+#' @seealso [ncbi_acc_get()]
 gb_organism_get <- function(id) {
   res <- gb_sql_query(nm = 'organism', id = id)
   if (nrow(res) == 0) {
@@ -147,6 +152,7 @@ gb_organism_get <- function(id) {
 #' @return named vector of versions, if no results found NULL
 #' @export
 #' @example examples/gb_version_get.R
+#' @seealso [ncbi_acc_get()]
 gb_version_get <- function(id) {
   res <- gb_sql_query(nm = 'version', id = id)
   vrs <- paste0(res[['accession']], '.', res[['version']])

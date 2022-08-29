@@ -110,4 +110,31 @@ test_that('db_delete() works', {
   expect_false(file.exists(file.path('test_db_fldr', 'restez')))
   expect_null(restez_path_get())
 })
+test_that('ncbi_acc_get() works with fake data', {
+  stub(ncbi_acc_get, "rentrez::entrez_search", list(count = 2))
+  stub(ncbi_acc_get, "rentrez::entrez_fetch", "EU123060.1\nAB257475.1\n")
+  expect_equal(
+    ncbi_acc_get("Crepidomanes minutum"),
+    c("EU123060", "AB257475")
+  )
+  expect_equal(
+    ncbi_acc_get("Crepidomanes minutum", drop_ver = FALSE),
+    c("EU123060.1", "AB257475.1")
+  )
+  stub(
+    ncbi_acc_get,
+    "rentrez::entrez_fetch", "EU123061.1\nEU123060.1\nAB257475.1\n")
+  expect_error(ncbi_acc_get("Crepidomanes minutum"), "Number of accessions")
+  stub(
+    ncbi_acc_get,
+    "rentrez::entrez_fetch", "EU123061.1\nEU123061.1\n")
+  expect_error(
+    ncbi_acc_get("Crepidomanes minutum"), "Number of unique accessions")
+})
+test_that('ncbi_acc_get() works with real data', {
+  skip_if_offline()
+  cmin_accs <- ncbi_acc_get("Crepidomanes minutum")
+  expect_type(cmin_accs, "character")
+})
+
 cleanup()

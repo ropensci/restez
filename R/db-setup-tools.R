@@ -127,6 +127,7 @@ db_download_intern <- function(
 #' @inherit db_download_intern
 #' @param max_tries Numeric vector of length 1; maximum number of times to
 #'   attempt downloading database (default 1).
+#' @seealso [ncbi_acc_get()]
 #' @export
 #' @examples
 #' \dontrun{
@@ -322,4 +323,120 @@ db_delete <- function(everything = FALSE) {
     }
   }
   invisible(NULL)
+}
+
+#' Get accession numbers by querying NCBI GenBank
+#'
+#' The query string can be formatted using
+#' [GenBank advanced query terms](https://www.ncbi.nlm.nih.gov/nuccore/advanced)
+#' to obtain accession numbers corresponding to a specific set of criteria.
+#'
+#' Note this queries NCBI GenBank, not the local database generated with restez.
+#'
+#' It can be used either to restrict the accessions used to construct the local
+#' database (`acc_filter` argument of [db_create()]) or to specify accessions
+#' to read from the local database (`id` argument of [gb_fasta_get()] and other
+#' gb_*_get() functions).
+#'
+#' @param query Character vector of length 1; query string to search GenBank.
+#' @param strict Logical vector of length 1; should an error be issued if
+#' the number of unique accessions retrieved does not match the number of hits
+#' from GenBank? Default TRUE.
+#' @param drop_ver Logical vector of length 1; should the version part of the
+#' accession number (e.g., '.1' in 'AB001538.1') be dropped? Default TRUE.
+#' @return Character vector; accession numbers resulting from query.
+#' @seealso [db_create()], [gb_fasta_get()]
+#' @examples
+#' \dontrun{
+#'   # requires an internet connection
+#'   cmin_accs <- ncbi_acc_get("Crepidomanes minutum")
+#'   length(cmin_accs)
+#'   head(cmin_accs)
+#' }
+#' @export
+ncbi_acc_get <- function(query, strict = TRUE, drop_ver = TRUE) {
+
+  assertthat::assert_that(assertthat::is.string(query))
+  assertthat::assert_that(assertthat::is.flag(strict))
+  assertthat::assert_that(assertthat::is.flag(drop_ver))
+
+  # Conduct search and keep results on server,
+  # don't download anything yet
+  search_res <- rentrez::entrez_search(
+    db = "nuccore",
+    term = query,
+    use_history = TRUE,
+    retmax = 0
+  )
+
+  # Make sure something is in there
+  if (search_res$count < 1) {
+    warning("Query resulted in no hits")
+    return(NA_character_)
+  }
+
+  # Number of hits NCBI allows us to download at once.
+  # This should not need to be changed
+  max_hits <- 9999
+
+  # NCBI won't return more than 10,000 results at a time.
+  # So download in chunks to account for this
+  if (search_res$count > max_hits) {
+
+    # Determine number of chunks
+    n_chunks <- search_res$count %/% max_hits
+
+    # Set vector of start values: each chunk
+    # will be downloaded starting from that point
+    # Note NCBI indexing is zero-based
+    start_vals <- c(0, seq_len(n_chunks) * max_hits)
+
+    # Loop over start values and download up to max_hits for each,
+    # then combine
+    accessions <- lapply(
+      start_vals,
+      function(x) {
+        rentrez::entrez_fetch(
+        db = "nuccore",
+        web_history = search_res$web_history,
+        rettype = "acc",
+        retstart = x,
+        retmax = max_hits
+      )
+      }
+    )
+    accessions <- paste(accessions, collapse = "")
+  } else {
+    accessions <- rentrez::entrez_fetch(
+      db = "nuccore",
+      web_history = search_res$web_history,
+      rettype = "acc"
+    )
+  }
+
+  # NCBI returns accessions as single string, so split into vector
+  accessions <- strsplit(x = accessions, split = "\\n")[[1]]
+
+  # Remove accession version number
+  if (drop_ver) {
+    accessions <- sub(pattern = "\\.[0-9]+$", replacement = "", x = accessions)
+  }
+
+  if (strict) {
+    n_accs <- length(accessions)
+    assertthat::assert_that(
+      search_res$count == n_accs,
+      msg = paste0(
+        "Number of accessions (", n_accs, ") not equal to number of GenBank hits (", search_res$count, ")" # nolint
+      )
+    )
+    n_uniq <- length(unique(accessions))
+    assertthat::assert_that(
+      search_res$count == n_uniq,
+      msg = paste0(
+         "Number of unique accessions (", n_uniq, ") not equal to number of GenBank hits (", search_res$count, ")" # nolint
+      )
+    )
+  }
+  accessions
 }
