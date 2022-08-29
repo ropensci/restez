@@ -235,9 +235,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=assertthat"
     },
+    "12": {
+      "@type": "SoftwareApplication",
+      "identifier": "ape",
+      "name": "ape",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ape"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "1666.925KB",
+  "fileSize": "1673.949KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

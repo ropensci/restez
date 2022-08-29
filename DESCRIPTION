@@ -40,7 +40,8 @@ Imports:
     stringi,
     duckdb,
     fs,
-    assertthat
+    assertthat,
+    ape
 Suggests:
     sessioninfo,
     testthat,

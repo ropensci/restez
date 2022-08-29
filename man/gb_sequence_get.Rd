@@ -4,10 +4,14 @@
 \alias{gb_sequence_get}
 \title{Get sequence from GenBank}
 \usage{
-gb_sequence_get(id)
+gb_sequence_get(id, dnabin = FALSE)
 }
 \arguments{
 \item{id}{character, sequence accession ID(s)}
+
+\item{dnabin}{Logical vector of length 1; should the sequences
+be returned using the bit-level coding scheme of the ape package?
+Default FALSE.}
 }
 \value{
 named vector of sequences, if no results found NULL
@@ -16,13 +20,16 @@ named vector of sequences, if no results found NULL
 Return the sequence(s) for a record(s)
 from the accession ID(s).
 }
+\details{
+For more information about the `dnabin` format, see [ape::DNAbin()].
+}
 \examples{
 library(restez)
 restez_path_set(filepath = tempdir())
 demo_db_create(n = 5)
 (seq <- gb_sequence_get(id = 'demo_1'))
 (seqs <- gb_sequence_get(id = c('demo_1', 'demo_2')))
-
+(fasta_dnabin <- gb_sequence_get(id = 'demo_1', dnabin = TRUE))
 
 # delete demo after example
 db_delete(everything = TRUE)

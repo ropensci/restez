@@ -69,17 +69,34 @@ gb_fasta_get <- function(id, width=70) {
 #' @family get
 #' @description Return the sequence(s) for a record(s)
 #' from the accession ID(s).
+#' @details For more information about the `dnabin` format, see [ape::DNAbin()].
 #' @param id character, sequence accession ID(s)
+#' @param dnabin Logical vector of length 1; should the sequences
+#' be returned using the bit-level coding scheme of the ape package?
+#' Default FALSE.
 #' @return named vector of sequences, if no results found NULL
 #' @export
 #' @example examples/gb_sequence_get.R
 #' @seealso [ncbi_acc_get()]
-gb_sequence_get <- function(id) {
+gb_sequence_get <- function(id, dnabin = FALSE) {
+
+  assertthat::assert_that(assertthat::is.flag(dnabin))
+  assertthat::assert_that(is.character(id))
+
   res <- gb_sql_query(nm = 'raw_sequence', id = id)
   sqs <- res[['raw_sequence']]
   sqs <- lapply(sqs, extract_clean_sequence)
   names(sqs) <- res[['accession']]
-  unlist(sqs)
+  sqs <- unlist(sqs)
+
+  if (isTRUE(dnabin)) {
+    sq_names <- names(sqs)
+    sqs <- ape::as.DNAbin(strsplit(sqs, ""))
+    names(sqs) <- sq_names
+  }
+
+  return(sqs)
+
 }
 
 #' @name gb_record_get
