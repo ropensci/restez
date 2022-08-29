@@ -48,7 +48,7 @@ status_class <- function() {
   slctns <- paste0(slctn_get(), collapse = ', ')
   download_info <- list('Path' = flpth, 'Does path exist?' = dir.exists(flpth),
                         'N. files' = length(dwn_fls),
-                        'N. GBs' = dir_size(flpth),
+                        'Total size' = dir_size(flpth),
                         'GenBank division selections' = slctns,
                         'GenBank Release' = gbrelease_get(),
                         'Last updated' = last_dwnld_get())
@@ -57,7 +57,7 @@ status_class <- function() {
   sqlngths <- db_sqlngths_get()
   nseqs <- suppressWarnings(count_db_ids())
   database_info <- list('Path' = flpth, 'Does path exist?' = file.exists(flpth),
-                        'N. GBs' = dir_size(flpth),
+                        'Total size' = fs::fs_bytes(file.size(flpth)),
                         'Does the database have data?' = has_data(),
                         'Number of sequences' = nseqs,
                         'Min. sequence length' = sqlngths[['min']],

@@ -211,9 +211,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=duckdb"
     },
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "fs",
+      "name": "fs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=fs"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "1656.229KB",
+  "fileSize": "1658.17KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

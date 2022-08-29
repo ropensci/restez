@@ -243,7 +243,7 @@ dir_size <- function(fp) {
   fls <- file.path(fp, fls)
   totsz <- sum(vapply(X = fls, FUN = file.size, FUN.VALUE = double(1)),
                  na.rm = TRUE)
-  round(x = totsz / 1E9, digits = 2)
+  fs::fs_bytes(totsz)
 }
 
 #' @name gbrelease_check

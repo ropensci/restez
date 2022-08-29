@@ -38,7 +38,8 @@ Imports:
     cli,
     crayon,
     stringi,
-    duckdb
+    duckdb,
+    fs
 Suggests:
     sessioninfo,
     testthat,
