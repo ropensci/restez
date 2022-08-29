@@ -23,6 +23,7 @@ Other private:
 \code{\link{cleanup}()},
 \code{\link{connected}()},
 \code{\link{connection_get}()},
+\code{\link{db_download_intern}()},
 \code{\link{db_sqlngths_get}()},
 \code{\link{dir_size}()},
 \code{\link{dwnld_path_get}()},

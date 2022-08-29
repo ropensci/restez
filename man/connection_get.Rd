@@ -21,6 +21,7 @@ Other private:
 \code{\link{check_connection}()},
 \code{\link{cleanup}()},
 \code{\link{connected}()},
+\code{\link{db_download_intern}()},
 \code{\link{db_sqlngths_get}()},
 \code{\link{db_sqlngths_log}()},
 \code{\link{dir_size}()},

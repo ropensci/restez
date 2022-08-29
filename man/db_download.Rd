@@ -4,25 +4,43 @@
 \alias{db_download}
 \title{Download database}
 \usage{
-db_download(db = "nucleotide", overwrite = FALSE, preselection = NULL)
+db_download(
+  db = "nucleotide",
+  overwrite = FALSE,
+  preselection = NULL,
+  max_tries = 1
+)
 }
 \arguments{
 \item{db}{Database type, only 'nucleotide' currently available.}
 
 \item{overwrite}{T/F, overwrite pre-existing downloaded files?}
 
-\item{preselection}{character of user input}
+\item{preselection}{Character vector of length 1; GenBank domains to
+download. If not specified (default), a menu will be provided for
+selection.
+To specify, provide either a single number or a single character string
+of numbers separated by spaces, e.g. "19 20" for 'Phage' (19) and
+'Unannotated' (20).}
+
+\item{max_tries}{Numeric vector of length 1; maximum number of times to
+attempt downloading database (default 1).}
 }
 \value{
 T/F, if all files download correctly, TRUE else FALSE.
 }
 \description{
-Download .seq.tar files from the latest GenBank release. The
-user interactively selects the parts of GenBank to download (e.g. primates,
-plants, bacteria ...)
+Download .seq.tar files from the latest GenBank release.
 }
 \details{
-The downloaded files will appear in the restez filepath under downloads.
+In default mode, the user interactively selects the parts (i.e., "domains")
+of GenBank to download (e.g. primates, plants, bacteria ...). Alternatively,
+the selected domains can be provided as a character string to `preselection`.
+
+The `max_tries` argument is useful for large databases that may otherwise
+fail due to periodic lapses in internet connectivity. This value can be set
+to `Inf` to continuously try until the database download succeeds (not
+recommended if you do not have an internet connection!).
 }
 \examples{
 \dontrun{
