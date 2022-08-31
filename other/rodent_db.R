@@ -4,21 +4,17 @@ if (!dir.exists(rodents_path)) {
 }
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
-# download domain 15.
-# Wrap in a while loop to repeat download attempt until finishes.
-tries <- 0
-dwntm <- system.time({
-  while (TRUE) {
-    x <- try(db_download(preselection = 15))
-      if (inherits(x, "try-error")) {
-        cat("ERROR: ", x, "\n")
-        tries <- tries + 1
-        message(paste("Trying again, attempt number", tries))
-        Sys.sleep(10)
-        } else {
-         break
-        }
-    }
-  })
+# download domain 10 and build db, record times
+# if max_tries > 1, should set overwrite to FALSE or will start over again
+dl_time <- system.time(
+  db_download(preselection = 10, max_tries = 100, overwrite = FALSE))
 
-crttm <- system.time(db_create(min_length = 100, max_length = 1000))
+db_time <- system.time(db_create(min_length = 100, max_length = 1000))
+
+# save times to RDS for documentation in vignette
+rodent_times <- list(
+  dl_time = dl_time,
+  db_time = db_time
+)
+
+saveRDS(rodent_times, "other/rodent_build_times.rds")
