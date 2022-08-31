@@ -9,6 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(restez)
+
 # hide my wd
 original_status_class <- getFromNamespace(x = 'status_class', ns = 'restez')
 status_class2 <- function() {
@@ -43,6 +46,7 @@ rodents_path <- paste0(pkgwd, 'rodents')
 if (!dir.exists(rodents_path)) {
   stop('other/rodent_db.R must be run first!', call. = FALSE)
 }
+restez_path_set(rodents_path)
 ```
 
 ```{r download, eval=FALSE, include=TRUE}
@@ -65,4 +69,4 @@ restez_status()
 
 ## Next up
 
-**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**
+**[How to search for and fetch sequences](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html)**

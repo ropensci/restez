@@ -99,4 +99,4 @@ smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 -->
 ## Next up
 
-**[Advanced parsing of a GenBank record](https://ropensci.github.io/restez/articles/3_parsing.html)**
+**[Advanced parsing of a GenBank record](https://docs.ropensci.org/restez/articles/3_parsing.html)**

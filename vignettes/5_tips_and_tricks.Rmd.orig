@@ -26,7 +26,7 @@ To do this, use `ncbi_acc_get()` first to obtain a vector of accessions (GenBank
 
 ```{r, eval=FALSE}
 # Specify vector of GenBank accessions:
-# all ferns in GenBank between with seq ength between 10 to 200000 bases
+# all ferns in GenBank between with sequence length between 10 to 200000 bases
 fern_accs <- ncbi_acc_get("Polypodiopsida[ORGN] AND 10:200000[SLEN]")
 ```
 

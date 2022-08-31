@@ -55,7 +55,7 @@ system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
 #>    user  system elapsed 
-#>   0.202   0.099   0.255
+#>   0.211   0.117   0.314
 # time via Entrez
 system.time(expr = {
   coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -75,7 +75,7 @@ system.time(expr = {
                                             rettype = 'fasta')
   })
 #>    user  system elapsed 
-#>   0.049   0.008   5.588
+#>   0.049   0.008   4.891
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ## Missing
@@ -108,4 +108,4 @@ smmry <- rentrez::entrez_summary(db = 'nucleotide', id = 'NC_027278')
 -->
 ## Next up
 
-**[Advanced parsing of a GenBank record](https://ropensci.github.io/restez/articles/3_parsing.html)**
+**[Advanced parsing of a GenBank record](https://docs.ropensci.org/restez/articles/3_parsing.html)**

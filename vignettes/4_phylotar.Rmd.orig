@@ -70,8 +70,8 @@ Sequences that cannot be found locally will be downloaded via Entrez. Sequences 
 
 > Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set the `restez` path.
 
-Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/ropensci/restez/blob/master/other/phylotar_demo.R).
+Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/ropensci/restez/blob/main/other/phylotar_demo.R).
 
 ## Next up
 
-**[Tips and tricks](https://ropensci.github.io/restez/articles/5_tips_and_tricks.html)**
+**[Tips and tricks](https://docs.ropensci.org/restez/articles/5_tips_and_tricks.html)**

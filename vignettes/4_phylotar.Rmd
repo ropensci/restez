@@ -46,18 +46,18 @@ setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, mxsql = 500)
 # run just the first two stages for this demonstration
 taxise_run(wd)
 #> --------------------------------------------
-#> Starting stage TAXISE: [2022-08-31 10:15:49]
+#> Starting stage TAXISE: [2022-08-31 16:06:36]
 #> --------------------------------------------
 #> Searching taxonomic IDs ...
 #> Downloading taxonomic records ...
 #> . [1-28]
 #> Generating taxonomic dictionary ...
 #> ---------------------------------------------
-#> Completed stage TAXISE: [2022-08-31 10:15:51]
+#> Completed stage TAXISE: [2022-08-31 16:06:38]
 #> ---------------------------------------------
 download_run(wd)
 #> ----------------------------------------------
-#> Starting stage DOWNLOAD: [2022-08-31 10:15:52]
+#> Starting stage DOWNLOAD: [2022-08-31 16:06:38]
 #> ----------------------------------------------
 #> Identifying suitable clades ...
 #> Identified [1] suitable clades.
@@ -68,7 +68,7 @@ download_run(wd)
 #> . . Getting [100 sqs] from restez database...
 #> Successfully retrieved [100 sqs] in total.
 #> -----------------------------------------------
-#> Completed stage DOWNLOAD: [2022-08-31 10:15:56]
+#> Completed stage DOWNLOAD: [2022-08-31 16:06:43]
 #> -----------------------------------------------
 ```
 
@@ -76,8 +76,8 @@ Sequences that cannot be found locally will be downloaded via Entrez. Sequences 
 
 > Note: If the `phylotaR` messages do not explicit state that they are using a `restez` database, then, you may not have set the `restez` path.
 
-Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/ropensci/restez/blob/master/other/phylotar_demo.R).
+Compared to running without a `restez` database, phylotaR download can run [**2x** faster](https://github.com/ropensci/restez/blob/main/other/phylotar_demo.R).
 
 ## Next up
 
-**[Tips and tricks](https://ropensci.github.io/restez/articles/5_tips_and_tricks.html)**
+**[Tips and tricks](https://docs.ropensci.org/restez/articles/5_tips_and_tricks.html)**

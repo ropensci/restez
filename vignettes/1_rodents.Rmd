@@ -37,9 +37,31 @@ db_create(min_length = 100, max_length = 1000)
 ```r
 restez_status()
 #> Checking setup status at  ...
-#> Error in restez_path_check(): Restez path not set. Use restez_path_set().FALSE
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Restez path ...
+#> ... Path '[RODENTS PATH]/restez'
+#> ... Does path exist? 'Yes'
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Download ...
+#> ... Path '[RODENTS PATH]/restez/downloads'
+#> ... Does path exist? 'Yes'
+#> ... N. files 215
+#> ... Total size 25.6G
+#> ... GenBank division selections 'Rodent'
+#> ... GenBank Release 251
+#> ... Last updated '2022-08-30 20:55:13'
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Database ...
+#> ... Path '[RODENTS PATH]/restez/sql_db'
+#> ... Does path exist? 'Yes'
+#> ... Total size 1005M
+#> ... Does the database have data? 'Yes'
+#> ... Number of sequences 252486
+#> ... Min. sequence length 100
+#> ... Max. sequence length 1000
+#> ... Last_updated '2022-08-31 01:35:57'
 ```
 
 ## Next up
 
-**[How to search for and fetch sequences](https://ropensci.github.io/restez/articles/2_search_and_fetch.html)**
+**[How to search for and fetch sequences](https://docs.ropensci.org/restez/articles/2_search_and_fetch.html)**
