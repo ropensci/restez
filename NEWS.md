@@ -1,3 +1,23 @@
+restez 2.1.0 (2022-08-31)
+=========================
+
+### BUG FIXES
+
+* Fixed bug where `restez_status()` did not show correct file size (#32)
+* Fixed frequent appearance of "Database is garbage-collected" warning (#33)
+* Skip scanning of gzipped file if zgrep is not detected (3de4f95985c9e857eba276c323625c5c32461155)
+
+### DOCUMENTATION
+* Add "Accession filter" to "Tips and Tricks" (1e30498f91b7efd765fb24243df686e10ee16977)
+* Use markdown syntax for roxygen2 (ded1466af50562b88fa1bd349fdadbc1081495d3)
+
+### NEW FEATURES
+
+* Change use of `restez_connect()` and `restez_disconnect()`: they are no longer user-facing, and instead get run internally for each instance of connecting to the local database. Also, connection to DB is made in read-only mode, which should allow for multiple simultaneous processes to access the DB (#33, #35)
+* Add `ncbi_acc_get()` to enable easier querying of GenBank accession numbers (#37, #43)
+* Add `max_tries` argument to `db_download()` to automatically re-try download in the event of a drop in internet connectivity (#36, #42)
+* Add `dnabin` argument to `gb_sequence_get()` to return sequences in ape `DNAbin` format (#38, #44)
+
 restez 2.0.0 (2022-07-07)
 =========================
 
