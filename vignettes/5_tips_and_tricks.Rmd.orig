@@ -18,6 +18,26 @@ You can either set up a path for different domains. Or you could download for a 
 db_create(alt_restez_path = rodents_path, max_length = 2000)
 ```
 
+## Accession filter
+
+Another way to create smaller (i.e., more efficient) databases is to use the accession filter. This is particularly useful if the organisms you are interested in are only a small subset of a much larger domain. For example, you might be only interested in ferns, but since ferns are part of the plant domain (and the smallest domain including ferns is plants), this means you need to download the entire plant domain (638 GB as of release 251!). While restez cannot download just ferns, it can build a database only including ferns, which should be much more efficient for querying than a database of all plants.
+
+To do this, use `ncbi_acc_get()` first to obtain a vector of accessions (GenBank IDs). Construct the query as you would [when searching on GenBank](https://www.ncbi.nlm.nih.gov/books/NBK44863/#sequencesquickstart.How_do_I_use_a_simpl).
+
+```{r, eval=FALSE}
+# Specify vector of GenBank accessions:
+# all ferns in GenBank between with seq ength between 10 to 200000 bases
+fern_accs <- ncbi_acc_get("Polypodiopsida[ORGN] AND 10:200000[SLEN]")
+```
+
+Next, use the vector of accessions as the accession filter (`acc_filter`) for `db_create()`.
+
+One more tip: use `scan` to speed up the process of building the database. Particularly in cases where the target sequences (here, ferns) are only a small part of the GenBank domain (here, plants), there are many GenBank files that do not contain any target sequences at all. Setting `scan` to `TRUE` will first check if any of the target accessions are present in the file and if not, skip processing that file further. This can significantly save on time but is only available on machines with `zgrep` installed (typically Mac or Unix, but not Windows).
+
+```{r, eval=FALSE}
+db_create(acc_filter = fern_accs, scan = TRUE)
+```
+
 ## Which domain?
 
 The `db_download` function lists the various possible GenBank domains that can be downloaded. You can work out which GenBank domain a sequence belongs to by its three letter code towards the end of its locus. For example, the top of the record for this sequence indicates it is in the rodent domain.

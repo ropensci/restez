@@ -1,16 +1,18 @@
 ---
 title: "1. Build a database of all rodents"
-date: "2022-07-29"
+date: "2022-08-31"
 output: rmarkdown::html_vignette
 ---
 
 
 
-In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand. To keep things extra fast, we will also limit the number of sequences in the database by limiting the sequence sizes between 100 and 1000.
+In this first tutorial we are going to build a database for all rodents. The rodents are a good test case for playing with `restez` as they are a relatively small domain in GenBank but still have charismatic organisms that people are familiar enough with to understand. We will also limit the number of sequences in the database by limiting the sequence sizes between 100 and 1000.
 
 The database you build here will be used again in later tutorials and you may wish to experiment with it yourself. Therefore it is best to locate a suitable place in your harddrive where you would like to store it for later reference. In this tutorial and in others, we will always refer to the rodents' `restez` path with the variable `rodents_path`.
 
-Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on a MacBook Air (2013) via WiFi with a download speed of 13 MBPS. With this setup, downloading the database took 26 minutes and creating the database took 59 minutes.
+Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on an iMac (2019) with a download speed of 56 MBPS. With this setup, downloading the database took 2.9 hr and creating the database took 5.3 hr.
+
+Note GenBank domains (i.e., major parts of GenBank split by major taxonomic group) are specified by number. As of writing, rodents are number 10, but the numbering scheme may change between releases, so don't assume this will necessarily be the case in future releases. You can check the current number scheme by running `db_download()` without any input to `preselection`.
 
 ## Download
 
@@ -20,8 +22,8 @@ Setting up the rodents database will likely take a long time. The exact time wil
 library(restez)
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
-# download for domain 15
-db_download(preselection = '15')
+# download for domain 10 (rodents as of GenBank release 251)
+db_download(preselection = '10')
 ```
 
 ## Build
@@ -35,29 +37,7 @@ db_create(min_length = 100, max_length = 1000)
 ```r
 restez_status()
 #> Checking setup status at  ...
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Restez path ...
-#> ... Path '[RODENTS PATH]/restez'
-#> ... Does path exist? 'Yes'
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Download ...
-#> ... Path '[RODENTS PATH]/restez/downloads'
-#> ... Does path exist? 'Yes'
-#> ... N. files 58
-#> ... N. GBs 6.77
-#> ... GenBank division selections 'Primate'
-#> ... GenBank Release 250
-#> ... Last updated '2022-07-28 21:51:13'
-#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Database ...
-#> ... Path '[RODENTS PATH]/restez/sql_db'
-#> ... Does path exist? 'Yes'
-#> ... N. GBs 0
-#> ... Does the database have data? 'Yes'
-#> ... Number of sequences 631991
-#> ... Min. sequence length 100
-#> ... Max. sequence length 1000
-#> ... Last_updated '2022-07-29 00:50:00'
+#> Error in restez_path_check(): Restez path not set. Use restez_path_set().FALSE
 ```
 
 ## Next up
