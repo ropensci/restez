@@ -146,6 +146,13 @@ db_download <- function(
     max_tries > 0,
     msg = "'max_tries' must be greater than 0")
 
+  # Issue warning if needed
+  if (max_tries > 1 && overwrite == FALSE) {
+    warning(
+      "Setting 'overwrite' to TRUE is suggested with 'max_tries' > 1. Otherwise, each download attempt will start from scratch" # nolint
+    )
+  }
+
   # Run in a while() loop to enable persistant downloads
   tries <- 0
   while (tries < max_tries) {
