@@ -14,7 +14,7 @@ named vector of records, if no results found NULL
 }
 \description{
 Return the entire GenBank record for an accession ID.
-Equivalent to \code{rettype='gb'} in \code{\link[rentrez]{entrez_fetch}}.
+Equivalent to \code{rettype='gb'} in \code{\link[rentrez:entrez_fetch]{rentrez::entrez_fetch()}}.
 }
 \examples{
 library(restez)
@@ -28,7 +28,7 @@ demo_db_create(n = 5)
 db_delete(everything = TRUE)
 }
 \seealso{
-[ncbi_acc_get()]
+\code{\link[=ncbi_acc_get]{ncbi_acc_get()}}
 
 Other get: 
 \code{\link{gb_definition_get}()},

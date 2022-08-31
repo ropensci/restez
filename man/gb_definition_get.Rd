@@ -28,7 +28,7 @@ demo_db_create(n = 5)
 db_delete(everything = TRUE)
 }
 \seealso{
-[ncbi_acc_get()]
+\code{\link[=ncbi_acc_get]{ncbi_acc_get()}}
 
 Other get: 
 \code{\link{gb_fasta_get}()},

@@ -21,15 +21,15 @@ Character vector; accession numbers resulting from query.
 }
 \description{
 The query string can be formatted using
-[GenBank advanced query terms](https://www.ncbi.nlm.nih.gov/nuccore/advanced)
+\href{https://www.ncbi.nlm.nih.gov/nuccore/advanced}{GenBank advanced query terms}
 to obtain accession numbers corresponding to a specific set of criteria.
 }
 \details{
 Note this queries NCBI GenBank, not the local database generated with restez.
 
 It can be used either to restrict the accessions used to construct the local
-database (`acc_filter` argument of [db_create()]) or to specify accessions
-to read from the local database (`id` argument of [gb_fasta_get()] and other
+database (\code{acc_filter} argument of \code{\link[=db_create]{db_create()}}) or to specify accessions
+to read from the local database (\code{id} argument of \code{\link[=gb_fasta_get]{gb_fasta_get()}} and other
 gb_*_get() functions).
 }
 \examples{
@@ -41,5 +41,5 @@ gb_*_get() functions).
 }
 }
 \seealso{
-[db_create()], [gb_fasta_get()]
+\code{\link[=db_create]{db_create()}}, \code{\link[=gb_fasta_get]{gb_fasta_get()}}
 }

@@ -17,15 +17,15 @@
 #' records.
 #'
 #' @section Entrez functions:
-#' The entrez functions are wrappers to the \code{entrez_*} functions in the
+#' The entrez functions are wrappers to the `entrez_*` functions in the
 #' rentrez package. e.g the restez's entrez_fetch will first try to search the
 #' local database, if it fails it will then call rentrez's
-#' \code{\link[rentrez]{entrez_fetch}} with the same arguments.
+#' [rentrez::entrez_fetch()] with the same arguments.
 #' 
 #' @section Private/internal functions:
 #' These functions work behind the scenes to make everything work. If you're
 #' curious you can read their documentation using the form
-#' \code{?restez:::functionname}.
+#' `?restez:::functionname`.
 #'
 #' @name restez
 #' @keywords internal

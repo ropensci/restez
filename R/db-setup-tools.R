@@ -195,7 +195,7 @@ db_download <- function(
 #' accessions in `acc_filter`, further processing of that file will be skipped
 #' and none of the sequences it contains will be added to the database.
 #'
-#' Alternatively, a user can use the \code{alt_restez_path} to add the files
+#' Alternatively, a user can use the `alt_restez_path` to add the files
 #' from an alternative restez file path. For example, you may wish to have a
 #' database of all environmental sequences but then an additional smaller one of
 #' just the sequences with lengths below 100 bp. Instead of having to download
@@ -203,7 +203,7 @@ db_download <- function(
 #' using the same downloaded files from a single restez path.
 #'
 #' This function will not overwrite a pre-existing database. Old databases must
-#' be deleted before a new one can be created. Use \code{\link{db_delete}} with
+#' be deleted before a new one can be created. Use [db_delete()] with
 #' everything=FALSE to delete an SQL database.
 #'
 #' Connections/disconnections to the database are made automatically.

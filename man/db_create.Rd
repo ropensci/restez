@@ -22,19 +22,19 @@ db_create(
 \item{max_length}{Maximum sequence length, default NULL.}
 
 \item{acc_filter}{Character vector; accessions to include or exclude from
-the database as specified by `invert`.}
+the database as specified by \code{invert}.}
 
-\item{invert}{Logical vector of length 1; if TRUE, accessions in `acc_filter`
-will be excluded from the database; if FALSE, only accessions in `acc_filter`
+\item{invert}{Logical vector of length 1; if TRUE, accessions in \code{acc_filter}
+will be excluded from the database; if FALSE, only accessions in \code{acc_filter}
 will be included in the databasse. Default FALSE.}
 
 \item{alt_restez_path}{Alternative restez path if you would like to use the
 downloads from a different restez path.}
 
 \item{scan}{Logical vector of length 1; should the sequence file be scanned
-for accessions in `acc_filter` prior to processing?
+for accessions in \code{acc_filter} prior to processing?
 Requires zgrep to be installed (so does not work on Windows).
-Only used if `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
+Only used if \code{acc_filter} is not NULL and \code{invert} is FALSE. Default FALSE.}
 }
 \description{
 Create a new local SQL database from downloaded files.
@@ -45,14 +45,14 @@ All .seq.gz files are added to the database by default. A user can specify
 minimum/maximum sequence lengths or accession numbers to limit the sequences
 to be added to the database -- smaller databases are faster to search. The
 final selection of sequences is the result of applying all filters
-(`acc_filter`, `min_length`, `max_length`) in combination.
+(\code{acc_filter}, \code{min_length}, \code{max_length}) in combination.
 
-The `scan` option can decrease the time needed to build a database if only a
+The \code{scan} option can decrease the time needed to build a database if only a
 small number of sequences should be written to the database compared to the
 number of the sequences downloaded from GenBank; i.e., if many of the files
 downloaded from GenBank do not contain any sequences that should be written
 to the database. When set to TRUE, if a file does not contain any of the
-accessions in `acc_filter`, further processing of that file will be skipped
+accessions in \code{acc_filter}, further processing of that file will be skipped
 and none of the sequences it contains will be added to the database.
 
 Alternatively, a user can use the \code{alt_restez_path} to add the files
@@ -63,7 +63,7 @@ all environmental sequences twice, you can generate multiple restez databases
 using the same downloaded files from a single restez path.
 
 This function will not overwrite a pre-existing database. Old databases must
-be deleted before a new one can be created. Use \code{\link{db_delete}} with
+be deleted before a new one can be created. Use \code{\link[=db_delete]{db_delete()}} with
 everything=FALSE to delete an SQL database.
 
 Connections/disconnections to the database are made automatically.

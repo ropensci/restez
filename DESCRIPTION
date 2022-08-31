@@ -50,3 +50,4 @@ Suggests:
     rmarkdown,
     mockery
 RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)

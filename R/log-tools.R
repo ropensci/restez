@@ -55,7 +55,7 @@ db_sqlngths_log <- function(min_lngth, max_lngth) {
 #' @name slctn_log
 #' @title Log the GenBank selection made by a user
 #' @description This function is called whenever a user makes a selection with
-#' the \code{\link{db_download}}. It records GenBank numbers selections.
+#' the [db_download()]. It records GenBank numbers selections.
 #' @param selection selected GenBank sequences, named vector
 #' @return NULL
 #' @family private

@@ -30,10 +30,10 @@ records.
 
 \section{Entrez functions}{
 
-The entrez functions are wrappers to the \code{entrez_*} functions in the
+The entrez functions are wrappers to the \verb{entrez_*} functions in the
 rentrez package. e.g the restez's entrez_fetch will first try to search the
 local database, if it fails it will then call rentrez's
-\code{\link[rentrez]{entrez_fetch}} with the same arguments.
+\code{\link[rentrez:entrez_fetch]{rentrez::entrez_fetch()}} with the same arguments.
 }
 
 \section{Private/internal functions}{

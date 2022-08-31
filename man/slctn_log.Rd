@@ -11,7 +11,7 @@ slctn_log(selection)
 }
 \description{
 This function is called whenever a user makes a selection with
-the \code{\link{db_download}}. It records GenBank numbers selections.
+the \code{\link[=db_download]{db_download()}}. It records GenBank numbers selections.
 }
 \seealso{
 Other private: 

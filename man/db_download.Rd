@@ -35,11 +35,11 @@ Download .seq.tar files from the latest GenBank release.
 \details{
 In default mode, the user interactively selects the parts (i.e., "domains")
 of GenBank to download (e.g. primates, plants, bacteria ...). Alternatively,
-the selected domains can be provided as a character string to `preselection`.
+the selected domains can be provided as a character string to \code{preselection}.
 
-The `max_tries` argument is useful for large databases that may otherwise
+The \code{max_tries} argument is useful for large databases that may otherwise
 fail due to periodic lapses in internet connectivity. This value can be set
-to `Inf` to continuously try until the database download succeeds (not
+to \code{Inf} to continuously try until the database download succeeds (not
 recommended if you do not have an internet connection!).
 }
 \examples{
@@ -50,7 +50,7 @@ db_download()
 }
 }
 \seealso{
-[ncbi_acc_get()]
+\code{\link[=ncbi_acc_get]{ncbi_acc_get()}}
 
 Other database: 
 \code{\link{count_db_ids}()},

@@ -24,16 +24,16 @@ gb_build(
 \item{min_length}{Minimum sequence length, default 0.}
 
 \item{acc_filter}{Character vector; accessions to include or exclude from
-the database as specified by `invert`.}
+the database as specified by \code{invert}.}
 
-\item{invert}{Logical vector of length 1; if TRUE, accessions in `acc_filter`
-will be excluded from the database; if FALSE, only accessions in `acc_filter`
+\item{invert}{Logical vector of length 1; if TRUE, accessions in \code{acc_filter}
+will be excluded from the database; if FALSE, only accessions in \code{acc_filter}
 will be included in the databasse. Default FALSE.}
 
 \item{scan}{Logical vector of length 1; should the sequence file be scanned
-for accessions in `acc_filter` prior to processing?
+for accessions in \code{acc_filter} prior to processing?
 Requires zgrep to be installed (so does not work on Windows).
-Only used if `acc_filter` is not NULL and `invert` is FALSE. Default FALSE.}
+Only used if \code{acc_filter} is not NULL and \code{invert} is FALSE. Default FALSE.}
 }
 \value{
 Logical

@@ -25,7 +25,7 @@ T/F, if all files download correctly, TRUE else FALSE.
 Download .seq.tar files from the latest GenBank release. The
 user interactively selects the parts of GenBank to download (e.g. primates,
 plants, bacteria ...).
-This is an internal function so the download can be wrapped in `while()` to
+This is an internal function so the download can be wrapped in \verb{while()} to
 enable persistant downloading.
 }
 \details{

@@ -21,7 +21,7 @@ Return the sequence(s) for a record(s)
 from the accession ID(s).
 }
 \details{
-For more information about the `dnabin` format, see [ape::DNAbin()].
+For more information about the \code{dnabin} format, see \code{\link[ape:DNAbin]{ape::DNAbin()}}.
 }
 \examples{
 library(restez)
@@ -36,7 +36,7 @@ db_delete(everything = TRUE)
 
 }
 \seealso{
-[ncbi_acc_get()]
+\code{\link[=ncbi_acc_get]{ncbi_acc_get()}}
 
 Other get: 
 \code{\link{gb_definition_get}()},

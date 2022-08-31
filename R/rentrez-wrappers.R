@@ -6,8 +6,8 @@
 #' parameters, if the record is missing in the database, the function then
 #' calls rentrez::entrez_fetch to search GenBank remotely.
 #' 
-#' \code{rettype='fasta'} and \code{rettype='gb'} are respectively equivalent to 
-#' \code{\link{gb_fasta_get}} and \code{\link{gb_record_get}}.
+#' `rettype='fasta'` and `rettype='gb'` are respectively equivalent to 
+#' [gb_fasta_get()] and [gb_record_get()].
 #' 
 #' @note It is advisable to call restez and rentrez functions with '::' notation
 #' rather than library() calls to avoid namespace issues. e.g.
@@ -21,7 +21,7 @@
 #' @param rettype character, data format
 #' @param retmode character, data mode
 #' @param ... Arguments to be passed on to rentrez
-#' @seealso \code{\link[rentrez]{entrez_fetch}}
+#' @seealso [rentrez::entrez_fetch()]
 #' @return character string containing the file created
 #' @example examples/entrez_fetch.R
 #' @export
