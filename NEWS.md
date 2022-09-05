@@ -1,3 +1,10 @@
+restez 2.1.2 (2022-09-05)
+=========================
+
+### BUG FIXES
+
+* Fix spelling errors (4c0f9e48fb3e4d3351a4282d121b26f24d4241f1), other minor fixes for submission to CRAN (43795b48d6fa4ef4c7485dc0f1675d6a2e4fa574, 325b74ff3193bb94e9062bb6114a30b709324ca8)
+
 restez 2.1.1 (2022-09-05)
 =========================
 
