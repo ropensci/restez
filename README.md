@@ -15,16 +15,10 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-
 [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
 [![status](https://joss.theoj.org/papers/10.21105/joss.01102/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01102)
 
-> NOTE: `restez` is no longer available on CRAN due to the archiving of
-> a key dependency
-> ([MonetDBLite](https://github.com/MonetDB/MonetDBLite-R)). It can
-> still be installed via GitHub. The issue is being dealt with and
-> hopefully a new version of `restez` will be available on CRAN soon.
-
-> ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with
-> [duckdb](https://github.com/duckdb/duckdb) in version 2.0.0, which
-> should allow for submission to CRAN. Because of this change, restez
-> v2.0.0 or higher **is not compatible with databases built with
+> NOTE: Starting with v2.0.0, the database backend changed from
+> [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) to
+> [duckdb](https://github.com/duckdb/duckdb). Because of this change,
+> restez v2.0.0 or higher **is not compatible with databases built with
 > previous versions of restez**.
 
 Download parts of [NCBI’s GenBank](https://www.ncbi.nlm.nih.gov/nuccore)
@@ -62,25 +56,25 @@ comprising 20 GB of sequence information can be generated in less than
 
 ## Installation
 
-<!--
-`restez` is available via CRAN and can be installed:
+Install from CRAN:
 
-
-```r
+``` r
 install.packages("restez")
 ```
--->
 
-The package can currently only be installed through GitHub:
+Or install the development version from r-universe:
+
+``` r
+install.packages("restez", repos = "https://ropensci.r-universe.dev")
+```
+
+Or install the development version from GitHub (requires installing the
+`remotes` package first):
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("ropensci/restez")
 ```
-
-(It was previously available via CRAN but was archived due to a key
-dependency [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) being
-no longer available.)
 
 ## Quick Examples
 
@@ -108,6 +102,8 @@ db_create()
 ### Query
 
 ``` r
+# for reproducibility
+set.seed(12345)
 # get a random accession ID from the database
 id <- sample(list_db_ids(), 1)
 #> Warning in list_db_ids(): Number of ids returned was limited to [100].
@@ -116,11 +112,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCT"| __truncated__
+#>  chr "ACCGTTTTGACAGGTAACGTGAAAGCTCTTGGCAACGGGTCTTGATACCGAGTCGGGATCGGTAGTTGTTGCTTTGTTCGTTCACGATTTAAGGTCAACCTTAGCCTTGAGTTTTTCCAAGTAGT"
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified sequence clone 1 amplified using OIE white spot virus primers"
+#> [1] "Unidentified RNA clone M33.7"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -128,52 +124,37 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AY703870                 952 bp    DNA     linear   UNA 21-JAN-2005
-#> DEFINITION  Unidentified sequence clone 1 amplified using OIE white spot virus
-#>             primers.
-#> ACCESSION   AY703870
-#> VERSION     AY703870.1
+#> LOCUS       AF040767                 125 bp    RNA     linear   UNA 06-MAR-1998
+#> DEFINITION  Unidentified RNA clone M33.7.
+#> ACCESSION   AF040767
+#> VERSION     AF040767.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 952)
-#>   AUTHORS   Claydon,K., Cullen,B. and Owens,L.
-#>   TITLE     OIE white spot syndrome virus PCR gives false-positive results in
-#>             Cherax quadricarinatus
-#>   JOURNAL   Dis. Aquat. Org. 62 (3), 265-268 (2004)
-#>    PUBMED   15672884
-#> REFERENCE   2  (bases 1 to 952)
-#>   AUTHORS   Claydon,K., Cullen,B. and Owens,L.
+#> REFERENCE   1  (bases 1 to 125)
+#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T., Tian,K.G. and Yu,X.L.
+#>   TITLE     RNA from plasma of Rhesus monkey(NO.33) which was infected by a
+#>             certain patient's serum
+#>   JOURNAL   Unpublished
+#> REFERENCE   2  (bases 1 to 125)
+#>   AUTHORS   Pan,W.S., Ji,X.Y., Wang,H.T., Tian,K.G. and Yu,X.L.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (01-AUG-2004) Biomedical Sciences, James Cook University,
-#>             Solander Drive, Townsville, Qld 4811, Australia
+#>   JOURNAL   Submitted (31-DEC-1997) Department of Applied Molecular Biology,
+#>             Microbiology & Epidemiology Institution, 20 Dongdajie Street,
+#>             Fengtai, Beijing 100071, China
 #> FEATURES             Location/Qualifiers
-#>      source          1..952
+#>      source          1..125
 #>                      /organism="unidentified"
-#>                      /mol_type="genomic DNA"
+#>                      /mol_type="genomic RNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="1"
-#>      misc_feature    1..952
-#>                      /note="false-positive sequence amplified using OIE white
-#>                      spot virus primers"
+#>                      /clone="M33.7"
+#>                      /note="from the plasma of Rhesus monkey which was infected
+#>                      by plasma of a human patient"
 #> ORIGIN      
-#>         1 actactaact tcagcctatc tagcactaca ccttcaacat ctccagcact acaccttcaa
-#>        61 catctccagc actacacctt caacatctcc agcactacac cttcaacatc tccagcacta
-#>       121 caccttcaac atctccagca ctacaccttc aacatctcca gcactacacc ttcagcatct
-#>       181 ccagcactac accttcaaca tctccagcac tacatcttca acatctccag cactacacct
-#>       241 tcaacatctc cagcactaca ccttcaacat ctccagcact acaccttcaa catctccagc
-#>       301 actacacctt caacatctcc agcactacac cttcaacatc tccagcatta cacctttagc
-#>       361 atcaccacca ccaccttcaa catcaccacc actacctgca gcactctacc ttcatctaca
-#>       421 gtcaagaccc ccaacgtccg ttaagaccaa tgccaagaag ctagatgttt ccaacttgaa
-#>       481 ggaattctcc tctagtttgt tcccttgtag tatttctcta atggggctgg ggaagaggta
-#>       541 gagggaaggt agagaggaaa aggataaggg agagagggaa agatggaaga ggagaggaag
-#>       601 aacgacagaa gaatggattt atgaagaaga gaaggagtag taggaggaga aagagtacgt
-#>       661 aagtgcacat gggaagcaga cagcagcaga cattactgtc tacaaggaag ctatctgggg
-#>       721 agcactaaca atagtccagc taactactcc ttactggata aatgaccata atttttaaag
-#>       781 gggtggaccg gtaagccagc ggaaggcctc ggtcagatga ccaaaagctc caaaggcggg
-#>       841 tcatcatctg actaagaccc gcgtcaggaa acatttatcc tgtttcctga cgaaccttac
-#>       901 ctaacctaac ctaacctcct tactggaatc tagataggat gaagttagta gt
+#>         1 accgttttga caggtaacgt gaaagctctt ggcaacgggt cttgataccg agtcgggatc
+#>        61 ggtagttgtt gctttgttcg ttcacgattt aaggtcaacc ttagccttga gtttttccaa
+#>       121 gtagt
 #> //
 ```
 
@@ -183,42 +164,18 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AY703870.1 Unidentified sequence clone 1 amplified using OIE white spot virus primers
-#> ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGC
-#> ACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCA
-#> CTACACCTTCAACATCTCCAGCACTACACCTTCAGCATCTCCAGCACTACACCTTCAACATCTCCAGCAC
-#> TACATCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACT
-#> ACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCATTA
-#> CACCTTTAGCATCACCACCACCACCTTCAACATCACCACCACTACCTGCAGCACTCTACCTTCATCTACA
-#> GTCAAGACCCCCAACGTCCGTTAAGACCAATGCCAAGAAGCTAGATGTTTCCAACTTGAAGGAATTCTCC
-#> TCTAGTTTGTTCCCTTGTAGTATTTCTCTAATGGGGCTGGGGAAGAGGTAGAGGGAAGGTAGAGAGGAAA
-#> AGGATAAGGGAGAGAGGGAAAGATGGAAGAGGAGAGGAAGAACGACAGAAGAATGGATTTATGAAGAAGA
-#> GAAGGAGTAGTAGGAGGAGAAAGAGTACGTAAGTGCACATGGGAAGCAGACAGCAGCAGACATTACTGTC
-#> TACAAGGAAGCTATCTGGGGAGCACTAACAATAGTCCAGCTAACTACTCCTTACTGGATAAATGACCATA
-#> ATTTTTAAAGGGGTGGACCGGTAAGCCAGCGGAAGGCCTCGGTCAGATGACCAAAAGCTCCAAAGGCGGG
-#> TCATCATCTGACTAAGACCCGCGTCAGGAAACATTTATCCTGTTTCCTGACGAACCTTACCTAACCTAAC
-#> CTAACCTCCTTACTGGAATCTAGATAGGATGAAGTTAGTAGT
+#> >AF040767.1 Unidentified RNA clone M33.7
+#> ACCGTTTTGACAGGTAACGTGAAAGCTCTTGGCAACGGGTCTTGATACCGAGTCGGGATCGGTAGTTGTT
+#> GCTTTGTTCGTTCACGATTTAAGGTCAACCTTAGCCTTGAGTTTTTCCAAGTAGT
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AY703870.1 Unidentified sequence clone 1 amplified using OIE white spot virus primers
-#> ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGC
-#> ACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCA
-#> CTACACCTTCAACATCTCCAGCACTACACCTTCAGCATCTCCAGCACTACACCTTCAACATCTCCAGCAC
-#> TACATCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACT
-#> ACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCATTA
-#> CACCTTTAGCATCACCACCACCACCTTCAACATCACCACCACTACCTGCAGCACTCTACCTTCATCTACA
-#> GTCAAGACCCCCAACGTCCGTTAAGACCAATGCCAAGAAGCTAGATGTTTCCAACTTGAAGGAATTCTCC
-#> TCTAGTTTGTTCCCTTGTAGTATTTCTCTAATGGGGCTGGGGAAGAGGTAGAGGGAAGGTAGAGAGGAAA
-#> AGGATAAGGGAGAGAGGGAAAGATGGAAGAGGAGAGGAAGAACGACAGAAGAATGGATTTATGAAGAAGA
-#> GAAGGAGTAGTAGGAGGAGAAAGAGTACGTAAGTGCACATGGGAAGCAGACAGCAGCAGACATTACTGTC
-#> TACAAGGAAGCTATCTGGGGAGCACTAACAATAGTCCAGCTAACTACTCCTTACTGGATAAATGACCATA
-#> ATTTTTAAAGGGGTGGACCGGTAAGCCAGCGGAAGGCCTCGGTCAGATGACCAAAAGCTCCAAAGGCGGG
-#> TCATCATCTGACTAAGACCCGCGTCAGGAAACATTTATCCTGTTTCCTGACGAACCTTACCTAACCTAAC
-#> CTAACCTCCTTACTGGAATCTAGATAGGATGAAGTTAGTAGT
+#> >AF040767.1 Unidentified RNA clone M33.7
+#> ACCGTTTTGACAGGTAACGTGAAAGCTCTTGGCAACGGGTCTTGATACCGAGTCGGGATCGGTAGTTGTT
+#> GCTTTGTTCGTTCACGATTTAAGGTCAACCTTAGCCTTGAGTTTTTCCAAGTAGT
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT

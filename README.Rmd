@@ -23,9 +23,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
 [![status](https://joss.theoj.org/papers/10.21105/joss.01102/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01102)
 
-> NOTE: `restez` is no longer available on CRAN due to the archiving of a key dependency ([MonetDBLite](https://github.com/MonetDB/MonetDBLite-R)). It can still be installed via GitHub. The issue is being dealt with and hopefully a new version of `restez` will be available on CRAN soon.
-
-> ADDITIONAL NOTE (2022-07-07): MonetDBLite has now been replaced with [duckdb](https://github.com/duckdb/duckdb) in version 2.0.0, which should allow for submission to CRAN. Because of this change, restez v2.0.0 or higher **is not compatible with databases built with previous versions of restez**.
+> NOTE: Starting with v2.0.0, the database backend changed from [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) to [duckdb](https://github.com/duckdb/duckdb). Because of this change, restez v2.0.0 or higher **is not compatible with databases built with previous versions of restez**.
 
 Download parts of [NCBI's GenBank](https://www.ncbi.nlm.nih.gov/nuccore) to a local folder and create a simple SQL-like database. Use 'get' tools to query the database by accession IDs. [rentrez](https://github.com/ropensci/rentrez) wrappers are available, so that if sequences are not available locally they can be searched for online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
@@ -43,22 +41,24 @@ This package aims to make sequence retrieval more efficient by allowing a user t
 
 ## Installation
 
-<!--
-`restez` is available via CRAN and can be installed:
+Install from CRAN:
 
 ```{r cran-installation, include=TRUE, echo=TRUE, eval=FALSE}
 install.packages("restez")
 ```
--->
 
-The package can currently only be installed through GitHub:
+Or install the development version from r-universe:
+
+```{r r-univ-installation, include=TRUE, echo=TRUE, eval=FALSE}
+install.packages("restez", repos = "https://ropensci.r-universe.dev")
+```
+
+Or install the development version from GitHub (requires installing the `remotes` package first):
 
 ```{r gh-installation, include=TRUE, echo=TRUE, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("ropensci/restez")
 ```
-
-(It was previously available via CRAN but was archived due to a key dependency [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) being no longer available.)
 
 ## Quick Examples
 
@@ -92,6 +92,8 @@ db_create()
 ### Query
 
 ```{r query, echo=TRUE, eval=TRUE}
+# for reproducibility
+set.seed(12345)
 # get a random accession ID from the database
 id <- sample(list_db_ids(), 1)
 # you can extract:
@@ -132,7 +134,7 @@ MIT
 
 ## Citation
 
-Bennett et al. (2018).  restez:  Create and Query a Local Copy of GenBank in R.
+Bennett et al. (2018). restez: Create and Query a Local Copy of GenBank in R.
 *Journal of Open Source Software*, 3(31), 1102. https://doi.org/10.21105/joss.01102
 
 ## References
