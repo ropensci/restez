@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/restez",
   "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -249,7 +249,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1675.486KB",
+  "fileSize": "1700.105KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

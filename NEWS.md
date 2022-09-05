@@ -1,4 +1,4 @@
-restez 2.1.1 (prerelease)
+restez 2.1.1 (2022-09-05)
 =========================
 
 ### BUG FIXES
