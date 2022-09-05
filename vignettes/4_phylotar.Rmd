@@ -5,7 +5,7 @@ output: rmarkdown::html_vignette
 
 
 
-In this tutorial we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/ropensci/phylotaR) run. `phylotaR` runs an automated pipeline for identifying ortholgous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on `phylotaR` see its [published article](https://doi.org/10.3390/life8020020).
+In this tutorial we will showcase how a `restez` database can be used to speed up a [phylotaR](https://github.com/ropensci/phylotaR) run. `phylotaR` runs an automated pipeline for identifying orthologous gene clusters as the first step in a phylogenetic analysis. A user provides a taxonomic identity and the pipeline downloads all relevant sequences and identifies clusters using a local-alignment search tool. For more information on `phylotaR` see its [published article](https://doi.org/10.3390/life8020020).
 
 By using `restez` in conjunction with `phylotaR`, we will not only being saving time, but also improving the chances of a successful `phylotaR` run -- often NCBI Entrez limits the number of requests or even rejects requests from IP addresses that are making too many. Note, however, that the gains in using `restez` with `phylotaR` only make sense if you make use of the `restez` database multiple times or if you wish to radically increase the maximum number of sequences to download per taxon (by default it is only 3,000). Also, note that using a `restez` database does not currently eliminate the need for an internet connection. `phylotaR` still needs to look up taxonomic information and must also identify relevant sequence IDs using Entrez (this may change in the future as `restez` develops).
 
@@ -46,18 +46,18 @@ setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, mxsql = 500)
 # run just the first two stages for this demonstration
 taxise_run(wd)
 #> --------------------------------------------
-#> Starting stage TAXISE: [2022-09-02 06:46:52]
+#> Starting stage TAXISE: [2022-09-05 14:26:07]
 #> --------------------------------------------
 #> Searching taxonomic IDs ...
 #> Downloading taxonomic records ...
 #> . [1-28]
 #> Generating taxonomic dictionary ...
 #> ---------------------------------------------
-#> Completed stage TAXISE: [2022-09-02 06:46:54]
+#> Completed stage TAXISE: [2022-09-05 14:26:09]
 #> ---------------------------------------------
 download_run(wd)
 #> ----------------------------------------------
-#> Starting stage DOWNLOAD: [2022-09-02 06:46:54]
+#> Starting stage DOWNLOAD: [2022-09-05 14:26:09]
 #> ----------------------------------------------
 #> Identifying suitable clades ...
 #> Identified [1] suitable clades.
@@ -68,7 +68,7 @@ download_run(wd)
 #> . . Getting [100 sqs] from restez database...
 #> Successfully retrieved [100 sqs] in total.
 #> -----------------------------------------------
-#> Completed stage DOWNLOAD: [2022-09-02 06:46:58]
+#> Completed stage DOWNLOAD: [2022-09-05 14:26:14]
 #> -----------------------------------------------
 ```
 

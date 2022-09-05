@@ -5,7 +5,7 @@
 #' user interactively selects the parts of GenBank to download (e.g. primates,
 #' plants, bacteria ...).
 #' This is an internal function so the download can be wrapped in `while()` to
-#' enable persistant downloading.
+#' enable persistent downloading.
 #' @details
 #' The downloaded files will appear in the restez filepath under downloads.
 #' @param db Database type, only 'nucleotide' currently available.

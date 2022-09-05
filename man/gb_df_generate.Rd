@@ -24,7 +24,7 @@ the database as specified by \code{invert}.}
 
 \item{invert}{Logical vector of length 1; if TRUE, accessions in \code{acc_filter}
 will be excluded from the database; if FALSE, only accessions in \code{acc_filter}
-will be included in the databasse. Default FALSE.}
+will be included in the database. Default FALSE.}
 }
 \value{
 data.frame, or NULL if no records pass filters
@@ -40,7 +40,7 @@ The prefix 'raw_' indicates the data has been converted to the
 raw format, see ?charToRaw, in order to save on RAM.
 The raw_record contains the entire GenBank record in text format.
 
-Use \code{acc_filter} and max and min sequence lengths to minimise the size of the
+Use \code{acc_filter} and max and min sequence lengths to minimize the size of the
 database. All sequences have to be at least as long as min and less than or
 equal in length to max, unless max is NULL in which there is no maximum
 length. The final selection of sequences is the result of applying all

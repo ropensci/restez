@@ -26,7 +26,7 @@ the database as specified by \code{invert}.}
 
 \item{invert}{Logical vector of length 1; if TRUE, accessions in \code{acc_filter}
 will be excluded from the database; if FALSE, only accessions in \code{acc_filter}
-will be included in the databasse. Default FALSE.}
+will be included in the database. Default FALSE.}
 
 \item{alt_restez_path}{Alternative restez path if you would like to use the
 downloads from a different restez path.}

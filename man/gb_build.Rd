@@ -28,7 +28,7 @@ the database as specified by \code{invert}.}
 
 \item{invert}{Logical vector of length 1; if TRUE, accessions in \code{acc_filter}
 will be excluded from the database; if FALSE, only accessions in \code{acc_filter}
-will be included in the databasse. Default FALSE.}
+will be included in the database. Default FALSE.}
 
 \item{scan}{Logical vector of length 1; should the sequence file be scanned
 for accessions in \code{acc_filter} prior to processing?

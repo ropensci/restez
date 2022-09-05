@@ -37,7 +37,7 @@ flatfile_read <- function(flpth) {
 #' raw format, see ?charToRaw, in order to save on RAM.
 #' The raw_record contains the entire GenBank record in text format.
 #'
-#' Use `acc_filter` and max and min sequence lengths to minimise the size of the
+#' Use `acc_filter` and max and min sequence lengths to minimize the size of the
 #' database. All sequences have to be at least as long as min and less than or
 #' equal in length to max, unless max is NULL in which there is no maximum
 #' length. The final selection of sequences is the result of applying all
@@ -50,7 +50,7 @@ flatfile_read <- function(flpth) {
 #' the database as specified by `invert`.
 #' @param invert Logical vector of length 1; if TRUE, accessions in `acc_filter`
 #' will be excluded from the database; if FALSE, only accessions in `acc_filter`
-#' will be included in the databasse. Default FALSE.
+#' will be included in the database. Default FALSE.
 #' @return data.frame, or NULL if no records pass filters
 #' @family private
 gb_df_generate <- function(records, min_length=0, max_length=NULL,

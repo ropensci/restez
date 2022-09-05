@@ -62,7 +62,7 @@ After the download has completed, we need to use `db_create()` to create our loc
 db_create()
 ```
 
-`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. This can also be done with the `acc_filter` argument, as described in the ["Tips and Tricks" vigenette](https://docs.ropensci.org/restez/articles/5_tips_and_tricks.html). You can always run `db_create()` again to change the limits. You will simply need to delete the original database first with `db_delete()`.
+`db_create()` allows a user to specify minimum and maximum sequence lengths. It's always a good idea to limit the number of sequences in a database so that look-up times are faster. If you know you are only interested in certain lengths of sequences it is a good idea to limit the sequences in the database at this stage. This can also be done with the `acc_filter` argument, as described in the ["Tips and Tricks" vignette](https://docs.ropensci.org/restez/articles/5_tips_and_tricks.html). You can always run `db_create()` again to change the limits. You will simply need to delete the original database first with `db_delete()`.
 
 ## 1.4 Checking the setup
 
@@ -115,7 +115,7 @@ Additionally, for more flexibility and options for extracting sequence record in
 
 # 3. Entrez
 
-Entrez wrappers are part of the `restez` package. These allow a user to make use of the local GenBank using functions that were built for [`rentrez`](https://github.com/ropensci/rentrez). This minimises the amount of coding changes required for any Entrez dependent code.
+Entrez wrappers are part of the `restez` package. These allow a user to make use of the local GenBank using functions that were built for [`rentrez`](https://github.com/ropensci/rentrez). This minimizes the amount of coding changes required for any Entrez dependent code.
 
 >Currently, only `entrez_fetch()` is available with restez and only text formatted rettypes are allowed.
 
