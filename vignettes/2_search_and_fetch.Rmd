@@ -1,6 +1,6 @@
 ---
 title: "2. How to search for and fetch sequences"
-date: "2022-08-31"
+date: "2022-09-02"
 output: rmarkdown::html_vignette
 ---
 
@@ -55,7 +55,7 @@ system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
 #>    user  system elapsed 
-#>   0.211   0.117   0.314
+#>   0.202   0.100   0.257
 # time via Entrez
 system.time(expr = {
   coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -75,7 +75,7 @@ system.time(expr = {
                                             rettype = 'fasta')
   })
 #>    user  system elapsed 
-#>   0.049   0.008   4.891
+#>   0.051   0.007   5.425
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ## Missing

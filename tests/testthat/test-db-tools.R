@@ -99,8 +99,8 @@ test_that('db_download() works', {
   stub(db_download, "db_download_intern", TRUE)
   expect_true(db_download())
   expect_warning(
-    db_download(overwrite = FALSE, max_tries = 2),
-    "Setting 'overwrite' to TRUE is suggested with 'max_tries' > 1")
+    db_download(overwrite = TRUE, max_tries = 2),
+    "Setting 'overwrite' to FALSE is suggested with 'max_tries' > 1")
 })
 test_that('db_delete() works', {
   setup()

@@ -1,3 +1,10 @@
+restez 2.1.1 (prerelease)
+=========================
+
+### BUG FIXES
+
+* Fix incorrect warning about `max_tries` (#45)
+
 restez 2.1.0 (2022-08-31)
 =========================
 

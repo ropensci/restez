@@ -147,9 +147,9 @@ db_download <- function(
     msg = "'max_tries' must be greater than 0")
 
   # Issue warning if needed
-  if (max_tries > 1 && overwrite == FALSE) {
+  if (max_tries > 1 && overwrite == TRUE) {
     warning(
-      "Setting 'overwrite' to TRUE is suggested with 'max_tries' > 1. Otherwise, each download attempt will start from scratch" # nolint
+      "Setting 'overwrite' to FALSE is suggested with 'max_tries' > 1. Otherwise, each download attempt will start from scratch and the complete download may never finish" # nolint
     )
   }
 

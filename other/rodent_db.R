@@ -5,9 +5,7 @@ if (!dir.exists(rodents_path)) {
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
 # download domain 10 and build db, record times
-# if max_tries > 1, should set overwrite to FALSE or will start over again
-dl_time <- system.time(
-  db_download(preselection = 10, max_tries = 100, overwrite = FALSE))
+dl_time <- system.time(db_download(preselection = 10, max_tries = 100))
 
 db_time <- system.time(db_create(min_length = 100, max_length = 1000))
 
