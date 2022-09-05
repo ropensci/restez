@@ -9,11 +9,11 @@
 [![Coverage
 Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master)](https://coveralls.io/github/ropensci/restez?branch=master)
 [![ROpenSci
-status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/onboarding/issues/232)
+status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/software-review/issues/232)
 [![CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez)
 [![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
-[![status](http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841/status.svg)](http://joss.theoj.org/papers/6eb3ba7dddbdab8788a430eb62fc3841)
+[![status](https://joss.theoj.org/papers/10.21105/joss.01102/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01102)
 
 > NOTE: `restez` is no longer available on CRAN due to the archiving of
 > a key dependency
@@ -35,7 +35,7 @@ so that if sequences are not available locally they can be searched for
 online through [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
 See the [detailed
-tutorials](https://ropensci.github.io/restez/articles/restez.html) for
+tutorials](https://docs.ropensci.org/restez/articles/restez.html) for
 more information.
 
 ## Introduction
@@ -87,7 +87,7 @@ no longer available.)
 > For more detailed information on the package’s functions and detailed
 > guides on downloading, constructing and querying a database, see the
 > [detailed
-> tutorials](https://ropensci.github.io/restez/articles/restez.html).
+> tutorials](https://docs.ropensci.org/restez/articles/restez.html).
 
 ### Setup
 
@@ -116,11 +116,11 @@ id <- sample(list_db_ids(), 1)
 # sequences
 seq <- gb_sequence_get(id)[[1]]
 str(seq)
-#>  chr "GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNCCGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGA"| __truncated__
+#>  chr "ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCT"| __truncated__
 # definitions
 def <- gb_definition_get(id)[[1]]
 print(def)
-#> [1] "Unidentified clone A3 DNA sequence from ocean beach sand"
+#> [1] "Unidentified sequence clone 1 amplified using OIE white spot virus primers"
 # organisms
 org <- gb_organism_get(id)[[1]]
 print(org)
@@ -128,42 +128,52 @@ print(org)
 # or whole records
 rec <- gb_record_get(id)[[1]]
 cat(rec)
-#> LOCUS       AF298085                 537 bp    DNA     linear   UNA 23-NOV-2000
-#> DEFINITION  Unidentified clone A3 DNA sequence from ocean beach sand.
-#> ACCESSION   AF298085
-#> VERSION     AF298085.1
+#> LOCUS       AY703870                 952 bp    DNA     linear   UNA 21-JAN-2005
+#> DEFINITION  Unidentified sequence clone 1 amplified using OIE white spot virus
+#>             primers.
+#> ACCESSION   AY703870
+#> VERSION     AY703870.1
 #> KEYWORDS    .
 #> SOURCE      unidentified
 #>   ORGANISM  unidentified
 #>             unclassified sequences.
-#> REFERENCE   1  (bases 1 to 537)
-#>   AUTHORS   Naviaux,R.K.
-#>   TITLE     Sand DNA: a multigenomic library on the beach
-#>   JOURNAL   Unpublished
-#> REFERENCE   2  (bases 1 to 537)
-#>   AUTHORS   Naviaux,R.K.
+#> REFERENCE   1  (bases 1 to 952)
+#>   AUTHORS   Claydon,K., Cullen,B. and Owens,L.
+#>   TITLE     OIE white spot syndrome virus PCR gives false-positive results in
+#>             Cherax quadricarinatus
+#>   JOURNAL   Dis. Aquat. Org. 62 (3), 265-268 (2004)
+#>    PUBMED   15672884
+#> REFERENCE   2  (bases 1 to 952)
+#>   AUTHORS   Claydon,K., Cullen,B. and Owens,L.
 #>   TITLE     Direct Submission
-#>   JOURNAL   Submitted (21-AUG-2000) Medicine, University of California, San
-#>             Diego School of Medicine, 200 West Arbor Drive, San Diego, CA
-#>             92103-8467, USA
+#>   JOURNAL   Submitted (01-AUG-2004) Biomedical Sciences, James Cook University,
+#>             Solander Drive, Townsville, Qld 4811, Australia
 #> FEATURES             Location/Qualifiers
-#>      source          1..537
+#>      source          1..952
 #>                      /organism="unidentified"
 #>                      /mol_type="genomic DNA"
 #>                      /db_xref="taxon:32644"
-#>                      /clone="A3"
-#>                      /note="anonymous environmental sample sequence from ocean
-#>                      beach sand"
+#>                      /clone="1"
+#>      misc_feature    1..952
+#>                      /note="false-positive sequence amplified using OIE white
+#>                      spot virus primers"
 #> ORIGIN      
-#>         1 gatccatatg tatacggaaa gcgtgtttac ctctttggtc agatantaac tgatgctcac
-#>        61 ccaatcntnc cgtagaccgt gcctgattgg gccggangac ctggggaacg accgcgaagt
-#>       121 tgtgtanctg cggaacctcn gtatnggngt nttacancaa cactgtgccc tcggccattt
-#>       181 ccaggttgcc gttgtcctcc tcagnctgna tgacccatnn ataacggcca tctgccaaaa
-#>       241 cccggntcac gatctgctgg gtaccgccgg ccagttccac cgtttccggc tcgtccacaa
-#>       301 caccntccca atagacactg tatgcaccgg gcccccggcg ccggttctgc cgaaagaaga
-#>       361 attgttgctc gtcttcnttc tcnaaatata tgctgacgtt ngccgaacga gtgagtctat
-#>       421 accggatctc ggtgacgtcg gtgtcgncat cggcgtncgg nctgatccna tcgggggcga
-#>       481 cgctnaatcc ctnaacagcg ggccaaaggc cangtgcatt tggccgcaac cacctgc
+#>         1 actactaact tcagcctatc tagcactaca ccttcaacat ctccagcact acaccttcaa
+#>        61 catctccagc actacacctt caacatctcc agcactacac cttcaacatc tccagcacta
+#>       121 caccttcaac atctccagca ctacaccttc aacatctcca gcactacacc ttcagcatct
+#>       181 ccagcactac accttcaaca tctccagcac tacatcttca acatctccag cactacacct
+#>       241 tcaacatctc cagcactaca ccttcaacat ctccagcact acaccttcaa catctccagc
+#>       301 actacacctt caacatctcc agcactacac cttcaacatc tccagcatta cacctttagc
+#>       361 atcaccacca ccaccttcaa catcaccacc actacctgca gcactctacc ttcatctaca
+#>       421 gtcaagaccc ccaacgtccg ttaagaccaa tgccaagaag ctagatgttt ccaacttgaa
+#>       481 ggaattctcc tctagtttgt tcccttgtag tatttctcta atggggctgg ggaagaggta
+#>       541 gagggaaggt agagaggaaa aggataaggg agagagggaa agatggaaga ggagaggaag
+#>       601 aacgacagaa gaatggattt atgaagaaga gaaggagtag taggaggaga aagagtacgt
+#>       661 aagtgcacat gggaagcaga cagcagcaga cattactgtc tacaaggaag ctatctgggg
+#>       721 agcactaaca atagtccagc taactactcc ttactggata aatgaccata atttttaaag
+#>       781 gggtggaccg gtaagccagc ggaaggcctc ggtcagatga ccaaaagctc caaaggcggg
+#>       841 tcatcatctg actaagaccc gcgtcaggaa acatttatcc tgtttcctga cgaaccttac
+#>       901 ctaacctaac ctaacctcct tactggaatc tagataggat gaagttagta gt
 #> //
 ```
 
@@ -173,30 +183,42 @@ cat(rec)
 # use the entrez_* wrappers to access GB data
 res <- entrez_fetch(db = 'nucleotide', id = id, rettype = 'fasta')
 cat(res)
-#> >AF298085.1 Unidentified clone A3 DNA sequence from ocean beach sand
-#> GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNC
-#> CGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGACCGCGAAGTTGTGTANCTGCGGAACCTCN
-#> GTATNGGNGTNTTACANCAACACTGTGCCCTCGGCCATTTCCAGGTTGCCGTTGTCCTCCTCAGNCTGNA
-#> TGACCCATNNATAACGGCCATCTGCCAAAACCCGGNTCACGATCTGCTGGGTACCGCCGGCCAGTTCCAC
-#> CGTTTCCGGCTCGTCCACAACACCNTCCCAATAGACACTGTATGCACCGGGCCCCCGGCGCCGGTTCTGC
-#> CGAAAGAAGAATTGTTGCTCGTCTTCNTTCTCNAAATATATGCTGACGTTNGCCGAACGAGTGAGTCTAT
-#> ACCGGATCTCGGTGACGTCGGTGTCGNCATCGGCGTNCGGNCTGATCCNATCGGGGGCGACGCTNAATCC
-#> CTNAACAGCGGGCCAAAGGCCANGTGCATTTGGCCGCAACCACCTGC
+#> >AY703870.1 Unidentified sequence clone 1 amplified using OIE white spot virus primers
+#> ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGC
+#> ACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCA
+#> CTACACCTTCAACATCTCCAGCACTACACCTTCAGCATCTCCAGCACTACACCTTCAACATCTCCAGCAC
+#> TACATCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACT
+#> ACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCATTA
+#> CACCTTTAGCATCACCACCACCACCTTCAACATCACCACCACTACCTGCAGCACTCTACCTTCATCTACA
+#> GTCAAGACCCCCAACGTCCGTTAAGACCAATGCCAAGAAGCTAGATGTTTCCAACTTGAAGGAATTCTCC
+#> TCTAGTTTGTTCCCTTGTAGTATTTCTCTAATGGGGCTGGGGAAGAGGTAGAGGGAAGGTAGAGAGGAAA
+#> AGGATAAGGGAGAGAGGGAAAGATGGAAGAGGAGAGGAAGAACGACAGAAGAATGGATTTATGAAGAAGA
+#> GAAGGAGTAGTAGGAGGAGAAAGAGTACGTAAGTGCACATGGGAAGCAGACAGCAGCAGACATTACTGTC
+#> TACAAGGAAGCTATCTGGGGAGCACTAACAATAGTCCAGCTAACTACTCCTTACTGGATAAATGACCATA
+#> ATTTTTAAAGGGGTGGACCGGTAAGCCAGCGGAAGGCCTCGGTCAGATGACCAAAAGCTCCAAAGGCGGG
+#> TCATCATCTGACTAAGACCCGCGTCAGGAAACATTTATCCTGTTTCCTGACGAACCTTACCTAACCTAAC
+#> CTAACCTCCTTACTGGAATCTAGATAGGATGAAGTTAGTAGT
 # if the id is not in the local database
 # these wrappers will search online via the rentrez package
 res <- entrez_fetch(db = 'nucleotide', id = c('S71333.1', id),
                     rettype = 'fasta')
 #> [1] id(s) are unavailable locally, searching online.
 cat(res)
-#> >AF298085.1 Unidentified clone A3 DNA sequence from ocean beach sand
-#> GATCCATATGTATACGGAAAGCGTGTTTACCTCTTTGGTCAGATANTAACTGATGCTCACCCAATCNTNC
-#> CGTAGACCGTGCCTGATTGGGCCGGANGACCTGGGGAACGACCGCGAAGTTGTGTANCTGCGGAACCTCN
-#> GTATNGGNGTNTTACANCAACACTGTGCCCTCGGCCATTTCCAGGTTGCCGTTGTCCTCCTCAGNCTGNA
-#> TGACCCATNNATAACGGCCATCTGCCAAAACCCGGNTCACGATCTGCTGGGTACCGCCGGCCAGTTCCAC
-#> CGTTTCCGGCTCGTCCACAACACCNTCCCAATAGACACTGTATGCACCGGGCCCCCGGCGCCGGTTCTGC
-#> CGAAAGAAGAATTGTTGCTCGTCTTCNTTCTCNAAATATATGCTGACGTTNGCCGAACGAGTGAGTCTAT
-#> ACCGGATCTCGGTGACGTCGGTGTCGNCATCGGCGTNCGGNCTGATCCNATCGGGGGCGACGCTNAATCC
-#> CTNAACAGCGGGCCAAAGGCCANGTGCATTTGGCCGCAACCACCTGC
+#> >AY703870.1 Unidentified sequence clone 1 amplified using OIE white spot virus primers
+#> ACTACTAACTTCAGCCTATCTAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGC
+#> ACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCA
+#> CTACACCTTCAACATCTCCAGCACTACACCTTCAGCATCTCCAGCACTACACCTTCAACATCTCCAGCAC
+#> TACATCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACT
+#> ACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCACTACACCTTCAACATCTCCAGCATTA
+#> CACCTTTAGCATCACCACCACCACCTTCAACATCACCACCACTACCTGCAGCACTCTACCTTCATCTACA
+#> GTCAAGACCCCCAACGTCCGTTAAGACCAATGCCAAGAAGCTAGATGTTTCCAACTTGAAGGAATTCTCC
+#> TCTAGTTTGTTCCCTTGTAGTATTTCTCTAATGGGGCTGGGGAAGAGGTAGAGGGAAGGTAGAGAGGAAA
+#> AGGATAAGGGAGAGAGGGAAAGATGGAAGAGGAGAGGAAGAACGACAGAAGAATGGATTTATGAAGAAGA
+#> GAAGGAGTAGTAGGAGGAGAAAGAGTACGTAAGTGCACATGGGAAGCAGACAGCAGCAGACATTACTGTC
+#> TACAAGGAAGCTATCTGGGGAGCACTAACAATAGTCCAGCTAACTACTCCTTACTGGATAAATGACCATA
+#> ATTTTTAAAGGGGTGGACCGGTAAGCCAGCGGAAGGCCTCGGTCAGATGACCAAAAGCTCCAAAGGCGGG
+#> TCATCATCTGACTAAGACCCGCGTCAGGAAACATTTATCCTGTTTCCTGACGAACCTTACCTAACCTAAC
+#> CTAACCTCCTTACTGGAATCTAGATAGGATGAAGTTAGTAGT
 #> 
 #> >S71333.1 alpha 1,3 galactosyltransferase [New World monkeys, mermoset lymphoid cell line B95.8, mRNA Partial, 1131 nt]
 #> ATGAATGTCAAAGGAAAAGTAATTCTGTCGATGCTGGTTGTCTCAACTGTGATTGTTGTGTTTTGGGAAT
@@ -221,7 +243,7 @@ cat(res)
 ## Contributing
 
 Want to contribute? Check the [contributing
-page](https://ropensci.github.io/restez/CONTRIBUTING.html).
+page](https://docs.ropensci.org/restez/CONTRIBUTING.html).
 
 ## Licence
 
@@ -250,4 +272,4 @@ This package previously developed and maintained by Dom Bennett
 
 ------------------------------------------------------------------------
 
-[![ropensci_footer](http://ropensci.org/public_images/ropensci_footer.png)](http://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
