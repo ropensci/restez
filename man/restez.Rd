@@ -47,13 +47,13 @@ curious you can read their documentation using the form
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/restez}
-  \item \url{https://docs.ropensci.org/restez}
+  \item \url{https://docs.ropensci.org/restez/}
   \item Report bugs at \url{https://github.com/ropensci/restez/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Joel H. Nitta \email{joelnitta@gmail.com} (\href{https://orcid.org/0000-0003-4719-7472}{ORCID})
+\strong{Maintainer}: Joel Nitta \email{joelnitta@gmail.com} (\href{https://orcid.org/0000-0003-4719-7472}{ORCID})
 
 Authors:
 \itemize{

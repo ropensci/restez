@@ -4,7 +4,7 @@ Title: Create and Query a Local Copy of 'GenBank' in R
 Version: 2.1.1
 Authors@R: c(
   person(
-    given = "Joel H.",
+    given = "Joel",
     family = "Nitta",
     role = c("aut", "cre"),
     email = "joelnitta@gmail.com",
@@ -23,7 +23,7 @@ Description: Download large sections of
     functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez>
     wrappers.
 URL: https://github.com/ropensci/restez,
-    https://docs.ropensci.org/restez
+    https://docs.ropensci.org/restez/
 BugReports: https://github.com/ropensci/restez/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
