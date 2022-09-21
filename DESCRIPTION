@@ -4,7 +4,7 @@ Title: Create and Query a Local Copy of 'GenBank' in R
 Version: 2.1.2
 Authors@R: c(
   person(
-    given = "Joel",
+    given = "Joel H.",
     family = "Nitta",
     role = c("aut", "cre"),
     email = "joelnitta@gmail.com",

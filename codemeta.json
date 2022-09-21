@@ -4,7 +4,7 @@
   "identifier": "restez",
   "description": "Download large sections of 'GenBank' <https://www.ncbi.nlm.nih.gov/genbank/> and generate a local SQL-based database. A user can then query this database using 'restez' functions or through 'rentrez' <https://CRAN.R-project.org/package=rentrez> wrappers.",
   "name": "restez: Create and Query a Local Copy of 'GenBank' in R",
-  "relatedLink": "https://docs.ropensci.org/restez/",
+  "relatedLink": ["https://docs.ropensci.org/restez/", "https://CRAN.R-project.org/package=restez"],
   "codeRepository": "https://github.com/ropensci/restez",
   "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -15,10 +15,16 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
-      "givenName": "Joel",
+      "givenName": "Joel H.",
       "familyName": "Nitta",
       "email": "joelnitta@gmail.com",
       "@id": "https://orcid.org/0000-0003-4719-7472"
@@ -34,7 +40,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Joel",
+      "givenName": "Joel H.",
       "familyName": "Nitta",
       "email": "joelnitta@gmail.com",
       "@id": "https://orcid.org/0000-0003-4719-7472"
@@ -249,7 +255,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1677.899KB",
+  "fileSize": "1676.428KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
