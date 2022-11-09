@@ -1,3 +1,10 @@
+restez 2.1.3 (2022-11-09)
+=========================
+
+### BUG FIXES
+
+* Fix error in processing GenBank release notes that arose in GenBank release 252 (#47) 
+
 restez 2.1.2 (2022-09-05)
 =========================
 

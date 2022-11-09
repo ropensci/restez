@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ropensci/restez",
   "issueTracker": "https://github.com/ropensci/restez/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -255,7 +255,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1676.428KB",
+  "fileSize": "1676.921KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
