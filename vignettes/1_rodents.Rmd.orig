@@ -53,7 +53,7 @@ restez_path_set(rodents_path)
 library(restez)
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
-# download for domain 10 (rodents as of GenBank release 251)
+# download for domain 10 (rodents as of GenBank release 252)
 db_download(preselection = '10')
 ```
 

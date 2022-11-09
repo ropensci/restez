@@ -172,7 +172,7 @@ You can try out the above functions yourself on any sequence record by downloadi
 library(restez)
 restez_path_set(rodents_path)
 (rand_id <- sample(suppressWarnings(list_db_ids()), 1))
-#> [1] "AB001427"
+#> [1] "AB001426"
 record <- gb_record_get(rand_id)
 (gb_extract(record = record, what = 'features'))
 #> [[1]]
@@ -180,7 +180,7 @@ record <- gb_record_get(rand_id)
 #> [1] "source"
 #> 
 #> [[1]]$location
-#> [1] "1..510"
+#> [1] "1..480"
 #> 
 #> [[1]]$organism
 #> [1] "Mus musculus"
@@ -195,19 +195,19 @@ record <- gb_record_get(rand_id)
 #> [1] "taxon:10090"
 #> 
 #> [[1]]$dev_stage
-#> [1] "4 weekCDS             <1..>510"
+#> [1] "4 weekCDS             <1..>480"
 #> 
 #> [[1]]$codon_start
 #> [1] "1"
 #> 
 #> [[1]]$product
-#> [1] "motor domain of KIF11"
+#> [1] "motor domain of KIF10"
 #> 
 #> [[1]]$protein_id
-#> [1] "BAA22387.1"
+#> [1] "BAA22386.1"
 #> 
 #> [[1]]$translation
-#> [1] "IFTYGQTGTGKTFTMEGERSPNEVCTWEEGPLAGIIPRTLHQIFEKLTDNGTEFSVKVSLLEIYNEELFDLLSPSSDVSERLQMFDDPRNKRGVIIKDLEEITVHNKDEVYQILEKGAAKRTTAATLMNAYSSRSHSVFSVTIHMKETTIDGEELVKIGKLNLVDLAGSE"
+#> [1] "IFAYGQTASGKTHTMMGSEDCLGVIPRAIHDIFQRIKKFPEREFLLRVSYMEIYNETITDLLCNAQKMKPLIIREDTNRTVYVSDLTEEVVYTAEMALKWLATGEKNRHYGITKMNQRSSRSHTIFRMILESREKAEPSNCDGSVKVSHIKLIDTVDLEG"
 ```
 
 ## Next up

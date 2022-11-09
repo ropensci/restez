@@ -1,6 +1,6 @@
 ---
 title: "2. How to search for and fetch sequences"
-date: "2022-09-05"
+date: "2022-11-09"
 output: rmarkdown::html_vignette
 ---
 
@@ -38,7 +38,7 @@ To fetch the sequences from the rodents database, we can use the `gb_fasta_get` 
 restez_path_set(rodents_path)
 coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])
-#>  chr ">FJ808614.1 Glis glis isolate A1g02_E11-F cytochrome oxidase subunit I (COI) gene, partial cds; mitochondrial\n"| __truncated__
+#>  chr ">JF457099.1 Sciurus carolinensis voucher HLC-10628 cytochrome oxidase subunit 1 (COI) gene, partial cds; mitoch"| __truncated__
 # Are all accessions in results?
 all(accessions %in% names(coi_sequences))
 #> [1] TRUE
@@ -55,7 +55,7 @@ system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
 #>    user  system elapsed 
-#>   0.203   0.106   0.288
+#>   0.190   0.089   0.302
 # time via Entrez
 system.time(expr = {
   coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -75,7 +75,7 @@ system.time(expr = {
                                             rettype = 'fasta')
   })
 #>    user  system elapsed 
-#>   0.050   0.008   5.252
+#>   0.045   0.013   5.017
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ## Missing
