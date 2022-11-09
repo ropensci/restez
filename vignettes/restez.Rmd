@@ -33,6 +33,9 @@ restez::restez_path_set(filepath = rstz_pth)
 restez::db_delete(everything = TRUE)
 ```
 ```{r setting up, echo=TRUE}
+# set a random number generator seed for reproducibility
+set.seed(12345)
+
 library(restez)
 # rstz_pth <- tempdir()
 restez_path_set(filepath = rstz_pth)

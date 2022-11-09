@@ -81,7 +81,7 @@ identify_downloadable_files <- function() {
     } else {
       descript <- FALSE
     }
-    if (grepl(pattern = '^(\\s+)?[0-9]+\\s+gb[a-z]{1,4}[0-9]{1,4}\\.seq$',
+    if (grepl(pattern = '^(\\s+)?[0-9]+\\s+gb[a-z]{1,4}[0-9]{1,4}\\.seq{0,1}$',
               x = line)) {
       filesize <- TRUE
     } else {
@@ -114,6 +114,13 @@ identify_downloadable_files <- function() {
                                  FUN.VALUE = character(1)))
   names(filesizes) <- vapply(X = filesize_info, FUN = '[[', i = 2,
                              FUN.VALUE = character(1))
+  # repair truncated names (name of flatfile in some cases got truncated
+  # e.g. from "gbpln1000.seq" to "gbpln1000.se")
+  truncated_names <- names(filesizes)[grepl("\\.se$", names(filesizes))]
+  if (length(truncated_names) > 0) {
+    names(filesizes)[grepl("\\.se$", names(filesizes))] <-
+      paste0(truncated_names, "q")
+  }
   res <- data.frame(seq_files = seq_files, descripts = descripts,
              filesizes = filesizes[seq_files])
   if (any(is.na(res))) {
