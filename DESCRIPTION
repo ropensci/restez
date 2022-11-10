@@ -16,7 +16,7 @@ Authors@R: c(
     email = "dominic.john.bennett@gmail.com",
     comment = c(ORCID = "0000-0003-2722-1359"))
     )
-Maintainer: Joel Nitta <joelnitta@gmail.com>
+Maintainer: Joel H. Nitta <joelnitta@gmail.com>
 Description: Download large sections of
     'GenBank' <https://www.ncbi.nlm.nih.gov/genbank/> and generate a local
     SQL-based database. A user can then query this database using 'restez'
