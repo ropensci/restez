@@ -104,16 +104,14 @@ identify_downloadable_files <- function() {
   seq_files_descripts <- strsplit(x = seq_files_descripts, split = ' - ')
   seq_files <- unlist(lapply(seq_files_descripts, '[', 1))
   descripts <- unlist(lapply(seq_files_descripts, '[', 2))
-  descripts <- sub(pattern = ' sequence entries,', replacement = '',
+  descripts <- sub(pattern = ' sequence entries', replacement = '',
                    x = descripts)
-  descripts <- sub(pattern = ' part [0-9]+\\.', replacement = '',
+  descripts <- sub(pattern = ', part [0-9]+\\.', replacement = '',
                    x = descripts)
   filesize_info <- strsplit(x = filesize_lines, split = '\\s')
   filesize_info <- lapply(X = filesize_info, function(x) x[x != ''])
-  filesizes <- as.integer(vapply(X = filesize_info, FUN = '[[', i = 1,
-                                 FUN.VALUE = character(1)))
-  names(filesizes) <- vapply(X = filesize_info, FUN = '[[', i = 2,
-                             FUN.VALUE = character(1))
+  filesizes <- as.numeric(unlist(lapply(filesize_info, '[', 1)))
+  names(filesizes) <- unlist(lapply(filesize_info, '[', 2))
   # repair truncated names (name of flatfile in some cases got truncated
   # e.g. from "gbpln1000.seq" to "gbpln1000.se")
   truncated_names <- names(filesizes)[grepl("\\.se$", names(filesizes))]
