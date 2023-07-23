@@ -1,6 +1,6 @@
 ---
 title: "2. How to search for and fetch sequences"
-date: "2022-11-09"
+date: "2023-07-24"
 output: rmarkdown::html_vignette
 ---
 
@@ -24,8 +24,7 @@ accessions <- ncbi_acc_get(
 print(length(accessions))
 #> [1] 492
 print(accessions[1:10])
-#>  [1] "MZ661159" "MZ364430" "HQ966965" "GU670702" "GU670701" "GU670700"
-#>  [7] "GU670699" "GU670462" "GU670451" "GU670450"
+#>  [1] "MZ661159" "MZ364430" "HQ966965" "GU670702" "GU670701" "GU670700" "GU670699" "GU670462" "GU670451" "GU670450"
 ```
 
 ## Retrieve sequences
@@ -38,7 +37,7 @@ To fetch the sequences from the rodents database, we can use the `gb_fasta_get` 
 restez_path_set(rodents_path)
 coi_sequences <- gb_fasta_get(id = accessions)
 str(coi_sequences[[1]])
-#>  chr ">JF457099.1 Sciurus carolinensis voucher HLC-10628 cytochrome oxidase subunit 1 (COI) gene, partial cds; mitoch"| __truncated__
+#>  chr ">LT630607.1 Sciurus sp. 1 AG-2016 mitochondrial partial COI gene for cytochrome oxidase subunit 1, specimen vou"| __truncated__
 # Are all accessions in results?
 all(accessions %in% names(coi_sequences))
 #> [1] TRUE
@@ -55,7 +54,7 @@ system.time(expr = {
   coi_sequences <- gb_fasta_get(id = accessions)
   })
 #>    user  system elapsed 
-#>   0.190   0.089   0.302
+#>   0.259   0.077   0.272
 # time via Entrez
 system.time(expr = {
   coi_sequences_p1 <- rentrez::entrez_fetch(db = 'nucleotide',
@@ -75,7 +74,7 @@ system.time(expr = {
                                             rettype = 'fasta')
   })
 #>    user  system elapsed 
-#>   0.045   0.013   5.017
+#>   0.050   0.008   5.536
 ```
 <!-- Below is no longer relevant now that the size of sequences in the db has been limited.
 ## Missing
