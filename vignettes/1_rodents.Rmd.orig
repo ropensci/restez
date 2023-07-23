@@ -36,13 +36,13 @@ The database you build here will be used again in later tutorials and you may wi
 
 Setting up the rodents database will likely take a long time. The exact time will depend on your internet speeds and machine specs. For reference, this vigenette was written on an iMac (2019) with a download speed of 56 MBPS. With this setup, downloading the database took `r dl_time_hr` hr and creating the database took `r db_time_hr` hr.
 
-Note GenBank domains (i.e., major parts of GenBank split by major taxonomic group) are specified by number. As of writing, rodents are number 10, but the numbering scheme may change between releases, so don't assume this will necessarily be the case in future releases. You can check the current number scheme by running `db_download()` without any input to `preselection`.
+Note GenBank domains (i.e., major parts of GenBank split by major taxonomic group) are specified by number. As of writing, rodents are number 7, but the numbering scheme may change between releases, so don't assume this will necessarily be the case in future releases. You can check the current number scheme by running `db_download()` without any input to `preselection`.
 
 ## Download
 ```{r setpath, include=FALSE, eval=TRUE}
 # reminder to self: other/rodent_db.R
 pkgwd <- sub(pattern = 'vignettes', replacement = '', x = getwd())
-rodents_path <- paste0(pkgwd, 'rodents')
+rodents_path <- paste0(pkgwd, '/rodents')
 if (!dir.exists(rodents_path)) {
   stop('other/rodent_db.R must be run first!', call. = FALSE)
 }
@@ -53,8 +53,8 @@ restez_path_set(rodents_path)
 library(restez)
 # set the restez path to a memorable location
 restez_path_set(rodents_path)
-# download for domain 10 (rodents as of GenBank release 252)
-db_download(preselection = '10')
+# download for domain 7 (rodents as of GenBank release 256)
+db_download(preselection = '7')
 ```
 
 ## Build

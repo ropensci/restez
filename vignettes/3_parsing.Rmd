@@ -111,10 +111,8 @@ We can extract different elements of the above record with `gb_extract()` ....
 ```r
 # such as the LOCUS information ...
 (gb_extract(record = record, what = 'locus'))
-#>     accession        length           mol          type        domain 
-#>    "AY952423"        "2623"         "DNA"      "linear"         "PLN" 
-#>          date 
-#> "17-APR-2005"
+#>     accession        length           mol          type        domain          date 
+#>    "AY952423"        "2623"         "DNA"      "linear"         "PLN" "17-APR-2005"
 # the accession
 (gb_extract(record = record, what = 'accession'))
 #> [1] "AY952423"
@@ -172,7 +170,7 @@ You can try out the above functions yourself on any sequence record by downloadi
 library(restez)
 restez_path_set(rodents_path)
 (rand_id <- sample(suppressWarnings(list_db_ids()), 1))
-#> [1] "AB001426"
+#> [1] "AB004839"
 record <- gb_record_get(rand_id)
 (gb_extract(record = record, what = 'features'))
 #> [[1]]
@@ -180,34 +178,24 @@ record <- gb_record_get(rand_id)
 #> [1] "source"
 #> 
 #> [[1]]$location
-#> [1] "1..480"
+#> [1] "1..130"
 #> 
 #> [[1]]$organism
-#> [1] "Mus musculus"
+#> [1] "Apodemus argenteus"
 #> 
 #> [[1]]$mol_type
-#> [1] "mRNA"
-#> 
-#> [[1]]$strain
-#> [1] "ICR"
+#> [1] "genomic DNA"
 #> 
 #> [[1]]$db_xref
-#> [1] "taxon:10090"
+#> [1] "taxon:61837"
 #> 
-#> [[1]]$dev_stage
-#> [1] "4 weekCDS             <1..>480"
 #> 
-#> [[1]]$codon_start
-#> [1] "1"
+#> [[2]]
+#> [[2]]$type
+#> [1] "repeat_region"
 #> 
-#> [[1]]$product
-#> [1] "motor domain of KIF10"
-#> 
-#> [[1]]$protein_id
-#> [1] "BAA22386.1"
-#> 
-#> [[1]]$translation
-#> [1] "IFAYGQTASGKTHTMMGSEDCLGVIPRAIHDIFQRIKKFPEREFLLRVSYMEIYNETITDLLCNAQKMKPLIIREDTNRTVYVSDLTEEVVYTAEMALKWLATGEKNRHYGITKMNQRSSRSHTIFRMILESREKAEPSNCDGSVKVSHIKLIDTVDLEG"
+#> [[2]]$location
+#> [1] "25..52"
 ```
 
 ## Next up

@@ -45,31 +45,31 @@ setup(wd = wd, txid = txid, ncbi_dr = ncbi_dr, mxsql = 500)
 ```r
 # run just the first two stages for this demonstration
 taxise_run(wd)
-#> --------------------------------------------
-#> Starting stage TAXISE: [2022-11-09 09:31:09]
-#> --------------------------------------------
+#> ---------------------------------------------------
+#> Starting stage TAXISE: [2023-07-24 07:00:06.361265]
+#> ---------------------------------------------------
 #> Searching taxonomic IDs ...
 #> Downloading taxonomic records ...
-#> . [1-28]
+#> . [1-38]
 #> Generating taxonomic dictionary ...
-#> ---------------------------------------------
-#> Completed stage TAXISE: [2022-11-09 09:31:11]
-#> ---------------------------------------------
+#> ---------------------------------------------------
+#> Completed stage TAXISE: [2023-07-24 07:00:09.45394]
+#> ---------------------------------------------------
 download_run(wd)
-#> ----------------------------------------------
-#> Starting stage DOWNLOAD: [2022-11-09 09:31:11]
-#> ----------------------------------------------
+#> -----------------------------------------------------
+#> Starting stage DOWNLOAD: [2023-07-24 07:00:09.456996]
+#> -----------------------------------------------------
 #> Identifying suitable clades ...
 #> Identified [1] suitable clades.
 #> Connecting to restez database ...
 #> Downloading hierarchically ...
 #> Working on parent [id 35737]: [1/1] ...
 #> . + whole subtree ...
-#> . . Getting [100 sqs] from restez database...
-#> Successfully retrieved [100 sqs] in total.
-#> -----------------------------------------------
-#> Completed stage DOWNLOAD: [2022-11-09 09:31:17]
-#> -----------------------------------------------
+#> . . Getting [300 sqs] from restez database...
+#> Successfully retrieved [300 sqs] in total.
+#> ------------------------------------------------------
+#> Completed stage DOWNLOAD: [2023-07-24 07:00:16.345238]
+#> ------------------------------------------------------
 ```
 
 Sequences that cannot be found locally will be downloaded via Entrez. Sequences may not be found locally for three sets of reasons, 1. `phylotaR` may have identified non-GenBank sequences (e.g. RefSeq), 2. the local database may have size limits (ours has a min of 100 and a max 1000), and 3. the local database is out of date, new GenBank releases are only made once a month.
