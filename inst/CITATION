@@ -1,13 +1,37 @@
-citHeader("To cite restez in publications, please use:")
-
-citEntry(entry = "article",
-  author = "Bennett, D.J. and Hettling, H. and Silvestro, D. and Vos, R. and Antonelli, A.",
+bibentry(
+  bibtype = "Article",
+  author = c(
+    person(
+      given = "Dominic J.",
+      family = "Bennett",
+      role = "aut"
+    ),
+    person(
+      given = "Hannes",
+      family = "Hettling",
+      role = "aut"
+    ),
+    person(
+      given = "Daniele",
+      family = "Silvestro",
+      role = "aut"
+    ),
+    person(
+      given = "Rutger",
+      family = "Vos",
+      role = "aut"
+    ),
+    person(
+      given = "Alexandre",
+      family = "Antonelli",
+      role = "aut"
+    )
+  ),
   title = "restez: Create and Query a Local Copy of GenBank in R",
   journal = "The Journal of Open Source Software",
-  year = "2018",
-  number  = 31,
-  pages   = 1102,
-  volume  = 3,
-  doi = "10.21105/joss.01102",
-  textVersion = "Bennett et al., (2018). restez: Create and Query a Local Copy of GenBank in R. Journal of Open Source Software, 3(31), 1102, https://doi.org/10.21105/joss.01102"
+  year = 2018,
+  number = 31,
+  pages = 1102,
+  volume = 3,
+  doi = "10.21105/joss.01102"
 )
