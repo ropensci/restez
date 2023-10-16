@@ -1,3 +1,11 @@
+restez 2.1.4
+=========================
+
+### BUG FIXES
+
+* Fix bug in test due to update to duckdb ([#55](https://github.com/ropensci/restez/issues/55))
+
+
 restez 2.1.3 (2022-11-09)
 =========================
 
