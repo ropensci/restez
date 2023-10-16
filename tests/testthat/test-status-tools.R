@@ -13,7 +13,7 @@ test_that('restez_status() works', {
   demo_db_create(n = 10)
   status_obj <- restez_status(gb_check = FALSE)
   expect_true(status_obj$Database$`Does path exist?`)
-  expect_equal(as.character(status_obj$Database$`Total size`), "1.01M")
+  expect_equal(as.character(status_obj$Database$`Total size`), "780K")
   expect_true(status_obj$Database$`Does the database have data?`)
   expect_equal(status_obj$Database$`Number of sequences`, 10)
   expect_equal(status_obj$Database$`Min. sequence length`, "0")
