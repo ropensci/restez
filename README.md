@@ -12,7 +12,7 @@ Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=maste
 status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/software-review/issues/232)
 [![CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez)
-[![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6806029.svg)](https://doi.org/10.5281/zenodo.6806029)
 [![status](https://joss.theoj.org/papers/10.21105/joss.01102/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01102)
 
 > NOTE: Starting with v2.0.0, the database backend changed from
@@ -216,7 +216,7 @@ in R. *Journal of Open Source Software*, 3(31), 1102.
 
 Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell,
 J., & Sayers, E. W. (2012). GenBank. *Nucleic Acids Research*,
-40(Database issue), D48–D53. <http://doi.org/10.1093/nar/gkr1202>
+40(Database issue), D48–D53. <https://doi.org/10.1093/nar/gkr1202>
 
 Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. *PeerJ
 Preprints* 5:e3179v2 <https://doi.org/10.7287/peerj.preprints.3179v2>

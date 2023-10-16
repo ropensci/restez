@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![Coverage Status](https://coveralls.io/repos/github/ropensci/restez/badge.svg?branch=master)](https://coveralls.io/github/ropensci/restez?branch=master)
 [![ROpenSci status](https://badges.ropensci.org/232_status.svg)](https://github.com/ropensci/software-review/issues/232)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/restez)](https://CRAN.R-project.org/package=restez)
-[![DOI](https://zenodo.org/badge/129107980.svg)](https://zenodo.org/badge/latestdoi/129107980)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6806029.svg)](https://doi.org/10.5281/zenodo.6806029)
 [![status](https://joss.theoj.org/papers/10.21105/joss.01102/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01102)
 
 > NOTE: Starting with v2.0.0, the database backend changed from [MonetDBLite](https://github.com/MonetDB/MonetDBLite-R) to [duckdb](https://github.com/duckdb/duckdb). Because of this change, restez v2.0.0 or higher **is not compatible with databases built with previous versions of restez**.
@@ -141,7 +141,7 @@ Bennett et al. (2018). restez: Create and Query a Local Copy of GenBank in R.
 
 Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell, J., &
 Sayers, E. W. (2012). GenBank. *Nucleic Acids Research*, 40(Database issue),
-D48–D53. http://doi.org/10.1093/nar/gkr1202
+D48–D53. https://doi.org/10.1093/nar/gkr1202
 
 Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API.
 *PeerJ Preprints* 5:e3179v2 https://doi.org/10.7287/peerj.preprints.3179v2
