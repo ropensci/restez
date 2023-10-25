@@ -25,7 +25,7 @@ On fedora-clang-devel (r-devel)
 
 It seems this warning could be suppressed by setting `_R_CHECK_RD_VALIDATE_RD2HTML_` to false, but [apparently that just turns off HTML validation](https://developer.r-project.org/blosxom.cgi/R-devel/2022/04/28), which happens anyways.
 
-The following NOTE was found on Windows:
+The following NOTE was found on Windows (rhub):
 
 ```
 * checking for non-standard things in the check directory ... NOTE
@@ -38,6 +38,18 @@ Found the following files/directories:
 ```
 
 These are both R-hub bugs that have not yet been resolved (https://github.com/r-hub/rhub/issues/560, https://github.com/r-hub/rhub/issues/503)
+
+The following NOTE was found on Windows (winbuilder):
+
+```
+Found the following (possibly) invalid URLs:
+  URL: https://ropensci.org
+    From: README.md
+    Status: Error
+    Message: Recv failure: Connection was reset
+```
+
+This seems to be a false positive. https://ropensci.org is a valid URL.
 
 ## Reverse dependencies
 
