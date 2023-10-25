@@ -22,6 +22,7 @@ reference:
     - list_db_ids
     - count_db_ids
     - ncbi_acc_get
+    - print.status
 - title: GenBank
   desc: Retrieve data from the local GenBank database
   contents:
@@ -98,7 +99,6 @@ reference:
     - mock_rec
     - mock_seq
     - predict_datasizes
-    - print.status
     - readme_log
     - restez_path_check
     - restez_rl
