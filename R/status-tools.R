@@ -70,11 +70,13 @@ status_class <- function() {
 
 #' @name print.status
 #' @title Print method for status class
-#' @family private
-#' @description Prints to screen the three sections of the status class.
+#' @description Prints to screen the three sections of the status class. Not
+#' meant to be used interactively.
 #' @param x Status object
+#' @param ... Other arguments (not used by this function)
 #' @return NULL
-print.status <- function(x) {
+#' @export
+print.status <- function(x, ...) {
   for (nm in names(x)) {
     cat_line(cli::rule())
     cat_line(nm, ' ...')

@@ -67,7 +67,6 @@ Other private:
 \code{\link{mock_org}()},
 \code{\link{mock_rec}()},
 \code{\link{mock_seq}()},
-\code{\link{print.status}()},
 \code{\link{readme_log}()},
 \code{\link{restez_connect}()},
 \code{\link{restez_disconnect}()},
