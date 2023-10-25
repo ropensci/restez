@@ -1,4 +1,6 @@
-restez 2.1.4
+# restez (development version)
+
+restez 2.1.4 (2023-10-25)
 =========================
 
 ### BUG FIXES
