@@ -7,7 +7,12 @@
 flatfile_read <- function(flpth) {
   generate_records <- function(i) {
     indexes <- record_starts[i]:record_ends[i]
-    record <- paste0(lines[indexes], collapse = '\n')
+    record <- try(paste0(lines[indexes], collapse = '\n'))
+    if (inherits(record, "try-error")){
+      print(record)
+      warning("record too long, dropping")
+      record = NULL
+    }
     record
   }
   connection <- file(flpth, open = "r")
