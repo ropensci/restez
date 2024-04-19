@@ -9,8 +9,8 @@ flatfile_read <- function(flpth) {
     indexes <- record_starts[i]:record_ends[i]
     record <- try(paste0(lines[indexes], collapse = '\n'))
     if (inherits(record, "try-error")){
-      print(record)
-      warning("record too long, dropping")
+      warning("Record too long, dropping. Here is the first line:")
+      print(lines[1])
       record = NULL
     }
     record
