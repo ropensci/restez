@@ -1,5 +1,9 @@
 # restez (development version)
 
+### BUG FIXES
+
+* Fix bug where a very long sequence record crashed `db_create()` ([#60](https://github.com/ropensci/restez/issues/60)), thanks @btupper
+
 restez 2.1.4 (2023-10-25)
 =========================
 
