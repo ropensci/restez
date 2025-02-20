@@ -34,6 +34,12 @@ test_that('gb_sequence_get() works', {
   expect_s3_class(seq_dnabin_2, "DNAbin")
   expect_equal(length(seq_dnabin_2), 2)
   expect_equal(names(seq_dnabin_2), id_2)
+  # Test that order of sequences matches order of names
+  # https://github.com/ropensci/restez/issues/64
+  # Reverse the order of the query; output sequence name order should match
+  id_3 <- id_2[c(2, 1)]
+  seq_dnabin_3 <- gb_sequence_get(id = id_3, dnabin = TRUE)
+  expect_equal(names(seq_dnabin_3), id_3)
 })
 test_that('gb_record_get() works', {
   id <- sample(ids, 1)
