@@ -89,6 +89,11 @@ gb_sequence_get <- function(id, dnabin = FALSE) {
   names(sqs) <- res[['accession']]
   sqs <- unlist(sqs)
 
+  # Sort order of output to match id
+  order <- match(names(sqs), id, nomatch = NA_integer_)
+  order <- order[!is.na(order)]
+  sqs <- sqs[order]
+
   if (isTRUE(dnabin)) {
     sq_names <- names(sqs)
     sqs <- ape::as.DNAbin(strsplit(sqs, ""))
