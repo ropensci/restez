@@ -1,6 +1,10 @@
-# restez (development version)
+restez 2.1.5
+=========================
 
 ### BUG FIXES
+
+* gb_sequence_get() now ensures that accessions are returned in same order as
+query (https://github.com/ropensci/restez/issues/64), thanks @krlmlr
 
 * Fix bug where a very long sequence record crashed `db_create()` ([#60](https://github.com/ropensci/restez/issues/60)), thanks @btupper
 
