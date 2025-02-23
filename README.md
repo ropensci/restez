@@ -216,7 +216,7 @@ in R. *Journal of Open Source Software*, 3(31), 1102.
 
 Benson, D. A., Karsch-Mizrachi, I., Clark, K., Lipman, D. J., Ostell,
 J., & Sayers, E. W. (2012). GenBank. *Nucleic Acids Research*,
-40(Database issue), D48–D53. <https://doi.org/10.1093/nar/gkr1202>
+40(Database issue), D48–D53. DOI 10.1093/nar/gkr1202
 
 Winter DJ. (2017) rentrez: An R package for the NCBI eUtils API. *PeerJ
 Preprints* 5:e3179v2 <https://doi.org/10.7287/peerj.preprints.3179v2>
