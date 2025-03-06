@@ -74,8 +74,8 @@ Other private:
 \code{\link{slctn_get}()},
 \code{\link{slctn_log}()},
 \code{\link{sql_path_get}()},
-\code{\link{status_class}()},
 \code{\link{stat}()},
+\code{\link{status_class}()},
 \code{\link{testdatadir_get}()}
 }
 \concept{private}

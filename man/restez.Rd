@@ -2,8 +2,8 @@
 % Please edit documentation in R/restez.R
 \docType{package}
 \name{restez}
-\alias{restez}
 \alias{restez-package}
+\alias{restez}
 \title{restez: Create and Query a Local Copy of GenBank in R}
 \description{
 The restez package comes with five families of functions:

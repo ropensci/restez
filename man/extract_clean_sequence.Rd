@@ -67,8 +67,8 @@ Other private:
 \code{\link{last_add_get}()},
 \code{\link{last_dwnld_get}()},
 \code{\link{last_entry_get}()},
-\code{\link{latest_genbank_release_notes}()},
 \code{\link{latest_genbank_release}()},
+\code{\link{latest_genbank_release_notes}()},
 \code{\link{message_missing}()},
 \code{\link{mock_def}()},
 \code{\link{mock_gb_df_generate}()},
@@ -87,8 +87,8 @@ Other private:
 \code{\link{slctn_get}()},
 \code{\link{slctn_log}()},
 \code{\link{sql_path_get}()},
-\code{\link{status_class}()},
 \code{\link{stat}()},
+\code{\link{status_class}()},
 \code{\link{testdatadir_get}()}
 }
 \concept{private}
