@@ -1,13 +1,20 @@
 # LIBS
 library(testthat)
-library(mockery)
 
 # RUNNING
-test_that('check_connection() works', {
-  stub(check_connection, "url_exists", TRUE)
+test_that("check_connection() works", {
+  local_mocked_bindings(
+    check_connection = function(...) TRUE
+  )
   expect_true(check_connection())
-  stub(check_connection, "url_exists", FALSE)
+})
+
+test_that("url_exists() works", {
+  local_mocked_bindings(
+    url_exists = function(...) FALSE
+  )
   expect_error(
     check_connection(),
-    "Unable to connect to")
+    "Unable to connect to"
+  )
 })

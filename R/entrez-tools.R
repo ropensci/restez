@@ -9,6 +9,12 @@ message_missing <- function(n) {
   message(msg)
 }
 
+#' Wrapper for rentrez::entrez_fetch(), used for mocking during tests
+#' @noRd
+entrez_fetch_wrap <- function(...) {
+  rentrez::entrez_fetch(...)
+}
+
 #' @name entrez_fasta_get
 #' @title Get Entrez fasta
 #' @description Return fasta format as expected from
@@ -30,7 +36,7 @@ entrez_fasta_get <- function(id, ...) {
   }
   if (length(mssng) > 0) {
     message_missing(length(mssng))
-    rentrez_fastas <- rentrez::entrez_fetch(id = mssng, ...)
+    rentrez_fastas <- entrez_fetch_wrap(id = mssng, ...)
     res <- paste0(res, rentrez_fastas)
   }
   res
@@ -58,7 +64,7 @@ entrez_gb_get <- function(id, ...) {
   }
   if (length(mssng) > 0) {
     message_missing(length(mssng))
-    rentrez_recs <- rentrez::entrez_fetch(id = mssng, ...)
+    rentrez_recs <- entrez_fetch_wrap(id = mssng, ...)
     res <- paste0(res, rentrez_recs)
   }
   res

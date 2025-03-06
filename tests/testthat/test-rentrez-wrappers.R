@@ -25,11 +25,11 @@ test_that('entrez_fetch() works', {
   gb_res <- entrez_fetch(db = 'nucleotide', id = sample(ids, 2),
                          rettype = 'gb')
   # xml is not supported, rentrez will be called
-  res <- with_mock(
-    `rentrez:::entrez_fetch` = function(...) TRUE,
-    entrez_fetch(db = 'nucleotide', id = sample(ids, 2),
-                 rettype = 'gb', retmode = 'xml')
+  local_mocked_bindings(
+    entrez_fetch = function(...) TRUE, .package = "rentrez"
   )
+  res <- entrez_fetch(db = 'nucleotide', id = sample(ids, 2),
+                 rettype = 'gb', retmode = 'xml')
   expect_true(res)
 })
 cleanup()
