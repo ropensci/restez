@@ -1,7 +1,7 @@
 Package: restez
 Type: Package
 Title: Create and Query a Local Copy of 'GenBank' in R
-Version: 2.1.5
+Version: 2.1.5.9000
 Authors@R: c(
   person(
     given = "Joel H.",
