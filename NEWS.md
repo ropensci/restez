@@ -6,6 +6,9 @@ restez 2.1.5
 * gb_sequence_get() now ensures that accessions are returned in same order as
 query (https://github.com/ropensci/restez/issues/64), thanks @krlmlr
 
+* tests no longer use with_mock()
+(https://github.com/ropensci/restez/issues/63), thanks @hadley
+
 * Fix bug where a very long sequence record crashed `db_create()` ([#60](https://github.com/ropensci/restez/issues/60)), thanks @btupper
 
 restez 2.1.4 (2023-10-25)
