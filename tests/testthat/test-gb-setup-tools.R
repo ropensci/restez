@@ -23,25 +23,14 @@ write_fake_records <- function(n=nrcrds) {
 context('Testing \'setup-tools\'')
 cleanup()
 test_that('gb_build() works', {
-  res <- with_mock(
-    `restez::restez_connect` = function() NULL,
-    `restez::flatfile_read` = function(...) NULL,
-    `restez::gb_df_generate` = function() NULL,
-    `restez::gb_sql_add` = function() NULL,
-    `restez::add_rcrd_log` = function() NULL,
-    gb_build(dpth = NULL, seq_files = 1:10, max_length = NULL,
-                      min_length = NULL)
+  local_mocked_bindings(
+    flatfile_read = function(...) NULL
   )
+  res <- gb_build(
+    dpth = NULL, seq_files = 1:10, max_length = NULL, min_length = NULL)
   expect_true(res)
-  res <- with_mock(
-    `restez::restez_connect` = function() NULL,
-    `restez::flatfile_read` = function(...) NULL,
-    `restez::gb_df_generate` = function() NULL,
-    `restez::gb_sql_add` = function() NULL,
-    `restez::add_rcrd_log` = function() NULL,
-    gb_build(dpth = NULL, seq_files = NULL, max_length = NULL,
-                      min_length = NULL)
-  )
+  res <- gb_build(
+    dpth = NULL, seq_files = NULL, max_length = NULL, min_length = NULL)
   expect_false(res)
 })
 test_that('flatfile_read() works', {

@@ -27,16 +27,13 @@ test_that('entrez_fasta_get() works', {
   expect_true(length(mtch_obj) == 2)
   expect_true(grepl(pattern = '^>.*', x = res))
   # if not in local, should search internet
-  res <- with_mock(
-    `rentrez:::entrez_fetch` = function(...) '>notanid\nATCG\n\n',
-    entrez_fasta_get(id = 'notanid')
+  local_mocked_bindings(
+    entrez_fetch_wrap = function(...) '>notanid\nATCG\n\n'
   )
+  res <- entrez_fasta_get(id = 'notanid')
   expect_true(grepl('>notanid', res))
   # should be able to handle mixture
-  res <- with_mock(
-    `rentrez:::entrez_fetch` = function(...) '>notanid\nATCG\n\n',
-    entrez_fasta_get(id = c(sample(ids, 2), 'notanid'))
-  )
+  res <- entrez_fasta_get(id = c(sample(ids, 2), 'notanid'))
   expect_true(grepl('>notanid', res))
   mtch_obj <- gregexpr(pattern = '\n\n', text = res)[[1]]
   expect_true(length(mtch_obj) == 3)
@@ -54,16 +51,13 @@ test_that('entrez_gb_get() works', {
   expect_true(length(mtch_obj) == 2)
   expect_true(grepl(pattern = 'LOCUS', x = res))
   # if not in local, should search internet
-  res <- with_mock(
-    `rentrez:::entrez_fetch` = function(...) 'LOCUS notanid\n//\n\n',
-    entrez_gb_get(id = 'notanid')
+  local_mocked_bindings(
+    entrez_fetch_wrap = function(...) 'LOCUS notanid\n//\n\n'
   )
+  res <- entrez_gb_get(id = 'notanid')
   expect_true(grepl('notanid', res))
   # should be able to handle mixture
-  res <- with_mock(
-    `rentrez:::entrez_fetch` = function(...) 'LOCUS notanid\n//\n\n',
-    entrez_gb_get(id = c(sample(ids, 2), 'notanid'))
-  )
+  res <- entrez_gb_get(id = c(sample(ids, 2), 'notanid'))
   expect_true(grepl('notanid', res))
   mtch_obj <- gregexpr(pattern = 'LOCUS', text = res)[[1]]
   expect_true(length(mtch_obj) == 3)

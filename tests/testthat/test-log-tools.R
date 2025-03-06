@@ -90,15 +90,15 @@ test_that('dir_size() works', {
 })
 test_that('gbrelease_check() works', {
   gbrelease_log(release = 'gb.release.255')
-  res <- with_mock(
-    `restez::latest_genbank_release` = function(...) 256,
-    gbrelease_check()
+  local_mocked_bindings(
+    latest_genbank_release = function(...) 256
   )
+  res <- gbrelease_check()
   expect_false(res)
-  res <- with_mock(
-    `restez::latest_genbank_release` = function(...) 255,
-    gbrelease_check()
+    local_mocked_bindings(
+    latest_genbank_release = function(...) 255
   )
+  res <- gbrelease_check()
   expect_true(res)
 })
 cleanup()
