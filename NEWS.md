@@ -1,5 +1,6 @@
-restez 2.1.5
-=========================
+# restez 2.1.5
+
+(2025-03-07)
 
 ### BUG FIXES
 
@@ -11,23 +12,26 @@ query (https://github.com/ropensci/restez/issues/64), thanks @krlmlr
 
 * Fix bug where a very long sequence record crashed `db_create()` ([#60](https://github.com/ropensci/restez/issues/60)), thanks @btupper
 
-restez 2.1.4 (2023-10-25)
-=========================
+# restez 2.1.4
+
+(2023-10-25)
 
 ### BUG FIXES
 
 * Fix bug in test due to update to duckdb ([#55](https://github.com/ropensci/restez/issues/55))
 
 
-restez 2.1.3 (2022-11-09)
-=========================
+# restez 2.1.3
+
+(2022-11-09)
 
 ### BUG FIXES
 
 * Fix error in processing GenBank release notes that arose in GenBank release 252 (#47) 
 
-restez 2.1.2 (2022-09-05)
-=========================
+# restez 2.1.2
+
+(2022-09-05)
 
 ### BUG FIXES
 
@@ -35,15 +39,17 @@ restez 2.1.2 (2022-09-05)
 * Fix broken links (fddb4c2508975fe5bf5588da6aae5aca15f82a61)
 * Other minor fixes for submission to CRAN (43795b48d6fa4ef4c7485dc0f1675d6a2e4fa574, 325b74ff3193bb94e9062bb6114a30b709324ca8)
 
-restez 2.1.1 (2022-09-05)
-=========================
+# restez 2.1.1
+
+(2022-09-05)
 
 ### BUG FIXES
 
 * Fix incorrect warning about `max_tries` (#45)
 
-restez 2.1.0 (2022-08-31)
-=========================
+# restez 2.1.0
+
+(2022-08-31)
 
 ### BUG FIXES
 
@@ -62,8 +68,9 @@ restez 2.1.0 (2022-08-31)
 * Add `max_tries` argument to `db_download()` to automatically re-try download in the event of a drop in internet connectivity (#36, #42)
 * Add `dnabin` argument to `gb_sequence_get()` to return sequences in ape `DNAbin` format (#38, #44)
 
-restez 2.0.0 (2022-07-07)
-=========================
+# restez 2.0.0
+
+(2022-07-07)
 
 ### BUG FIXES
 
@@ -81,8 +88,9 @@ restez 2.0.0 (2022-07-07)
 
 * Switch CI from travis to github actions (9cc52e888accf489310b604b2636ffbfd0acecd7)
 
-restez 1.1.0 (2022-06-03)
-=========================
+# restez 1.1.0
+
+(2022-06-03)
 
 ### BUG FIXES
 
@@ -96,15 +104,17 @@ restez 1.1.0 (2022-06-03)
 
 * Change maintainer to [Joel Nitta](https://github.com/joelnitta)
 
-restez 1.0.1 (2019-01-07)
-=========================
+# restez 1.0.1
+
+(2019-01-07)
 
 ### BUG FIXES
 
 * Check internet connection in mainland China
 
-restez 1.0.0 (2018-11-27)
-=========================
+# restez 1.0.0
+
+(2018-11-27)
 
 ### OTHER
 * Post-review version of `restez` released.
